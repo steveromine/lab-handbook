@@ -1,0 +1,24 @@
+# Editor / OS noise
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Local working files that must never be published
+*.private-note
+*.bak
+*.orig
+*.rej
+TODO.private-note
+NOTES.private-note
+
+# Anything that looks like a credential must never enter this public repo
+*.pem
+*.key
+*.p12
+*.pfx
+.env
+.env.*
+credentials*
+*secrets*
