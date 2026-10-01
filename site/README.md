@@ -84,3 +84,45 @@ curl -sS "$BASE/" | grep -o '<title>[^<]*</title>'
 curl -sS -o /dev/null -w 'deep %{http_code}\n' "$BASE/lessons/"
 curl -sS -o /dev/null -w '%{http_code} %{redirect_url}\n' "http://${BASE#https://}/"
 ```
+
+## What the edge needs (first-deploy notes)
+
+These are the one-time, hand-made changes on the edge host. They are deliberately small and
+reversible; nothing else about the edge is touched.
+
+| Piece | Value / action |
+|---|---|
+| Web root | `/var/www/lab-handbook`, owned by the deploy account, mode `755` (world-readable so the web server can serve it) |
+| Deploy account | `labdeploy` - unprivileged, **no sudo**, shell for rsync only |
+| Deploy key | A dedicated keypair; the public half is installed in the account's `authorized_keys` behind `command="rrsync -wo /var/www/lab-handbook"` plus `no-port-forwarding,no-agent-forwarding,no-pty,no-user-rc,no-X11-forwarding` |
+| SSH admission | The host's hardening drop-in sets `AllowUsers`; the deploy account must be **added to that list** or sshd refuses it before it ever reads the key (`Permission denied (publickey)`, which looks like a bad key and is not) |
+| Web server | One additive site block: `root * /var/www/lab-handbook`, `try_files {path} {path}/index.html`, `file_server`, and `handle_errors` rewriting to `/404.html`. Validate and **reload** - never restart, which would drop every other published site |
+
+Prove the restriction rather than assuming it:
+
+```sh
+ssh -i <deploy-key> <deploy-user>@<edge> true   # must be REFUSED by rrsync
+rsync -rlt --delete --chmod=D755,F644 -e "ssh -i <deploy-key>" site/dist/ <deploy-user>@<edge>:/
+```
+
+If a deploy has to happen before the restricted account exists, stream a tarball over an
+administrative session and fix ownership afterwards:
+
+```sh
+tar czf - -C site/dist . | ssh <admin>@<edge> \
+  'sudo rm -rf /var/www/lab-handbook && sudo mkdir -p /var/www/lab-handbook && \
+   sudo tar xzf - -C /var/www/lab-handbook && sudo chmod -R a+rX /var/www/lab-handbook'
+```
+
+## Enabling the GitHub Actions deploy
+
+The workflow is committed but idle until these exist on the repository:
+
+| Setting | Kind | Value |
+|---|---|---|
+| `SITE_URL` | variable | The public origin, e.g. `https://<public-origin>` |
+| `EDGE_HOST` | secret | The edge host address |
+| `EDGE_USER` | secret | `labdeploy` |
+| `EDGE_DEPLOY_KEY` | secret | The private half of the deploy keypair |
+
+The private key is a secret to be added by the operator; it is never committed and never printed.
