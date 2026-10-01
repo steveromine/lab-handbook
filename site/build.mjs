@@ -87,6 +87,18 @@ function handbookPages() {
   return pages;
 }
 
+// Handbook markdown links to sibling files as docs/<name>.md; on the site those live at
+// /handbook/<name>/. Rewrite only relative .md targets; leave external, absolute and anchor links alone.
+function rewriteRefLinks(html) {
+  return String(html).replace(/href="([^"]+)"/g, function (m, href) {
+    if (/^(https?:|mailto:|#|\/)/.test(href)) return m;
+    if (/(^|\/)README\.md$/.test(href)) return 'href="/handbook/"';
+    const mm = href.match(/^(?:\.\/|\.\.\/|docs\/)*([A-Za-z0-9][A-Za-z0-9._-]*)\.md$/);
+    if (mm) return 'href="/handbook/' + mm[1] + '/"';
+    return m;
+  });
+}
+
 function writePage(slug, html) {
   if (slug === '/') write('index.html', html);
   else write(slug.replace(/^\//, '').replace(/\/$/, '') + '/index.html', html);
@@ -210,7 +222,7 @@ function main() {
 
   const hb = handbookPages();
   for (const p of hb) {
-    const content = '<p class="eyebrow">Reference</p>' + p.rendered.html;
+    const content = '<p class="eyebrow">Reference</p>' + rewriteRefLinks(p.rendered.html);
     const html = layout({ title: p.title, description: 'Handbook reference: ' + p.title, url: p.slug, navCurrent: '/handbook/', content });
     writePage(p.slug, html);
     allPages.push({ slug: p.slug, title: p.title, kind: p.kind, text: p.rendered.text });
