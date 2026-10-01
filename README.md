@@ -310,6 +310,7 @@ Every document in this handbook, and what it is for.
 | [docs/agents.md](docs/agents.md) | The agent platform in depth |
 | [docs/ai-platform.md](docs/ai-platform.md) | LLM, chat, images, archives, search |
 | [docs/cost-expectations.md](docs/cost-expectations.md) | What this costs to run - realistic expectations, and why context is the real driver |
+| [docs/agent-org-chart.md](docs/agent-org-chart.md) | The agent org chart: roles, personalities, and what each may not do |
 | [docs/edge-and-security.md](docs/edge-and-security.md) | Trust boundaries, auth model, hardening |
 
 ### Operating it
