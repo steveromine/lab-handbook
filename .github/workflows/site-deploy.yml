@@ -1,0 +1,62 @@
+name: Build and deploy the handbook site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'site/**'
+      - 'docs/**'
+      - 'README.md'
+      - '.github/workflows/site-deploy.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: site-deploy
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+
+      - name: Build (runs the sanitisation gate; fails the job on any finding)
+        run: node site/build.mjs
+
+      - name: Refuse to deploy if the gate reports findings
+        run: |
+          set -euo pipefail
+          test -f site/dist/index.html
+          test -f site/dist/robots.txt
+          test -f site/dist/sitemap.xml
+          ! grep -rIlE 'BEGIN [A-Z ]*PRIVATE KEY' site/dist
+
+      - name: Install deploy key
+        env:
+          DEPLOY_KEY: ${{ secrets.EDGE_DEPLOY_KEY }}
+          EDGE_HOST: ${{ secrets.EDGE_HOST }}
+        run: |
+          set -euo pipefail
+          mkdir -p ~/.ssh && chmod 700 ~/.ssh
+          printf '%s\n' "$DEPLOY_KEY" > ~/.ssh/id_deploy
+          chmod 600 ~/.ssh/id_deploy
+          ssh-keyscan -H "$EDGE_HOST" >> ~/.ssh/known_hosts 2>/dev/null
+
+      - name: Deploy over SSH (restricted rsync-only key)
+        env:
+          EDGE_HOST: ${{ secrets.EDGE_HOST }}
+          EDGE_USER: ${{ secrets.EDGE_USER }}
+        run: |
+          set -euo pipefail
+          rsync -rlt --delete --chmod=D755,F644 \
+            -e "ssh -i ~/.ssh/id_deploy -o IdentitiesOnly=yes -o BatchMode=yes" \
+            site/dist/ "$EDGE_USER@$EDGE_HOST:/"

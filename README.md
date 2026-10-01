@@ -8,6 +8,8 @@ here, and what is actually running right now.**
 > addresses, no real domain names, no access paths**. Services and guests are referred to
 > **by role**, which is the useful part — never by address or domain. See [Conventions](#conventions).
 
+**This handbook is also published as a static website**, built from the `site/` directory in this repository (see [site/README.md](site/README.md)). The markdown here remains the source of truth.
+
 **New here, or not technical? Start with [Explain It Like I'm 5](docs/eli5.md)** — plain language, no jargon.
 
 

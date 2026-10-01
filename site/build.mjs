@@ -1,0 +1,229 @@
+#!/usr/bin/env node
+// Build the public lab handbook site from the existing handbook markdown.
+// Dependency-free: Node standard library only.
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath } from 'node:url';
+import { renderMarkdown, stripFrontMatter, slugify } from './lib/md.mjs';
+import { layout, SITE, NAV } from './lib/render.mjs';
+import { encodePNG, makeCard, drawText, fillRect } from './lib/png.mjs';
+
+const HERE = path.dirname(fileURLToPath(import.meta.url));
+const ROOT = path.resolve(HERE, '..');
+const DIST = path.join(HERE, 'dist');
+const CONTENT = path.join(HERE, 'content');
+const ASSETS = path.join(HERE, 'assets');
+const DOCS = path.join(ROOT, 'docs');
+
+const STORY = [
+  { slug: '/', file: 'home.md', nav: '/' },
+  { slug: '/then-and-now/', file: 'then-and-now.md', nav: '/then-and-now/', section: 'Story' },
+  { slug: '/architecture/', file: 'architecture.md', nav: '/architecture/', section: 'Story' },
+  { slug: '/agents/', file: 'agents.md', nav: '/agents/', section: 'Story' },
+  { slug: '/gpu-budget/', file: 'gpu-budget.md', nav: '/gpu-budget/', section: 'Story' },
+  { slug: '/security/', file: 'security.md', nav: '/security/', section: 'Story' },
+  { slug: '/status/', file: 'status.md', nav: '/status/', section: 'Story' },
+  { slug: '/lessons/', file: 'lessons.md', nav: '/lessons/', section: 'Story' },
+  { slug: '/build/', file: 'build.md', nav: '/build/', section: 'Story' },
+  { slug: '/start/', file: 'start.md', nav: '/start/', section: 'Story' }
+];
+
+function ensureDir(p) { fs.mkdirSync(p, { recursive: true }); }
+function write(rel, data) { const p = path.join(DIST, rel); ensureDir(path.dirname(p)); fs.writeFileSync(p, data); }
+function read(p) { return fs.readFileSync(p, 'utf8'); }
+
+function readStory(entry) {
+  const raw = read(path.join(CONTENT, entry.file));
+  const fm = stripFrontMatter(raw);
+  const rendered = renderMarkdown(fm.body);
+  return { entry, meta: fm.meta, rendered };
+}
+
+function heroHtml(meta) {
+  if (!meta.hero_title) return '';
+  const parts = ['<header class="hero">'];
+  if (meta.eyebrow) parts.push('<p class="eyebrow">' + meta.eyebrow + '</p>');
+  parts.push('<h1>' + meta.hero_title + '</h1>');
+  if (meta.hero_lede) parts.push('<p class="lede">' + meta.hero_lede + '</p>');
+  parts.push('<p class="hero-actions"><a class="btn" href="/handbook/">Read the handbook</a> <a class="btn btn-ghost" href="/start/">Where do I start?</a></p>');
+  parts.push('</header>');
+  return parts.join('');
+}
+
+const FACTS = [
+  ['Hypervisor', '1', 'One physical Proxmox VE host. A deliberate single point of failure.'],
+  ['Guests in service', '10 + 3', 'Ten containers and three virtual machines; seven retired guests reclaimed.'],
+  ['GPU', '8 GB', 'One consumer card, shared three ways on purpose.'],
+  ['GPU workloads', '3', 'Resident LLM (~5 GB), streaming image model, bursty media transcode.'],
+  ['Image generation', '1-4 steps', 'A distilled few-step model; ~1.5-2.5 s per image alongside the LLM.'],
+  ['Network zones', '3', 'Management, untrusted client, servers.'],
+  ['Public entry points', '1', 'A single hardened edge; lab services have no public listeners.'],
+  ['Auth layers per service', '1', 'Exactly one - the app, or the edge. Never both.'],
+  ['Agent roles live', '1 of 5', 'Manager is live; Forge, Sentinel, Atlas and Ledger are designed, not built.']
+];
+
+function factsHtml() {
+  return '<section class="snapshot" aria-labelledby="snapshot-h"><h2 id="snapshot-h">The platform in numbers</h2>' +
+    '<dl class="facts">' + FACTS.map(function (f) {
+      return '<div class="fact"><dt>' + f[0] + '</dt><dd><span class="fact-value">' + f[1] + '</span><span class="fact-note">' + f[2] + '</span></dd></div>';
+    }).join('') + '</dl>' +
+    '<p class="fine">Every figure above is taken from the handbook in this repository. Where the lab has not verified something, the <a href="/status/">status page</a> says so.</p></section>';
+}
+
+function handbookPages() {
+  const pages = [];
+  const readme = read(path.join(ROOT, 'README.md'));
+  const rf = stripFrontMatter(readme);
+  const rr = renderMarkdown(rf.body);
+  pages.push({ slug: '/handbook/', kind: 'index', title: 'Handbook', source: 'README.md', rendered: rr });
+  const files = fs.readdirSync(DOCS).filter(f => f.endsWith('.md')).sort();
+  for (const f of files) {
+    const raw = read(path.join(DOCS, f));
+    const fm = stripFrontMatter(raw);
+    const rendered = renderMarkdown(fm.body);
+    const h1 = (rendered.headings.find(h => h.depth === 1) || { text: f.replace(/\.md$/, '') }).text;
+    pages.push({ slug: '/handbook/' + f.replace(/\.md$/, '') + '/', kind: 'doc', title: h1, source: 'docs/' + f, rendered });
+  }
+  return pages;
+}
+
+function writePage(slug, html) {
+  if (slug === '/') write('index.html', html);
+  else write(slug.replace(/^\//, '').replace(/\/$/, '') + '/index.html', html);
+}
+
+// ---------- assets ----------
+const FAVICON_SVG = ['<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Lab Handbook">',
+  '<rect width="64" height="64" rx="12" fill="#0c1017"/>',
+  '<rect x="10" y="14" width="6" height="36" fill="#7dd3fc"/>',
+  '<rect x="10" y="44" width="22" height="6" fill="#7dd3fc"/>',
+  '<rect x="22" y="14" width="6" height="30" fill="#7dd3fc"/>',
+  '<rect x="38" y="14" width="6" height="36" fill="#e2e8f0"/>',
+  '<rect x="48" y="14" width="6" height="36" fill="#e2e8f0"/>',
+  '<rect x="38" y="30" width="16" height="6" fill="#e2e8f0"/>',
+  '</svg>'].join('');
+
+function assets() {
+  write('assets/favicon.svg', FAVICON_SVG);
+  const icon = Buffer.alloc(32 * 32 * 4);
+  fillRect(icon, 32, 0, 0, 32, 32, [12, 16, 22]);
+  drawText(icon, 32, 6, 9, 'LH', 3, [125, 211, 252]);
+  write('assets/favicon.png', encodePNG(32, 32, icon));
+  const touch = Buffer.alloc(180 * 180 * 4);
+  fillRect(touch, 180, 0, 0, 180, 180, [12, 16, 22]);
+  drawText(touch, 180, 42, 62, 'LH', 10, [125, 211, 252]);
+  write('assets/apple-touch-icon.png', encodePNG(180, 180, touch));
+  const og = makeCard(1200, 630, { title: 'THE LAB HANDBOOK', titleScale: 9, subtitle: 'ONE PERSON, A SMALL AUTONOMOUS PLATFORM', footer: 'LAB.STEVEROMINE.COM  -  PUBLIC BY INTENTION, SANITISED BY DESIGN' });
+  write('assets/og.png', encodePNG(1200, 630, og));
+  for (const f of fs.readdirSync(ASSETS)) {
+    write('assets/' + f, fs.readFileSync(path.join(ASSETS, f)));
+  }
+}
+
+// ---------- search / sitemap ----------
+function searchIndex(pages) {
+  const entries = pages.map(function (p) {
+    return { u: p.slug, t: p.title, k: p.kind === 'doc' ? 'Handbook' : p.kind === 'index' ? 'Handbook' : 'Story', x: p.text.slice(0, 1500) };
+  });
+  write('search-index.json', JSON.stringify(entries));
+}
+
+function sitemap(pages) {
+  const urls = pages.map(p => '  <url><loc>' + SITE.url + p.slug + '</loc></url>').join('\n');
+  write('sitemap.xml', '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n' + urls + '\n</urlset>\n');
+}
+
+function robots() {
+  write('robots.txt', 'User-agent: *\nAllow: /\nSitemap: ' + SITE.url + '/sitemap.xml\n');
+}
+
+// ---------- sanitisation gate ----------
+const PATTERNS = [
+  { label: 'IPv4 address', re: /\b(?:\d{1,3}\.){3}\d{1,3}\b/g },
+  { label: 'private hostname', re: /\b(pve1|agent-manager|racknerd|localadmin|labadmin|cabin\.local|cabin\.private)\b/gi },
+  { label: 'internal FQDN scheme', re: /\.int\.steveromine\.com/gi },
+  { label: 'non-lab subdomain', re: /(?:^|[^a-z0-9-])((?!lab\.)[a-z0-9-]+)\.steveromine\.com/gi },
+  { label: 'private key material', re: /BEGIN [A-Z ]*PRIVATE KEY/g },
+  { label: 'bcrypt hash', re: /\$2[aby]\$\d\d\$/g },
+  { label: 'cloudflare/github token', re: /\b(gh[pous]_[A-Za-z0-9]{20,}|sk-[A-Za-z0-9]{20,})\b/g }
+];
+
+function scanTree(dir, isSource) {
+  const hits = [];
+  const walk = (d) => {
+    for (const name of fs.readdirSync(d)) {
+      const p = path.join(d, name);
+      const st = fs.statSync(p);
+      if (st.isDirectory()) { walk(p); continue; }
+      if (/\.(png|jpg|jpeg|gif|ico|woff2?)$/i.test(name)) continue;
+      const text = fs.readFileSync(p, 'utf8');
+      const lines = text.split('\n');
+      for (const pat of PATTERNS) {
+        pat.re.lastIndex = 0;
+        lines.forEach(function (line, n) {
+          pat.re.lastIndex = 0;
+          if (pat.re.test(line)) {
+            const safeLine = line.replace(/lab\.steveromine\.com/g, '<canonical-host>');
+            hits.push({ file: path.relative(dir, p), line: n + 1, pattern: pat.label, snippet: safeLine.trim().slice(0, 140) });
+          }
+        });
+      }
+    }
+  };
+  if (fs.existsSync(dir)) walk(dir);
+  return hits;
+}
+
+function gate() {
+  const hits = [].concat(scanTree(CONTENT, true), scanTree(ASSETS, true), scanTree(DIST, false));
+  if (hits.length) {
+    console.error('SANITISATION GATE FAILED - ' + hits.length + ' finding(s):');
+    hits.forEach(h => console.error('  ' + h.file + ':' + h.line + ' [' + h.pattern + '] ' + h.snippet));
+    process.exit(2);
+  }
+  console.log('Sanitisation gate: clean (' + PATTERNS.length + ' pattern classes over content, assets and generated output).');
+}
+
+// ---------- main ----------
+function main() {
+  fs.rmSync(DIST, { recursive: true, force: true });
+  ensureDir(DIST);
+  const allPages = [];
+
+  for (const entry of STORY) {
+    const { meta, rendered } = readStory(entry);
+    const title = meta.title || 'The Lab Handbook';
+    const content = heroHtml(meta) + (meta.facts === 'true' ? factsHtml() : '') + rendered.html;
+    const html = layout({
+      title: entry.slug === '/' ? null : title,
+      description: meta.description, url: entry.slug, navCurrent: entry.slug, content,
+      bodyClass: entry.slug === '/' ? 'home' : ''
+    });
+    writePage(entry.slug, html);
+    allPages.push({ slug: entry.slug, title, kind: entry.slug === '/' ? 'home' : 'story', text: rendered.text });
+  }
+
+  const hb = handbookPages();
+  for (const p of hb) {
+    const content = '<p class="eyebrow">Reference</p>' + p.rendered.html;
+    const html = layout({ title: p.title, description: 'Handbook reference: ' + p.title, url: p.slug, navCurrent: '/handbook/', content });
+    writePage(p.slug, html);
+    allPages.push({ slug: p.slug, title: p.title, kind: p.kind, text: p.rendered.text });
+  }
+
+  assets();
+  searchIndex(allPages);
+  sitemap(allPages);
+  robots();
+  write('404.html', layout({
+    title: 'Page not found',
+    description: 'That page does not exist on this site.',
+    url: '/404.html',
+    content: '<header class="hero"><p class="eyebrow">404</p><h1>That page does not exist</h1><p class="lede">The link may be old, or the page may have moved. Try the <a href="/handbook/">handbook index</a>, or press the Search button to look for it.</p></header>'
+  }));
+  gate();
+  console.log('Built ' + allPages.length + ' pages into ' + path.relative(ROOT, DIST));
+  console.log('Story pages: ' + STORY.length + ', handbook pages: ' + hb.length);
+}
+
+main();
