@@ -292,17 +292,42 @@ House rules:
 
 ## Documentation map
 
+Every document in this handbook, and what it is for.
+
+### Start here
+
 | Document | Read it for |
 |---|---|
-| [docs/eli5.md](docs/eli5.md) | Plain-language explanation with pictures — start here if you are not technical |
+| [docs/eli5.md](docs/eli5.md) | Plain-language explanation - start here if you are not technical |
 | [docs/architecture.md](docs/architecture.md) | Compute, zones, storage, capacity |
 | [docs/services.md](docs/services.md) | Every service: what it is, how it runs, how it fails |
 | [docs/integrations.md](docs/integrations.md) | How everything talks to everything |
+
+### Systems in depth
+
+| Document | Read it for |
+|---|---|
 | [docs/agents.md](docs/agents.md) | The agent platform in depth |
 | [docs/ai-platform.md](docs/ai-platform.md) | LLM, chat, images, archives, search |
+| [docs/cost-expectations.md](docs/cost-expectations.md) | What this costs to run - realistic expectations, and why context is the real driver |
 | [docs/edge-and-security.md](docs/edge-and-security.md) | Trust boundaries, auth model, hardening |
+
+### Operating it
+
+| Document | Read it for |
+|---|---|
 | [docs/operations.md](docs/operations.md) | The change loop, config-as-code, observability |
+| [docs/current-status.md](docs/current-status.md) | What is recorded as running, and the known gaps and limitations |
 | [docs/lessons.md](docs/lessons.md) | The expensive lessons, written down |
+
+### Build it yourself
+
+| Document | Read it for |
+|---|---|
+| [docs/build-your-own.md](docs/build-your-own.md) | The build sequence, end to end |
+| [docs/build-proxmox-host.md](docs/build-proxmox-host.md) | The hypervisor |
+| [docs/build-vps-edge.md](docs/build-vps-edge.md) | The public edge host |
+| [docs/build-agent-vm.md](docs/build-agent-vm.md) | The agent host |
 
 ---
 
