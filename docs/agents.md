@@ -223,3 +223,9 @@ sequenceDiagram
 
 The last line matters as much as the first: the platform is expected to say what it did **and** what it
 left alone, including the gaps it knows about.
+# Current routing override
+
+The operator has selected DeepSeek-only routing for all seven configured coordinator/worker
+identities, without automatic provider fallback. The tiered-model diagrams and descriptions below
+describe the prior design, not current routing policy. The local offline service is a separate
+capability. See [rollout](rollout.md) for runtime verification gates and sequencing.

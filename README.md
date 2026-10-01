@@ -310,6 +310,7 @@ Every document in this handbook, and what it is for.
 | Document | Read it for |
 |---|---|
 | [docs/agents.md](docs/agents.md) | The agent platform in depth |
+| [docs/rollout.md](docs/rollout.md) | Current phased rollout and single-provider direction |
 | [docs/ai-platform.md](docs/ai-platform.md) | LLM, chat, images, archives, search |
 | [docs/cost-expectations.md](docs/cost-expectations.md) | What this costs to run - realistic expectations, and why context is the real driver |
 | [docs/agent-org-chart.md](docs/agent-org-chart.md) | The agent org chart: roles, personalities, and what each may not do |
