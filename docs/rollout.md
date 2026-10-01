@@ -5,6 +5,12 @@ DeepSeek API route, without automatic cross-provider fallback. Agent roles and v
 responsibilities remain distinct. Existing sessions require separate routing checks.
 Configuration alone is not proof of completed work; runtime tests remain a release gate.
 
+Verification update: both bounded routing probes timed out without completed output. The provider
+accepted streaming requests, but that does not prove inference completion. Deployment is held at
+phase zero; no automatic provider fallback was added. Existing-session overrides also remain a
+separate migration issue. The root cause is unresolved; further investigation must distinguish
+upstream stream progress from local stream handling before another rollout attempt.
+
 | Phase | Work | Required proof |
 |---|---|---|
 | 0 | Single-provider agent routing | Valid configuration and actual completed agent runs |
