@@ -30,6 +30,8 @@ jobs:
           node-version: '22'
 
       - name: Build (runs the sanitisation gate; fails the job on any finding)
+        env:
+          SITE_URL: ${{ vars.SITE_URL }}
         run: node site/build.mjs
 
       - name: Refuse to deploy if the gate reports findings

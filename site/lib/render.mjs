@@ -1,6 +1,8 @@
 // Layout and templates for the lab handbook site. No template literals, no dependencies.
 export const SITE = {
-  url: 'https://lab.steveromine.com',
+  // The public origin is injected at build time (SITE_URL) so this repository carries no
+  // real hostname. The fallback is a reserved, non-resolvable example origin.
+  url: process.env.SITE_URL || 'https://lab-handbook.invalid',
   title: 'The Lab Handbook',
   tagline: 'One person, a small autonomous platform - documented honestly.',
   description: 'A public, sanitised tour of a small self-hosted lab: one hypervisor, one GPU shared three ways, a hardened public edge, and an agent platform that builds, verifies and documents its own work.',
@@ -40,6 +42,8 @@ export function tocHtml(headings) {
     items.map(function (h) { return '<li class="d' + h.depth + '"><a href="#' + h.id + '">' + esc(h.text) + '</a></li>'; }).join('') +
     '</ul></nav>';
 }
+
+const REPO_URL = process.env.REPO_URL || 'https://github.com/example/lab-handbook';
 
 export function layout(opts) {
   const title = opts.title ? opts.title + ' - ' + SITE.title : SITE.title;
@@ -99,7 +103,7 @@ export function layout(opts) {
   parts.push('</main>');
   parts.push('<footer class="site-foot"><div class="wrap">');
   parts.push('<p><strong>' + esc(SITE.title) + '</strong> - public by intention, sanitised by design. No credentials, no internal addresses, no access paths.</p>');
-  parts.push('<p class="fine">Source: the <a href="https://github.com/steveromine/lab-handbook">lab-handbook</a> repository. Static site, no trackers, no third-party scripts, no external fonts.</p>');
+  parts.push('<p class="fine">Source: the <a href="' + esc(REPO_URL) + '">lab-handbook</a> repository. Static site, no trackers, no third-party scripts, no external fonts.</p>');
   parts.push('<p class="fine">Deployed <time datetime="' + new Date().toISOString().slice(0, 10) + '">' + new Date().toISOString().slice(0, 10) + '</time></p>');
   parts.push('</div></footer>');
   parts.push('<dialog id="search-dialog" class="search-dialog" aria-label="Search">');

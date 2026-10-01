@@ -1,7 +1,6 @@
 # The published website
 
-This directory builds the public site at <https://lab.steveromine.com/> from the handbook in this
-repository. It is deliberately boring: **no frameworks, no bundler, no third-party JavaScript, no
+This directory builds the public site from the handbook in this repository. It is deliberately boring: **no frameworks, no bundler, no third-party JavaScript, no
 external fonts, and no network access at build time.** Node's standard library is the whole toolchain.
 
 ## Layout
@@ -20,10 +19,22 @@ Two layers, one source of truth: the **story** pages are curated prose that link
 layer, and the reference layer is generated from the existing handbook markdown. Facts are never
 duplicated by hand where a link will do.
 
+## Configuration
+
+The public origin is injected at build time so this repository contains no real hostname:
+
+```sh
+SITE_URL=<public-origin> node site/build.mjs
+```
+
+Without it, the build falls back to a reserved, non-resolvable example origin - fine for looking at
+layout locally, wrong for a real deploy. In CI the value comes from the repository variable
+`SITE_URL` (set it under Settings -> Actions -> Variables); it is not a secret.
+
 ## Build
 
 ```sh
-node site/build.mjs
+SITE_URL=<public-origin> node site/build.mjs
 ```
 
 Output goes to `site/dist/`. The build **fails** (exit 2) if the sanitisation gate finds an IP address,
@@ -67,8 +78,9 @@ rsync -rlt --delete --chmod=D755,F644 -e "ssh -i ~/.ssh/lab-site-deploy -o Ident
 A 200 is not proof. Check the content:
 
 ```sh
-curl -sS -o /dev/null -w '%{http_code}\n' https://lab.steveromine.com/
-curl -sS https://lab.steveromine.com/ | grep -o '<title>[^<]*</title>'
-curl -sS https://lab.steveromine.com/handbook/ops-llm-check 2>/dev/null || true
-curl -sS -o /dev/null -w '%{http_code} %{redirect_url}\n' http://lab.steveromine.com/
+BASE=https://<your-public-origin>
+curl -sS -o /dev/null -w '%{http_code}\n' "$BASE/"
+curl -sS "$BASE/" | grep -o '<title>[^<]*</title>'
+curl -sS -o /dev/null -w 'deep %{http_code}\n' "$BASE/lessons/"
+curl -sS -o /dev/null -w '%{http_code} %{redirect_url}\n' "http://${BASE#https://}/"
 ```

@@ -113,7 +113,8 @@ function assets() {
   fillRect(touch, 180, 0, 0, 180, 180, [12, 16, 22]);
   drawText(touch, 180, 42, 62, 'LH', 10, [125, 211, 252]);
   write('assets/apple-touch-icon.png', encodePNG(180, 180, touch));
-  const og = makeCard(1200, 630, { title: 'THE LAB HANDBOOK', titleScale: 9, subtitle: 'ONE PERSON, A SMALL AUTONOMOUS PLATFORM', footer: 'LAB.STEVEROMINE.COM  -  PUBLIC BY INTENTION, SANITISED BY DESIGN' });
+  const publicHost = (function () { try { return new URL(SITE.url).host.toUpperCase(); } catch (e) { return 'THE LAB HANDBOOK'; } })();
+  const og = makeCard(1200, 630, { title: 'THE LAB HANDBOOK', titleScale: 9, subtitle: 'ONE PERSON, A SMALL AUTONOMOUS PLATFORM', footer: publicHost + '  -  PUBLIC BY INTENTION, SANITISED BY DESIGN' });
   write('assets/og.png', encodePNG(1200, 630, og));
   for (const f of fs.readdirSync(ASSETS)) {
     write('assets/' + f, fs.readFileSync(path.join(ASSETS, f)));
@@ -138,11 +139,16 @@ function robots() {
 }
 
 // ---------- sanitisation gate ----------
+// The canonical origin is supplied at build time, so this repository contains no real hostname.
+// The gate derives the apex from it rather than spelling it out - a gate that embeds the string it
+// looks for would trip on itself.
+const CANON_HOST = (function () { try { return new URL(SITE.url).host; } catch (e) { return 'lab-handbook.invalid'; } })();
+const APEX = CANON_HOST.split('.').slice(-2).join('\\.');
 const PATTERNS = [
   { label: 'IPv4 address', re: /\b(?:\d{1,3}\.){3}\d{1,3}\b/g },
   { label: 'private hostname', re: /\b(pve1|agent-manager|racknerd|localadmin|labadmin|cabin\.local|cabin\.private)\b/gi },
-  { label: 'internal FQDN scheme', re: /\.int\.steveromine\.com/gi },
-  { label: 'non-lab subdomain', re: /(?:^|[^a-z0-9-])((?!lab\.)[a-z0-9-]+)\.steveromine\.com/gi },
+  { label: 'internal FQDN scheme', re: new RegExp('\\.int\\.' + APEX, 'gi') },
+  { label: 'non-canonical subdomain', re: new RegExp('(?:^|[^a-z0-9-])([a-z0-9-]+)\\.' + APEX, 'gi') },
   { label: 'private key material', re: /BEGIN [A-Z ]*PRIVATE KEY/g },
   { label: 'bcrypt hash', re: /\$2[aby]\$\d\d\$/g },
   { label: 'cloudflare/github token', re: /\b(gh[pous]_[A-Za-z0-9]{20,}|sk-[A-Za-z0-9]{20,})\b/g }
@@ -159,12 +165,11 @@ function scanTree(dir, isSource) {
       const text = fs.readFileSync(p, 'utf8');
       const lines = text.split('\n');
       for (const pat of PATTERNS) {
-        pat.re.lastIndex = 0;
         lines.forEach(function (line, n) {
           pat.re.lastIndex = 0;
-          if (pat.re.test(line)) {
-            const safeLine = line.replace(/lab\.steveromine\.com/g, '<canonical-host>');
-            hits.push({ file: path.relative(dir, p), line: n + 1, pattern: pat.label, snippet: safeLine.trim().slice(0, 140) });
+          const masked = line.split(CANON_HOST).join('<canonical-host>');
+          if (pat.re.test(masked)) {
+            hits.push({ file: path.relative(dir, p), line: n + 1, pattern: pat.label, snippet: masked.trim().slice(0, 140) });
           }
         });
       }
