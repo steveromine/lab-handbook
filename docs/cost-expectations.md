@@ -1,36 +1,55 @@
-# What This Costs to Run
+# What the AI work costs
 
-A question every newcomer asks, usually right after "what does it do?": **what does it cost?**
-This page answers it honestly, which means it includes the parts that aren't flattering.
+Part of the handbook. Answers the question a newcomer actually asks: *"what should I expect
+this to cost?"* Written to be useful rather than reassuring.
 
-## Three kinds of cost, only one of which has a bill
+> **Sanitisation note.** This page is a sanitised mirror of a private working page. The
+> substance is identical; the specific **models and providers** the lab uses are deliberately
+> not named here. The *structure* of the cost — which is the transferable part — is unchanged.
 
-| Kind | What it is | Marginal cost |
+## The three cost classes
+
+| Class | What it is | Marginal cost |
 |---|---|---|
-| **Local models** | Models served on the lab's own GPU | **~zero** — electricity. No token bill, no rate limit, works offline. |
-| **Metered API models** | Tokens billed per use | Per-token, and the tiers differ by **~100x** |
-| **Your time** | Reviewing output that turned out to be wrong | The expensive one, and the one nobody measures |
+| **Local GPU models** | Models served on the lab's own hardware | **~zero** — electricity. No token bill, no rate limit, works offline. |
+| **Metered API models** | Tokens billed per use | Per-token, and tiers differ by **~100x** |
+| **Operator time** | Reviewing output that turned out wrong | The expensive one, and the one nobody measures |
 
-The third is real. A cheap answer that's wrong and needs redoing costs more than the
-expensive answer that was right — which is the entire argument for paying for the good model
-when the question is hard.
+The third is real. A cheap answer that is wrong and needs redoing costs more than the expensive
+answer that was right. That is the whole argument for paying for the good model on a hard question.
 
-## The cost driver nobody expects
+## Model tiers
 
-Most people assume cost tracks *messages*. It doesn't. **It tracks context length × turns.**
+Named by role rather than by product — the ratio is what matters, not the logo.
 
-Every turn re-sends the conversation so far. So a long session doesn't grow linearly — it
-grows roughly **quadratically** in turns:
+| Tier | Typical use | Relative cost |
+|---|---|---|
+| Local | Routine ops, offline work, sanity checks | **free at the margin** |
+| Low-cost API | Bulk discovery, summarisation, classification | **1x** (baseline) |
+| Mid-tier API | Normal implementation, debugging, review | ~10–30x |
+| Frontier API | Ambiguity, architecture, security judgement | ~30–100x |
+
+**The spread from cheapest to dearest is about two orders of magnitude.** That is why *routing*
+matters far more than any optimisation inside a single model.
+
+## The thing that actually drives the bill: context
+
+Most people assume cost tracks *messages*. It does not. **It tracks context length × turns.**
+
+Every turn re-sends the conversation so far, so a long session grows roughly **quadratically**
+in turns rather than linearly:
 
 - 10 turns, small context → negligible
 - 50 turns, growing context → noticeable
-- 200+ turns → **millions of cumulative input tokens**, even if every individual answer was short
+- 200+ turns → **millions of cumulative input tokens**, even if each individual answer was short
 
-**Rule of thumb:** a session costs according to *how much context it carries*, not how much
-the model writes. A one-line question in a huge session is expensive. A long answer in a
+**Rule of thumb:** a session costs according to *how much context it carries*, not how much the
+model writes. A one-line question inside a huge session is expensive; a long answer inside a
 small one is cheap. This surprises everyone exactly once.
 
-## Rough magnitudes, for planning
+## Realistic per-task magnitudes
+
+Order-of-magnitude, for planning. Input tokens dominate in long sessions.
 
 | Task shape | Input tokens | Output tokens |
 |---|---|---|
@@ -40,7 +59,7 @@ small one is cheap. This surprises everyone exactly once.
 | Deploy a service end to end | 50k – 200k | 3k – 10k |
 | A long interactive session (100+ turns) | **1M – 5M+** | 20k – 80k |
 
-## What to actually expect
+## What to expect in practice
 
 | Scenario | Route it through | Expect |
 |---|---|---|
@@ -50,21 +69,25 @@ small one is cheap. This surprises everyone exactly once.
 | "Redesign the network segmentation" | frontier | dollars, not cents |
 | A long day of interactive work | mixed | **single-digit dollars**, mostly context |
 
-## The two rules that keep it sane
+## Keeping it honest
 
 1. **Deterministic work should not be reasoned about at all.** A script that checks whether a
    backup ran costs nothing and cannot hallucinate. A model narrating a healthy system costs
-   money to say nothing. Reasoning is for *exceptions*.
-2. **Escalating to a frontier model needs a written reason.** Not to police it — but writing
-   the reason usually reveals whether it was actually needed.
+   money to say nothing. Reasoning is for *exceptions*, not for narrating normal operation.
+2. **Escalating to a frontier model needs a written reason.** Not to police it — but writing the
+   reason down usually reveals whether it was actually needed.
+3. **Local models make routine work free.** Anything with one right answer should never touch a
+   paid model.
 
-## An honest caveat
+## Limits of these numbers
 
-**Treat these as planning estimates, not invoices.** They're derived from token magnitudes and
-tier ratios. Making them exact means reading real per-model token counts from the gateway's
-usage data and multiplying by current published prices — and even then, measured and estimated
-figures should be labelled as such, because presenting an estimate as a measurement is how
-budgets get quietly wrong.
+**Treat these as planning estimates, not invoices.** They are derived from token magnitudes and
+tier ratios, not from a metered billing feed.
 
-The one figure we're confident in: **the scheduled health checks cost nothing**, because they
-don't use a model at all. That's a design decision, and it's the one that keeps the bill boring.
+Making them exact means reading real per-model token counts from the gateway's own usage data
+and multiplying by current published prices — and even then, **measured and estimated figures
+must be labelled separately**, because presenting an estimate as a measurement is how budgets
+quietly go wrong.
+
+The one figure we are confident in: **the scheduled health checks cost nothing**, because they do
+not use a model at all. That is a design decision, and it is the one that keeps the bill boring.
