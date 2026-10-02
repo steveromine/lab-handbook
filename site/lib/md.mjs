@@ -20,7 +20,7 @@ export function slugify(s) {
     .replace(/^-|-$/g, '') || 'section';
 }
 
-const RAW_TAGS = ['code','br','span','div','details','summary','ul','ol','li','strong','em','abbr','kbd','mark','sub','sup','table','thead','tbody','tr','th','td','p','figure','figcaption','h3','h4','a','svg','g','rect','circle','ellipse','path','line','polyline','polygon','text','tspan','defs','marker','linearGradient','stop','title','desc','use'];
+const RAW_TAGS = ['code','br','span','div','audio','source','details','summary','ul','ol','li','strong','em','abbr','kbd','mark','sub','sup','table','thead','tbody','tr','th','td','p','figure','figcaption','h3','h4','a','svg','g','rect','circle','ellipse','path','line','polyline','polygon','text','tspan','defs','marker','linearGradient','stop','title','desc','use'];
 const RAW_RE = new RegExp('<\\/?(' + RAW_TAGS.join('|') + ')(\\s[^<>]*)?\\/?>', 'gi');
 
 function inline(src) {

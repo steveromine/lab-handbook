@@ -21,6 +21,7 @@ export const NAV = [
   { href: '/futures/', label: 'Futures' },
   { href: '/brand/', label: 'Brand' },
   { href: '/hardware/', label: 'Hardware' },
+  { href: '/song/', label: 'Song' },
   { href: '/operator/', label: 'The human' },
   { href: '/build/', label: 'Build it' },
   { href: '/handbook/', label: 'Handbook' }
