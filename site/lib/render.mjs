@@ -105,7 +105,7 @@ export function tocHtml(headings) {
     '</ul></nav>';
 }
 
-const REPO_URL = process.env.REPO_URL || 'https://github.com/example/lab-handbook';
+const REPO_URL = process.env.REPO_URL || 'https://github.com/steveromine/lab-handbook';
 
 export function layout(opts) {
   const title = opts.title ? opts.title + ' - ' + SITE.title : SITE.title;

@@ -311,6 +311,25 @@ function main() {
     url: '/404.html',
     content: '<header class="hero"><p class="eyebrow">404</p><h1>That page does not exist</h1><p class="lede">The link may be old, or the page may have moved. Try the <a href="/handbook/">handbook index</a>, or press the Search button to look for it.</p></header>'
   }));
+  // Placeholder guard (added 2026-10-02): a placeholder URL shipped in the footer once because
+  // REPO_URL fell back to an example value. Refuse to build if any placeholder reaches the output.
+  {
+    // URL contexts only - an email hint like you@example.com in an input is not a broken link.
+    const PLACEHOLDERS = ['github.com/example/', '://example.com', '://example.org', '://example.net'];
+    const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) =>
+      e.isDirectory() ? walk(path.join(d, e.name)) : [path.join(d, e.name)]);
+    const bad = [];
+    for (const f of walk(DIST)) {
+      if (!/\.(html|xml|txt|json|css|js|svg)$/i.test(f)) continue;
+      const s = fs.readFileSync(f, 'utf8');
+      for (const p of PLACEHOLDERS) if (s.includes(p)) bad.push(path.relative(DIST, f) + ' -> ' + p);
+    }
+    if (bad.length) {
+      console.error('PLACEHOLDER GATE: refusing to publish placeholder URLs:');
+      for (const b of bad.slice(0, 20)) console.error('  ' + b);
+      process.exit(2);
+    }
+  }
   gate();
   a11yGate();
   console.log('Built ' + allPages.length + ' pages into ' + path.relative(ROOT, DIST));
