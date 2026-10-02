@@ -73,7 +73,15 @@ function partial(name) {
 }
 // {{FORM:name}} -> real HTML from site/partials/name.html. Markdown escapes raw HTML by design,
 // so interactive markup must enter through here, not through the markdown body.
-function injectPartials(s) { return typeof s === 'string' ? s.replace(/\{\{FORM:([a-z0-9-]+)\}\}/g, (m, n) => partial(n)) : s; }
+// A token on its own line is wrapped in <p>...</p> by the markdown renderer. A <form> inside a
+// <p> is invalid and the browser closes the paragraph early, which breaks the layout. Strip the
+// wrapper, then substitute the real HTML.
+function injectPartials(s) {
+  if (typeof s !== 'string') return s;
+  return s
+    .replace(/<p>\s*\{\{FORM:([a-z0-9-]+)\}\}\s*<\/p>/g, (m, n) => partial(n))
+    .replace(/\{\{FORM:([a-z0-9-]+)\}\}/g, (m, n) => partial(n));
+}
 function write(rel, data) { const p = path.join(DIST, rel); ensureDir(path.dirname(p)); fs.writeFileSync(p, injectPartials(data)); }
 function read(p) { return fs.readFileSync(p, 'utf8'); }
 
@@ -511,6 +519,18 @@ function main() {
     if (bad.length) {
       console.error('FORM ESCAPE GATE: escaped form markup in output (use {{FORM:name}}):');
       for (const b of bad.slice(0, 10)) console.error('  ' + path.relative(DIST, b));
+      process.exit(2);
+    }
+  }
+  // FORM NESTING GATE (added 2026-10-02): <form> inside <p> is invalid HTML and the browser
+  // closes the paragraph early, breaking the surrounding layout. Fail the build on it.
+  {
+    const walk3 = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) =>
+      e.isDirectory() ? walk3(path.join(d, e.name)) : [path.join(d, e.name)]);
+    const bad = walk3(DIST).filter((f) => /\.html$/.test(f) && /<p>\s*<form/.test(fs.readFileSync(f, 'utf8')));
+    if (bad.length) {
+      console.error('FORM NESTING GATE: <form> nested inside <p> (invalid HTML):');
+      for (const x of bad.slice(0, 10)) console.error('  ' + path.relative(DIST, x));
       process.exit(2);
     }
   }
