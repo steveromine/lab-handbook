@@ -1,4 +1,19 @@
 // Layout and templates for the lab handbook site. No template literals, no dependencies.
+import { readFileSync } from 'node:fs';
+import { createHash } from 'node:crypto';
+import { fileURLToPath } from 'node:url';
+import { dirname, join } from 'node:path';
+
+const __dirname = dirname(fileURLToPath(import.meta.url));
+function assetVersion() {
+  try {
+    const a = readFileSync(join(__dirname, '..', 'assets', 'style.css'));
+    const b = readFileSync(join(__dirname, '..', 'assets', 'app.js'));
+    return createHash('sha1').update(a).update(b).digest('hex').slice(0, 8);
+  } catch (e) { return '0'; }
+}
+const ASSET_V = assetVersion();
+
 export const SITE = {
   // The public origin is injected at build time (SITE_URL) so this repository carries no
   // real hostname. The fallback is a reserved, non-resolvable example origin.
@@ -135,8 +150,8 @@ export function layout(opts) {
   parts.push('<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">');
   parts.push('<link rel="icon" href="/assets/favicon.png" sizes="32x32" type="image/png">');
   parts.push('<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">');
-  parts.push('<link rel="stylesheet" href="/assets/style.css">');
-  parts.push('<script src="/assets/app.js" defer></script>');
+  parts.push('<link rel="stylesheet" href="/assets/style.css?v=' + ASSET_V + '">');
+  parts.push('<script src="/assets/app.js?v=' + ASSET_V + '" defer></script>');
   parts.push('<script type="application/ld+json">' + JSON.stringify({
     '@context': 'https://schema.org', '@type': 'WebSite', name: SITE.title,
     url: SITE.url, description: SITE.description, inLanguage: 'en'

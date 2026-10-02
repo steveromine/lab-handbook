@@ -187,7 +187,7 @@ html { scroll-behavior: smooth; }
 .site-nav .menu a { display: block; padding: 8px 10px; border-radius: 8px; white-space: nowrap; text-decoration: none; }
 .site-nav .menu a:hover, .site-nav .menu a[aria-current="page"] { background: #f2efe7; }
 .site-nav .menu a[aria-current="page"] { font-weight: 600; }
-@media (max-width: 900px) {
+@media (max-width: 60rem) {
   .site-nav .menu { position: static; display: block; max-height: none; border: 0; box-shadow: none; padding: 2px 0 6px 12px; background: transparent; }
   .site-nav .menu-label .caret { display: none; }
 }
