@@ -23,15 +23,26 @@ upstream stream progress from local stream handling before another rollout attem
 | 2 | Resolver, names and TLS | Segment-level DNS tests, certificate renewal and one-service canary |
 | 3 | Access controls and patching | Both allowed and denied paths, console recovery and rollback |
 | 4 | Logs, alerts and review jobs | Synthetic events delivered; timezone-aware queue; read-only reviews |
-| 5 | Image provenance and off-host recovery | Digest/protocol checks and encrypted remote restore proof |
+| 5 | Image provenance and local recovery | Digest/protocol checks, local restore proof and management-only alternate access |
 | 6 | Optional identity, registry and GPU work | Measured need and explicit resource decisions |
 
 Each service changes independently with rollback prepared first. Resolver, firewall, SSH and
 hypervisor changes do not share one maintenance window. Protected infrastructure changes remain
 supervised. A maintenance queue is not automatic reboot authorization.
 
-Pending choices affect only their own lanes: backup destination/budget, notification recipient,
-out-of-band access scope, supervised maintenance window and optional hardware spending.
+Operator scope decisions: backups remain local; offsite backup work is removed. Local restore
+verification remains required, without a claim of site-loss protection. SSH changes are in an
+inactive future-state backlog, outside this rollout. Tailscale is limited to management hosts:
+no subnet routes, exit-node service or Tailscale SSH.
+
+Notification email will use a send/receive server accepting only the operator's designated
+sender, with authenticated sender checks rather than a From-address string alone. No open relay
+or email-triggered command execution is intended. Domain/mailbox selection is pending; the
+service is not deployed. Public documentation uses role placeholders such as `<operator-mailbox>`
+and omits real addresses and domains.
+
+Pending choices affect only their own lanes: mail domain/mailbox, supervised infrastructure
+reboot window and optional hardware spending. SSH work is not awaiting scheduling.
 Public history cleanup is separate; a failing publication gate is never waived.
 
 This is an execution plan, not a claim that later phases are deployed. Names such as
