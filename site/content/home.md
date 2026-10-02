@@ -78,3 +78,24 @@ Every claim here is labelled: **designed**, **configured**, **verified**, a **kn
 | Here to build it | [Build your own](/build/) - hypervisor, edge, agent VM |
 | Technical, wants detail | [The handbook](/handbook/) - every document, indexed |
 | Skeptical, wants limits | [Status and known gaps](/status/) and [Lessons](/lessons/) |
+
+## Licence and credit
+
+**Do what you like with this. Just credit me, and it is not my fault if you break something.**
+
+The words, configuration, scripts and generated media in this project are released under the **MIT
+Licence** - the shortest one that means what I mean:
+
+- **Use it, fork it, sell it, rebuild it, feed it to a machine.** No permission needed, no fee, no
+  strings worth the name.
+- **Credit me.** Keep the copyright notice and a link back. That is the whole ask.
+- **No warranty.** It comes as-is. If you point this at production and it eats your weekend, that is
+  between you and the weekend. I am not liable - see the licence text, which I did not write and
+  which nonetheless says exactly this, at length, in capitals.
+
+Bundled third-party components keep their own licences, and the software this lab runs on
+(Proxmox, Docker, the models, the offline knowledge sets) belongs to its respective authors under
+their own terms. The machine-generated media on this site names the model that produced it, for the
+same reason: credit where it is due, blame nowhere it is not.
+
+Full text: [LICENSE](https://github.com/steveromine/lab-handbook/blob/main/LICENSE).
