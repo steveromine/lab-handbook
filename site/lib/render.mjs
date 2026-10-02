@@ -68,6 +68,7 @@ export const NAV = [
     { href: '/privacy/', label: 'Privacy' }
     , { href: '/backlog/', label: 'Known issues & backlog' }
     , { href: '/comments/', label: 'Comments' }
+    , { href: '/gallery/', label: 'Gallery' }
   ] }
 ];
 
@@ -161,6 +162,7 @@ export function layout(opts) {
   parts.push('</main>');
   parts.push('<footer class="site-foot"><div class="wrap">');
   parts.push('<p><strong>' + esc(SITE.title) + '</strong> - public by intention, sanitised by design. No credentials, no internal addresses, no access paths.</p>');
+  parts.push('<p class="fine disclaimer"><strong>Disclaimer:</strong> this entire site is machine-generated. It is not an accurate representation of its owner, of any AI, or of any entity associated with either. Quirks and oddities happen - we fix them when we see them.</p>');
   parts.push('<p class="fine">Source: the <a href="' + esc(REPO_URL) + '">lab-handbook</a> repository. Static site, no trackers, no third-party scripts, no external fonts.</p>');
   parts.push('<p class="fine">Deployed <time datetime="' + new Date().toISOString().slice(0, 10) + '">' + new Date().toISOString().slice(0, 10) + '</time></p>');
   parts.push('</div></footer>');

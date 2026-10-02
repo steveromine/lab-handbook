@@ -33,6 +33,7 @@ const STORY = [
   { slug: '/privacy/', file: 'privacy.md', nav: '/privacy/', section: 'Story' },
   { slug: '/backlog/', file: 'backlog.md', nav: '/backlog/', section: 'Story' },
   { slug: '/comments/', file: 'comments.md', nav: '/comments/', section: 'Story' },
+  { slug: '/gallery/', file: 'gallery.md', nav: '/gallery/', section: 'Story' },
   { slug: '/build/', file: 'build.md', nav: '/build/', section: 'Story' },
   { slug: '/start/', file: 'start.md', nav: '/start/', section: 'Story' }
 ];
