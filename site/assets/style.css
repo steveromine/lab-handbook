@@ -251,3 +251,12 @@ html { scroll-behavior: smooth; }
 .captcha.done .captcha-box::after { content: 'X'; color: var(--accent-ink); font-size: .7rem; font-weight: 700; display: block; text-align: center; line-height: 1.1rem; }
 .captcha.done button { border-color: var(--accent); }
 @keyframes spin { to { transform: rotate(360deg); } }
+
+/* newsletter subscribe form */
+.subscribe { display: grid; gap: .6rem; margin: 1.2rem 0; max-width: 32rem; }
+.subscribe label { font-size: .92rem; color: var(--fg-soft); }
+.subscribe input[type='email'] { font: inherit; padding: .6rem .8rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg-soft); color: var(--fg); width: 100%; }
+.subscribe input[type='email']:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.subscribe button { font: inherit; padding: .6rem 1rem; border: 1px solid var(--accent); border-radius: 999px; background: var(--accent); color: var(--accent-ink); cursor: pointer; }
+.subscribe button:hover { filter: brightness(1.1); }
+.subscribe .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
