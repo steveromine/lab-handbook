@@ -7,7 +7,7 @@ hero_lede: 'Every autonomous system needs one honest human at the top, making th
 ---
 
 
-![A warm, gently humorous portrait of a thoughtful man in a dark hoodie at a home-lab desk, coffee in hand, one eyebrow raised, servers glowing behind him](/assets/operator-portrait.webp)
+![A warm, gently humorous portrait of a thoughtful man in a dark hoodie at a home-lab desk, coffee in hand, one eyebrow raised, servers glowing behind him](/assets/operator-portrait-lab.webp)
 
 
 _Image: stabilityai/sd-turbo (lab GPU)._
