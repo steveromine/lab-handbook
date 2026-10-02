@@ -10,22 +10,63 @@ export const SITE = {
 };
 
 export const NAV = [
-  { href: '/', label: 'Home' },
-  { href: '/then-and-now/', label: 'Then & Now' },
-  { href: '/architecture/', label: 'Architecture' },
-  { href: '/agents/', label: 'Agents' },
-  { href: '/gpu-budget/', label: 'GPU budget' },
-  { href: '/security/', label: 'Security' },
-  { href: '/status/', label: 'Status' },
-  { href: '/lessons/', label: 'Lessons' },
-  { href: '/futures/', label: 'Futures' },
-  { href: '/brand/', label: 'Brand' },
-  { href: '/hardware/', label: 'Hardware' },
-  { href: '/song/', label: 'Song' },
-  { href: '/time-machine/', label: 'Time machine' },
-  { href: '/operator/', label: 'The human' },
-  { href: '/build/', label: 'Build it' },
-  { href: '/handbook/', label: 'Handbook' }
+  { label: 'Home', href: '/' },
+  { label: 'The Lab', children: [
+    { href: '/then-and-now/', label: 'Then & Now' },
+    { href: '/architecture/', label: 'Architecture' },
+    { href: '/agents/', label: 'Agents' },
+    { href: '/hardware/', label: 'Hardware' },
+    { href: '/gpu-budget/', label: 'GPU budget' },
+    { href: '/security/', label: 'Security' },
+    { href: '/status/', label: 'Status' }
+  ] },
+  { label: 'Stories', children: [
+    { href: '/start/', label: 'Where to start' },
+    { href: '/lessons/', label: 'Lessons' },
+    { href: '/futures/', label: 'Futures' },
+    { href: '/operator/', label: 'The human in the loop' },
+    { href: '/song/', label: 'The Quiet Machine (song)' },
+    { href: '/brand/', label: 'Brand sheet' },
+    { href: '/time-machine/', label: 'Time machine' }
+  ] },
+  { label: 'Build', children: [
+    { href: '/build/', label: 'Build your own (map)' },
+    { href: '/handbook/build-proxmox-host/', label: 'The Proxmox host' },
+    { href: '/handbook/build-vps-edge/', label: 'The VPS edge' },
+    { href: '/handbook/build-agent-vm/', label: 'The agent VM' }
+  ] },
+  { label: 'Resources', children: [
+    { href: '/handbook/', label: 'Handbook (index)' },
+    { href: '/handbook/build-your-own/', label: 'Build: the whole thing' },
+    { href: '/handbook/build-proxmox-host/', label: 'Build: the Proxmox host' },
+    { href: '/handbook/build-vps-edge/', label: 'Build: the VPS edge' },
+    { href: '/handbook/build-agent-vm/', label: 'Build: the agent VM' },
+    { href: '/handbook/architecture/', label: 'Architecture' },
+    { href: '/handbook/services/', label: 'Services' },
+    { href: '/handbook/agents/', label: 'Agents' },
+    { href: '/handbook/agent-org-chart/', label: 'Agent org chart' },
+    { href: '/handbook/ai-platform/', label: 'AI platform' },
+    { href: '/handbook/deepseek-routing/', label: 'Model routing' },
+    { href: '/handbook/integrations/', label: 'Integrations' },
+    { href: '/handbook/edge-and-security/', label: 'Edge & security' },
+    { href: '/handbook/operations/', label: 'Operations' },
+    { href: '/handbook/rollout/', label: 'Rollout' },
+    { href: '/handbook/cost-expectations/', label: 'Cost expectations' },
+    { href: '/handbook/current-status/', label: 'Current status' },
+    { href: '/handbook/lessons/', label: 'Lessons (reference)' },
+    { href: '/handbook/eli5/', label: 'Explain it simply (ELI5)' },
+    { href: '/hardware/', label: 'The hardware' },
+    { href: '/security/', label: 'Security (story)' },
+    { href: '/status/', label: 'Status (story)' },
+    { href: '/lessons/', label: 'Lessons (story)' },
+    { href: '/futures/', label: 'Futures' },
+    { href: '/operator/', label: 'The human in the loop' },
+    { href: '/song/', label: 'The Quiet Machine (song)' },
+    { href: '/brand/', label: 'Brand sheet' },
+    { href: '/time-machine/', label: 'Time machine' },
+    { href: '/start/', label: 'Where to start' },
+    { href: '/build/', label: 'Build your own (map)' }
+  ] }
 ];
 
 export function esc(s) {
@@ -36,11 +77,19 @@ export function esc(s) {
 
 export function navHtml(current) {
   return NAV.map(function (item) {
-    const on = item.href === current;
-    return '<li><a href="' + item.href + '"' + (on ? ' aria-current="page"' : '') + '>' + esc(item.label) + '</a></li>';
+    if (!item.children) {
+      const on = item.href === current;
+      return '<li><a href="' + item.href + '"' + (on ? ' aria-current="page"' : '') + '>' + esc(item.label) + '</a></li>';
+    }
+    const on = item.children.some(function (c) { return c.href === current; });
+    const items = item.children.map(function (c) {
+      const onc = c.href === current;
+      return '<li><a href="' + c.href + '"' + (onc ? ' aria-current="page"' : '') + '>' + esc(c.label) + '</a></li>';
+    }).join('');
+    return '<li class="has-menu"><a href="' + item.children[0].href + '" class="menu-label' + (on ? ' on' : '') + '" aria-haspopup="true">' +
+      esc(item.label) + ' <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu">' + items + '</ul></li>';
   }).join('');
 }
-
 export function tocHtml(headings) {
   const items = headings.filter(function (h) { return h.depth >= 2 && h.depth <= 3; });
   if (items.length < 3) return '';
