@@ -3,7 +3,7 @@ title: 'Time machine'
 description: 'Every change to this site, from the first commit to now - the lab's own history, as far back as it goes.'
 eyebrow: 'As far back as it goes'
 hero_title: 'The time machine'
-hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 119 recorded changes from 2026-10-01 to 2026-10-02 - so you can watch the thinking change, mistakes and all.'
+hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 120 recorded changes from 2026-10-01 to 2026-10-02 - so you can watch the thinking change, mistakes and all.'
 ---
 
 Every commit to this site, newest first. The point is not that the lab got everything right; it is
@@ -11,6 +11,7 @@ that you can see **how it changed** - including the places it changed its mind.
 
 ## 2026-10-02
 
+- `1ca7391` — fix(chat): solve the anti-abuse challenge in the browser - service enforces it now
 - `dbeb35e` — fix(ask): chat form via partial - FORM ESCAPE GATE had correctly refused it
 - `f62e00f` — site: Ask the handbook - public chat page grounded on the local model
 - `ae61cdd` — a11y: heading anchors tabindex=-1 (axe aria-hidden-focus x13); hardware: power and cost estimates

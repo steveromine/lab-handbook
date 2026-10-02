@@ -56,7 +56,11 @@ Markdown href survives (exit 4), **link-target** (exit 5) - every internal href 
 generated page and, when it carries a `#fragment`, to an anchor that exists in that page, so a
 hand-written link to a renamed page or a mistyped anchor cannot ship as a 404 - and **asset-target**
 (exit 6) - every internal `src`/`poster`/`srcset` must resolve to a generated file, so a renamed or
-deleted image, script or audio file cannot ship as a broken resource.
+deleted image, script or audio file cannot ship as a broken resource - and **title** (exit 7) -
+every generated page must carry a unique `<title>` (reference pages are titled `Handbook: <H1>` so
+they can never collide with a story page of the same name), because two pages sharing a title
+defeats bookmarks and screen-reader identification (WCAG 2.4.2) and reads to search engines as
+duplicate content.
 
 Pages are written into a staging tree (`site/dist.tmp/`) and every gate runs against it; only a
 build that passes **all** gates is renamed over `site/dist/`. So a failed build leaves the previous
