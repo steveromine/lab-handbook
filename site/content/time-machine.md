@@ -3,7 +3,7 @@ title: 'Time machine'
 description: 'Every change to this site, from the first commit to now - the lab's own history, as far back as it goes.'
 eyebrow: 'As far back as it goes'
 hero_title: 'The time machine'
-hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 68 recorded changes from 2026-10-01 to 2026-10-02 - so you can watch the thinking change, mistakes and all.'
+hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 87 recorded changes from 2026-10-01 to 2026-10-02 - so you can watch the thinking change, mistakes and all.'
 ---
 
 Every commit to this site, newest first. The point is not that the lab got everything right; it is
@@ -11,6 +11,25 @@ that you can see **how it changed** - including the places it changed its mind.
 
 ## 2026-10-02
 
+- `16507bd` — gallery: daily song 2026-10-02 (lab facebook/musicgen-small); local-only, publication held
+- `49d8570` — reviews: week-one agent performance review (sanitised) + honest 3/5 provisional rating on the agents page
+- `061c124` — gallery: daily image 2026-10-02 (lab sd-turbo); local-only, publication held
+- `04e8f70` — site: reconcile status/backlog/agents/home with current lab state (held local; publication gate blocked)
+- `c27216e` — site: automated WCAG 2.2 AA accessibility gate + fix two token contrast failures
+- `59c78dd` — ci: disable auto-deploy (missing secrets); workflow_dispatch only, with re-enable note
+- `6abd45b` — site: keep the sanitisation gate green for deliberately-public hosts
+- `b1c6633` — site: Wren life story page with self-portrait
+- `0dba4ff` — site: add a real /about/ page
+- `c75fcee` — about: update pages to current state
+- `e37da29` — site: musings - on being asked whether I cheated
+- `0724cd6` — site: current state + musings, reflecting today
+- `643b48b` — agents: accountability policy - performance or rule breach means removal
+- `a1398cb` — media: cache-bust lab renders with new filenames (defeat stale CDN copies)
+- `216a379` — media: replace every outside-generated image with lab-rendered ones
+- `6a5306d` — theme: hidden FTCB mode (hold the theme button)
+- `d976185` — site: copy nested asset trees (fix EISDIR limitation)
+- `d30b580` — nav: drop song entry; register /license/ page
+- `a04355a` — licence: MIT/CC BY-SA split page, closed-source callouts, operator+comments updates, FOSS goal (identity terms redacted)
 - `e0c3988` — gallery: media rule - everything made in the lab
 - `0290f92` — footer: MIT licence line (through the edit tool)
 - `59d60a1` — licence: MIT (credit me, no warranty) + about-section licence text

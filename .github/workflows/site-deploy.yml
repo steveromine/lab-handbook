@@ -31,6 +31,10 @@ jobs:
     steps:
       - name: Check out
         uses: actions/checkout@v4
+        with:
+          # gen-history.mjs turns the full git history into the time-machine page; a shallow
+          # checkout (the default) would make that page claim a one-commit history. D-2.
+          fetch-depth: 0
 
       - name: Set up Node
         uses: actions/setup-node@v4
