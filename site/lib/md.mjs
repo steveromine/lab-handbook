@@ -69,7 +69,7 @@ export function renderMarkdown(src, opts) {
     headings.push({ depth, text: plainText(body), id: uniq });
     textParts.push(plainText(body));
     const lvl = Math.min(depth, 6);
-    return '<h' + lvl + ' id="' + uniq + '">' + inline(body) + '<a class="anchor" href="#' + uniq + '" aria-hidden="true">#</a></h' + lvl + '>';
+    return '<h' + lvl + ' id="' + uniq + '">' + inline(body) + '<a class="anchor" href="#' + uniq + '" aria-hidden="true" tabindex="-1">#</a></h' + lvl + '>';
   }
 
   function renderList(startIdx, indent) {

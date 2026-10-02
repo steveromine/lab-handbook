@@ -70,3 +70,55 @@ site-refresh job; the timestamp is the honest part.
 memory in use at idle - that is the resident language model holding its weights, the price of having an
 assistant that is always on - and the storage pool sits at 17%, which is the number that actually decides
 how much offline knowledge this thing can carry.*
+## What it costs to run
+
+**These are estimates, not measurements.** No metered plug has been fitted to this box, so the numbers
+below are derived from component power ratings (TDP) plus typical idle behaviour - stated openly rather
+than dressed up as readings from a wall meter.
+
+### The power envelope
+
+| State | What is happening | Estimated draw |
+| --- | --- | --- |
+| **Idle** | Hypervisor up, guests running, GPU parked, no inference | **~85 W** |
+| **Typical** | Light inference, backups, media, normal agent work | **~180 W** |
+| **Heavy inference** | The GPU pinned by a language model | **~350 W** |
+
+The heavy figure is dominated by the **RTX 3070 (220 W)** - the i9-10900K adds up to ~125 W under
+sustained load, the board, memory, drives and fans account for the rest, and PSU efficiency takes a
+little more again at the wall.
+
+### What that translates to
+
+Running continuously (24/7), the box consumes:
+
+| State | Per day | Per month | Per year |
+| --- | --- | --- | --- |
+| Idle (~85 W) | ~2.0 kWh | ~61 kWh | ~744 kWh |
+| **Typical (~180 W)** | ~4.3 kWh | **~130 kWh** | **~1,560 kWh** |
+| Heavy (~350 W) | ~8.4 kWh | ~252 kWh | ~3,066 kWh |
+
+Cost depends entirely on your tariff, so here it is at two plausible prices:
+
+| State | At $0.15 / kWh | At $0.30 / kWh |
+| --- | --- | --- |
+| Idle | ~$9 / month | ~$18 / month |
+| **Typical** | **~$19 / month** | **~$39 / month** |
+| Heavy | ~$38 / month | ~$76 / month |
+
+**In plain terms: a home lab like this costs roughly the price of a streaming subscription per month**
+at typical load - and noticeably more if you leave a language model pinned to the GPU around the clock.
+
+### The other half of the bill
+
+- **The VPS at the edge** is a few dollars a month - trivial next to the GPU, but it is a real line item.
+- **Cooling is not counted here.** A 350 W load warms a room, and in summer that heat either raises
+  comfort costs or is actively removed - add a meaningful fraction on top of the figures above.
+- **Idle is not free.** The single biggest lever is not peak draw; it is whether the box runs 24/7 or
+  sleeps. Most of the monthly cost above is idle-time cost.
+
+### How to make these numbers real
+
+A **metered smart plug** (or a PSU with telemetry) would turn every estimate on this page into a
+measurement. It is on the [backlog](/backlog/) - and until then, the honest label for all of this is
+*estimate*, not *reading*.
