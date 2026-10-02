@@ -186,3 +186,50 @@
     el.innerHTML = '<p class="fine">Tally unavailable right now - which, fittingly, tells you something.</p>';
   });
 })();
+
+
+// --- self-test page ---
+(function () {
+  'use strict';
+  var root = document.querySelector('[data-selftest]');
+  if (!root) return;
+  var btn = document.createElement('button');
+  btn.type = 'button'; btn.textContent = 'Run the checks';
+  btn.className = 'selftest-run';
+  var out = document.createElement('ul'); out.className = 'selftest-results';
+  root.innerHTML = ''; root.appendChild(btn); root.appendChild(out);
+  function row(name, ok, detail) {
+    var li = document.createElement('li');
+    li.className = ok ? 'ok' : 'bad';
+    li.innerHTML = '<strong>' + (ok ? 'PASS' : 'FAIL') + '</strong> ' + name + (detail ? ' <span class="fine">- ' + detail + '</span>' : '');
+    out.appendChild(li);
+  }
+  async function check(name, fn) {
+    try { var d = await fn(); row(name, true, d || ''); }
+    catch (e) { row(name, false, (e && e.message) || 'failed'); }
+  }
+  btn.addEventListener('click', async function () {
+    out.innerHTML = '';
+    await check('JavaScript is alive', async function () { return 'yes'; });
+    await check('Comments API answers', async function () {
+      var r = await fetch('/api/comments'); var d = await r.json();
+      if (!d.ok) throw new Error('not ok'); return (d.comments || []).length + ' approved';
+    });
+    await check('Uptime API answers', async function () {
+      var r = await fetch('/api/uptime'); var d = await r.json();
+      if (!d.ok) throw new Error('not ok'); return (d.stats && d.stats.samples) + ' samples';
+    });
+    await check('Generated images load', async function () {
+      await new Promise(function (res, rej) { var i = new Image(); i.onload = res; i.onerror = rej; i.src = '/assets/gallery-2026-10-02.webp'; });
+      return 'gallery image ok';
+    });
+    await check('Navigation present', async function () {
+      var n = document.querySelectorAll('.site-nav a').length;
+      if (!n) throw new Error('no nav links'); return n + ' links';
+    });
+    await check('Theme control present', async function () {
+      if (!document.querySelector('[data-theme-toggle], .theme-toggle, button')) throw new Error('no control');
+      return 'ok';
+    });
+  });
+})();

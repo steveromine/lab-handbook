@@ -56,3 +56,8 @@ and a theory is not a finding. A joke is allowed; a euphemism is not.
 
 Keep one source of truth: colors live here, the logo lives in `site/assets/`, and pages borrow both.
 When in doubt, subtract. A quieter page is almost always the more polished one.
+
+## Self-test
+
+Want to check the site is working from where you are? There is a [self-test page](/test/) that runs
+the checks live in your browser - API, images, navigation and all.

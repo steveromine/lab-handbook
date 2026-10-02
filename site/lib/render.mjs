@@ -67,6 +67,7 @@ export const NAV = [
     , { href: '/backlog/', label: 'Known issues & backlog' }
     , { href: '/comments/', label: 'Comments' }
     , { href: '/uptime/', label: 'Uptime (nines)' }
+    , { href: '/cabin/', label: 'Cabin outage board' }
     , { href: '/gallery/', label: 'Gallery' }
   ] }
 ];
