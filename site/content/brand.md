@@ -61,3 +61,7 @@ When in doubt, subtract. A quieter page is almost always the more polished one.
 
 Want to check the site is working from where you are? There is a [self-test page](/test/) that runs
 the checks live in your browser - API, images, navigation and all.
+
+## Outage page (sample)
+
+When the cabin stops answering, the edge serves a page about it. Preview it here: **The lab is down** ([/outage/](/outage/)) - 502, but funny.

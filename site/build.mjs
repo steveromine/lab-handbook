@@ -37,6 +37,7 @@ const STORY = [
   { slug: '/uptime/', file: 'uptime.md', nav: '/uptime/', section: 'Story' },
   { slug: '/cabin/', file: 'cabin.md', nav: '/cabin/', section: 'Story' },
   { slug: '/test/', file: 'test.md', nav: '/test/', section: 'Story' },
+  { slug: '/outage/', file: 'outage.md', nav: '', section: 'Story' },
   { slug: '/build/', file: 'build.md', nav: '/build/', section: 'Story' },
   { slug: '/start/', file: 'start.md', nav: '/start/', section: 'Story' }
 ];
