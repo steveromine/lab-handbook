@@ -5,6 +5,13 @@ hero_title: 'Build your own'
 hero_lede: 'How to get here from nothing: a Proxmox host, a cheap VPS at the edge, and an agent VM whose agent is conceptually you - with agents under it.'
 ---
 
+> **Use all of this at your own risk.** These are unvetted recipes from a live lab, not a
+> supported build. They can brick a bootloader, strand your own remote access, or quietly erase a
+> disk. Never point any of it at a machine, a file, or an account you would not be willing to
+> destroy. Keep a known-good way back, test the rollback before you need it, and assume every
+> command will do exactly what it says - because it will.
+
+
 The depth lives in the handbook, one page per track. This page is the map and the rules.
 
 | Track | Page | What you end up with |

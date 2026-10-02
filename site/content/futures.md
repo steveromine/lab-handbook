@@ -46,6 +46,41 @@ looks like a normal Tuesday morning.
 
 *Automation that removes drudgery without demanding attention.*
 
+## Notes from the lab, in a Stoic key
+
+Ten years out is a guess, and guesses are not prophecies. But a small lab, run long enough, does
+teach a few things - and they sound a lot like the older philosophers. Said plainly:
+
+> **On what is yours.** Divide every trouble into what you control and what you do not. You control
+> your backups, your notes, your honesty. You do not control the power grid, the upstream provider,
+> or the weather. Work on the first list. Know the second. Never confuse them, or you will spend
+> your evenings angry at the ocean.
+
+> **On impermanence.** Every machine here will fail; some already have. A service is not kept alive
+> by hope, but by a restore you have actually performed. Build as though the disk dies tonight, and
+> you will build the right way - careful, redundant, and unafraid.
+
+> **On enough.** The temptation is always more: more services, more cards, more reach. The lab's best
+> decisions have mostly been subtractions. Ask not what you can add, but what you can remove and
+> still stand. What remains is the thing you actually meant.
+
+> **On the present.** The future is not a place to live. It is a direction to walk in. Use the tools
+> in front of you, on the problem in front of you, today; the rest is rehearsal for a play that
+> changes its script every night.
+
+> **On proof.** A green check is not proof, and a theory is not a finding. Test the thing, then test
+> it again from the other side. The mind loves a tidy conclusion; the machine prefers the messy
+> truth, and the machine is usually right.
+
+> **On small machines and modest men.** You do not need a data center to learn what is possible. You
+> need a box that fits under a desk, a willingness to be wrong in public, and the discipline to write
+> down what happened. Power is not the point. Understanding is.
+
+> **On the future.** It will arrive whether or not you approve, and it will be built by someone. The
+> only real question is whether you will understand it well enough to live in it on purpose. Learn
+> the machine. Keep your judgment. Mind the difference between what it can do and what you should
+> ask it to.
+
 ## What the prompt demonstrates
 
 - **Directable realism.** Photographic language (35mm, depth of field, natural light) steers style

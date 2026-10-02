@@ -1,3 +1,9 @@
+> **Use all of this at your own risk.** These are unvetted recipes from a live lab, not a
+> supported build. They can brick a bootloader, strand your own remote access, or quietly erase a
+> disk. Never point any of it at a machine, a file, or an account you would not be willing to
+> destroy. Keep a known-good way back, test the rollback before you need it, and assume every
+> command will do exactly what it says - because it will.
+
 # Build Your Own: the VPS edge
 
 The edge VPS is a small, cheap, **expendable** machine in a datacentre that faces the internet, so your

@@ -7,6 +7,12 @@ hero_lede: 'Not because a model got smarter, but because the boring half of runn
 facts: true
 ---
 
+> **This is an experiment, not a product.** The Lab Handbook documents one person's home lab: a
+> working playground for learning how far today's tools actually reach. Nothing here is polished,
+> supported, or certified. It exists to demonstrate a technology and where it seems to be heading,
+> to help you understand that future, and to leave you a little more knowledgeable about what is
+> possible today - and what may be possible next. Read it as a field notebook, not a manual.
+
 ## The 2026 idea, stated plainly
 
 For twenty years the bottleneck in a home lab was **you**: the person who remembers the workaround, holds the passwords, and notices that the backup stopped running. That bottleneck is now partly removable.
