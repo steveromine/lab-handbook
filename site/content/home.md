@@ -13,6 +13,17 @@ facts: true
 > to help you understand that future, and to leave you a little more knowledgeable about what is
 > possible today - and what may be possible next. Read it as a field notebook, not a manual.
 
+## Three ways in
+
+- **The story** - why any of this exists, and what changed. Start with [Then & Now](/then-and-now/),
+  then [Lessons](/lessons/), then [Where I think I'm going](/futures/).
+- **The build** - the actual blueprint. [Build your own](/build/) maps the three tracks; the
+  [handbook](/handbook/) has the depth, one page per track.
+- **The machine** - what it runs on and what it costs. [The hardware](/hardware/) is the honest spec
+  sheet; [GPU budget](/gpu-budget/) is how one old card is shared three ways.
+
+New here? [Where to start](/start/) is the guided version.
+
 ## The 2026 idea, stated plainly
 
 For twenty years the bottleneck in a home lab was **you**: the person who remembers the workaround, holds the passwords, and notices that the backup stopped running. That bottleneck is now partly removable.

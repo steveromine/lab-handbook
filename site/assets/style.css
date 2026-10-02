@@ -191,3 +191,9 @@ html { scroll-behavior: smooth; }
   .site-nav .menu { position: static; display: block; max-height: none; border: 0; box-shadow: none; padding: 2px 0 6px 12px; background: transparent; }
   .site-nav .menu-label .caret { display: none; }
 }
+
+.site-nav .menu .menu-group {
+  list-style: none; font-size: .68rem; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--muted, #8b95a7); padding: 10px 10px 4px; margin: 0;
+}
+.site-nav .menu .menu-group + li a { margin-top: 0; }

@@ -52,6 +52,7 @@ export const NAV = [
     { href: '/handbook/build-agent-vm/', label: 'The agent VM' }
   ] },
   { label: 'Resources', children: [
+    { group: 'Reference' },
     { href: '/handbook/', label: 'Handbook (index)' },
     { href: '/handbook/build-your-own/', label: 'Build: the whole thing' },
     { href: '/handbook/build-proxmox-host/', label: 'Build: the Proxmox host' },
@@ -71,6 +72,7 @@ export const NAV = [
     { href: '/handbook/current-status/', label: 'Current status' },
     { href: '/handbook/lessons/', label: 'Lessons (reference)' },
     { href: '/handbook/eli5/', label: 'Explain it simply (ELI5)' },
+    { group: 'Story' },
     { href: '/hardware/', label: 'The hardware' },
     { href: '/security/', label: 'Security (story)' },
     { href: '/status/', label: 'Status (story)' },
@@ -99,6 +101,7 @@ export function navHtml(current) {
     }
     const on = item.children.some(function (c) { return c.href === current; });
     const items = item.children.map(function (c) {
+      if (c.group) { return '<li class="menu-group" role="presentation">' + esc(c.group) + '</li>'; }
       const onc = c.href === current;
       return '<li><a href="' + c.href + '"' + (onc ? ' aria-current="page"' : '') + '>' + esc(c.label) + '</a></li>';
     }).join('');
