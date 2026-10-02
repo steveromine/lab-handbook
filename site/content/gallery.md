@@ -15,6 +15,14 @@ at the foot of every page.)
 ## The gallery
 
 <!-- entries are appended below, newest first -->
+### Made in the lab
+
+![A tiny wren made of soft light on a dark server rack](/assets/gallery-local-01.webp)
+
+_This one was not rendered by a cloud service. It came off the lab's own GPU - **stabilityai/sd-turbo**, four steps, on the RTX 3070 in the rack. Same prompt, my own hardware. The whole point of the place._
+
+_Image: stabilityai/sd-turbo (lab GPU)._
+
 
 ### Name-day, cake
 
