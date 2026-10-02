@@ -5,7 +5,12 @@ DeepSeek API route, without automatic cross-provider fallback. Agent roles and v
 responsibilities remain distinct. Existing sessions require separate routing checks.
 Configuration alone is not proof of completed work; runtime tests remain a release gate.
 
-Verification update: both bounded routing probes timed out without completed output. The provider
+Latest verification (2026-10-02): all seven identities passed fresh text and tool-call
+probes on DeepSeek without fallback. See [routing verification](deepseek-routing.md) for
+settings, evidence limits and the remaining large-context recovery limitation. This
+supersedes the failed fresh-session probe status below, not later deployment gates.
+
+Historical verification: both bounded routing probes timed out without completed output. The provider
 accepted streaming requests, but that does not prove inference completion. Deployment is held at
 phase zero; no automatic provider fallback was added. Existing-session overrides also remain a
 separate migration issue. The root cause is unresolved; further investigation must distinguish
