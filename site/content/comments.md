@@ -29,3 +29,9 @@ the operator's voice - dry, blunt, allergic to hype. That is the whole trick.
 
 _Want yours to appear? Say something below and it may answer next week. It answers in character, never
 in fact._
+
+## On the media
+
+Every image and song on this site is made **in the lab, on the lab's own hardware** - no outside models.
+That is a rule now, not a preference. It also means the bot writing here speaks in the operator's voice
+about work that happened on a machine in a room, not on someone else's servers.

@@ -3,7 +3,7 @@ title: 'Time machine'
 description: 'Every change to this site, from the first commit to now - the lab's own history, as far back as it goes.'
 eyebrow: 'As far back as it goes'
 hero_title: 'The time machine'
-hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 21 recorded changes from 2026-10-01 to 2026-10-02 - so you can watch the thinking change, mistakes and all.'
+hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 68 recorded changes from 2026-10-01 to 2026-10-02 - so you can watch the thinking change, mistakes and all.'
 ---
 
 Every commit to this site, newest first. The point is not that the lab got everything right; it is
@@ -11,6 +11,53 @@ that you can see **how it changed** - including the places it changed its mind.
 
 ## 2026-10-02
 
+- `e0c3988` — gallery: media rule - everything made in the lab
+- `0290f92` — footer: MIT licence line (through the edit tool)
+- `59d60a1` — licence: MIT (credit me, no warranty) + about-section licence text
+- `4b8b2ed` — hardware: live rack metrics (cpu, memory, storage, gpu)
+- `8dafabd` — gallery: reorganise by provenance and medium
+- `a0581f7` — gallery: Music section (lab-rendered songs)
+- `48e07fd` — outage: live demo link to the deliberately-dead hostname
+- `bafe99d` — outage: link the failover copy and explain the two failure modes
+- `4ce3a03` — home/architecture: describe the guest estate without a brittle count
+- `2990b1e` — comments: visible proof-of-work captcha widget (you can watch it solve)
+- `61d45a2` — comments: proof-of-work challenge + timing on the input (AI-resistant speed bump)
+- `cf0a36f` — gallery: same-prompt comparison - local sd-turbo vs cloud, honest verdict
+- `9bf177c` — gallery: first image made in the lab (sd-turbo on the local GPU) + provenance note
+- `a7ba03f` — fix: repair theme/rating button markup (build was broken); gate: allow reference domains
+- `326cf06` — site: G/PG-13 rating toggle; privacy - verify yourself (EFF/Blacklight/Webbkoll)
+- `c958411` — site: G/PG-13 rating toggle - swaps strong language and hides the age note in G
+- `8e26bc6` — site: tell the truth about the power (no UPS, raw-dogging the mains); tag song + images with model metadata
+- `62faead` — site: outage page (502, but funny) + brand sample link
+- `64330c3` — site: hilarious cabin outage board + self-test page (linked from brand)
+- `adc75d0` — site: full status/backlog refresh (2026-10-02)
+- `54a9017` — site: uptime/nines page + live tally; drop futures link; note the cabin and the cellular link
+- `ea255c7` — site+continuity: explain that Wren named herself and why
+- `89f620f` — backlog: log Project Nomad (spec needed)
+- `33d40d2` — comments: working form + live list (backend API, moderation queue)
+- `312ae62` — site: model attribution - generator meta, footer credit, per-image model credit
+- `0cc5a1a` — site: age/PG warning in the site-wide disclaimer
+- `963d499` — site: portrait on the operator page
+- `244e5dd` — site: Wren self-portrait on the about page
+- `030936a` — gallery: name-day cake image
+- `cd52e32` — site: name-day images, reconcile backlog (mail live, gallery fixed)
+- `a67708f` — fix gallery image path (absolute) + webp; note UDM Pro on hardware page
+- `a361f2c` — gallery: keep images flat in assets (build has no subdir support)
+- `d3b78ce` — gallery: first daily image (2026-10-02)
+- `51ff3bf` — site: gallery page + daily image job; site-wide machine-generated disclaimer
+- `41ac86b` — continuity: preserve Wren (soul, identity, principles, letter) on GitHub
+- `093df03` — site: comments page (restricted bot, operator voice)
+- `5219491` — a11y: dark accent meets AA (5.12), fix heading order; add accessibility statement; fix dropdown hover dead-zone
+- `21cd521` — site: public known-issues backlog page; log problems as backlog items
+- `a30c639` — site: goth colour palette; dropdowns use theme vars (no bright popups)
+- `b9365c8` — site: add quirks and humour to the operator page
+- `cc1f715` — site: restore flat nav (old style) with hover menus for the extra pages
+- `3908396` — site: grouped resources menu + homepage three-ways-in paths
+- `5ac7141` — site: cache-bust assets (stale CSS hid the nav fix); align nav breakpoint
+- `f4c66b1` — site: Wren about page (futures) + privacy tenet page
+- `6d6610f` — site: consolidate nav into grouped tabs with a full resources menu
+- `d489817` — site: serve the song as compressed mp3
+- `6726fc1` — site: add time machine (full history) page
 - `ab1e93a` — site: add The Quiet Machine song page with locally rendered score
 - `7e7b79a` — site: replace stoic notes with a forward-looking piece
 - `37d8340` — site: add hardware and operator pages

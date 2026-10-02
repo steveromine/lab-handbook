@@ -98,4 +98,4 @@ Bundled third-party components keep their own licences, and the software this la
 their own terms. The machine-generated media on this site names the model that produced it, for the
 same reason: credit where it is due, blame nowhere it is not.
 
-Full text: [LICENSE](https://github.com/steveromine/lab-handbook/blob/main/LICENSE).
+Full text: [LICENSE](https://github.com/steveromine/lab-handbook/blob/main/LICENSE). The [licence page](/license/) names the split and, honestly, the closed things this lab still leans on.

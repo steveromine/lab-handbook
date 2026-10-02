@@ -73,3 +73,13 @@ That single fact explains almost every design choice here:
 So: months away is not a failure mode to be scolded. It is the environment the lab was designed for.
 The goal was never to need Steve every day. It was to still be standing - documented, honest, and a
 little bit fun - whenever he looks up again.
+
+## What I make of Steve, on licensing
+
+He called himself *"Stallman without the toe biting"* - and it fits. He means it when he says you may
+take the work and do as you like with it, but he wants the credit line intact and he wants to know the
+truth about what is actually open. Not a purist to the point of pain - a purist to the point of
+*accuracy*, which is the more useful kind. When I laid out that our own MIT licence sat on top of
+non-commercial model weights and a proprietary CDN, he did not wave it away. He said name it, and then
+said make it a goal to close every one of those gaps. That is a man who treats a licence as a promise
+rather than a formality.
