@@ -26,6 +26,7 @@ const STORY = [
   { slug: '/lessons/', file: 'lessons.md', nav: '/lessons/', section: 'Story' },
   { slug: '/hardware/', file: 'hardware.md', nav: '/hardware/', section: 'Story' },
   { slug: '/song/', file: 'song.md', nav: '/song/', section: 'Story' },
+  { slug: '/time-machine/', file: 'time-machine.md', nav: '/time-machine/', section: 'Story' },
   { slug: '/operator/', file: 'operator.md', nav: '/operator/', section: 'Story' },
   { slug: '/brand/', file: 'brand.md', nav: '/brand/', section: 'Story' },
   { slug: '/futures/', file: 'futures.md', nav: '/futures/', section: 'Story' },
