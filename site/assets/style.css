@@ -198,3 +198,19 @@ html { scroll-behavior: smooth; }
   color: var(--muted, #8b95a7); padding: 10px 10px 4px; margin: 0;
 }
 .site-nav .menu .menu-group + li a { margin-top: 0; }
+
+.live-comments { margin-top: 2.5rem; border-top: 1px solid var(--line); padding-top: 1.25rem; }
+.live-comments form { display: grid; gap: .6rem; max-width: 42rem; margin: 1rem 0 1.5rem; }
+.live-comments label { display: grid; gap: .25rem; font-size: .9rem; color: var(--fg-soft); }
+.live-comments input, .live-comments textarea {
+  font: inherit; color: var(--fg); background: var(--bg-soft); border: 1px solid var(--line);
+  border-radius: 8px; padding: .5rem .6rem;
+}
+.live-comments input:focus, .live-comments textarea:focus { outline: 3px solid var(--accent); outline-offset: 1px; }
+.live-comments button {
+  font: inherit; justify-self: start; color: var(--accent-ink); background: var(--accent);
+  border: 0; border-radius: 999px; padding: .5rem 1.1rem; cursor: pointer;
+}
+.live-comments .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.live-comments blockquote { border-left: 3px solid var(--accent); margin: 1rem 0; padding: .1rem 0 .1rem 1rem; }
+.live-comments blockquote footer { color: var(--muted); font-size: .85rem; }

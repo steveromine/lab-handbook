@@ -109,3 +109,55 @@
     });
   }
 })();
+
+
+// --- live comments (only on the comments page) ---
+(function () {
+  'use strict';
+  if (location.pathname.replace(/\/+$/, '') !== '/comments') return;
+  var main = document.querySelector('main') || document.body;
+  var wrap = document.createElement('section');
+  wrap.className = 'live-comments';
+  wrap.innerHTML =
+    '<h2 id="say-something">Say something</h2>' +
+    '<p class="fine">Comments are held for a wren to approve. No accounts, no tracking, no cookies.</p>' +
+    '<form id="comment-form" autocomplete="off">' +
+      '<label>Name <input name="name" maxlength="60" placeholder="optional"></label>' +
+      '<label>Comment <textarea name="body" maxlength="1000" required rows="4" placeholder="Be kind. Be funny. Be brief."></textarea></label>' +
+      '<input type="text" name="hp" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">' +
+      '<button type="submit">Say it</button>' +
+      '<p id="comment-status" role="status" class="fine"></p>' +
+    '</form>' +
+    '<div id="comment-list" aria-live="polite"><p class="fine">Loading comments...</p></div>';
+  main.appendChild(wrap);
+
+  var list = wrap.querySelector('#comment-list');
+  var form = wrap.querySelector('#comment-form');
+  var status = wrap.querySelector('#comment-status');
+
+  function esc(t) { var d = document.createElement('div'); d.textContent = t == null ? '' : t; return d.innerHTML; }
+  function render(items) {
+    if (!items.length) { list.innerHTML = '<p class="fine">No approved comments yet. Yours could be the first.</p>'; return; }
+    list.innerHTML = items.map(function (c) {
+      return '<blockquote><p>' + esc(c.body) + '</p><footer>- ' + esc(c.name) + '</footer></blockquote>';
+    }).join('');
+  }
+  fetch('/api/comments').then(function (r) { return r.json(); })
+    .then(function (d) { render(d.comments || []); })
+    .catch(function () { list.innerHTML = '<p class="fine">Could not load comments.</p>'; });
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var fd = new FormData(form);
+    status.textContent = 'sending...';
+    fetch('/api/comments', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: fd.get('name'), body: fd.get('body'), hp: fd.get('hp') })
+    }).then(function (r) { return r.json(); })
+      .then(function (d) {
+        if (d.ok) { status.textContent = 'Thank you. ' + (d.note || 'Held for approval.'); form.reset(); }
+        else { status.textContent = 'Could not post: ' + (d.error || 'error'); }
+      })
+      .catch(function () { status.textContent = 'Could not reach the server.'; });
+  });
+})();
