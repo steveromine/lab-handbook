@@ -13,7 +13,7 @@ external fonts, and no network access at build time.** Node's standard library i
 | `lib/png.mjs` | A dependency-free PNG encoder plus a 5x7 bitmap font, used for the favicon, the Apple touch icon and the Open Graph card. |
 | `content/*.md` | The curated **story** layer, with YAML front matter for the hero and metadata. |
 | `assets/` | Hand-written CSS and vanilla JS copied verbatim into the build. |
-| `dist/` | Build output. Not committed. |
+| `dist/` | Build output (the published tree). Not committed. |
 
 Two layers, one source of truth: the **story** pages are curated prose that links to the **reference**
 layer, and the reference layer is generated from the existing handbook markdown. Facts are never
@@ -50,6 +50,11 @@ Output goes to `site/dist/`. The build **fails** (exit 2) if the sanitisation ga
 a private hostname, a non-public subdomain, key material or a token shape in the content, the assets,
 or the generated output. Nothing is published from a failing build.
 
+Pages are written into a staging tree (`site/dist.tmp/`) and every gate runs against it; only a
+build that passes **all** gates is renamed over `site/dist/`. So a failed build leaves the previous
+`site/dist/` untouched (never a half-gated tree), and a deploy that ignores the exit code cannot
+ship a build that failed a gate.
+
 Preview locally:
 
 ```sh
@@ -77,7 +82,7 @@ static site - it cannot open a shell, forward a port or reach anything else on t
 Manual (what was done for the first deploy):
 
 ```sh
-SITE_URL=<public-origin> node site/build.mjs   # the build refuses to emit the fallback origin
+SITE_URL=<public-origin> node site/build.mjs && \   # the build refuses to emit the fallback origin
 rsync -rlt --delete --chmod=D755,F644 -e "ssh -i ~/.ssh/lab-site-deploy -o IdentitiesOnly=yes" \
   site/dist/ <user>@<edge-host>:/
 ```

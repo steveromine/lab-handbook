@@ -13,6 +13,7 @@ Thumbs.db
 
 # Site build output is generated, not source
 site/dist/
+site/dist.tmp/
 
 TODO.private-note
 NOTES.private-note

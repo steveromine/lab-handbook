@@ -12,7 +12,21 @@ import { checkA11y } from './lib/a11y.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, '..');
-const DIST = path.join(HERE, 'dist');
+// Publish target vs. build staging. Pages are written into a STAGING tree and every gate runs
+// against it; only a fully-gated build is renamed over the publish target. A failed gate therefore
+// never leaves a deployable `dist` behind - previously the gates ran AFTER every page was written
+// into `dist`, so a build that exited 2 still left a complete `site/dist` that a deploy ignoring
+// the exit code could ship (finding D-10 residual).
+const PUBLISH = path.join(HERE, 'dist');
+const DIST = path.join(HERE, 'dist.tmp');
+// Set true only once the staging tree has been renamed into place. Until then ANY exit - including
+// a gate's process.exit - removes the staging tree, so a failed build leaves neither a new dist nor
+// a stray partial tree.
+let published = false;
+process.on('exit', () => {
+  if (published) return;
+  try { fs.rmSync(DIST, { recursive: true, force: true }); } catch { /* best effort */ }
+});
 const CONTENT = path.join(HERE, 'content');
 const ASSETS = path.join(HERE, 'assets');
 const DOCS = path.join(ROOT, 'docs');
@@ -375,7 +389,12 @@ function main() {
   gate();
   a11yGate();
   linkGate();
-  console.log('Built ' + allPages.length + ' pages into ' + path.relative(ROOT, DIST));
+  // Every gate passed - publish atomically. Up to this line `dist` still holds the PREVIOUS
+  // successful build, so a failed or interrupted build never destroys or half-rewrites it.
+  fs.rmSync(PUBLISH, { recursive: true, force: true });
+  fs.renameSync(DIST, PUBLISH);
+  published = true;
+  console.log('Built ' + allPages.length + ' pages into ' + path.relative(ROOT, PUBLISH));
   console.log('Story pages: ' + STORY.length + ', handbook pages: ' + hb.length);
 }
 
