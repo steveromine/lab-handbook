@@ -49,7 +49,7 @@ This is not stylistic. HTTP Basic credentials and an application's own bearer to
 - Public HTTP and HTTPS on the edge are reachable **only through the provider**; from anywhere else they read as closed. That is intended, and it is why an outside port scan of the edge looks like a down host.
 - Lab services are reachable from the internet **only** through the private overlay.
 - Every published hostname is individually revocable in three steps: remove the proxy block, remove the DNS record, remove the overlay peer. Removing any one breaks the path; none of the three is a silent dependency on the others.
-- The agent platform's own control plane is designed to be **loopback-only** on its host, reached through an HTTPS reverse proxy that is the only trusted forwarder of client identity - it overwrites forwarded headers rather than trusting them. As of 2026-10-02 the loopback-only condition is **not currently verified**: the listener also accepts connections over the lab's private overlay network, the lab's own monitor records the deviation, and an operator decision on the ingress design is pending. It is stated here rather than left as a standing claim.
+- The agent platform's own control plane is **loopback-only** on its host, reached through an HTTPS reverse proxy that is the only trusted forwarder of client identity - it overwrites forwarded headers rather than trusting them. The lab's monitor asserts the loopback-only condition every hour. On 2026-10-02 a brief, overlay-scoped widening occurred while an operator-directed remote-pairing change was being worked on; the lab's own monitor caught it, the binding was restored to loopback within the hour, and the pending remote-pairing work is recorded.
 
 ## Host hardening
 
