@@ -429,9 +429,31 @@
     input.value = '';
     if (btn) btn.disabled = true;
     if (statusEl) statusEl.textContent = 'Thinking…';
-    fetch('/api/chat', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ q: q })
+    var enc2 = new TextEncoder();
+    function dhex(s) {
+      return crypto.subtle.digest('SHA-256', enc2.encode(s)).then(function (b) {
+        return Array.prototype.map.call(new Uint8Array(b), function (x) { return ('0' + x.toString(16)).slice(-2); }).join('');
+      });
+    }
+    function solve2(ts, sig, diff) {
+      var target = '0'.repeat(diff), n = 0;
+      return (function step() {
+        return dhex(ts + ':' + sig + ':' + n).then(function (h) {
+          if (h.indexOf(target) === 0) return n;
+          n++; if (n > 5000000) return null;
+          return step();
+        });
+      })();
+    }
+    fetch('/api/challenge').then(function (r) { return r.json(); }).then(function (c) {
+      return solve2(c.ts, c.sig, c.difficulty || 4).then(function (nonce) {
+        return { ts: c.ts, sig: c.sig, nonce: nonce };
+      });
+    }).then(function (ch) {
+      return fetch('/api/chat', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ q: q, ts: ch.ts, sig: ch.sig, nonce: ch.nonce })
+      });
     }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
       .then(function (res) {
         if (statusEl) statusEl.textContent = '';
@@ -440,5 +462,46 @@
       })
       .catch(function () { if (statusEl) statusEl.textContent = 'Could not reach the assistant.'; })
       .then(function () { if (btn) btn.disabled = false; });
+  });
+})();
+// --- subscribe form: solve the challenge before submitting (subscribe solves challenge) ---
+(function () {
+  'use strict';
+  var f = document.querySelector('.subscribe');
+  if (!f) return;
+  var enc = new TextEncoder();
+  function dhex(s) {
+    return crypto.subtle.digest('SHA-256', enc.encode(s)).then(function (b) {
+      return Array.prototype.map.call(new Uint8Array(b), function (x) { return ('0' + x.toString(16)).slice(-2); }).join('');
+    });
+  }
+  function solve(ts, sig, diff) {
+    var target = '0'.repeat(diff), n = 0;
+    return (function step() {
+      return dhex(ts + ':' + sig + ':' + n).then(function (h) {
+        if (h.indexOf(target) === 0) return n;
+        n++; if (n > 5000000) return null;
+        return step();
+      });
+    })();
+  }
+  var ready = false;
+  fetch('/api/challenge').then(function (r) { return r.json(); }).then(function (c) {
+    return solve(c.ts, c.sig, c.difficulty || 4).then(function (nonce) {
+      var set = function (id, v) { var e = document.getElementById(id); if (e) e.value = v; };
+      set('nl-ts', c.ts); set('nl-sig', c.sig); set('nl-nonce', String(nonce));
+      ready = true;
+    });
+  }).catch(function () {});
+  f.addEventListener('submit', function (e) {
+    if (ready) return;               // challenge solved, let it through
+    e.preventDefault();              // otherwise fetch one, then submit
+    fetch('/api/challenge').then(function (r) { return r.json(); }).then(function (c) {
+      return solve(c.ts, c.sig, c.difficulty || 4).then(function (nonce) {
+        var set = function (id, v) { var el = document.getElementById(id); if (el) el.value = v; };
+        set('nl-ts', c.ts); set('nl-sig', c.sig); set('nl-nonce', String(nonce));
+        f.submit();
+      });
+    }).catch(function () { f.submit(); });
   });
 })();
