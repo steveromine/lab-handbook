@@ -18,12 +18,22 @@ the private register.
 | --- | --- | --- |
 | **Music model upgrade** | media | The higher-quality render needs a model that will not finish downloading inside its container. Blocked on a reliable fetch path, not on the GPU. |
 | **Codex runtime unverified** | agents | One agent is pointed at an OpenAI-protocol model, but whether the true Codex harness actually engages is **unverified** - stated plainly rather than assumed. |
-| **Outbound mail reputation** | email | A reverse-DNS entry is deferred, so outbound mail is likelier to be flagged as spam. Inbound is unaffected. |
+| **Outbound mail reputation** | email | DKIM signing is not generated and reverse DNS is deferred, so at least one large consumer provider rejects mail the lab sends. Outbound deliverability is the open item; inbound is unaffected. |
 | **Mobile nav** | site | The hover menus fall back to an expanded list under the menu button. It works; it could be tidier. |
 | **Project Nomad (survival tool)** | planned | Wanted next: deploy and test internally first, then expose on its own address. No GPU; it will use the existing inference service. Status: **spec needed** - the exact software is not yet defined, and guessing at an unfamiliar public service is not a risk worth taking. |
+| **Automated deploy credentials** | site | The repository's automated deploy job is disabled because its deploy credentials are not set, so publishing is a reviewed manual copy rather than an unattended push. The copy path itself is documented and working. |
 
 ## Recently fixed
 
+- **The site build now fails closed on accessibility.** It checks every generated page for image text,
+  a single heading and a page language, and computes colour contrast from the live style tokens across
+  all themes. It found and fixed two real AA failures in the palette (a dark accent and a light muted text).
+- **The uptime endpoint was repaired.** The live tally now answers again, and the [nines page](/uptime/)
+  shows the site up on every sample since the probe started.
+- **A rebuild caught a false positive** in the publish-time sanitisation gate: two deliberately public
+  subdomains were being flagged as non-canonical. They are now allowlisted by name; every other
+  subdomain, host and address still fails the build.
+- **The recorded-changes page was regenerated** from the lab's own history so its count matches reality.
 - **A stale stylesheet hid a nav fix.** The popup menus looked broken; the real cause was a CSS file
   served from cache. Fixed with content-hashed asset URLs so it cannot happen again.
 - **The nav was a wall of links.** Rebuilt as one clean row with hover menus.

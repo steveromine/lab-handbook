@@ -57,7 +57,7 @@ One 8 GB card, three workloads. Two models that each "fit" in isolation do not f
 
 ### Agents are an org chart before they are software
 
-Five roles are specified: a manager who owns the outcome, and four specialists who build, audit, research and record. **One of the five is live.** The other four are designed and not yet built, which is exactly the sort of thing this site is meant to say out loud. See [the agent org chart](/agents/).
+Five roles are specified: a manager who owns the outcome, and four specialists who build, audit, research and record. All five now exist as configured agents and run scheduled work - though the four specialists share the manager's fast model route rather than the frontier-class split the design describes. The honest accounting is on [the agent org chart](/agents/).
 
 ### Honest status beats a green dashboard
 

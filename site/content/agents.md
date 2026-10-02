@@ -1,8 +1,8 @@
 ---
 title: 'The agent org chart'
-description: 'Five specified agent roles, one of which is live. Who exists, who is planned, what each may not do, and why the authority matrix matters more than the personalities.'
+description: 'Five specified agent roles, all of them now running. Who exists, what each may not do, how far the specialists really go, and why the authority matrix matters more than the personalities.'
 hero_title: 'The agent org chart'
-hero_lede: 'An org chart drawn before the team exists is a specification, not a description. One of the five roles below is live; the rest are designed and not yet built - and publishing that distinction is the point of the page.'
+hero_lede: 'An org chart drawn before the team exists is a specification, not a description. All five roles below are running now; being precise about how far each really goes is the point of the page.'
 ---
 
 ## The chart
@@ -25,16 +25,16 @@ The Manager reports to the operator and to no one else. **Sentinel's audit findi
 | Role | Status | Job | May **not** |
 |---|---|---|---|
 | **MANAGER** | <span class="pill pill-live">LIVE</span> | Decompose work, choose the model and tools, verify the result, report honestly | Approve its own exceptions; override an audit finding; change its own permissions |
-| **FORGE** | <span class="pill pill-planned">PLANNED</span> | Implement changes: deploy, configure, write the scripts | Deploy without a written rollback; repeat a failed method more than twice |
-| **SENTINEL** | <span class="pill pill-planned">PLANNED</span> | Adversarial review: attack the design, verify the verification, hunt for exposure | Be overruled by the Manager; ship a fix for a finding it also reported |
-| **ATLAS** | <span class="pill pill-planned">PLANNED</span> | Reconnaissance: what is here, what version, what depends on what | Change anything - read-only by construction |
-| **LEDGER** | <span class="pill pill-planned">PLANNED</span> | Records: decision log, activity log, backlog, cost accounting | Rewrite history - corrections are **appended**, never edited in place |
+| **FORGE** | <span class="pill pill-live">LIVE</span> | Implement changes: deploy, configure, write the scripts | Deploy without a written rollback; repeat a failed method more than twice |
+| **SENTINEL** | <span class="pill pill-live">LIVE</span> | Adversarial review: attack the design, verify the verification, hunt for exposure | Be overruled by the Manager; ship a fix for a finding it also reported |
+| **ATLAS** | <span class="pill pill-live">LIVE</span> | Reconnaissance: what is here, what version, what depends on what | Change anything - read-only by construction |
+| **LEDGER** | <span class="pill pill-live">LIVE</span> | Records: decision log, activity log, backlog, cost accounting | Rewrite history - corrections are **appended**, never edited in place |
 
 ### What that means in practice
 
-The live role is the **Manager**: the coordinator that takes a task, decomposes it, picks a model and tools, verifies the outcome and reports. Beneath it, the platform already routes work to two kinds of worker and to a local offline agent (see [model routing](#model-routing) below).
+The **Manager** is the coordinator: it takes a task, decomposes it, picks a model and tools, verifies the outcome and reports. Forge, Sentinel, Atlas and Ledger now exist as configured agents and run scheduled work - builds and improvements, adversarial audits, reconnaissance and the records.
 
-Forge, Sentinel, Atlas and Ledger are the *design* for the next phase. They are not running. If you see them described in prose somewhere as if they exist, this table is the correction.
+The honest caveat: all five run on the *same* fast, low-cost model route today. The frontier-class split the routing table below describes is the target, not the present. "Live" here means an agent has an identity, a job and a schedule - not that it is a different class of model.
 
 > **Why publish a chart for a team that is mostly not built?** Because building a team without one is how you end up with four agents and no idea which one is responsible. The chart is the specification the build is held to - and, just as importantly, a record of which parts are still promises.
 
@@ -64,7 +64,7 @@ Work is routed by **risk and cost**, not by availability:
 | 3 | High volume? | Yes: cheap, fast model |
 | 4 | Otherwise | The lab's own local model |
 
-The operating roster that implements this today:
+The operating roster that implements this today - with one deliberate simplification: every role currently runs on the same fast, low-cost model route, so the "model class" column names the *intended* split rather than the present one:
 
 | Role | Model class | Used for |
 |---|---|---|

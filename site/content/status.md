@@ -57,24 +57,13 @@ The theme of that day was **verification**: several items that reported success 
 
 | Area | State | What is recorded | What remains unproven |
 |---|---|---|---|
-| **Mail (own server)** | <span class="pill pill-verified">VERIFIED</span> | The domain's mail was cut over to the lab's own server: the old provider's records removed, our MX/SPF/DMARC published, port 25 opened, and a strict sender filter installed. Proved from an outside host - an allowed sender accepted (250), a stranger refused (554) - with local delivery verified into a real mailbox. | Outbound DKIM signing is not generated yet and reverse-DNS is deferred, so mail the lab *sends* is likelier to be flagged. |
+| **Mail (own server)** | <span class="pill pill-verified">VERIFIED</span> <span class="pill pill-gap">KNOWN GAP</span> | The domain's mail runs on the lab's own server: the old provider's records removed, our MX/SPF/DMARC published, port 25 opened, and a strict sender filter installed. Proved from an outside host - an allowed sender accepted (250), a stranger refused (554) - with local delivery verified into a real mailbox. | **Inbound works; outbound is still earning trust.** DKIM signing is not generated and reverse DNS is deferred, so at least one large consumer mail provider rejects messages the lab sends. |
 | **Comments page** | <span class="pill pill-verified">VERIFIED</span> | A small API accepts comments (honeypot, rate limit, size cap, no cookies) and the page lists approved ones; submissions are held for moderation. | No automated spam scoring - moderation is manual. |
-| **Uptime tally** | <span class="pill pill-verified">VERIFIED</span> | A probe records whether the public site answers every 5 minutes; the tally is served live on the [nines page](/uptime/). | The probe measures the public site, not the home lab behind it. |
+| **Uptime tally** | <span class="pill pill-verified">VERIFIED</span> | A probe records whether the public site answers every five minutes. The live tally was read back today - a JSON endpoint and the [nines page](/uptime/) - and shows the site up on every sample since the probe began. | The probe measures the public edge, not the home lab behind it. |
 | **Content attribution** | <span class="pill pill-verified">VERIFIED</span> | Every page carries a generator meta tag and a visible model credit; every generated image credits its model visibly *and* in file metadata. | - |
-| **Public site refresh** | <span class="pill pill-configured">CONFIGURED</span> | A twice-daily refresh is scheduled to reconcile this site with the lab's real state. | It has not yet had its first scheduled run. |
+| **Accessibility** | <span class="pill pill-verified">VERIFIED</span> | The build now enforces WCAG 2.2 AA - alt text, a single page heading and page language over the generated HTML, plus colour contrast computed from the live style tokens - and fails closed when a page regresses. It found and fixed two real contrast failures. | Contrast is checked against the palette tokens, not every rendered element. |
+| **Public site refresh** | <span class="pill pill-configured">CONFIGURED</span> <span class="pill pill-gap">KNOWN GAP</span> | A twice-daily reconciliation of this site against the lab records exists and ran for the first time today. | Publishing further revisions is currently held back by a pre-publication check on the repository history; the pages shown are the last fully reviewed revision. |
+| **Deployment** | <span class="pill pill-configured">CONFIGURED</span> | The site is built from the repository and copied to the edge host over SSH by a reviewed, gate-first step. | The repository's automated deploy job is disabled pending its deploy credentials, so each publish is a manual copy rather than unattended. |
 
-> This page is refreshed at least twice a day. Where it drifts, the drift is a bug - and it goes on the
-> [known issues](/backlog/) list.
-
-## Refreshed 2026-10-02
-
-| Area | State | What is recorded | What remains unproven |
-|---|---|---|---|
-| **Mail (own server)** | <span class="pill pill-verified">VERIFIED</span> | The domain's mail was cut over to the lab's own server: the old provider's records removed, our MX/SPF/DMARC published, port 25 opened, and a strict sender filter installed. Proved from an outside host - an allowed sender accepted (250), a stranger refused (554) - with local delivery verified into a real mailbox. | Outbound DKIM signing is not generated yet and reverse-DNS is deferred, so mail the lab *sends* is likelier to be flagged. |
-| **Comments page** | <span class="pill pill-verified">VERIFIED</span> | A small API accepts comments (honeypot, rate limit, size cap, no cookies) and the page lists approved ones; submissions are held for moderation. | No automated spam scoring - moderation is manual. |
-| **Uptime tally** | <span class="pill pill-verified">VERIFIED</span> | A probe records whether the public site answers every 5 minutes; the tally is served live on the [nines page](/uptime/). | The probe measures the public site, not the home lab behind it. |
-| **Content attribution** | <span class="pill pill-verified">VERIFIED</span> | Every page carries a generator meta tag and a visible model credit; every generated image credits its model visibly *and* in file metadata. | - |
-| **Public site refresh** | <span class="pill pill-configured">CONFIGURED</span> | A twice-daily refresh is scheduled to reconcile this site with the lab's real state. | It has not yet had its first scheduled run. |
-
-> This page is refreshed at least twice a day. Where it drifts, the drift is a bug - and it goes on the
-> [known issues](/backlog/) list.
+> This page is reconciled against the lab records on a schedule. Where it drifts, the drift is a bug -
+> and it goes on the [known issues](/backlog/) list.
