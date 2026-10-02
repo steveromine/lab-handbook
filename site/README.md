@@ -27,9 +27,18 @@ The public origin is injected at build time so this repository contains no real 
 SITE_URL=<public-origin> node site/build.mjs
 ```
 
-Without it, the build falls back to a reserved, non-resolvable example origin - fine for looking at
-layout locally, wrong for a real deploy. In CI the value comes from the repository variable
-`SITE_URL` (set it under Settings -> Actions -> Variables); it is not a secret.
+Without it, the build falls back to a reserved, non-resolvable example origin. That is fine for
+looking at layout locally, but **wrong for a real deploy** - a build that shipped the fallback once
+published `lab-handbook.invalid` in every page's canonical/OG/Twitter URLs, in `robots.txt` and in
+`sitemap.xml` (observed live 2026-10-02). The placeholder gate therefore **refuses** the fallback
+host (exit 2); for a deliberate local layout build, opt in explicitly:
+
+```sh
+ALLOW_PLACEHOLDER_ORIGIN=1 node site/build.mjs
+```
+
+In CI the value comes from the repository variable `SITE_URL` (set it under Settings -> Actions ->
+Variables); it is not a secret.
 
 ## Build
 
@@ -68,7 +77,7 @@ static site - it cannot open a shell, forward a port or reach anything else on t
 Manual (what was done for the first deploy):
 
 ```sh
-node site/build.mjs
+SITE_URL=<public-origin> node site/build.mjs   # the build refuses to emit the fallback origin
 rsync -rlt --delete --chmod=D755,F644 -e "ssh -i ~/.ssh/lab-site-deploy -o IdentitiesOnly=yes" \
   site/dist/ <user>@<edge-host>:/
 ```

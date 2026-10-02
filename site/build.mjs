@@ -348,6 +348,13 @@ function main() {
   {
     // URL contexts only - an email hint like you@example.com in an input is not a broken link.
     const PLACEHOLDERS = ['github.com/example/', '://example.com', '://example.org', '://example.net'];
+    // The canonical origin falls back to a reserved, non-resolvable host when SITE_URL is unset
+    // (lib/render.mjs). That fallback once shipped LIVE: every page's canonical, og:url, og:image,
+    // twitter:image and schema.org url, plus robots.txt and sitemap.xml, pointed at
+    // lab-handbook.invalid (observed 2026-10-02). A local layout build without SITE_URL is the one
+    // legitimate use, so refuse the fallback host unless that build explicitly opts in.
+    const ALLOW_PLACEHOLDER_ORIGIN = process.env.ALLOW_PLACEHOLDER_ORIGIN === '1';
+    if (!ALLOW_PLACEHOLDER_ORIGIN) PLACEHOLDERS.push('lab-handbook.invalid');
     const walk = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) =>
       e.isDirectory() ? walk(path.join(d, e.name)) : [path.join(d, e.name)]);
     const bad = [];
@@ -359,6 +366,9 @@ function main() {
     if (bad.length) {
       console.error('PLACEHOLDER GATE: refusing to publish placeholder URLs:');
       for (const b of bad.slice(0, 20)) console.error('  ' + b);
+      if (bad.some((b) => b.indexOf('lab-handbook.invalid') !== -1)) {
+        console.error('  hint: set SITE_URL=<public-origin>, or use ALLOW_PLACEHOLDER_ORIGIN=1 for a deliberate local layout build');
+      }
       process.exit(2);
     }
   }
