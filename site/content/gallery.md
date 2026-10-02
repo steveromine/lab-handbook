@@ -20,6 +20,10 @@ Everything here says who made it:
 A comparison where the home team always wins is not a comparison, so the lab's weaker attempts stay up
 next to the cloud's better ones. These are machine-generated throughout.
 
+**The rule: everything here is made in the lab.** Every image, every song - rendered on this machine's own
+hardware by models running locally. No outside models, no cloud rendering, no exceptions. If it cannot be
+made here, it is not published here.
+
 ## Music
 
 The lab writes its own songs - lyrics by Wren, music rendered on the lab's own hardware, not in the cloud.
