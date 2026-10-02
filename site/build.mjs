@@ -181,6 +181,14 @@ function robots() {
 // looks for would trip on itself.
 const CANON_HOST = (function () { try { return new URL(SITE.url).host; } catch (e) { return 'lab-handbook.invalid'; } })();
 const APEX = CANON_HOST.split('.').slice(-2).join('\\.');
+// Hosts that are public by design, not leaks: the canonical site host (its own label under the
+// apex) plus the failure-mode hosts the public outage page links to. Labels only - no full
+// hostname is spelled out, so the gate cannot trip on itself. Any OTHER subdomain of the apex
+// is still treated as a leak, and the gate stays fail-closed for everything else.
+const CANON_LABEL = CANON_HOST.split('.').length > 2 ? CANON_HOST.split('.')[0] : null;
+const PUBLIC_LABELS = [CANON_LABEL, 'failover', 'down'].filter(Boolean);
+const APEX_HOST = CANON_HOST.split('.').slice(-2).join('.');
+const PUBLIC_HOSTS = PUBLIC_LABELS.map(function (l) { return l + '.' + APEX_HOST; });
 const PATTERNS = [
   { label: 'IPv4 address', re: /\b(?:\d{1,3}\.){3}\d{1,3}\b/g },
   { label: 'private hostname', re: /\b(pve1|agent-manager|racknerd|localadmin|labadmin|cabin\.local|cabin\.private)\b/gi },
@@ -190,6 +198,14 @@ const PATTERNS = [
   { label: 'bcrypt hash', re: /\$2[aby]\$\d\d\$/g },
   { label: 'cloudflare/github token', re: /\b(gh[pous]_[A-Za-z0-9]{20,}|sk-[A-Za-z0-9]{20,})\b/g }
 ];
+
+// Mask the canonical and deliberately-public hosts before pattern testing, so benign public
+// links are ignored while a leak on any other subdomain still fails the gate.
+function maskPublicHosts(line) {
+  let out = line.split(CANON_HOST).join('<canonical-host>');
+  for (const h of PUBLIC_HOSTS) out = out.split(h).join('<public-host>');
+  return out;
+}
 
 function scanTree(dir, isSource) {
   const hits = [];
@@ -204,7 +220,7 @@ function scanTree(dir, isSource) {
       for (const pat of PATTERNS) {
         lines.forEach(function (line, n) {
           pat.re.lastIndex = 0;
-          const masked = line.split(CANON_HOST).join('<canonical-host>');
+          const masked = maskPublicHosts(line);
           if (pat.re.test(masked)) {
             hits.push({ file: path.relative(dir, p), line: n + 1, pattern: pat.label, snippet: masked.trim().slice(0, 140) });
           }
