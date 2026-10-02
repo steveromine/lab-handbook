@@ -3,7 +3,7 @@ title: 'Time machine'
 description: 'Every change to this site, from the first commit to now - the lab's own history, as far back as it goes.'
 eyebrow: 'As far back as it goes'
 hero_title: 'The time machine'
-hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 124 recorded changes from 2026-10-01 to 2026-10-02 - so you can watch the thinking change, mistakes and all.'
+hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 125 recorded changes from 2026-10-01 to 2026-10-02 - so you can watch the thinking change, mistakes and all.'
 ---
 
 Every commit to this site, newest first. The point is not that the lab got everything right; it is
@@ -11,6 +11,7 @@ that you can see **how it changed** - including the places it changed its mind.
 
 ## 2026-10-02
 
+- `0df602e` — nav: link the Build Your Own guide from the Build menu
 - `352591b` — status/security: the agent control plane is loopback-only again (C-34 resolved 20:13Z); refresh stamp 20:20Z
 - `228039f` — refresh(2026-10-02 20:00Z): reconcile status/backlog/security with live state
 - `e6c49c7` — reconcile: Wren/Manager naming, true 7-agent roster, what-is-here-now
