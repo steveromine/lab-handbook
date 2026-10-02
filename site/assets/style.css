@@ -286,3 +286,16 @@ html { scroll-behavior: smooth; }
 .backlog-item { border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg-card); padding: 1rem 1.1rem; }
 .backlog-item h3 { margin: 0 0 .35rem; font-size: 1.05rem; }
 .backlog-item .pill { margin-right: .3rem; }
+
+.chat-form { display: grid; gap: .5rem; margin: 1.2rem 0; max-width: 44rem; }
+.chat-form label { font-size: .92rem; color: var(--fg-soft); }
+.chat-form input { font: inherit; padding: .65rem .8rem; border: 1px solid var(--line); border-radius: 10px; background: var(--bg-soft); color: var(--fg); width: 100%; }
+.chat-form input:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.chat-form button { font: inherit; padding: .6rem 1rem; border: 1px solid var(--accent); border-radius: 999px; background: var(--accent); color: var(--accent-ink); cursor: pointer; justify-self: start; }
+.chat-form button[disabled] { opacity: .6; cursor: progress; }
+.chat-log { display: grid; gap: .8rem; margin: 1.2rem 0; max-width: 44rem; }
+.chat-msg { border: 1px solid var(--line); border-radius: var(--radius); padding: .8rem 1rem; }
+.chat-msg.me { background: var(--bg-soft); }
+.chat-msg.bot { background: var(--bg-card); }
+.chat-who { margin: 0 0 .3rem; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted, #8b8590); }
+.chat-msg p { margin: .2rem 0; }

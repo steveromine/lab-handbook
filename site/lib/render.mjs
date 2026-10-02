@@ -66,6 +66,7 @@ export const NAV = [
     { href: '/requests/', label: 'Requests' },
     { href: '/safety/', label: 'Safety' },
     { href: '/constraints/', label: 'Constraints' },
+    { href: '/ask/', label: 'Ask' },
     { href: '/accessibility/', label: 'Accessibility' },
     { href: '/operator/', label: 'The human in the loop' },
     { href: '/brand/', label: 'Brand sheet' },

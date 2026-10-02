@@ -391,3 +391,54 @@
     });
   }
 })();
+
+// --- handbook chat ---
+(function () {
+  'use strict';
+  var form = document.getElementById('chat-form');
+  if (!form) return;
+  var log = document.getElementById('chat-log');
+  var statusEl = document.getElementById('chat-status');
+  var input = document.getElementById('chat-q');
+  var btn = document.getElementById('chat-send');
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+  function add(cls, who, text, sources) {
+    var d = document.createElement('div');
+    d.className = 'chat-msg ' + cls;
+    var body = '<p class="chat-who">' + esc(who) + '</p><p>' + esc(text) + '</p>';
+    if (sources && sources.length) {
+      body += '<p class="fine">Sources: ' + sources.map(function (s) {
+        return '<a href="' + esc(s.u) + '">' + esc(s.t) + '</a>';
+      }).join(' · ') + '</p>';
+    }
+    d.innerHTML = body;
+    log.appendChild(d);
+    d.scrollIntoView({ block: 'nearest' });
+  }
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var q = input.value.trim();
+    if (q.length < 3) { if (statusEl) statusEl.textContent = 'Please type a longer question.'; return; }
+    add('me', 'You', q);
+    input.value = '';
+    if (btn) btn.disabled = true;
+    if (statusEl) statusEl.textContent = 'Thinking…';
+    fetch('/api/chat', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ q: q })
+    }).then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+      .then(function (res) {
+        if (statusEl) statusEl.textContent = '';
+        if (res.j && res.j.answer) add('bot', 'Handbook', res.j.answer, res.j.sources);
+        else add('bot', 'Handbook', (res.j && res.j.error) || 'Something went wrong - try again.');
+      })
+      .catch(function () { if (statusEl) statusEl.textContent = 'Could not reach the assistant.'; })
+      .then(function () { if (btn) btn.disabled = false; });
+  });
+})();
