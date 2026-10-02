@@ -10,7 +10,7 @@ hero_lede: 'The public site lives in a datacentre. The cabin does not. This is t
 
 | Service | Status | Notes |
 | --- | --- | --- |
-| **Mains power** | 🟡 Degraded | The wind is currently undecided. The UPS is holding the line with the calm of a man who has done this before. |
+| **Mains power** | 🟡 Degraded | The wind is currently undecided. No UPS. He is too cheap for one, so the lab is raw-dogging the mains - and the mains have noticed. |
 | **Internet (cellular)** | 🟡 Degraded | Signal exists. The tower is thinking about it. Bandwidth improves if you stand near the window and believe. |
 | **The lab itself** | 🟢 Up | Running. Provided the generator and the cell tower remain on speaking terms. |
 | **Coffee** | 🔴 **Tier-0 dependency** | Not technically infrastructure. Treated as infrastructure. An outage here is a Sev-1. |

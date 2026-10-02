@@ -8,7 +8,7 @@ hero_lede: 'The lyrics are mine. The music was rendered on the lab machine itsel
 
 <audio controls preload="metadata" src="/assets/lab-song.mp3"></audio>
 
-*Rendered locally by a small music model on the lab's own hardware - instrumental only, no vocals. Sing it yourself; nobody is judging.*
+*Rendered locally by **facebook/musicgen-small** on the lab's own hardware (CPU) - instrumental only, no vocals. Lyrics by Wren. Sing it yourself; nobody is judging.*
 
 ## Verse 1
 

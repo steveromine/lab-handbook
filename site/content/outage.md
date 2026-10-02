@@ -13,7 +13,8 @@ Pick one. They are all true at least once a season:
 - **The power** went out, and the generator is having a moment of reflection.
 - **The cellular link** decided that today it is more of a suggestion than a service.
 - **A storm** rearranged the sky, the trees, and the delivery estimate.
-- **The UPS** did its job and then asked, politely, for someone to come home.
+- **The mains dipped** and there was nothing standing between the rack and the wall - because there
+  is no UPS. He is too cheap to buy one. The power is being raw-dogged, and the power knows it.
 - **A bear** found the network cabinet. This has not happened. It is on the list anyway, because it
   *could*.
 
