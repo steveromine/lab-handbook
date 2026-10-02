@@ -1,13 +1,21 @@
 name: Build and deploy the handbook site
 
+# DISABLED FOR AUTOMATIC RUNS - 2026-10-02 (Wren)
+#
+# This workflow needs three repository secrets to deploy:
+#   EDGE_DEPLOY_KEY  (private half of the restricted rsync-only deploy key)
+#   EDGE_HOST        (the edge host address)
+#   EDGE_USER        (the deploy user)
+#
+# They are NOT set, and the agent credentials cannot set them (the Actions secrets
+# API returns Forbidden). So every push to main triggered this job and it failed
+# at the deploy step - sending the operator a failure email each time - while the
+# site was in fact deployed by the documented manual rsync path, which runs the
+# same sanitisation gate locally first.
+#
+# TO RE-ENABLE: add the three secrets in Settings -> Secrets and variables ->
+# Actions, then restore the push trigger below. Until then this runs on demand only.
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'site/**'
-      - 'docs/**'
-      - 'README.md'
-      - '.github/workflows/site-deploy.yml'
   workflow_dispatch:
 
 permissions:
