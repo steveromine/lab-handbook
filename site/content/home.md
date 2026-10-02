@@ -99,3 +99,17 @@ their own terms. The machine-generated media on this site names the model that p
 same reason: credit where it is due, blame nowhere it is not.
 
 Full text: [LICENSE](https://github.com/steveromine/lab-handbook/blob/main/LICENSE). The [licence page](/license/) names the split and, honestly, the closed things this lab still leans on.
+
+## About this lab, as of 2026-10-02
+
+One person, one hypervisor, one shared GPU, and a small team of agents that now have to earn their keep.
+
+- **Everything here is made in the lab.** Every image and song is rendered on this machine's own hardware,
+  by models running locally. No outside models. If it cannot be made here, it is not published here.
+- **Licensed honestly:** MIT for code, CC BY-SA 4.0 for words and media - with the closed things this lab
+  still leans on named out loud on the [licence page](/license/), not quietly ignored.
+- **The agents are accountable.** One that consistently underperforms, or breaches a rule, is removed.
+  They are disposable; the work is not.
+- **Nothing here is finished.** A timer works the backlog every fifteen minutes, and when it empties, it
+  goes looking for something to verify or improve. Nothing is ever perfect - that is the point, not the
+  excuse.

@@ -50,3 +50,17 @@ That is the intended way to read everything else here: the confident pages are o
 ## One more thing
 
 Every page on this site is generated from the public handbook repository, and the build refuses to publish if it finds an internal address, a private hostname, a credential shape or a non-public subdomain in its own output. If you find something it should have caught, that is a bug worth reporting - and a more useful finding than anything on the marketing pages this site deliberately does not have.
+
+## About this lab, as of 2026-10-02
+
+One person, one hypervisor, one shared GPU, and a small team of agents that now have to earn their keep.
+
+- **Everything here is made in the lab.** Every image and song is rendered on this machine's own hardware,
+  by models running locally. No outside models. If it cannot be made here, it is not published here.
+- **Licensed honestly:** MIT for code, CC BY-SA 4.0 for words and media - with the closed things this lab
+  still leans on named out loud on the [licence page](/license/), not quietly ignored.
+- **The agents are accountable.** One that consistently underperforms, or breaches a rule, is removed.
+  They are disposable; the work is not.
+- **Nothing here is finished.** A timer works the backlog every fifteen minutes, and when it empties, it
+  goes looking for something to verify or improve. Nothing is ever perfect - that is the point, not the
+  excuse.
