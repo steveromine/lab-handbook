@@ -16,6 +16,21 @@
   --radius: 12px;
   --shadow: 0 1px 0 rgba(255,255,255,0.03);
 }
+[data-theme='ftcb'] {
+  --bg: #050805;
+  --bg-soft: #0a140a;
+  --bg-card: #0c1a0c;
+  --fg: #37ff6e;
+  --fg-soft: #2bd45a;
+  --muted: #1c9c3f;
+  --line: #12662c;
+  --accent: #ff2b2b;
+  --accent-ink: #050805;
+  --warn: #ff4d4d;
+  --ok: #37ff6e;
+  --gap: #ff2b2b;
+  --shadow: 0 1px 0 rgba(55,255,110,0.06);
+}
 [data-theme='light'] {
   --bg: #f2ede4;
   --bg-soft: #e8e1d6;

@@ -7,7 +7,7 @@
   // --- theme ---
   try {
     var saved = localStorage.getItem(STORE_KEY);
-    if (saved === 'light' || saved === 'dark') root.setAttribute('data-theme', saved);
+    if (saved === 'light' || saved === 'dark' || saved === 'ftcb') root.setAttribute('data-theme', saved);
   } catch (e) {}
   var themeBtn = document.querySelector('[data-theme-toggle]');
   if (themeBtn) {
@@ -16,10 +16,25 @@
       if (!current) {
         current = window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
       }
-      var next = current === 'light' ? 'dark' : 'light';
+      var next = current === 'light' ? 'dark' : (current === 'ftcb' ? 'dark' : 'light');
       root.setAttribute('data-theme', next);
       try { localStorage.setItem(STORE_KEY, next); } catch (e) {}
     });
+  }
+
+  // --- hidden theme: FTCB (hold the theme button for 1.5s) ---
+  if (themeBtn) {
+    var HOLD_MS = 1500, holdTimer = null;
+    var engage = function () {
+      root.setAttribute('data-theme', 'ftcb');
+      try { localStorage.setItem(STORE_KEY, 'ftcb'); } catch (e) {}
+      themeBtn.setAttribute('title', 'FTCB');
+      holdTimer = null;
+    };
+    var startHold = function () { if (!holdTimer) holdTimer = setTimeout(engage, HOLD_MS); };
+    var cancelHold = function () { if (holdTimer) { clearTimeout(holdTimer); holdTimer = null; } };
+    ['mousedown', 'touchstart', 'pointerdown'].forEach(function (ev) { themeBtn.addEventListener(ev, startHold); });
+    ['mouseup', 'mouseleave', 'touchend', 'touchcancel', 'pointerup', 'pointerleave'].forEach(function (ev) { themeBtn.addEventListener(ev, cancelHold); });
   }
 
   // --- nav toggle (small screens) ---
