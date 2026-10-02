@@ -46,3 +46,15 @@ Two different failures, two different pages - worth knowing which one you are se
   *"Failover copy"* banner at the bottom so you can tell it apart at a glance.
 - **The edge itself is down** - nothing of ours can answer, so you would get the CDN's own error page
   instead. Stock, not bespoke. We cannot draw on a screen that is not switched on.
+
+## Live demo: what the CDN serves when we are gone
+
+This one is a genuine, deliberately dead hostname: it points at an address that will never answer, so
+the CDN in front of our domain has to give up and speak for itself. Nothing about the real site is
+touched by it.
+
+**→ [See the stock failure page](https://down.steveromine.com/)**
+
+That stark, unbranded "web server is down" page is what a visitor sees when the edge itself is lost - as
+opposed to the [failover copy](https://failover.steveromine.com/), which is what they see when only the
+lab is lost. Two failures, two faces, and now you can compare them side by side.
