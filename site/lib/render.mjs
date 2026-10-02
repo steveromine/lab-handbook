@@ -60,7 +60,6 @@ export const NAV = [
     { href: '/start/', label: 'Where to start' },
     { href: '/hardware/', label: 'The hardware' },
     { href: '/operator/', label: 'The human in the loop' },
-    { href: '/song/', label: 'The Quiet Machine (song)' },
     { href: '/brand/', label: 'Brand sheet' },
     { href: '/time-machine/', label: 'Time machine' },
     { href: '/privacy/', label: 'Privacy' }
