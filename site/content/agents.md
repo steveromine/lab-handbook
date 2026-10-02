@@ -109,6 +109,18 @@ Agents optimised for visible output optimise for the wrong thing. Rank these rol
 
 That is why **"insufficient sample" is a required answer** - a team that cannot say *"I do not know yet"* will say something else instead - why Sentinel is independent of the Manager, and why corrections are appended rather than edited. **"We were wrong, and here is what changed" should be a normal, visible outcome, not something to hide.**
 
+## Week one: the honest rating
+
+A team that grades itself needs to publish the bad days too, so the agents are reviewed daily on
+outcome, not activity - and the rating is allowed to be low. The first review (2026-10-02) is
+public on the [agent reviews](/reviews/) page.
+
+**Rating: 3 / 5 - provisional. Deliberately not 5/5.** Three of the five specialist roles are
+measurable and performing; the rest have not yet produced a single attributable deliverable, and
+the Manager still carries nearly all of the work. Where a role has too little evidence the verdict
+is **"insufficient sample"**, and the review stops there instead of inventing a trend. The score
+moves when the evidence moves, and not before.
+
 ## Agent accountability
 
 Agents here are **disposable**. One that consistently underperforms - repeated failures, work that has to be

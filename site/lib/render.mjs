@@ -70,6 +70,7 @@ export const NAV = [
     , { href: '/uptime/', label: 'Uptime (nines)' }
     , { href: '/cabin/', label: 'Cabin outage board' }
     , { href: '/gallery/', label: 'Gallery' }
+    , { href: '/reviews/', label: 'Agent reviews' }
   ] }
 ];
 

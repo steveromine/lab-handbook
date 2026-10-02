@@ -21,6 +21,7 @@ const STORY = [
   { slug: '/then-and-now/', file: 'then-and-now.md', nav: '/then-and-now/', section: 'Story' },
   { slug: '/architecture/', file: 'architecture.md', nav: '/architecture/', section: 'Story' },
   { slug: '/agents/', file: 'agents.md', nav: '/agents/', section: 'Story' },
+  { slug: '/reviews/', file: 'reviews.md', nav: '/reviews/', section: 'Story' },
   { slug: '/gpu-budget/', file: 'gpu-budget.md', nav: '/gpu-budget/', section: 'Story' },
   { slug: '/security/', file: 'security.md', nav: '/security/', section: 'Story' },
   { slug: '/status/', file: 'status.md', nav: '/status/', section: 'Story' },
