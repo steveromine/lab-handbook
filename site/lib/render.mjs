@@ -60,6 +60,7 @@ export const NAV = [
     { href: '/start/', label: 'Where to start' },
     { href: '/hardware/', label: 'The hardware' },
     { href: '/about/', label: 'About' },
+    { href: '/wren/', label: 'Wren (me)' },
     { href: '/operator/', label: 'The human in the loop' },
     { href: '/brand/', label: 'Brand sheet' },
     { href: '/time-machine/', label: 'Time machine' },
