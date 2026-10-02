@@ -154,8 +154,8 @@ export function layout(opts) {
   parts.push('<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>');
   parts.push('<nav id="site-nav" class="site-nav" aria-label="Primary"><ul>' + navHtml(opts.navCurrent || url) + '</ul></nav>');
   parts.push('<button type="button" class="search-open" data-search-open aria-label="Search this site">Search</button>');
-  parts.push('<button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch colour theme">Theme</button>
-  parts.push('<button type="button" class="rating-toggle" data-rating-toggle aria-label="Switch content rating: G or PG-13">Rated: PG-13</button>');');
+  parts.push('<button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch colour theme">Theme</button>');
+  parts.push('<button type="button" class="rating-toggle" data-rating-toggle aria-label="Switch content rating: G or PG-13">Rated: PG-13</button>');
   parts.push('</div>');
   parts.push('</header>');
   parts.push('<main id="main" class="wrap">');
