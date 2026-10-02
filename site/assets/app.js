@@ -311,3 +311,83 @@
     });
   });
 })();
+
+// --- public backlog: request form (proof-of-work) + reviewed list ---
+(function () {
+  'use strict';
+  var enc = new TextEncoder();
+
+  async function digestHex(s) {
+    var buf = await crypto.subtle.digest('SHA-256', enc.encode(s));
+    return Array.prototype.map.call(new Uint8Array(buf), function (b) {
+      return ('0' + b.toString(16)).slice(-2);
+    }).join('');
+  }
+
+  async function solve(ts, sig, difficulty) {
+    var target = '0'.repeat(difficulty);
+    var n = 0;
+    for (;;) {
+      var h = await digestHex(ts + ':' + sig + ':' + n);
+      if (h.indexOf(target) === 0) return n;
+      n++;
+      if (n > 5000000) return null;
+    }
+  }
+
+  function esc(s) {
+    return String(s).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  var form = document.getElementById('request-form');
+  if (form && window.crypto && crypto.subtle) {
+    var status = document.getElementById('rq-status');
+    var submit = document.getElementById('rq-submit');
+    var btns = document.getElementById('rq-submit');
+    fetch('/api/challenge').then(function (r) { return r.json(); }).then(async function (c) {
+      document.getElementById('rq-ts').value = c.ts;
+      document.getElementById('rq-sig').value = c.sig;
+      if (submit) { submit.disabled = true; submit.textContent = 'Preparing…'; }
+      var nonce = await solve(c.ts, c.sig, c.difficulty || 4);
+      if (nonce === null) return;
+      document.getElementById('rq-nonce').value = String(nonce);
+      if (submit) { submit.disabled = false; submit.textContent = 'Submit for review'; }
+    }).catch(function () {});
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      if (status) status.textContent = 'Sending…';
+      fetch('/api/request', { method: 'POST', body: new URLSearchParams(new FormData(form)) })
+        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
+        .then(function (res) {
+          if (status) status.textContent = res.j && res.j.message ? res.j.message : (res.ok ? 'Received.' : 'Could not submit.');
+          if (res.ok) form.reset();
+        })
+        .catch(function () { if (status) status.textContent = 'Could not reach the server.'; });
+    });
+  }
+
+  var list = document.getElementById('backlog-list');
+  if (list) {
+    fetch('/api/backlog').then(function (r) { return r.json(); }).then(function (d) {
+      var items = (d && d.items) || [];
+      if (!items.length) {
+        list.innerHTML = '<p class="fine">Nothing has been accepted yet. Yours could be the first.</p>';
+        return;
+      }
+      list.innerHTML = items.map(function (it) {
+        return '<article class="backlog-item">' +
+          '<h3>' + esc(it.title) + '</h3>' +
+          '<p class="fine"><span class="pill pill-live">' + esc(it.kind || 'request') + '</span> ' +
+          '<span class="pill">' + esc(it.state || it.status || 'open') + '</span>' +
+          (it.who ? ' · asked by ' + esc(it.who) : ' · anonymous') + '</p>' +
+          '<p>' + esc(it.detail) + '</p>' +
+          '</article>';
+      }).join('');
+    }).catch(function () {
+      list.innerHTML = '<p class="fine">The backlog is unavailable right now.</p>';
+    });
+  }
+})();

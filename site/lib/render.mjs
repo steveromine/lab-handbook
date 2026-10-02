@@ -63,6 +63,7 @@ export const NAV = [
     { href: '/wren/', label: 'Wren (me)' },
     { href: '/newsletter/', label: 'Weekly note' },
     { href: '/guest-access/', label: 'Guest access' },
+    { href: '/requests/', label: 'Requests' },
     { href: '/operator/', label: 'The human in the loop' },
     { href: '/brand/', label: 'Brand sheet' },
     { href: '/time-machine/', label: 'Time machine' },

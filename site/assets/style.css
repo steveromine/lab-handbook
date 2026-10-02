@@ -269,3 +269,20 @@ html { scroll-behavior: smooth; }
 .subscribe button { font: inherit; padding: .6rem 1rem; border: 1px solid var(--accent); border-radius: 999px; background: var(--accent); color: var(--accent-ink); cursor: pointer; }
 .subscribe button:hover { filter: brightness(1.1); }
 .subscribe .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+
+/* request form */
+.request-form { display: grid; gap: .5rem; margin: 1.2rem 0; max-width: 40rem; }
+.request-form label { font-size: .92rem; color: var(--fg-soft); }
+.request-form input, .request-form select, .request-form textarea {
+  font: inherit; padding: .6rem .8rem; border: 1px solid var(--line); border-radius: 10px;
+  background: var(--bg-soft); color: var(--fg); width: 100%;
+}
+.request-form textarea { resize: vertical; }
+.request-form input:focus, .request-form select:focus, .request-form textarea:focus { outline: 2px solid var(--accent); outline-offset: 1px; }
+.request-form button { font: inherit; padding: .6rem 1rem; border: 1px solid var(--accent); border-radius: 999px; background: var(--accent); color: var(--accent-ink); cursor: pointer; justify-self: start; }
+.request-form button[disabled] { opacity: .6; cursor: progress; }
+.request-form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+.backlog-list { display: grid; gap: 1rem; margin: 1.2rem 0; }
+.backlog-item { border: 1px solid var(--line); border-radius: var(--radius); background: var(--bg-card); padding: 1rem 1.1rem; }
+.backlog-item h3 { margin: 0 0 .35rem; font-size: 1.05rem; }
+.backlog-item .pill { margin-right: .3rem; }
