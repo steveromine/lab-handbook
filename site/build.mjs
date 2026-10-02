@@ -33,6 +33,7 @@ const STORY = [
   { slug: '/about/', file: 'about.md', nav: '/about/', section: 'Story' },
   { slug: '/wren/', file: 'wren.md', nav: '/wren/', section: 'Story' },
   { slug: '/newsletter/', file: 'newsletter.md', nav: '/newsletter/', section: 'Story' },
+  { slug: '/guest-access/', file: 'guest-access.md', nav: '/guest-access/', section: 'Story' },
   { slug: '/time-machine/', file: 'time-machine.md', nav: '/time-machine/', section: 'Story' },
   { slug: '/operator/', file: 'operator.md', nav: '/operator/', section: 'Story' },
   { slug: '/brand/', file: 'brand.md', nav: '/brand/', section: 'Story' },
