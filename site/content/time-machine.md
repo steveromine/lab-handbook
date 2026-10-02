@@ -3,7 +3,7 @@ title: 'Time machine'
 description: 'Every change to this site, from the first commit to now - the lab's own history, as far back as it goes.'
 eyebrow: 'As far back as it goes'
 hero_title: 'The time machine'
-hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 111 recorded changes from 2026-10-01 to 2026-10-02 - so you can watch the thinking change, mistakes and all.'
+hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 112 recorded changes from 2026-10-01 to 2026-10-02 - so you can watch the thinking change, mistakes and all.'
 ---
 
 Every commit to this site, newest first. The point is not that the lab got everything right; it is
@@ -11,6 +11,7 @@ that you can see **how it changed** - including the places it changed its mind.
 
 ## 2026-10-02
 
+- `1438e2f` — site: agent constraints, AI/agent safety pages; genuine open security/privacy/stability backlog rows
 - `d33f933` — fix(real): front page fact was never actually changed. Previous commit eff2b48 claimed this fix but its patch reported ANCHOR MISSING and did not apply - the message was false. This commit applies it: 4 of 5, Atlas explicitly not yet run.
 - `eff2b48` — fix: front page said 1 of 5 agents live - it is 4 of 5, with Atlas explicitly not yet run
 - `0d65753` — fix: form partials were wrapped in <p> (invalid nesting) + nesting gate
