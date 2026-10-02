@@ -127,7 +127,7 @@ export function renderMarkdown(src, opts) {
       if (lang === 'mermaid') {
         out.push('<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>' + escapeHtml(code) + '</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>');
       } else {
-        out.push('<div class="codeblock"><pre><code' + (lang ? ' class="language-' + lang + '"' : '') + '>' + escapeHtml(code) + '</code></pre></div>');
+        out.push('<div class="codeblock"><pre tabindex="0"><code' + (lang ? ' class="language-' + lang + '"' : '') + '>' + escapeHtml(code) + '</code></pre></div>');
       }
       continue;
     }
@@ -155,7 +155,7 @@ export function renderMarkdown(src, opts) {
       while (i < lines.length && /\|/.test(lines[i]) && lines[i].trim()) { rows.push(parseRow(lines[i])); i++; }
       const th = head.map(c => '<th>' + inline(c) + '</th>').join('');
       const tb = rows.map(r => '<tr>' + head.map((c, k) => '<td>' + inline(r[k] || '') + '</td>').join('') + '</tr>').join('');
-      out.push('<div class="tablewrap"><table><thead><tr>' + th + '</tr></thead><tbody>' + tb + '</tbody></table></div>');
+      out.push('<div class="tablewrap" tabindex="0" role="region" aria-label="Data table"><table><thead><tr>' + th + '</tr></thead><tbody>' + tb + '</tbody></table></div>');
       head.forEach(c => textParts.push(plainText(c)));
       rows.forEach(r => r.forEach(c => textParts.push(plainText(c))));
       continue;

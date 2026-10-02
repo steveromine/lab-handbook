@@ -1,6 +1,9 @@
 <form class="subscribe" method="post" action="/subscribe" autocomplete="on">
   <label for="nl-email">Your email address</label>
   <input id="nl-email" name="email" type="email" required placeholder="your address" autocomplete="email">
-  <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
+  <div class="hp" aria-hidden="true">
+    <label for="hp-subscribe">Leave this field empty</label>
+    <input id="hp-subscribe" type="text" name="website" tabindex="-1" autocomplete="off">
+  </div>
   <button type="submit">Subscribe</button>
 </form>
