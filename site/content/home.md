@@ -30,7 +30,7 @@ For twenty years the bottleneck in a home lab was **you**: the person who rememb
 
 Four things became cheap at the same time:
 
-1. **Virtualisation on one box.** A single Proxmox host runs a dozen guests with real isolation, no cluster, no licence.
+1. **Virtualisation on one box.** A single Proxmox host runs every lab guest with real isolation, no cluster, no licence.
 2. **A consumer GPU that earns its keep.** One 8 GB card serves a local language model, an image model and hardware video transcoding.
 3. **A public edge that is genuinely cheap.** A small VPS terminates TLS in front of a DNS proxy, and the lab at home makes only *outbound* connections.
 4. **Agents that hold a task.** Software that decomposes work, uses tools, checks the artefact it produced, and writes down what it changed.
@@ -41,7 +41,7 @@ The interesting claim is not "AI runs my house". It is narrower and more useful:
 
 ## What is actually here
 
-A single hypervisor hosting ten containers and three virtual machines: media front-ends over a read-only library, a syslog collector feeding a search index, a password vault, filtering DNS, a local LLM with a chat front-end, an image-generation service, a geospatial visualiser, and an operations agent that runs on the lab's own model.
+A single hypervisor hosting its service containers and three virtual machines: media front-ends over a read-only library, a syslog collector feeding a search index, a password vault, filtering DNS, a local LLM with a chat front-end, an image-generation service, a geospatial visualiser, and an operations agent that runs on the lab's own model.
 
 The [architecture page](/architecture/) draws it; the [services reference](/handbook/services/) lists every one of them, including how each fails.
 

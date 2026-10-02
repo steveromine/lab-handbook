@@ -16,7 +16,7 @@ Everything runs on **one physical hypervisor**. That is a deliberate trade: a si
 | Layer | What it is |
 |---|---|
 | Hypervisor | One Proxmox VE host; the only machine with a GPU |
-| Containers | Ten, for single-process services: cheap, fast to clone |
+| Containers | Most services, for single-process work: cheap, fast to clone |
 | Virtual machines | Three, for guests that want a real kernel: agent host, storage, media automation |
 | Storage | Guest disks on a thin-provisioned pool; media on its own guest, exported read-only |
 
