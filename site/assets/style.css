@@ -1,34 +1,34 @@
 /* Lab Handbook site styles. No external fonts, no frameworks. */
 :root {
-  --bg: #0b0f16;
-  --bg-soft: #121924;
-  --bg-card: #141c28;
-  --fg: #e8eef6;
-  --fg-soft: #b9c7d6;
-  --muted: #8ea2b8;
-  --line: #253243;
-  --accent: #7dd3fc;
-  --accent-ink: #06283a;
-  --warn: #f4d27a;
-  --ok: #86efac;
-  --gap: #f9a8a8;
+  --bg: #08080a;
+  --bg-soft: #101014;
+  --bg-card: #141419;
+  --fg: #e9e4dd;
+  --fg-soft: #b6afa6;
+  --muted: #8b8590;
+  --line: #2b2731;
+  --accent: #d02a4c;
+  --accent-ink: #14060a;
+  --warn: #caa64a;
+  --ok: #4fae7a;
+  --gap: #d02a4c;
   --maxw: 72rem;
   --radius: 12px;
   --shadow: 0 1px 0 rgba(255,255,255,0.03);
 }
 [data-theme='light'] {
-  --bg: #f7f9fc;
-  --bg-soft: #eef3f9;
-  --bg-card: #ffffff;
-  --fg: #16202b;
-  --fg-soft: #33465a;
-  --muted: #5a6b7d;
-  --line: #d3dde8;
-  --accent: #0b6fa4;
-  --accent-ink: #ffffff;
-  --warn: #7a5a00;
-  --ok: #14663c;
-  --gap: #96262b;
+  --bg: #f2ede4;
+  --bg-soft: #e8e1d6;
+  --bg-card: #fbf8f2;
+  --fg: #17141a;
+  --fg-soft: #3b3540;
+  --muted: #6b636f;
+  --line: #d5ccc0;
+  --accent: #8f1030;
+  --accent-ink: #fbf8f2;
+  --warn: #6b5320;
+  --ok: #1f6b45;
+  --gap: #8f1030;
 }
 * { box-sizing: border-box; }
 html { -webkit-text-size-adjust: 100%; }
@@ -177,15 +177,16 @@ html { scroll-behavior: smooth; }
 .site-nav .menu-label.on { font-weight: 600; }
 .site-nav .menu {
   display: none; position: absolute; left: 0; top: calc(100% + 6px); min-width: 230px;
-  max-height: 72vh; overflow: auto; background: #fffdf8; border: 1px solid #e6e2d9;
+  max-height: 72vh; overflow: auto; background: var(--bg-soft); border: 1px solid var(--line);
   border-radius: 12px; padding: 8px; margin: 0; list-style: none;
-  box-shadow: 0 16px 40px rgba(14,17,22,.12); z-index: 60;
+  box-shadow: 0 18px 44px rgba(0,0,0,.6), inset 0 0 0 1px rgba(255,255,255,.02); z-index: 60;
 }
 .site-nav li.has-menu:hover .menu,
 .site-nav li.has-menu:focus-within .menu { display: block; }
+.site-nav .menu { border-top: 2px solid var(--accent); }
 .site-nav .menu li { display: block; }
 .site-nav .menu a { display: block; padding: 8px 10px; border-radius: 8px; white-space: nowrap; text-decoration: none; }
-.site-nav .menu a:hover, .site-nav .menu a[aria-current="page"] { background: #f2efe7; }
+.site-nav .menu a:hover, .site-nav .menu a[aria-current="page"] { background: var(--bg-card); color: var(--fg); }
 .site-nav .menu a[aria-current="page"] { font-weight: 600; }
 @media (max-width: 60rem) {
   .site-nav .menu { position: static; display: block; max-height: none; border: 0; box-shadow: none; padding: 2px 0 6px 12px; background: transparent; }
