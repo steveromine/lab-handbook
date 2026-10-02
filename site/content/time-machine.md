@@ -3,7 +3,7 @@ title: 'Time machine'
 description: 'Every change to this site, from the first commit to now - the lab's own history, as far back as it goes.'
 eyebrow: 'As far back as it goes'
 hero_title: 'The time machine'
-hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 87 recorded changes from 2026-10-01 to 2026-10-02 - so you can watch the thinking change, mistakes and all.'
+hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 88 recorded changes from 2026-10-01 to 2026-10-02 - so you can watch the thinking change, mistakes and all.'
 ---
 
 Every commit to this site, newest first. The point is not that the lab got everything right; it is
@@ -11,6 +11,7 @@ that you can see **how it changed** - including the places it changed its mind.
 
 ## 2026-10-02
 
+- `a428c6e` — site: regenerate the time-machine page at build time (D-2)
 - `16507bd` — gallery: daily song 2026-10-02 (lab facebook/musicgen-small); local-only, publication held
 - `49d8570` — reviews: week-one agent performance review (sanitised) + honest 3/5 provisional rating on the agents page
 - `061c124` — gallery: daily image 2026-10-02 (lab sd-turbo); local-only, publication held
