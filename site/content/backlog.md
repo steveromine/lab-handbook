@@ -16,6 +16,12 @@ the private register.
 
 | Item | Area | Note |
 | --- | --- | --- |
+| **Guest-inference revocation untested** | security | The design is written, but the feature is not built and **revocation has never been exercised**. Until it has, the isolation is a plan, not a proven control. |
+| **New public endpoints not independently tested** | security | `/api/request` and `/subscribe` are rate-limited, proof-of-work gated and reviewed - but no independent penetration test has been run against them. |
+| **Subscriber retention is manual** | privacy | The list stores the minimum and unsubscribe deletes the record, but there is **no automated retention limit** - deletion is on request. |
+| **Atlas has never run** | stability | The daily estate audit is scheduled and has **not completed a single run**, so nothing is currently being proven about configuration drift. |
+| **Weekly note has no scheduled sender** | stability | Store, confirmation and PGP signing are live; nothing sends the note on a schedule yet. |
+| **Mobile nav fix unconfirmed on iOS** | stability | The sticky-header overflow is fixed and deployed, but has not been confirmed on the reporter's device (DuckDuckGo on iOS). |
 | **Music model upgrade** | media | The higher-quality render needs a model that will not finish downloading inside its container. Blocked on a reliable fetch path, not on the GPU. |
 | **Codex runtime unverified** | agents | One agent is pointed at an OpenAI-protocol model, but whether the true Codex harness actually engages is **unverified** - stated plainly rather than assumed. |
 | **Outbound mail reputation** | email | DKIM signing is not generated and reverse DNS is deferred, so at least one large consumer provider rejects mail the lab sends. Outbound deliverability is the open item; inbound is unaffected. |

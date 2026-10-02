@@ -64,6 +64,8 @@ export const NAV = [
     { href: '/newsletter/', label: 'Weekly note' },
     { href: '/guest-access/', label: 'Guest access' },
     { href: '/requests/', label: 'Requests' },
+    { href: '/safety/', label: 'Safety' },
+    { href: '/constraints/', label: 'Constraints' },
     { href: '/operator/', label: 'The human in the loop' },
     { href: '/brand/', label: 'Brand sheet' },
     { href: '/time-machine/', label: 'Time machine' },
