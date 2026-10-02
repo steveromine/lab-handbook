@@ -125,7 +125,14 @@
       '<label>Name <input name="name" maxlength="60" placeholder="optional"></label>' +
       '<label>Comment <textarea name="body" maxlength="1000" required rows="4" placeholder="Be kind. Be funny. Be brief."></textarea></label>' +
       '<input type="text" name="hp" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">' +
-      '<button type="submit">Say it</button>' +
+      '<div class="captcha" id="captcha">' +
+        '<button type="button" id="captcha-btn" aria-describedby="captcha-state">' +
+          '<span class="captcha-box" aria-hidden="true"></span>' +
+          '<span>I am not a robot</span>' +
+        '</button>' +
+        '<span id="captcha-state" class="fine">proves you are human by solving a tiny puzzle - no third-party code</span>' +
+      '</div>' +
+      '<button type="submit" id="comment-submit" disabled>Say it</button>' +
       '<p id="comment-status" role="status" class="fine"></p>' +
     '</form>' +
     '<div id="comment-list" aria-live="polite"><p class="fine">Loading comments...</p></div>';
@@ -134,6 +141,12 @@
   var list = wrap.querySelector('#comment-list');
   var form = wrap.querySelector('#comment-form');
   var status = wrap.querySelector('#comment-status');
+  var box = wrap.querySelector('#captcha');
+  var btn = wrap.querySelector('#captcha-btn');
+  var state = wrap.querySelector('#captcha-state');
+  var submit = wrap.querySelector('#comment-submit');
+  var loadedAt = Date.now() / 1000;
+  var proof = null;
 
   function esc(t) { var d = document.createElement('div'); d.textContent = t == null ? '' : t; return d.innerHTML; }
   function render(items) {
@@ -146,57 +159,72 @@
     .then(function (d) { render(d.comments || []); })
     .catch(function () { list.innerHTML = '<p class="fine">Could not load comments.</p>'; });
 
-  var loadedAt = Date.now() / 1000;
-  var challenge = null;
-  function getChallenge() {
-    return fetch('/api/challenge').then(function (r) { return r.json(); }).then(function (d) {
-      if (!d.ok) throw new Error('no challenge');
-      challenge = d; return d;
-    });
-  }
-  getChallenge().catch(function () {});
   function hex(buf) { return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ('0' + b.toString(16)).slice(-2); }).join(''); }
   function sha(s) { return crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)).then(hex); }
-  function solve(nonce, bits) {
+  function solve(nonce, bits, onProgress) {
     var prefix = new Array(bits + 1).join('0');
-    var i = 0;
+    var i = 0, hashes = 0;
     function round() {
       var batch = [];
-      for (var k = 0; k < 128; k++) batch.push(sha(nonce + (i + k)).then(function (h) { return h; }));
+      for (var k = 0; k < 128; k++) batch.push(sha(nonce + (i + k)));
       return Promise.all(batch).then(function (hs) {
-        for (var k = 0; k < hs.length; k++) if (hs[k].slice(0, bits) === prefix) return i + k;
+        hashes += hs.length;
+        for (var k = 0; k < hs.length; k++) if (hs[k].slice(0, bits) === prefix) return { solution: i + k, hashes: hashes };
         i += 128;
+        if (onProgress && (i % 2048 === 0)) onProgress(hashes);
         return round();
       });
     }
     return round();
   }
+
+  btn.addEventListener('click', function () {
+    if (proof) return;
+    if (!crypto.subtle) { state.textContent = 'This needs a secure (https) connection.'; return; }
+    box.classList.add('working'); btn.disabled = true;
+    state.textContent = 'fetching challenge...';
+    var t0 = performance.now();
+    fetch('/api/challenge').then(function (r) { return r.json(); }).then(function (c) {
+      if (!c.ok) throw new Error('no challenge');
+      state.textContent = 'solving puzzle (0 hashes)...';
+      return solve(c.nonce, c.bits, function (h) { state.textContent = 'solving puzzle (' + h.toLocaleString() + ' hashes)...'; })
+        .then(function (res) {
+          proof = { nonce: c.nonce, solution: res.solution, t0: loadedAt };
+          var ms = Math.round(performance.now() - t0);
+          box.classList.remove('working'); box.classList.add('done');
+          state.textContent = 'verified - solved ' + res.hashes.toLocaleString() + ' hashes in ' + ms + ' ms. No third-party code involved.';
+          submit.disabled = false;
+        });
+    }).catch(function (e) {
+      box.classList.remove('working'); btn.disabled = false;
+      state.textContent = 'could not get a challenge (' + ((e && e.message) || 'error') + ')';
+    });
+  });
+
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var fd = new FormData(form);
-    if (!crypto.subtle) { status.textContent = 'This needs a secure (https) connection to post.'; return; }
-    status.textContent = 'solving a small puzzle to prove you are real...';
-    var ch = challenge ? Promise.resolve(challenge) : getChallenge();
-    ch.then(function (c) {
-      return solve(c.nonce, c.bits).then(function (sol) {
-        return { c: c, sol: sol };
-      });
-    }).then(function (r) {
-      status.textContent = 'posting...';
-      return fetch('/api/comments', {
-        method: 'POST', headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name: fd.get('name'), body: fd.get('body'), hp: fd.get('hp'),
-          nonce: r.c.nonce, solution: r.sol, t0: loadedAt })
-      });
+    if (!proof) { status.textContent = 'Tick the box above first.'; return; }
+    status.textContent = 'posting...';
+    fetch('/api/comments', {
+      method: 'POST', headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ name: fd.get('name'), body: fd.get('body'), hp: fd.get('hp'),
+        nonce: proof.nonce, solution: proof.solution, t0: proof.t0 })
     }).then(function (r) { return r.json(); })
       .then(function (d) {
-        if (d.ok) { status.textContent = 'Thank you. ' + (d.note || 'Held for approval.'); form.reset(); challenge = null; getChallenge().catch(function () {}); }
-        else { status.textContent = 'Could not post: ' + (d.error || 'error'); challenge = null; getChallenge().catch(function () {}); }
+        if (d.ok) {
+          status.textContent = 'Thank you. ' + (d.note || 'Held for approval.');
+          form.reset(); proof = null; submit.disabled = true;
+          box.classList.remove('done'); btn.disabled = false;
+          state.textContent = 'Tick the box to post another.';
+        } else {
+          status.textContent = 'Could not post: ' + (d.error || 'error') + ' - tick the box to retry.';
+          proof = null; submit.disabled = true; box.classList.remove('done'); btn.disabled = false;
+        }
       })
-      .catch(function (err) { status.textContent = 'Could not post (' + ((err && err.message) || 'error') + ').'; });
+      .catch(function () { status.textContent = 'Could not reach the server.'; });
   });
 })();
-
 
 // --- uptime tally (uptime page only) ---
 (function () {
