@@ -38,6 +38,14 @@ the private register.
 - **Gallery images did not load** - a relative path plus an oversized file. Now absolute paths and a
   compressed format; the page loads clean.
 
+
+- **The comments page did not actually work.** It was a static list. Now a small moderated API accepts
+  and publishes comments - no cookies, no tracking.
+- **No way to keep score on uptime.** A probe now records it every few minutes and the nines are shown
+  live, with the bets.
+- **The agent's own bio page was linked from the main menu.** Retired - the bio lives on the operator
+  page and in the continuity archive.
+
 ## Why this page exists
 
 A backlog is a promise to be straight about what is **not** finished yet. We would rather show you the

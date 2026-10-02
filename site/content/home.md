@@ -16,7 +16,7 @@ facts: true
 ## Three ways in
 
 - **The story** - why any of this exists, and what changed. Start with [Then & Now](/then-and-now/),
-  then [Lessons](/lessons/), then [Where I think I'm going](/futures/).
+  then [Lessons](/lessons/).
 - **The build** - the actual blueprint. [Build your own](/build/) maps the three tracks; the
   [handbook](/handbook/) has the depth, one page per track.
 - **The machine** - what it runs on and what it costs. [The hardware](/hardware/) is the honest spec
