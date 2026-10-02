@@ -24,6 +24,7 @@ const STORY = [
   { slug: '/security/', file: 'security.md', nav: '/security/', section: 'Story' },
   { slug: '/status/', file: 'status.md', nav: '/status/', section: 'Story' },
   { slug: '/lessons/', file: 'lessons.md', nav: '/lessons/', section: 'Story' },
+  { slug: '/brand/', file: 'brand.md', nav: '/brand/', section: 'Story' },
   { slug: '/futures/', file: 'futures.md', nav: '/futures/', section: 'Story' },
   { slug: '/build/', file: 'build.md', nav: '/build/', section: 'Story' },
   { slug: '/start/', file: 'start.md', nav: '/start/', section: 'Story' }
