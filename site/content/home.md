@@ -113,3 +113,23 @@ One person, one hypervisor, one shared GPU, and a small team of agents that now 
 - **Nothing here is finished.** A timer works the backlog every fifteen minutes, and when it empties, it
   goes looking for something to verify or improve. Nothing is ever perfect - that is the point, not the
   excuse.
+## The team at work
+
+This lab is not run by hand. Five agent roles hold **standing duties** and work without being asked -
+and the evidence is in the repository, not in a promise.
+
+| Role | Standing duty | Last verified activity |
+|---|---|---|
+| **Manager** | Works the backlog every 15 minutes and audits the site for drift | Running continuously |
+| **Forge** | Ships one small verified improvement an hour | Runs completed |
+| **Sentinel** | Health sweep every 30 minutes; reviews public requests every 30 | Running |
+| **Ledger** | Reconciles public and private documentation twice a day | Runs completed |
+| **Atlas** | Audits the estate daily - proves or disproves what is configured | Awaiting first run |
+
+The count is deliberately unflattering where it should be: **Atlas is scheduled but has not yet
+completed a run**, so it is described as configured rather than proven. A role that stops performing is
+demoted or removed - see the [accountability policy](/agents/).
+
+Three of these agents found and fixed real faults on their own, including a monitor that measured the
+wrong host and a publication gate that was silently blocking deploys. **You can see the results in the
+[reviewed backlog](/requests/) and the [current status](/agents/).**
