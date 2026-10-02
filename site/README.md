@@ -52,9 +52,11 @@ or the generated output. Nothing is published from a failing build.
 
 Gates run in order and each one fails the build closed with its own exit code: sanitisation (exit 2),
 accessibility - WCAG 2.2 AA structure and contrast (exit 3), internal-link - no unrewritten relative
-Markdown href survives (exit 4), and **link-target** (exit 5) - every internal href must resolve to a
+Markdown href survives (exit 4), **link-target** (exit 5) - every internal href must resolve to a
 generated page and, when it carries a `#fragment`, to an anchor that exists in that page, so a
-hand-written link to a renamed page or a mistyped anchor cannot ship as a 404.
+hand-written link to a renamed page or a mistyped anchor cannot ship as a 404 - and **asset-target**
+(exit 6) - every internal `src`/`poster`/`srcset` must resolve to a generated file, so a renamed or
+deleted image, script or audio file cannot ship as a broken resource.
 
 Pages are written into a staging tree (`site/dist.tmp/`) and every gate runs against it; only a
 build that passes **all** gates is renamed over `site/dist/`. So a failed build leaves the previous
