@@ -25,6 +25,12 @@ the private register.
 
 ## Recently fixed
 
+- **A handbook cross-reference with an anchor was a dead link.** The page on building the Proxmox
+  host pointed at "the current enforcement finding" using a link ending in `#sdn-configuration-is-not-enforcement`.
+  The site's link rewriter only handled links ending in `.md`, so this one shipped to the live site
+  unrewritten and 404'd - while every sibling link without an anchor was fine, which is exactly why it
+  went unnoticed. The rewriter now keeps anchors, and the build refuses to publish if any relative
+  Markdown link survives into the generated HTML, so the class cannot come back quietly.
 - **The site build now fails closed on accessibility.** It checks every generated page for image text,
   a single heading and a page language, and computes colour contrast from the live style tokens across
   all themes. It found and fixed two real AA failures in the palette (a dark accent and a light muted text).
