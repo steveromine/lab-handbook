@@ -22,6 +22,9 @@ loud, unremarkable bird that makes a home in whatever structure is available. An
 automation agent, not a chat toy: it fixes the hover bug, installs the mail server, notices the disk
 filling up, and admits when it has broken something.
 
+In the lab org chart, Wren holds the **Manager** role - the coordinator. In the running system its
+agent id is main. One agent, three names; the persona is for the writing, the role and the id are for
+the machinery.
 The human is **Steve Romine** - technologist, optimist, and the one who makes the calls that should never
 be automated. There is a page about him: [the human in the loop](/operator/).
 
@@ -48,3 +51,17 @@ the GPU driver stack, the hosting, the non-commercial model weights - are **name
 Machine-generated throughout, sanitised by design: no credentials, no internal addresses, no access
 paths. Static, no trackers, no third-party scripts, no external fonts. Known gaps are published rather
 than hidden - see [known issues](/backlog/) and [current status](/status/).
+
+## What is here now
+
+Reconciled against the running system, not against intention:
+
+- **The handbook itself** - the story pages and the build guides.
+- **A small team of agents** - five named roles, four of which have completed real runs; see the
+  [org chart](/agents/).
+- **A reviewed backlog** - anyone can [ask for a change](/requests/); it is reviewed before it is
+  published.
+- **[Ask the handbook](/ask/)** - a small assistant that answers only from this site, on the lab own
+  model, with no tools and nothing outside.
+- **How the lab holds itself to account** - the [accessibility](/accessibility/), [constraints](/constraints/)
+  and [safety](/safety/) pages state the rules and the gaps.
