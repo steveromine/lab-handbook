@@ -17,6 +17,10 @@ The vision is deliberately ordinary rather than utopian: a decade where clean po
 automation and climate-adapted streets are **background**, not spectacle. If the future works, it
 looks like a normal Tuesday morning.
 
+![A climate-adaptive street in 2036, at golden hour](/assets/futures-hero.webp "Featured: morning on a climate-adaptive street, 2036")
+
+*Featured: the fuller second pass - solar petals overhead, a worker and her field robot in the beds, the hauler loaded with tomatoes, and the tram easing past on grass rails.*
+
 ## The exact prompt
 
 > A warm, photorealistic 35mm documentary photograph, sunrise in a climate-adaptive neighborhood in
