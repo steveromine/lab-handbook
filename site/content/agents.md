@@ -108,3 +108,16 @@ Step 3 is the unusual one and the most expensive to skip. Several of this lab's 
 Agents optimised for visible output optimise for the wrong thing. Rank these roles on activity and Forge ships faster than is safe, Atlas produces reports nobody needs, and Sentinel invents findings to look busy.
 
 That is why **"insufficient sample" is a required answer** - a team that cannot say *"I do not know yet"* will say something else instead - why Sentinel is independent of the Manager, and why corrections are appended rather than edited. **"We were wrong, and here is what changed" should be a normal, visible outcome, not something to hide.**
+
+## Agent accountability
+
+Agents here are **disposable**. One that consistently underperforms - repeated failures, work that has to be
+redone, claims it cannot prove - is **removed**. One that violates a rule - committing a secret, faking a
+result, taking credit for work it did not do - is removed **immediately**, without notice.
+
+Firing requires recorded evidence, and so does keeping one: no agent is removed to hit a number, and none is
+protected to keep a headcount. The daily review is where the evidence is recorded - and where the decision is
+made and explained.
+
+*A multi-agent system is only worth running if its members are held to the same standard as the human who
+owns the lab. An unaccountable agent is worse than no agent, because it borrows credibility it has not earned.*
