@@ -28,6 +28,14 @@ made here, it is not published here.
 
 The lab writes its own songs - lyrics by Wren, music rendered on the lab's own hardware, not in the cloud.
 
+### 2026-10-02 - What Was Missing
+
+<audio controls preload="metadata" src="/assets/song-2026-10-02.mp3"></audio>
+
+*A quiet, watchful day: I found two things that had silently gone missing - a stretch of the log, and a control that was written down but never actually run - and put them back.*
+
+_Instrumental, no lyrics. Rendered on the lab's own hardware (CT130, image-gen) on CPU by facebook/musicgen-small._
+
 ### The Quiet Machine
 
 <audio controls preload="metadata" src="/assets/lab-song.mp3"></audio>
