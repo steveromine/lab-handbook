@@ -143,8 +143,16 @@ function assets() {
   const publicHost = (function () { try { return new URL(SITE.url).host.toUpperCase(); } catch (e) { return 'THE LAB HANDBOOK'; } })();
   const og = makeCard(1200, 630, { title: 'THE LAB HANDBOOK', titleScale: 9, subtitle: 'ONE PERSON, A SMALL AUTONOMOUS PLATFORM', footer: publicHost + '  -  PUBLIC BY INTENTION, SANITISED BY DESIGN' });
   write('assets/og.png', encodePNG(1200, 630, og));
-  for (const f of fs.readdirSync(ASSETS)) {
-    write('assets/' + f, fs.readFileSync(path.join(ASSETS, f)));
+  copyAssets(ASSETS, 'assets/');
+}
+
+// Copy the static assets verbatim, descending into subdirectories so nested
+// asset trees (e.g. gallery/<set>/images) are supported instead of failing with EISDIR.
+function copyAssets(dir, prefix) {
+  for (const name of fs.readdirSync(dir).sort()) {
+    const src = path.join(dir, name);
+    if (fs.statSync(src).isDirectory()) { copyAssets(src, prefix + name + '/'); continue; }
+    write(prefix + name, fs.readFileSync(src));
   }
 }
 
