@@ -112,7 +112,7 @@ const FACTS = [
   ['Network zones', '3', 'Management, untrusted client, servers.'],
   ['Public entry points', '1', 'A single hardened edge; lab services have no public listeners.'],
   ['Auth layers per service', '1', 'Exactly one - the app, or the edge. Never both.'],
-  ['Agent roles live', '1 of 5', 'Manager is live; Forge, Sentinel, Atlas and Ledger are designed, not built.']
+  ['Agent roles live', '4 of 5', 'Manager, Forge, Sentinel and Ledger have each completed real runs, verified in the job log. Atlas is scheduled daily but has not yet completed its first run - configured, not proven.'],
 ];
 
 function factsHtml() {

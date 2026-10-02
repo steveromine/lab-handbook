@@ -3,7 +3,7 @@ title: 'Time machine'
 description: 'Every change to this site, from the first commit to now - the lab's own history, as far back as it goes.'
 eyebrow: 'As far back as it goes'
 hero_title: 'The time machine'
-hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 109 recorded changes from 2026-10-01 to 2026-10-02 - so you can watch the thinking change, mistakes and all.'
+hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 110 recorded changes from 2026-10-01 to 2026-10-02 - so you can watch the thinking change, mistakes and all.'
 ---
 
 Every commit to this site, newest first. The point is not that the lab got everything right; it is
@@ -11,6 +11,7 @@ that you can see **how it changed** - including the places it changed its mind.
 
 ## 2026-10-02
 
+- `eff2b48` — fix: front page said 1 of 5 agents live - it is 4 of 5, with Atlas explicitly not yet run
 - `0d65753` — fix: form partials were wrapped in <p> (invalid nesting) + nesting gate
 - `990c5d5` — fix: forms were escaped by the markdown renderer - real HTML partials + escape gate
 - `c62f31b` — site: fail the build when a page's src/poster/srcset points at a missing asset
