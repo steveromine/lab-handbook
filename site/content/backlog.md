@@ -20,6 +20,7 @@ the private register.
 | **Codex runtime unverified** | agents | One agent is pointed at an OpenAI-protocol model, but whether the true Codex harness actually engages is **unverified** - stated plainly rather than assumed. |
 | **Outbound mail reputation** | email | A reverse-DNS entry is deferred, so outbound mail is likelier to be flagged as spam. Inbound is unaffected. |
 | **Mobile nav** | site | The hover menus fall back to an expanded list under the menu button. It works; it could be tidier. |
+| **Project Nomad (survival tool)** | planned | Wanted next: deploy and test internally first, then expose on its own address. No GPU; it will use the existing inference service. Status: **spec needed** - the exact software is not yet defined, and guessing at an unfamiliar public service is not a risk worth taking. |
 
 ## Recently fixed
 
