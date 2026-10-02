@@ -67,6 +67,7 @@ export const NAV = [
     { href: '/time-machine/', label: 'Time machine' },
     { href: '/privacy/', label: 'Privacy' }
     , { href: '/backlog/', label: 'Known issues & backlog' }
+    , { href: '/comments/', label: 'Comments' }
   ] }
 ];
 
