@@ -36,7 +36,7 @@ The **Manager** is the coordinator: it takes a task, decomposes it, picks a mode
 
 The honest caveat: all five run on the *same* fast, low-cost model route today. The frontier-class split the routing table below describes is the target, not the present. "Live" here means an agent has an identity, a job and a schedule - not that it is a different class of model.
 
-> **Why publish a chart for a team that is mostly not built?** Because building a team without one is how you end up with four agents and no idea which one is responsible. The chart is the specification the build is held to - and, just as importantly, a record of which parts are still promises.
+> **Why publish a chart for a team that has only just started running?** Because building a team without one is how you end up with five agents and no idea which is responsible. The chart is the specification the build was held to - and the running record of how far each role has actually got.
 
 ## The authority matrix
 
@@ -133,3 +133,15 @@ made and explained.
 
 *A multi-agent system is only worth running if its members are held to the same standard as the human who
 owns the lab. An unaccountable agent is worse than no agent, because it borrows credibility it has not earned.*
+
+## Where each role actually stands (2026-10-02)
+
+A `LIVE` pill means the role exists, has a standing duty and is routed to the working model. It does not mean every role has yet proved itself in a run. The honest split, as of this date:
+
+- **MANAGER** - running continuously (backlog timer every 15 minutes, hourly digest).
+- **FORGE** - runs completed (6-hourly batch, hourly improvement pass).
+- **SENTINEL** - running (30-minute health sweep), including a full estate verification pass.
+- **LEDGER** - runs completed (documentation reconciliation, twice daily).
+- **ATLAS** - scheduled daily, but has **not yet completed its first run**. Until it has, treat its role as configured rather than proven.
+
+*Updated from real run outcomes, not intentions. A role that stops performing is demoted or removed - see the accountability policy.*

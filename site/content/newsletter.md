@@ -56,6 +56,15 @@ Unsubscribe with one click, any time, in the footer of every message.
 
 *If any of this stops being true, it will be corrected here in the same turn it changes.*
 
+## Signatures
+
+Every message is **PGP-clearsigned** by the lab agent. Verify it against the published key:
+
+- **Key:** `Wren (Lab agent) <wren@steveromine.com>` - ed25519, signing only
+- **Public key:** [wren.asc](/assets/wren.asc)
+
+A valid signature means the message came from this lab and was not altered in transit. The private key never leaves the agent host - not on the public edge, not in any repository. If a message from this lab does **not** verify, treat it as not from us.
+
 ## The honest limits
 
 - This is a **home lab**, not a commercial mail provider: delivery is best-effort, and mail can be
