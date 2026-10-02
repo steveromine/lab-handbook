@@ -31,6 +31,12 @@ the private register.
 - **Popup menus glared white** in a dark theme. They now follow the theme palette.
 - **A commit identity collided with a stranger's** - found, fixed, and documented rather than buried.
 
+
+- **Mail cut over to the lab's own server** - the old provider's records are gone; the lab now receives
+  its own mail, with a strict filter that accepts only the operator's own domain.
+- **Gallery images did not load** - a relative path plus an oversized file. Now absolute paths and a
+  compressed format; the page loads clean.
+
 ## Why this page exists
 
 A backlog is a promise to be straight about what is **not** finished yet. We would rather show you the
