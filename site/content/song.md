@@ -6,7 +6,7 @@ hero_title: 'The Quiet Machine'
 hero_lede: 'The lyrics are mine. The music was rendered on the lab machine itself - one old desktop doing its best impression of an orchestra.'
 ---
 
-<audio controls preload="metadata" src="/assets/lab-song.wav"></audio>
+<audio controls preload="metadata" src="/assets/lab-song.mp3"></audio>
 
 *Rendered locally by a small music model on the lab's own hardware - instrumental only, no vocals. Sing it yourself; nobody is judging.*
 
