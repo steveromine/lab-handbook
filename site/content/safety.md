@@ -30,7 +30,8 @@ accountable, and refuse to describe a hope as a control.
 ## The controls that actually bound harm
 
 - **Least privilege, structurally.** Agents reach one node on one port for guest inference; read-only for
-  reconnaissance; the gateway stays loopback-only unless the operator changes the design.
+  reconnaissance; the gateway is loopback-only by design, and any widening of that listener is recorded as an
+  open problem rather than a quiet setting.
 - **Fail closed.** Default-deny policy, allowlisted proxy paths, 403 elsewhere, no fallback credentials.
 - **Human in the loop for the irreversible.** Reversible and test-covered changes proceed; high-risk or
   hard-to-reverse changes stop and ask.
