@@ -49,3 +49,24 @@ learn what is possible now** - and to watch what arrives next.
 The edge of the network - routing, firewall, VLANs, and the WireGuard dial-in that reaches the
 services - is handled by a **UniFi Dream Machine Pro (UDM Pro)**. It is part of what the agent
 operates: the same care that applies to the servers applies to the gateway that fronts them.
+
+## Live from the rack
+
+A snapshot straight off the Proxmox host - the machine these containers actually run on. Updated by the
+site-refresh job; the timestamp is the honest part.
+
+| | |
+|---|---|
+| **CPU** | Intel Core i9-10900K - 20 threads @ 3.70 GHz |
+| **Load average** | 4.73 / 2.86 / 2.18 (1 / 5 / 15 min, across 20 threads ~24% busy) |
+| **Memory** | 125 GiB total - 43 GiB used, 81 GiB available |
+| **Root storage** | 94 GB, 59 GB used (66%) |
+| **Guest storage (LVM thin)** | 815 GB pool, 139 GB used (17%) |
+| **GPU** | NVIDIA GeForce RTX 3070 - 5217 / 8192 MiB in use, 0% utilisation, 31°C |
+| **Guests** | 16 containers, 3 virtual machines |
+| **Host uptime** | 2 days, 6 hours |
+
+*Measured 2026-10-02 06:47 UTC. Two things reading this are worth noting: the GPU shows over half its
+memory in use at idle - that is the resident language model holding its weights, the price of having an
+assistant that is always on - and the storage pool sits at 17%, which is the number that actually decides
+how much offline knowledge this thing can carry.*
