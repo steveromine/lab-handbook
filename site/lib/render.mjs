@@ -26,38 +26,22 @@ export const SITE = {
 
 export const NAV = [
   { label: 'Home', href: '/' },
-  { label: 'The Lab', children: [
-    { href: '/then-and-now/', label: 'Then & Now' },
-    { href: '/architecture/', label: 'Architecture' },
-    { href: '/agents/', label: 'Agents' },
-    { href: '/hardware/', label: 'Hardware' },
-    { href: '/gpu-budget/', label: 'GPU budget' },
-    { href: '/security/', label: 'Security' },
-    { href: '/status/', label: 'Status' }
-  ] },
-  { label: 'Stories', children: [
-    { href: '/start/', label: 'Where to start' },
-    { href: '/lessons/', label: 'Lessons' },
-    { href: '/futures/', label: 'Futures' },
-    { href: '/operator/', label: 'The human in the loop' },
-    { href: '/song/', label: 'The Quiet Machine (song)' },
-    { href: '/brand/', label: 'Brand sheet' },
-    { href: '/time-machine/', label: 'Time machine' },
-    { href: '/privacy/', label: 'Privacy' }
-  ] },
+  { label: 'Then & Now', href: '/then-and-now/' },
+  { label: 'Architecture', href: '/architecture/' },
+  { label: 'Agents', href: '/agents/' },
+  { label: 'GPU budget', href: '/gpu-budget/' },
+  { label: 'Security', href: '/security/' },
+  { label: 'Status', href: '/status/' },
+  { label: 'Lessons', href: '/lessons/' },
+  { label: 'Futures', href: '/futures/' },
   { label: 'Build', children: [
     { href: '/build/', label: 'Build your own (map)' },
     { href: '/handbook/build-proxmox-host/', label: 'The Proxmox host' },
     { href: '/handbook/build-vps-edge/', label: 'The VPS edge' },
     { href: '/handbook/build-agent-vm/', label: 'The agent VM' }
   ] },
-  { label: 'Resources', children: [
-    { group: 'Reference' },
+  { label: 'Handbook', children: [
     { href: '/handbook/', label: 'Handbook (index)' },
-    { href: '/handbook/build-your-own/', label: 'Build: the whole thing' },
-    { href: '/handbook/build-proxmox-host/', label: 'Build: the Proxmox host' },
-    { href: '/handbook/build-vps-edge/', label: 'Build: the VPS edge' },
-    { href: '/handbook/build-agent-vm/', label: 'Build: the agent VM' },
     { href: '/handbook/architecture/', label: 'Architecture' },
     { href: '/handbook/services/', label: 'Services' },
     { href: '/handbook/agents/', label: 'Agents' },
@@ -71,19 +55,17 @@ export const NAV = [
     { href: '/handbook/cost-expectations/', label: 'Cost expectations' },
     { href: '/handbook/current-status/', label: 'Current status' },
     { href: '/handbook/lessons/', label: 'Lessons (reference)' },
-    { href: '/handbook/eli5/', label: 'Explain it simply (ELI5)' },
-    { group: 'Story' },
+    { href: '/handbook/eli5/', label: 'Explain it simply (ELI5)' }
+  ] },
+  { label: 'More', children: [
+    { href: '/start/', label: 'Where to start' },
     { href: '/hardware/', label: 'The hardware' },
-    { href: '/security/', label: 'Security (story)' },
-    { href: '/status/', label: 'Status (story)' },
-    { href: '/lessons/', label: 'Lessons (story)' },
-    { href: '/futures/', label: 'Futures' },
     { href: '/operator/', label: 'The human in the loop' },
+    { href: '/futures/', label: 'Wren (the agent)' },
     { href: '/song/', label: 'The Quiet Machine (song)' },
     { href: '/brand/', label: 'Brand sheet' },
     { href: '/time-machine/', label: 'Time machine' },
-    { href: '/start/', label: 'Where to start' },
-    { href: '/build/', label: 'Build your own (map)' }
+    { href: '/privacy/', label: 'Privacy' }
   ] }
 ];
 
