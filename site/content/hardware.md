@@ -43,3 +43,9 @@ permanently.
 This is six-year-old consumer hardware, dressed up with documentation. That is the point: the
 interesting part was never the silicon. **A single ordinary desktop, kept honestly, is enough to
 learn what is possible now** - and to watch what arrives next.
+
+## The network gateway
+
+The edge of the network - routing, firewall, VLANs, and the WireGuard dial-in that reaches the
+services - is handled by a **UniFi Dream Machine Pro (UDM Pro)**. It is part of what the agent
+operates: the same care that applies to the servers applies to the gateway that fronts them.
