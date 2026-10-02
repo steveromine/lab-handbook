@@ -213,6 +213,11 @@ html { scroll-behavior: smooth; }
   .site-nav .menu { position: static; display: block; max-height: none; min-width: 0; width: auto; overflow: visible; border: 0; box-shadow: none; padding: 2px 0 6px 12px; background: transparent; }
   .site-nav .menu a { white-space: normal; overflow-wrap: break-word; }
   .site-nav ul { max-width: 100%; }
+  /* A sticky header taller than the viewport pins its own lower half off-screen, which is
+     exactly how a long opened menu loses its last items on a phone. Stop it being sticky on
+     small screens, and make the opened nav its own scroll region as a second guarantee. */
+  .site-head { position: static; }
+  .site-nav.open { display: block; max-height: calc(100vh - 3.5rem); overflow-y: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
   .site-nav .menu li { max-width: 100%; }
   .site-nav .menu-label .caret { display: none; }
 }
