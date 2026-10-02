@@ -7,6 +7,7 @@ import { fileURLToPath } from 'node:url';
 import { renderMarkdown, stripFrontMatter, slugify } from './lib/md.mjs';
 import { layout, SITE, NAV } from './lib/render.mjs';
 import { encodePNG, makeCard, drawText, fillRect } from './lib/png.mjs';
+import { checkA11y } from './lib/a11y.mjs';
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, '..');
@@ -242,6 +243,19 @@ function gate() {
   console.log('Sanitisation gate: clean (' + PATTERNS.length + ' pattern classes over content, assets and generated output).');
 }
 
+// ---------- accessibility gate ----------
+// Contrast thresholds are computed from the live CSS custom properties (never hardcoded), and
+// alt/lang/heading structure is checked against the generated HTML. Fails the build closed.
+function a11yGate() {
+  const findings = checkA11y({ dist: DIST, css: read(path.join(ASSETS, 'style.css')) });
+  if (findings.length) {
+    console.error('ACCESSIBILITY GATE FAILED - ' + findings.length + ' finding(s):');
+    findings.forEach(function (f) { console.error('  ' + f); });
+    process.exit(3);
+  }
+  console.log('Accessibility gate: clean (WCAG 2.2 AA contrast from CSS tokens; alt/lang/heading over generated HTML).');
+}
+
 // ---------- main ----------
 function main() {
   fs.rmSync(DIST, { recursive: true, force: true });
@@ -280,6 +294,7 @@ function main() {
     content: '<header class="hero"><p class="eyebrow">404</p><h1>That page does not exist</h1><p class="lede">The link may be old, or the page may have moved. Try the <a href="/handbook/">handbook index</a>, or press the Search button to look for it.</p></header>'
   }));
   gate();
+  a11yGate();
   console.log('Built ' + allPages.length + ' pages into ' + path.relative(ROOT, DIST));
   console.log('Story pages: ' + STORY.length + ', handbook pages: ' + hb.length);
 }
