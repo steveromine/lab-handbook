@@ -18,6 +18,7 @@ export const NAV = [
   { href: '/security/', label: 'Security' },
   { href: '/status/', label: 'Status' },
   { href: '/lessons/', label: 'Lessons' },
+  { href: '/futures/', label: 'Futures' },
   { href: '/build/', label: 'Build it' },
   { href: '/handbook/', label: 'Handbook' }
 ];
