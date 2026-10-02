@@ -8,12 +8,7 @@ hero_lede: 'A small assistant that answers from this lab's own documentation and
 
 ## Ask a question
 
-<form class="chat-form" id="chat-form" autocomplete="off">
-  <label for="chat-q">Your question</label>
-  <input id="chat-q" name="q" type="text" maxlength="500" required placeholder="e.g. What GPU does the lab use?">
-  <button type="submit" id="chat-send">Ask</button>
-  <p class="fine" id="chat-status" role="status" aria-live="polite"></p>
-</form>
+{{FORM:ask}}
 
 <div id="chat-log" class="chat-log" aria-live="polite"></div>
 
