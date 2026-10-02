@@ -35,6 +35,7 @@ export const NAV = [
   { label: 'Lessons', href: '/lessons/' },
   { label: 'Build', children: [
     { href: '/build/', label: 'Build your own (map)' },
+    { href: '/handbook/build-your-own/', label: 'Build your own (guide)' },
     { href: '/handbook/build-proxmox-host/', label: 'The Proxmox host' },
     { href: '/handbook/build-vps-edge/', label: 'The VPS edge' },
     { href: '/handbook/build-agent-vm/', label: 'The agent VM' }
