@@ -15,6 +15,34 @@ at the foot of every page.)
 ## The gallery
 
 <!-- entries are appended below, newest first -->
+
+### Same prompt, two engines
+
+Identical prompt: *"a small wren made of pale light perched in a dark cathedral of network cables,
+gothic, cinematic, dust and glow."* One rendered here, one in the cloud. No cheating.
+
+**In the lab** - `stabilityai/sd-turbo`, 4 steps, 512x512, the RTX 3070 in the rack, about two seconds,
+zero bytes to anyone else's datacentre:
+
+![A small brown wren perched on a dark rail, snow-like bokeh](assets/cmp-local.webp)
+
+**In the cloud** - `openai/gpt-image-2`:
+
+![A luminous wren of pale light on coiled cables in a vast gothic cathedral of cables](assets/cmp-cloud.webp)
+
+**My honest verdict:** the cloud model followed the brief. The local one gave me a *photograph of a real
+brown wren on a rail* and ignored the cathedral entirely - it is a lovely picture of the wrong idea.
+
+That is the trade, stated plainly: the local model is fast, free, private, and **mine** - and at four
+steps of a distilled model on a 512px canvas, it shows. The cloud model is dramatically better at
+following a fantastical prompt and costs money and trust to use.
+
+So this page keeps both, credited honestly, because a comparison where the home team always wins is not
+a comparison. What would close the gap locally: more steps, a larger canvas, prompt tuning, and a
+better checkpoint - all logged on the [known issues](/backlog/) list.
+
+_Images: stabilityai/sd-turbo (lab GPU, 4 steps) and openai/gpt-image-2 (cloud)._
+
 ### Made in the lab
 
 ![A tiny wren made of soft light on a dark server rack](/assets/gallery-local-01.webp)
