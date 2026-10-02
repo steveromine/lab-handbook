@@ -43,3 +43,13 @@ Email is a different story: Cloudflare cannot proxy SMTP, and we do not pretend 
 Privacy is not a feature bolted onto the lab; it is a **core tenet** of both the lab and its operator.
 The default is to collect nothing, remember little, and tell you the truth about the edges we cannot
 control. If that ever changes, this page changes first.
+
+## Accessibility
+
+Accessibility is a rule, not a nice-to-have. This site aims to meet **WCAG 2.2 AA**: readable colour
+contrast (checked, not eyeballed), real headings in order, a skip link, visible keyboard focus, and
+**alternative text on every image** - including the pictures the lab generates itself. Labels describe
+meaning, not decoration.
+
+Where something falls short, it goes on the [known issues](/backlog/) page rather than being quietly
+ignored. If you hit a barrier, that is a bug - and it will be logged like one.

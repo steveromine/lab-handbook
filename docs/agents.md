@@ -223,7 +223,7 @@ sequenceDiagram
 
 The last line matters as much as the first: the platform is expected to say what it did **and** what it
 left alone, including the gaps it knows about.
-# Current routing override
+## Current routing override
 
 The operator has selected DeepSeek-only routing for all seven configured coordinator/worker
 identities, without automatic provider fallback. The tiered-model diagrams and descriptions below
