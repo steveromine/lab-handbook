@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lessons - The Lab Handbook</title>
+<meta name="description" content="Handbook reference: Lessons">
+<link rel="canonical" href="https://lab-handbook.invalid/handbook/lessons/">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0c1017">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Lab Handbook">
+<meta property="og:title" content="Lessons - The Lab Handbook">
+<meta property="og:description" content="Handbook reference: Lessons">
+<meta property="og:url" content="https://lab-handbook.invalid/handbook/lessons/">
+<meta property="og:image" content="https://lab-handbook.invalid/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lessons - The Lab Handbook">
+<meta name="twitter:description" content="Handbook reference: Lessons">
+<meta name="twitter:image" content="https://lab-handbook.invalid/assets/og.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="generator" content="Wren (agent) - text model deepseek/deepseek-flash; images openai/gpt-image-2">
+<link rel="stylesheet" href="/assets/style.css?v=b81c69af">
+<script src="/assets/app.js?v=b81c69af" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"The Lab Handbook","url":"https://lab-handbook.invalid","description":"A public, sanitised tour of a small self-hosted lab: one hypervisor, one GPU shared three ways, a hardened public edge, and an agent platform that builds, verifies and documents its own work.","inLanguage":"en"}</script>
+</head>
+<body class="">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+<div class="wrap head-inner">
+<a class="brand" href="/"><span class="brand-mark" aria-hidden="true">LH</span><span class="brand-text">The Lab Handbook</span></a>
+<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav id="site-nav" class="site-nav" aria-label="Primary"><ul><li><a href="/">Home</a></li><li><a href="/then-and-now/">Then &amp; Now</a></li><li><a href="/architecture/">Architecture</a></li><li><a href="/agents/">Agents</a></li><li><a href="/gpu-budget/">GPU budget</a></li><li><a href="/security/">Security</a></li><li><a href="/status/">Status</a></li><li><a href="/lessons/">Lessons</a></li><li class="has-menu"><a href="/build/" class="menu-label" aria-haspopup="true">Build <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/build/">Build your own (map)</a></li><li><a href="/handbook/build-proxmox-host/">The Proxmox host</a></li><li><a href="/handbook/build-vps-edge/">The VPS edge</a></li><li><a href="/handbook/build-agent-vm/">The agent VM</a></li></ul></li><li class="has-menu"><a href="/handbook/" class="menu-label on" aria-haspopup="true">Handbook <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/handbook/" aria-current="page">Handbook (index)</a></li><li><a href="/handbook/architecture/">Architecture</a></li><li><a href="/handbook/services/">Services</a></li><li><a href="/handbook/agents/">Agents</a></li><li><a href="/handbook/agent-org-chart/">Agent org chart</a></li><li><a href="/handbook/ai-platform/">AI platform</a></li><li><a href="/handbook/deepseek-routing/">Model routing</a></li><li><a href="/handbook/integrations/">Integrations</a></li><li><a href="/handbook/edge-and-security/">Edge &amp; security</a></li><li><a href="/handbook/operations/">Operations</a></li><li><a href="/handbook/rollout/">Rollout</a></li><li><a href="/handbook/cost-expectations/">Cost expectations</a></li><li><a href="/handbook/current-status/">Current status</a></li><li><a href="/handbook/lessons/">Lessons (reference)</a></li><li><a href="/handbook/eli5/">Explain it simply (ELI5)</a></li></ul></li><li class="has-menu"><a href="/start/" class="menu-label" aria-haspopup="true">More <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/start/">Where to start</a></li><li><a href="/hardware/">The hardware</a></li><li><a href="/operator/">The human in the loop</a></li><li><a href="/song/">The Quiet Machine (song)</a></li><li><a href="/brand/">Brand sheet</a></li><li><a href="/time-machine/">Time machine</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/backlog/">Known issues &amp; backlog</a></li><li><a href="/comments/">Comments</a></li><li><a href="/uptime/">Uptime (nines)</a></li><li><a href="/cabin/">Cabin outage board</a></li><li><a href="/gallery/">Gallery</a></li></ul></li></ul></nav>
+<button type="button" class="search-open" data-search-open aria-label="Search this site">Search</button>
+<button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch colour theme">Theme</button>
+<button type="button" class="rating-toggle" data-rating-toggle aria-label="Switch content rating: G or PG-13">Rated: PG-13</button>
+</div>
+</header>
+<main id="main" class="wrap">
+
+<p class="eyebrow">Reference</p><h1 id="lessons">Lessons<a class="anchor" href="#lessons" aria-hidden="true">#</a></h1>
+<p>_Detail behind the <a href="/handbook/">README</a>. The expensive lessons, written down so they cost time once._</p>
+<p>These are not general principles. Each one cost hours in this lab, and each one is now encoded in a skill or a runbook so it cannot recur silently.</p>
+<hr>
+<h2 id="1-the-network-is-broken-is-often-an-mtu-problem">1. &quot;The network is broken&quot; is often an MTU problem<a class="anchor" href="#1-the-network-is-broken-is-often-an-mtu-problem" aria-hidden="true">#</a></h2>
+<p><strong>Symptom:</strong> a page prompts for a password and then hangs. Small requests succeed. Large ones never complete. A ping works fine.</p>
+<p><strong>Cause:</strong> an overlay link without working path-MTU discovery. Small packets pass; anything larger is silently dropped. Nothing errors — the payload simply never arrives.</p>
+<p><strong>Fix:</strong> pin the tunnel&#39;s MTU below the path MTU on <strong>both</strong> ends, and verify with a correctly sized probe.</p>
+<p><strong>Why it was expensive:</strong> it presents as an application or authentication fault, so the investigation starts in the wrong place entirely.</p>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart LR
+    A[Small request] --&gt; OK[Works]
+    B[Large request] --&gt; DROP[Silently dropped]
+    DROP --&gt; S1[Looks like an app bug]
+    S1 --&gt; S2[Looks like an auth bug]
+    S2 --&gt; T[Actually: MTU]</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<hr>
+<h2 id="2-two-authentication-layers-can-fight">2. Two authentication layers can fight<a class="anchor" href="#2-two-authentication-layers-can-fight" aria-hidden="true">#</a></h2>
+<p><strong>Symptom:</strong> the login POST succeeds, the profile loads, and then the front-end signs the user out in a burst. It reads as a wrong password.</p>
+<p><strong>Cause:</strong> an edge fronting an application with its own login, both using the same request header.</p>
+<p><strong>Fix:</strong> exactly one auth layer. Applications with their own login get a bare edge block.</p>
+<p><strong>The trap in the fix:</strong> stripping the header at the edge does <strong>not</strong> work — that same header carries the application&#39;s own token, so removing it breaks the app instead. The fix is architectural, not a header tweak.</p>
+<hr>
+<h2 id="3-validation-is-not-verification">3. Validation is not verification<a class="anchor" href="#3-validation-is-not-verification" aria-hidden="true">#</a></h2>
+<p><strong>Symptom:</strong> a configuration edit is reported as applied. Validation passes. The reload succeeds. Nothing changed.</p>
+<p><strong>Cause:</strong> a programmatic edit that matched nothing — often a regular expression aimed at a structure that had since nested one level deeper.</p>
+<p><strong>Fix:</strong> read the file back after editing. Compare against what you intended, not against the exit code.</p>
+<p><strong>Rule:</strong> every claim of &quot;done&quot; needs an artifact. A rendered image. An extracted archive. A page that loads. A file that contains the expected text.</p>
+<hr>
+<h2 id="4-a-gpu-is-a-budget-not-a-checkbox">4. A GPU is a budget, not a checkbox<a class="anchor" href="#4-a-gpu-is-a-budget-not-a-checkbox" aria-hidden="true">#</a></h2>
+<p><strong>Symptom:</strong> a model loads successfully, then fails at inference with an out-of-memory error.</p>
+<p><strong>Cause:</strong> two workloads that each fit in 8 GB, but not together. The first owns roughly 5 GB permanently.</p>
+<p><strong>Fix:</strong> make the second workload <strong>stream</strong> rather than reside. Modules move in on demand; steady-state cost drops to a few hundred megabytes.</p>
+<p><strong>The design consequence:</strong> the model class is chosen for its ability to stream. A few-step distilled model tolerates offloading; a conventional many-step model does not.</p>
+<hr>
+<h2 id="5-retirement-is-a-task-not-a-state">5. Retirement is a task, not a state<a class="anchor" href="#5-retirement-is-a-task-not-a-state" aria-hidden="true">#</a></h2>
+<p><strong>Symptom:</strong> guests accumulate, each labelled <code>*-retired-pending-deletion</code>, consuming hundreds of gigabytes of a pool that is slowly filling.</p>
+<p><strong>Cause:</strong> renaming is easy; deleting feels risky; nothing forces the second step.</p>
+<p><strong>Fix:</strong> capture the configuration, then destroy. The configuration is what you might want again — the disk image almost never is.</p>
+<hr>
+<h2 id="6-measure-the-number-that-actually-moves">6. Measure the number that actually moves<a class="anchor" href="#6-measure-the-number-that-actually-moves" aria-hidden="true">#</a></h2>
+<p><strong>Symptom:</strong> several hundred gigabytes of guest disks are deleted and the storage &quot;free space&quot; is unchanged.</p>
+<p><strong>Cause:</strong> the volume group reports <em>its own</em> unallocated space. A thin pool owns the space, so the volume group&#39;s free space barely moves when thin volumes are deleted. The pool&#39;s own usage percentage is the number that moved.</p>
+<p><strong>Fix:</strong> measure the layer that owns the resource. This applies well beyond storage — a container&#39;s disk usage is not the host&#39;s, a tunnel&#39;s throughput is not the link&#39;s.</p>
+<hr>
+<h2 id="7-silent-capability-gaps-are-better-stated-than-hidden">7. Silent capability gaps are better stated than hidden<a class="anchor" href="#7-silent-capability-gaps-are-better-stated-than-hidden" aria-hidden="true">#</a></h2>
+<p><strong>Symptom:</strong> a user attaches a picture and the model says nothing useful about it. Or attaches an archive and the model &quot;knows nothing&quot;.</p>
+<p><strong>Cause:</strong> no vision model exists; or the parser sidecar is unreachable, so the upload indexes as empty while the UI still shows the file attached.</p>
+<p><strong>Fix:</strong> state the gap in the documentation, and make the failure mode explicit. A documented gap is a roadmap item; an undocumented one is a support incident.</p>
+<hr>
+<h2 id="8-the-default-is-often-wrong-for-your-case">8. The default is often wrong for your case<a class="anchor" href="#8-the-default-is-often-wrong-for-your-case" aria-hidden="true">#</a></h2>
+<p>Three examples, all found the same way:</p>
+<div class="tablewrap"><table><thead><tr><th>Setting</th><th>Default</th><th>Why it was wrong here</th></tr></thead><tbody><tr><td>Diffusion step count</td><td>Large (suits conventional models)</td><td>A distilled model needs <strong>few</strong> steps; the default is slow and pointless</td></tr><tr><td>Metasearch JSON output</td><td>Disabled</td><td>The chat front-end consumes JSON; without it, search silently returns nothing</td></tr><tr><td>Tunnel MTU</td><td>An optimistic default</td><td>Silently black-holes larger packets</td></tr></tbody></table></div>
+<p><strong>The pattern:</strong> defaults are tuned for the common case. When your case is unusual, the default fails in a way that looks like something else entirely. Check the defaults of every component you introduce.</p>
+<hr>
+<h2 id="9-context-belongs-in-git-not-in-a-conversation">9. Context belongs in Git, not in a conversation<a class="anchor" href="#9-context-belongs-in-git-not-in-a-conversation" aria-hidden="true">#</a></h2>
+<p><strong>Symptom:</strong> the same question is asked twice, weeks apart, and answered differently.</p>
+<p><strong>Cause:</strong> hard-won knowledge living in a chat transcript, private to one session.</p>
+<p><strong>Fix:</strong> durable state goes into repositories — activity log, decision log, runbooks, captured configuration. If it is not written down where the next worker will look, it was never learned.</p>
+<hr>
+<h2 id="10-prefer-a-sidecar-for-a-capability">10. Prefer a sidecar for a capability<a class="anchor" href="#10-prefer-a-sidecar-for-a-capability" aria-hidden="true">#</a></h2>
+<p><strong>Symptom:</strong> a front-end needs &quot;just one more format&quot; and the change touches its parsing code.</p>
+<p><strong>Fix:</strong> the front-end asks a <strong>parser service</strong> for text. Every format the service understands arrives at once, and new formats are the service&#39;s problem.</p>
+<p>This generalises: search, parsing and image generation are all capabilities the application consumes rather than logic it carries. Capabilities scale; embedded logic accumulates.</p>
+<hr>
+<h2 id="summary-table">Summary table<a class="anchor" href="#summary-table" aria-hidden="true">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Lesson</th><th>Encoded as</th></tr></thead><tbody><tr><td>MTU black-holing</td><td>A rule in the edge skill</td></tr><tr><td>One auth layer</td><td>A rule in the edge skill</td></tr><tr><td>Validation ≠ verification</td><td>A step in the operating contract</td></tr><tr><td>GPU as a budget</td><td>A note in the image-generation runbook</td></tr><tr><td>Retirement is a task</td><td>This document</td></tr><tr><td>Measure the right number</td><td>This document</td></tr><tr><td>State your gaps</td><td>The roadmap section of every doc</td></tr><tr><td>Defaults are wrong for unusual cases</td><td>The sharp-edges sections of the runbooks</td></tr><tr><td>Context belongs in Git</td><td>The operating contract</td></tr><tr><td>Sidecars for capabilities</td><td>The parser/search deployment pattern</td></tr></tbody></table></div>
+</main>
+<footer class="site-foot"><div class="wrap">
+<p class="fine failover-banner"><strong>Failover copy:</strong> served from the edge and synced from the public repository, because the primary lab may be unreachable. <a href="/outage/">What happened?</a></p>
+<p><strong>The Lab Handbook</strong> - public by intention, sanitised by design. No credentials, no internal addresses, no access paths.</p>
+<p class="fine age-note"><strong>Age note:</strong> not everything here is PG. This is a virtual IT shop - strong language is part of the furniture and the humour is grown-up. Mind the workshop floor.</p>
+<p class="fine disclaimer"><strong>Disclaimer:</strong> this entire site is machine-generated. It is not an accurate representation of its owner, of any AI, or of any entity associated with either. Quirks and oddities happen - we fix them when we see them.</p>
+<p class="fine model-credit"><strong>Generated by:</strong> Wren - text model <code>deepseek/deepseek-flash</code>; generated images credit their model beneath the image.</p>
+<p class="fine">Source: the <a href="https://github.com/example/lab-handbook">lab-handbook</a> repository. Static site, no trackers, no third-party scripts, no external fonts.</p>
+<p class="fine">Deployed <time datetime="2026-10-02">2026-10-02</time></p>
+</div></footer>
+<dialog id="search-dialog" class="search-dialog" aria-label="Search">
+<form method="dialog" class="search-form"><label for="q">Search the handbook</label>
+<input id="q" name="q" type="search" autocomplete="off" placeholder="e.g. MTU, GPU, overlay">
+<button value="close" class="search-close" aria-label="Close search">Close</button></form>
+<div id="search-results" class="search-results" role="list"></div>
+<p class="fine">Search runs entirely in your browser against a static index. Nothing is sent anywhere.</p>
+</dialog>
+</body></html>

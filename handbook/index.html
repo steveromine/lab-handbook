@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Handbook - The Lab Handbook</title>
+<meta name="description" content="Handbook reference: Handbook">
+<link rel="canonical" href="https://lab-handbook.invalid/handbook/">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0c1017">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Lab Handbook">
+<meta property="og:title" content="Handbook - The Lab Handbook">
+<meta property="og:description" content="Handbook reference: Handbook">
+<meta property="og:url" content="https://lab-handbook.invalid/handbook/">
+<meta property="og:image" content="https://lab-handbook.invalid/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Handbook - The Lab Handbook">
+<meta name="twitter:description" content="Handbook reference: Handbook">
+<meta name="twitter:image" content="https://lab-handbook.invalid/assets/og.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="generator" content="Wren (agent) - text model deepseek/deepseek-flash; images openai/gpt-image-2">
+<link rel="stylesheet" href="/assets/style.css?v=b81c69af">
+<script src="/assets/app.js?v=b81c69af" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"The Lab Handbook","url":"https://lab-handbook.invalid","description":"A public, sanitised tour of a small self-hosted lab: one hypervisor, one GPU shared three ways, a hardened public edge, and an agent platform that builds, verifies and documents its own work.","inLanguage":"en"}</script>
+</head>
+<body class="">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+<div class="wrap head-inner">
+<a class="brand" href="/"><span class="brand-mark" aria-hidden="true">LH</span><span class="brand-text">The Lab Handbook</span></a>
+<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav id="site-nav" class="site-nav" aria-label="Primary"><ul><li><a href="/">Home</a></li><li><a href="/then-and-now/">Then &amp; Now</a></li><li><a href="/architecture/">Architecture</a></li><li><a href="/agents/">Agents</a></li><li><a href="/gpu-budget/">GPU budget</a></li><li><a href="/security/">Security</a></li><li><a href="/status/">Status</a></li><li><a href="/lessons/">Lessons</a></li><li class="has-menu"><a href="/build/" class="menu-label" aria-haspopup="true">Build <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/build/">Build your own (map)</a></li><li><a href="/handbook/build-proxmox-host/">The Proxmox host</a></li><li><a href="/handbook/build-vps-edge/">The VPS edge</a></li><li><a href="/handbook/build-agent-vm/">The agent VM</a></li></ul></li><li class="has-menu"><a href="/handbook/" class="menu-label on" aria-haspopup="true">Handbook <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/handbook/" aria-current="page">Handbook (index)</a></li><li><a href="/handbook/architecture/">Architecture</a></li><li><a href="/handbook/services/">Services</a></li><li><a href="/handbook/agents/">Agents</a></li><li><a href="/handbook/agent-org-chart/">Agent org chart</a></li><li><a href="/handbook/ai-platform/">AI platform</a></li><li><a href="/handbook/deepseek-routing/">Model routing</a></li><li><a href="/handbook/integrations/">Integrations</a></li><li><a href="/handbook/edge-and-security/">Edge &amp; security</a></li><li><a href="/handbook/operations/">Operations</a></li><li><a href="/handbook/rollout/">Rollout</a></li><li><a href="/handbook/cost-expectations/">Cost expectations</a></li><li><a href="/handbook/current-status/">Current status</a></li><li><a href="/handbook/lessons/">Lessons (reference)</a></li><li><a href="/handbook/eli5/">Explain it simply (ELI5)</a></li></ul></li><li class="has-menu"><a href="/start/" class="menu-label" aria-haspopup="true">More <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/start/">Where to start</a></li><li><a href="/hardware/">The hardware</a></li><li><a href="/operator/">The human in the loop</a></li><li><a href="/song/">The Quiet Machine (song)</a></li><li><a href="/brand/">Brand sheet</a></li><li><a href="/time-machine/">Time machine</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/backlog/">Known issues &amp; backlog</a></li><li><a href="/comments/">Comments</a></li><li><a href="/uptime/">Uptime (nines)</a></li><li><a href="/cabin/">Cabin outage board</a></li><li><a href="/gallery/">Gallery</a></li></ul></li></ul></nav>
+<button type="button" class="search-open" data-search-open aria-label="Search this site">Search</button>
+<button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch colour theme">Theme</button>
+<button type="button" class="rating-toggle" data-rating-toggle aria-label="Switch content rating: G or PG-13">Rated: PG-13</button>
+</div>
+</header>
+<main id="main" class="wrap">
+
+<p class="eyebrow">Reference</p><h1 id="the-lab-handbook">The Lab Handbook<a class="anchor" href="#the-lab-handbook" aria-hidden="true">#</a></h1>
+<p>A guided tour of a small self-hosted lab: <strong>what it does, how the pieces fit together, how it got here, and what is actually running right now.</strong></p>
+<blockquote><p><strong>Public by intention, sanitised by design.</strong> This documents architecture and operations in detail. It contains <strong>no credentials</strong> of any kind, and nothing that locates the lab: <strong>no IP addresses, no real domain names, no access paths</strong>. Services and guests are referred to <strong>by role</strong>, which is the useful part — never by address or domain. See <a href="#conventions">Conventions</a>.</p></blockquote>
+<p><strong>This handbook is also published as a static website</strong>, built from the <code>site/</code> directory in this repository (see <a href="/handbook/">site/README.md</a>). The markdown here remains the source of truth.</p>
+<p><strong>New here, or not technical? Start with <a href="/handbook/eli5/">Explain It Like I&#39;m 5</a></strong> — plain language, no jargon.</p>
+<p><strong>Want to build this yourself? Start with <a href="/handbook/build-your-own/">Build Your Own</a></strong> — the Proxmox host, the VPS edge, and the agent VM, step by step.</p>
+<hr>
+<p><strong>Reconciled 2026-10-01:</strong> see <a href="/handbook/current-status/">current status and known gaps</a>. Historical deployment proofs are not a fresh whole-estate health check.</p>
+<h2 id="at-a-glance">At a glance<a class="anchor" href="#at-a-glance" aria-hidden="true">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Area</th><th>Summary</th></tr></thead><tbody><tr><td><strong>Hypervisor</strong></td><td>One Proxmox VE host; the only machine with a GPU</td></tr><tr><td><strong>Guests</strong></td><td>10 containers + 3 virtual machines in service; 7 retired guests reclaimed</td></tr><tr><td><strong>GPU</strong></td><td>A single 8 GB NVIDIA card, deliberately shared between LLM inference, media transcoding and image generation</td></tr><tr><td><strong>Edge</strong></td><td>A public VPS terminating Cloudflare-fronted HTTPS, joined to the lab by WireGuard</td></tr><tr><td><strong>AI platform</strong></td><td>Local LLM, a chat front-end, image generation, archive-aware file ingestion, web search</td></tr><tr><td><strong>Agents</strong></td><td>A coordinator/worker agent platform with risk- and cost-based model routing and a local offline agent</td></tr><tr><td><strong>Operations</strong></td><td>Ansible for patching and config capture, Git as the source of truth, centralised syslog into a searchable index</td></tr><tr><td><strong>Networking</strong></td><td>Three zones — management, client, servers — with zero-trust egress from the client zone</td></tr></tbody></table></div>
+<hr>
+<h2 id="conventions">Conventions<a class="anchor" href="#conventions" aria-hidden="true">#</a></h2>
+<p>Because this repository is a description rather than an inventory, addresses and names are abstracted:</p>
+<div class="tablewrap"><table><thead><tr><th>Placeholder</th><th>Means</th></tr></thead><tbody><tr><td><code>&lt;hypervisor&gt;</code></td><td>The physical Proxmox host</td></tr><tr><td><code>&lt;mgmt-subnet&gt;</code></td><td>Management network</td></tr><tr><td><code>&lt;client-subnet&gt;</code></td><td>Untrusted client network</td></tr><tr><td><code>&lt;server-subnet&gt;</code></td><td>Server network (all lab guests)</td></tr><tr><td><code>&lt;tunnel-net&gt;</code></td><td>The private overlay network between the edge and the lab</td></tr><tr><td><code>&lt;edge-vps&gt;</code></td><td>The public edge host</td></tr><tr><td><code>&lt;service&gt;.&lt;lab-domain&gt;</code></td><td>Any published service hostname</td></tr><tr><td><code>&lt;guest&gt;</code></td><td>Any individual container or VM, named by role</td></tr></tbody></table></div>
+<p>Guests are named by <strong>role</strong> — <code>plex</code>, <code>jellyfin</code>, <code>logging</code>, <code>vault</code>, <code>pihole</code>, <code>ops-llm</code>, <code>ops-agent</code>, <code>open-webui</code>, <code>image-gen</code>, <code>gods-eye-view</code> — because the role is the useful part and the address is not.</p>
+<hr>
+<h2 id="the-story">The story<a class="anchor" href="#the-story" aria-hidden="true">#</a></h2>
+<h3 id="where-we-started">Where we started<a class="anchor" href="#where-we-started" aria-hidden="true">#</a></h3>
+<p>The lab began as a single Proxmox host running a collection of guests that had accumulated organically. A service would be built, half-finished, replaced, and left switched off. By the time consolidation began, the host carried <strong>seven retired guests</strong> — several still literally named <code>*-retired-pending-deletion</code> — duplicated agent VMs across two generations, a storage pool close to full, and configuration that lived in shell history rather than in a repository.</p>
+<p>Three problems stood out:</p>
+<ol><li><strong>No source of truth.</strong> Configuration and knowledge existed only on the hosts themselves, so a rebuild meant archaeology.</li><li><strong>Secrets hygiene.</strong> Credentials were scattered across the estate, and some services assumed nothing would ever be discovered by anyone else.</li><li><strong>No shared spine.</strong> Media, logging, DNS, secrets, AI and public access were separate islands with no consistent patterns between them.</li></ol>
+<h3 id="what-we-changed">What we changed<a class="anchor" href="#what-we-changed" aria-hidden="true">#</a></h3>
+<p><strong>1. Made Git the source of truth.</strong> Every material change now lands in a repository — an operating contract, an activity log, a decision log, runbooks, and captured host configuration. <em>If it is not in Git, it did not happen.</em></p>
+<p><strong>2. Cleaned up the estate.</strong> Abandoned guests were captured (config preserved) and destroyed; their roles were folded into properly named, documented replacements. Seven guests were reclaimed, returning the storage pool from nearly full to roughly one-eighth used.</p>
+<p><strong>3. Built a real edge.</strong> Instead of exposing services directly, we built a proper edge: a public VPS terminating TLS behind a DNS proxy, joined to the lab by a private overlay network. Nothing in the lab is reachable from the internet except through that edge, and every published service is authenticated at exactly one layer.</p>
+<p><strong>4. Consolidated the AI platform.</strong> A local GPU LLM so the lab does not depend on a paid API for routine work, surfaced through a full-featured chat front-end, with image generation, web search, and document <em>and archive</em> ingestion.</p>
+<p><strong>5. Put operations on rails.</strong> Ansible handles patching and config capture; logs from the hypervisor, the edge, the firewall and the guests flow into one searchable index; the agent platform runs from a documented workspace with explicit rules.</p>
+<h3 id="where-we-are-now">Where we are now<a class="anchor" href="#where-we-are-now" aria-hidden="true">#</a></h3>
+<p>A small, documented, reproducible platform: segmented networks, a secured edge, a shared GPU doing three jobs, centralised observability, and an AI layer that is genuinely usable from a browser — with the whole thing described in Git rather than in someone&#39;s memory.</p>
+<hr>
+<h2 id="architecture">Architecture<a class="anchor" href="#architecture" aria-hidden="true">#</a></h2>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart TB
+    subgraph Internet
+        U[Users and browsers]
+        PROXY[DNS + proxy provider]
+    end
+
+    subgraph Edge[&quot;Public edge&quot;]
+        CADDY[Reverse proxy: TLS, auth, headers, logs]
+        WG[(Private overlay hub)]
+    end
+
+    subgraph Lab[&quot;Lab&quot;]
+        subgraph SERVERS[&quot;Server zone&quot;]
+            HV[Hypervisor + GPU]
+            AGENT[Agent control host]
+            LLMG[LLM guest]
+            CHATG[Chat front-end guest]
+            IMG[Image generation guest]
+            TIKA[Parser sidecar]
+            SRCH[Search sidecar]
+            LOG[Log index guest]
+            VAULT[Password vault guest]
+            DNS[Filtering DNS guest]
+            GEV[Visualisation guest]
+            OPS[Local-model ops agent guest]
+        end
+        subgraph CLIENTS[&quot;Client zone - untrusted&quot;]
+            CLIENT[Client devices]
+        end
+        FW[Firewall and routing]
+    end
+
+    U --&gt; PROXY --&gt; CADDY --&gt; WG
+    WG --&gt; LLMG
+    WG --&gt; CHATG
+    WG --&gt; IMG
+    WG --&gt; GEV
+    CLIENT --&gt; FW
+    FW --&gt; SERVERS
+    AGENT --&gt; HV
+    CHATG --&gt; LLMG
+    CHATG --&gt; IMG
+    CHATG --&gt; TIKA
+    CHATG --&gt; SRCH</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<hr>
+<h2 id="network-zones">Network zones<a class="anchor" href="#network-zones" aria-hidden="true">#</a></h2>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart LR
+    subgraph M[&quot;Management zone&quot;]
+        FWM[Firewall and routing]
+    end
+    subgraph C[&quot;Client zone - untrusted&quot;]
+        CZ[Client devices]
+    end
+    subgraph S[&quot;Server zone&quot;]
+        SZ[Every lab guest and service]
+    end
+    CZ --&gt;|policy-controlled, service-specific| FWM
+    FWM --&gt; SZ
+    SZ --&gt;|egress| FWM
+    FWM --&gt;|its own logs| SZ</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<ul><li><strong>The client zone is untrusted.</strong> Devices there reach specific services, not the network. Egress is policy-controlled rather than open.</li><li><strong>Servers share one zone.</strong> For a lab of this size, segmentation is done at the firewall and by service authentication rather than by proliferating VLANs.</li><li><strong>Filtering DNS</strong> serves the lab, and the firewall forwards its own logs to the collector, so policy changes are auditable rather than folklore.</li></ul>
+<hr>
+<h2 id="what-is-in-play-right-now">What is in play right now<a class="anchor" href="#what-is-in-play-right-now" aria-hidden="true">#</a></h2>
+<h3 id="compute">Compute<a class="anchor" href="#compute" aria-hidden="true">#</a></h3>
+<div class="tablewrap"><table><thead><tr><th>Host</th><th>Role</th><th>Notes</th></tr></thead><tbody><tr><td><code>&lt;hypervisor&gt;</code></td><td>Proxmox VE</td><td>Key-only root SSH; sole owner of the GPU</td></tr><tr><td><code>&lt;agent-host&gt;</code></td><td>Agent control host</td><td>Runs the coordinator agents; the Ansible control node</td></tr><tr><td><code>&lt;storage-host&gt;</code></td><td>Storage server</td><td>Serves the media library read-only to consumers</td></tr><tr><td><code>&lt;automation-host&gt;</code></td><td>Automation host</td><td>Request management, indexers, download automation</td></tr></tbody></table></div>
+<h3 id="services-by-role">Services, by role<a class="anchor" href="#services-by-role" aria-hidden="true">#</a></h3>
+<div class="tablewrap"><table><thead><tr><th>Service</th><th>Kind</th><th>Role</th></tr></thead><tbody><tr><td><strong>plex</strong> / <strong>jellyfin</strong></td><td>containers</td><td>Two media front-ends, both using GPU transcoding</td></tr><tr><td><strong>nfs-media</strong></td><td>VM</td><td>The media library itself</td></tr><tr><td><strong>media-automation</strong></td><td>VM</td><td>Fulfils media requests and keeps the library organised</td></tr><tr><td><strong>logging</strong></td><td>container</td><td>Syslog collector feeding a searchable index</td></tr><tr><td><strong>vault</strong></td><td>container</td><td>Self-hosted password vault for humans</td></tr><tr><td><strong>pihole</strong></td><td>container</td><td>Network-wide DNS filtering</td></tr><tr><td><strong>ops-llm</strong></td><td>container</td><td>Local GPU LLM behind an OpenAI-compatible API</td></tr><tr><td><strong>open-webui</strong></td><td>container</td><td>Chat front-end: RAG, uploads, image generation, search</td></tr><tr><td><strong>image-gen</strong></td><td>container</td><td>Text-to-image API (Automatic1111-compatible)</td></tr><tr><td><strong>gods-eye-view</strong></td><td>container</td><td>Geospatial visualisation application</td></tr><tr><td><strong>ops-agent</strong></td><td>container</td><td>Operations agent backed by the local model</td></tr></tbody></table></div>
+<p>Full detail — including how each one is built and what would break — is in <a href="/handbook/services/">docs/services.md</a>.</p>
+<hr>
+<h2 id="the-integrations-at-a-glance">The integrations, at a glance<a class="anchor" href="#the-integrations-at-a-glance" aria-hidden="true">#</a></h2>
+<p>The lab&#39;s value is less in any single service than in how they are wired together. The full map is in <a href="/handbook/integrations/">docs/integrations.md</a>; the short version:</p>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart LR
+    HUMANS[Humans] --&gt; CHAT[Chat front-end]
+    CHAT --&gt; LLM[Local LLM API]
+    CHAT --&gt; IMGX[Image API]
+    CHAT --&gt; PARSE[Parser service]
+    CHAT --&gt; WEB[Search service]
+    AGENTS[Agent platform] --&gt; LLM
+    AGENTS --&gt; CLOUD[Frontier model APIs]
+    MEDIA[Media front-ends] --&gt; STORE[Media storage]
+    AUTO[Media automation] --&gt; MEDIA
+    AUTO --&gt; STORE
+    EVERYTHING[Hypervisor, edge, firewall, guests] --&gt; SYSLOG[Syslog collector]
+    SYSLOG --&gt; INDEX[Searchable index]
+    ANSIBLE[Ansible control] --&gt; EVERYTHING
+    GIT[Repositories] --&gt; ANSIBLE
+    GIT --&gt; AGENTS
+    EDGEV[Edge proxy] --&gt; TUNNEL[Private overlay]
+    TUNNEL --&gt; CHAT
+    TUNNEL --&gt; MEDIA
+    TUNNEL --&gt; LLM</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<hr>
+<h2 id="the-agent-platform">The agent platform<a class="anchor" href="#the-agent-platform" aria-hidden="true">#</a></h2>
+<p>The lab runs an agent platform, not just a chatbot. In brief — full detail in <a href="/handbook/agents/">docs/agents.md</a>:</p>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart TB
+    COORD[Coordinator agent] --&gt; W1[High-capability worker]
+    COORD --&gt; W2[Low-cost bulk worker]
+    COORD --&gt; W3[Local offline agent]
+    W1 --&gt; API1[Frontier model API]
+    W2 --&gt; API2[Cheap fast model API]
+    W3 --&gt; LOCALLLM[Local GPU model]
+    W3 -.-&gt;|escalates when stuck| COORD
+    COORD --&gt; WS[Shared workspace]
+    WS --&gt; REPO[Git repositories]
+    WS --&gt; LOGS[Activity and decision logs]
+    WS --&gt; SKILLS[Reusable runbooks]</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<ul><li>Agents are <strong>routed by risk and cost</strong>: capable models for coordination, ambiguity and security work; cheap fast models for high-volume discovery and summarisation; the local model for offline work.</li><li>All agents share <strong>one workspace and one set of written rules</strong>, and they store durable state in Git rather than in conversation history.</li><li>Subordinate output is treated as <strong>evidence to be verified</strong>, never as a result to be relayed.</li><li>Risky or irreversible actions are gated on a human decision.</li></ul>
+<hr>
+<h2 id="repositories">Repositories<a class="anchor" href="#repositories" aria-hidden="true">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Repository</th><th>Contents</th></tr></thead><tbody><tr><td><strong>operating repo</strong></td><td>The agent operating contract, workspace, operational scripts, activity log, decision log</td></tr><tr><td><strong>lab-control</strong></td><td>Ansible inventory and playbooks, per-service runbooks, captured host configuration, security reviews</td></tr><tr><td><strong>lab-handbook</strong> (this)</td><td>The narrative: architecture, services, integrations, agents and lessons</td></tr></tbody></table></div>
+<p>House rules:</p>
+<ul><li>Git is the source of truth; every material change is logged.</li><li><strong>No secrets in Git</strong> — ever. Credentials live in a managed secret store or in local-only files.</li><li>Changes are reversible, and rollback is written down <em>before</em> the change is made.</li></ul>
+<hr>
+<h2 id="documentation-map">Documentation map<a class="anchor" href="#documentation-map" aria-hidden="true">#</a></h2>
+<p>Every document in this handbook, and what it is for.</p>
+<h3 id="start-here">Start here<a class="anchor" href="#start-here" aria-hidden="true">#</a></h3>
+<div class="tablewrap"><table><thead><tr><th>Document</th><th>Read it for</th></tr></thead><tbody><tr><td><a href="/handbook/eli5/">docs/eli5.md</a></td><td>Plain-language explanation - start here if you are not technical</td></tr><tr><td><a href="/handbook/architecture/">docs/architecture.md</a></td><td>Compute, zones, storage, capacity</td></tr><tr><td><a href="/handbook/services/">docs/services.md</a></td><td>Every service: what it is, how it runs, how it fails</td></tr><tr><td><a href="/handbook/integrations/">docs/integrations.md</a></td><td>How everything talks to everything</td></tr></tbody></table></div>
+<h3 id="systems-in-depth">Systems in depth<a class="anchor" href="#systems-in-depth" aria-hidden="true">#</a></h3>
+<div class="tablewrap"><table><thead><tr><th>Document</th><th>Read it for</th></tr></thead><tbody><tr><td><a href="/handbook/agents/">docs/agents.md</a></td><td>The agent platform in depth</td></tr><tr><td><a href="/handbook/rollout/">docs/rollout.md</a></td><td>Current phased rollout and single-provider direction</td></tr><tr><td><a href="/handbook/ai-platform/">docs/ai-platform.md</a></td><td>LLM, chat, images, archives, search</td></tr><tr><td><a href="/handbook/cost-expectations/">docs/cost-expectations.md</a></td><td>What this costs to run - realistic expectations, and why context is the real driver</td></tr><tr><td><a href="/handbook/agent-org-chart/">docs/agent-org-chart.md</a></td><td>The agent org chart: roles, personalities, and what each may not do</td></tr><tr><td><a href="/handbook/edge-and-security/">docs/edge-and-security.md</a></td><td>Trust boundaries, auth model, hardening</td></tr></tbody></table></div>
+<h3 id="operating-it">Operating it<a class="anchor" href="#operating-it" aria-hidden="true">#</a></h3>
+<div class="tablewrap"><table><thead><tr><th>Document</th><th>Read it for</th></tr></thead><tbody><tr><td><a href="/handbook/operations/">docs/operations.md</a></td><td>The change loop, config-as-code, observability</td></tr><tr><td><a href="/handbook/current-status/">docs/current-status.md</a></td><td>What is recorded as running, and the known gaps and limitations</td></tr><tr><td><a href="/handbook/lessons/">docs/lessons.md</a></td><td>The expensive lessons, written down</td></tr></tbody></table></div>
+<h3 id="build-it-yourself">Build it yourself<a class="anchor" href="#build-it-yourself" aria-hidden="true">#</a></h3>
+<div class="tablewrap"><table><thead><tr><th>Document</th><th>Read it for</th></tr></thead><tbody><tr><td><a href="/handbook/build-your-own/">docs/build-your-own.md</a></td><td>The build sequence, end to end</td></tr><tr><td><a href="/handbook/build-proxmox-host/">docs/build-proxmox-host.md</a></td><td>The hypervisor</td></tr><tr><td><a href="/handbook/build-vps-edge/">docs/build-vps-edge.md</a></td><td>The public edge host</td></tr><tr><td><a href="/handbook/build-agent-vm/">docs/build-agent-vm.md</a></td><td>The agent host</td></tr></tbody></table></div>
+<hr>
+<h2 id="appendix-what-is-deliberately-excluded">Appendix — what is deliberately excluded<a class="anchor" href="#appendix-what-is-deliberately-excluded" aria-hidden="true">#</a></h2>
+<p>This handbook is a <strong>description</strong>, not a credential store or a login guide. Excluded on purpose: passwords and passphrases, API tokens and keys, private overlay keys, SSH private keys, vault contents, session databases, real hostnames, real domain names and real IP addresses. Where a credential exists, this document at most notes <em>that</em> one is required — never its value or its location.</p>
+</main>
+<footer class="site-foot"><div class="wrap">
+<p class="fine failover-banner"><strong>Failover copy:</strong> served from the edge and synced from the public repository, because the primary lab may be unreachable. <a href="/outage/">What happened?</a></p>
+<p><strong>The Lab Handbook</strong> - public by intention, sanitised by design. No credentials, no internal addresses, no access paths.</p>
+<p class="fine age-note"><strong>Age note:</strong> not everything here is PG. This is a virtual IT shop - strong language is part of the furniture and the humour is grown-up. Mind the workshop floor.</p>
+<p class="fine disclaimer"><strong>Disclaimer:</strong> this entire site is machine-generated. It is not an accurate representation of its owner, of any AI, or of any entity associated with either. Quirks and oddities happen - we fix them when we see them.</p>
+<p class="fine model-credit"><strong>Generated by:</strong> Wren - text model <code>deepseek/deepseek-flash</code>; generated images credit their model beneath the image.</p>
+<p class="fine">Source: the <a href="https://github.com/example/lab-handbook">lab-handbook</a> repository. Static site, no trackers, no third-party scripts, no external fonts.</p>
+<p class="fine">Deployed <time datetime="2026-10-02">2026-10-02</time></p>
+</div></footer>
+<dialog id="search-dialog" class="search-dialog" aria-label="Search">
+<form method="dialog" class="search-form"><label for="q">Search the handbook</label>
+<input id="q" name="q" type="search" autocomplete="off" placeholder="e.g. MTU, GPU, overlay">
+<button value="close" class="search-close" aria-label="Close search">Close</button></form>
+<div id="search-results" class="search-results" role="list"></div>
+<p class="fine">Search runs entirely in your browser against a static index. Nothing is sent anywhere.</p>
+</dialog>
+</body></html>

@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build Your Own - The Lab Handbook</title>
+<meta name="description" content="Handbook reference: Build Your Own">
+<link rel="canonical" href="https://lab-handbook.invalid/handbook/build-your-own/">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0c1017">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Lab Handbook">
+<meta property="og:title" content="Build Your Own - The Lab Handbook">
+<meta property="og:description" content="Handbook reference: Build Your Own">
+<meta property="og:url" content="https://lab-handbook.invalid/handbook/build-your-own/">
+<meta property="og:image" content="https://lab-handbook.invalid/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Build Your Own - The Lab Handbook">
+<meta name="twitter:description" content="Handbook reference: Build Your Own">
+<meta name="twitter:image" content="https://lab-handbook.invalid/assets/og.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="generator" content="Wren (agent) - text model deepseek/deepseek-flash; images openai/gpt-image-2">
+<link rel="stylesheet" href="/assets/style.css?v=b81c69af">
+<script src="/assets/app.js?v=b81c69af" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"The Lab Handbook","url":"https://lab-handbook.invalid","description":"A public, sanitised tour of a small self-hosted lab: one hypervisor, one GPU shared three ways, a hardened public edge, and an agent platform that builds, verifies and documents its own work.","inLanguage":"en"}</script>
+</head>
+<body class="">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+<div class="wrap head-inner">
+<a class="brand" href="/"><span class="brand-mark" aria-hidden="true">LH</span><span class="brand-text">The Lab Handbook</span></a>
+<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav id="site-nav" class="site-nav" aria-label="Primary"><ul><li><a href="/">Home</a></li><li><a href="/then-and-now/">Then &amp; Now</a></li><li><a href="/architecture/">Architecture</a></li><li><a href="/agents/">Agents</a></li><li><a href="/gpu-budget/">GPU budget</a></li><li><a href="/security/">Security</a></li><li><a href="/status/">Status</a></li><li><a href="/lessons/">Lessons</a></li><li class="has-menu"><a href="/build/" class="menu-label" aria-haspopup="true">Build <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/build/">Build your own (map)</a></li><li><a href="/handbook/build-proxmox-host/">The Proxmox host</a></li><li><a href="/handbook/build-vps-edge/">The VPS edge</a></li><li><a href="/handbook/build-agent-vm/">The agent VM</a></li></ul></li><li class="has-menu"><a href="/handbook/" class="menu-label on" aria-haspopup="true">Handbook <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/handbook/" aria-current="page">Handbook (index)</a></li><li><a href="/handbook/architecture/">Architecture</a></li><li><a href="/handbook/services/">Services</a></li><li><a href="/handbook/agents/">Agents</a></li><li><a href="/handbook/agent-org-chart/">Agent org chart</a></li><li><a href="/handbook/ai-platform/">AI platform</a></li><li><a href="/handbook/deepseek-routing/">Model routing</a></li><li><a href="/handbook/integrations/">Integrations</a></li><li><a href="/handbook/edge-and-security/">Edge &amp; security</a></li><li><a href="/handbook/operations/">Operations</a></li><li><a href="/handbook/rollout/">Rollout</a></li><li><a href="/handbook/cost-expectations/">Cost expectations</a></li><li><a href="/handbook/current-status/">Current status</a></li><li><a href="/handbook/lessons/">Lessons (reference)</a></li><li><a href="/handbook/eli5/">Explain it simply (ELI5)</a></li></ul></li><li class="has-menu"><a href="/start/" class="menu-label" aria-haspopup="true">More <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/start/">Where to start</a></li><li><a href="/hardware/">The hardware</a></li><li><a href="/operator/">The human in the loop</a></li><li><a href="/song/">The Quiet Machine (song)</a></li><li><a href="/brand/">Brand sheet</a></li><li><a href="/time-machine/">Time machine</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/backlog/">Known issues &amp; backlog</a></li><li><a href="/comments/">Comments</a></li><li><a href="/uptime/">Uptime (nines)</a></li><li><a href="/cabin/">Cabin outage board</a></li><li><a href="/gallery/">Gallery</a></li></ul></li></ul></nav>
+<button type="button" class="search-open" data-search-open aria-label="Search this site">Search</button>
+<button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch colour theme">Theme</button>
+<button type="button" class="rating-toggle" data-rating-toggle aria-label="Switch content rating: G or PG-13">Rated: PG-13</button>
+</div>
+</header>
+<main id="main" class="wrap">
+
+<p class="eyebrow">Reference</p><blockquote><p><strong>Use all of this at your own risk.</strong> These are unvetted recipes from a live lab, not a supported build. They can brick a bootloader, strand your own remote access, or quietly erase a disk. Never point any of it at a machine, a file, or an account you would not be willing to destroy. Keep a known-good way back, test the rollback before you need it, and assume every command will do exactly what it says - because it will.</p></blockquote>
+<h1 id="build-your-own">Build Your Own<a class="anchor" href="#build-your-own" aria-hidden="true">#</a></h1>
+<p>How to build this lab from nothing: **a Proxmox host, a cheap VPS at the edge, and an agent VM whose agent is conceptually <em>you</em> — with agents under it.**</p>
+<p>This track is written so that the <em>reasoning</em> survives even if the versions do not. Commands age; decisions do not.</p>
+<div class="tablewrap"><table><thead><tr><th>Track</th><th>Page</th><th>What you end up with</th></tr></thead><tbody><tr><td>1</td><td><a href="/handbook/build-proxmox-host/">The Proxmox host</a></td><td>One hypervisor with real segmentation, GPU sharing, tested backups</td></tr><tr><td>2</td><td><a href="/handbook/build-vps-edge/">The VPS edge</a></td><td>A public edge that exposes nothing at home</td></tr><tr><td>3</td><td><a href="/handbook/build-agent-vm/">The agent VM</a></td><td>An agent with a name, a job, tools, a budget — and colleagues</td></tr></tbody></table></div>
+<p>Read them in order the first time. The agent VM assumes somewhere for the agent to <em>act</em>.</p>
+<hr>
+<h2 id="why-this-shape">Why this shape<a class="anchor" href="#why-this-shape" aria-hidden="true">#</a></h2>
+<p>The three tracks are not three projects. They are three answers to one question: <strong>how do you get something useful and safe to operate without you?</strong></p>
+<ul><li>The <strong>hypervisor</strong> gives you somewhere to run things, with isolation you can enforce.</li><li>The <strong>edge</strong> means the lab is never directly exposed, so a mistake is contained.</li><li>The <strong>agent</strong> is what makes it a <em>lab</em> rather than a pile of services: something that builds, verifies, documents and repairs.</li></ul>
+<h2 id="the-three-rules-that-carry-the-whole-thing">The three rules that carry the whole thing<a class="anchor" href="#the-three-rules-that-carry-the-whole-thing" aria-hidden="true">#</a></h2>
+<ol><li><strong>The machine is disposable; Git and the secret store are not.</strong> If you cannot rebuild a machine from a repo plus two secrets, you have not finished setting it up.</li><li><strong>Verify by doing, not by exit code.</strong> Every expensive failure in this handbook returned &quot;success&quot;. Read the artefact the system produced, not the summary.</li><li><strong>Prefer the reversible change.</strong> Mirrored disk, dead-man switch, snapshot before the edit. The clever fix is worth less than the boring escape hatch.</li></ol>
+<h2 id="what-this-assumes">What this assumes<a class="anchor" href="#what-this-assumes" aria-hidden="true">#</a></h2>
+<ul><li>You are comfortable on a Linux command line.</li><li>You can reinstall a machine without panicking.</li><li>You accept that the first version will be wrong — the tracks are written to make being wrong survivable.</li></ul>
+<h2 id="where-the-depth-lives">Where the depth lives<a class="anchor" href="#where-the-depth-lives" aria-hidden="true">#</a></h2>
+<p>This DIY track is the <em>how</em>. The rest of the handbook is the <em>what</em>: <a href="/handbook/architecture/">architecture</a>, <a href="/handbook/agents/">agents</a>, <a href="/handbook/operations/">operations</a>, <a href="/handbook/lessons/">lessons</a>, and the <a href="/handbook/eli5/">plain-language tour</a>.</p>
+</main>
+<footer class="site-foot"><div class="wrap">
+<p class="fine failover-banner"><strong>Failover copy:</strong> served from the edge and synced from the public repository, because the primary lab may be unreachable. <a href="/outage/">What happened?</a></p>
+<p><strong>The Lab Handbook</strong> - public by intention, sanitised by design. No credentials, no internal addresses, no access paths.</p>
+<p class="fine age-note"><strong>Age note:</strong> not everything here is PG. This is a virtual IT shop - strong language is part of the furniture and the humour is grown-up. Mind the workshop floor.</p>
+<p class="fine disclaimer"><strong>Disclaimer:</strong> this entire site is machine-generated. It is not an accurate representation of its owner, of any AI, or of any entity associated with either. Quirks and oddities happen - we fix them when we see them.</p>
+<p class="fine model-credit"><strong>Generated by:</strong> Wren - text model <code>deepseek/deepseek-flash</code>; generated images credit their model beneath the image.</p>
+<p class="fine">Source: the <a href="https://github.com/example/lab-handbook">lab-handbook</a> repository. Static site, no trackers, no third-party scripts, no external fonts.</p>
+<p class="fine">Deployed <time datetime="2026-10-02">2026-10-02</time></p>
+</div></footer>
+<dialog id="search-dialog" class="search-dialog" aria-label="Search">
+<form method="dialog" class="search-form"><label for="q">Search the handbook</label>
+<input id="q" name="q" type="search" autocomplete="off" placeholder="e.g. MTU, GPU, overlay">
+<button value="close" class="search-close" aria-label="Close search">Close</button></form>
+<div id="search-results" class="search-results" role="list"></div>
+<p class="fine">Search runs entirely in your browser against a static index. Nothing is sent anywhere.</p>
+</dialog>
+</body></html>

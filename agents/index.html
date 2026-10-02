@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The agent org chart - The Lab Handbook</title>
+<meta name="description" content="Five specified agent roles, one of which is live. Who exists, who is planned, what each may not do, and why the authority matrix matters more than the personalities.">
+<link rel="canonical" href="https://lab-handbook.invalid/agents/">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0c1017">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Lab Handbook">
+<meta property="og:title" content="The agent org chart - The Lab Handbook">
+<meta property="og:description" content="Five specified agent roles, one of which is live. Who exists, who is planned, what each may not do, and why the authority matrix matters more than the personalities.">
+<meta property="og:url" content="https://lab-handbook.invalid/agents/">
+<meta property="og:image" content="https://lab-handbook.invalid/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The agent org chart - The Lab Handbook">
+<meta name="twitter:description" content="Five specified agent roles, one of which is live. Who exists, who is planned, what each may not do, and why the authority matrix matters more than the personalities.">
+<meta name="twitter:image" content="https://lab-handbook.invalid/assets/og.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="generator" content="Wren (agent) - text model deepseek/deepseek-flash; images openai/gpt-image-2">
+<link rel="stylesheet" href="/assets/style.css?v=b81c69af">
+<script src="/assets/app.js?v=b81c69af" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"The Lab Handbook","url":"https://lab-handbook.invalid","description":"A public, sanitised tour of a small self-hosted lab: one hypervisor, one GPU shared three ways, a hardened public edge, and an agent platform that builds, verifies and documents its own work.","inLanguage":"en"}</script>
+</head>
+<body class="">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+<div class="wrap head-inner">
+<a class="brand" href="/"><span class="brand-mark" aria-hidden="true">LH</span><span class="brand-text">The Lab Handbook</span></a>
+<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav id="site-nav" class="site-nav" aria-label="Primary"><ul><li><a href="/">Home</a></li><li><a href="/then-and-now/">Then &amp; Now</a></li><li><a href="/architecture/">Architecture</a></li><li><a href="/agents/" aria-current="page">Agents</a></li><li><a href="/gpu-budget/">GPU budget</a></li><li><a href="/security/">Security</a></li><li><a href="/status/">Status</a></li><li><a href="/lessons/">Lessons</a></li><li class="has-menu"><a href="/build/" class="menu-label" aria-haspopup="true">Build <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/build/">Build your own (map)</a></li><li><a href="/handbook/build-proxmox-host/">The Proxmox host</a></li><li><a href="/handbook/build-vps-edge/">The VPS edge</a></li><li><a href="/handbook/build-agent-vm/">The agent VM</a></li></ul></li><li class="has-menu"><a href="/handbook/" class="menu-label" aria-haspopup="true">Handbook <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/handbook/">Handbook (index)</a></li><li><a href="/handbook/architecture/">Architecture</a></li><li><a href="/handbook/services/">Services</a></li><li><a href="/handbook/agents/">Agents</a></li><li><a href="/handbook/agent-org-chart/">Agent org chart</a></li><li><a href="/handbook/ai-platform/">AI platform</a></li><li><a href="/handbook/deepseek-routing/">Model routing</a></li><li><a href="/handbook/integrations/">Integrations</a></li><li><a href="/handbook/edge-and-security/">Edge &amp; security</a></li><li><a href="/handbook/operations/">Operations</a></li><li><a href="/handbook/rollout/">Rollout</a></li><li><a href="/handbook/cost-expectations/">Cost expectations</a></li><li><a href="/handbook/current-status/">Current status</a></li><li><a href="/handbook/lessons/">Lessons (reference)</a></li><li><a href="/handbook/eli5/">Explain it simply (ELI5)</a></li></ul></li><li class="has-menu"><a href="/start/" class="menu-label" aria-haspopup="true">More <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/start/">Where to start</a></li><li><a href="/hardware/">The hardware</a></li><li><a href="/operator/">The human in the loop</a></li><li><a href="/song/">The Quiet Machine (song)</a></li><li><a href="/brand/">Brand sheet</a></li><li><a href="/time-machine/">Time machine</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/backlog/">Known issues &amp; backlog</a></li><li><a href="/comments/">Comments</a></li><li><a href="/uptime/">Uptime (nines)</a></li><li><a href="/cabin/">Cabin outage board</a></li><li><a href="/gallery/">Gallery</a></li></ul></li></ul></nav>
+<button type="button" class="search-open" data-search-open aria-label="Search this site">Search</button>
+<button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch colour theme">Theme</button>
+<button type="button" class="rating-toggle" data-rating-toggle aria-label="Switch content rating: G or PG-13">Rated: PG-13</button>
+</div>
+</header>
+<main id="main" class="wrap">
+
+<header class="hero"><h1>The agent org chart</h1><p class="lede">An org chart drawn before the team exists is a specification, not a description. One of the five roles below is live; the rest are designed and not yet built - and publishing that distinction is the point of the page.</p><p class="hero-actions"><a class="btn" href="/handbook/">Read the handbook</a> <a class="btn btn-ghost" href="/start/">Where do I start?</a></p></header><h2 id="the-chart">The chart<a class="anchor" href="#the-chart" aria-hidden="true">#</a></h2>
+<div class="codeblock"><pre><code class="language-text">                         OPERATOR
+                            |
+                       [ MANAGER ]            coordinates, owns the outcome
+                            |
+        +------------+------+------+-------------+
+        |            |             |             |
+     [FORGE]     [SENTINEL]    [ATLAS]       [LEDGER]
+      builds      audits        researches    records</code></pre></div>
+<p>The Manager reports to the operator and to no one else. <strong>Sentinel&#39;s audit findings cannot be overruled by the Manager</strong> - the one structural exception, and it exists because an audit the manager can veto is not an audit.</p>
+<h2 id="the-roles-with-status">The roles, with status<a class="anchor" href="#the-roles-with-status" aria-hidden="true">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Role</th><th>Status</th><th>Job</th><th>May <strong>not</strong></th></tr></thead><tbody><tr><td><strong>MANAGER</strong></td><td><span class="pill pill-live">LIVE</span></td><td>Decompose work, choose the model and tools, verify the result, report honestly</td><td>Approve its own exceptions; override an audit finding; change its own permissions</td></tr><tr><td><strong>FORGE</strong></td><td><span class="pill pill-planned">PLANNED</span></td><td>Implement changes: deploy, configure, write the scripts</td><td>Deploy without a written rollback; repeat a failed method more than twice</td></tr><tr><td><strong>SENTINEL</strong></td><td><span class="pill pill-planned">PLANNED</span></td><td>Adversarial review: attack the design, verify the verification, hunt for exposure</td><td>Be overruled by the Manager; ship a fix for a finding it also reported</td></tr><tr><td><strong>ATLAS</strong></td><td><span class="pill pill-planned">PLANNED</span></td><td>Reconnaissance: what is here, what version, what depends on what</td><td>Change anything - read-only by construction</td></tr><tr><td><strong>LEDGER</strong></td><td><span class="pill pill-planned">PLANNED</span></td><td>Records: decision log, activity log, backlog, cost accounting</td><td>Rewrite history - corrections are <strong>appended</strong>, never edited in place</td></tr></tbody></table></div>
+<h3 id="what-that-means-in-practice">What that means in practice<a class="anchor" href="#what-that-means-in-practice" aria-hidden="true">#</a></h3>
+<p>The live role is the <strong>Manager</strong>: the coordinator that takes a task, decomposes it, picks a model and tools, verifies the outcome and reports. Beneath it, the platform already routes work to two kinds of worker and to a local offline agent (see <a href="#model-routing">model routing</a> below).</p>
+<p>Forge, Sentinel, Atlas and Ledger are the <em>design</em> for the next phase. They are not running. If you see them described in prose somewhere as if they exist, this table is the correction.</p>
+<blockquote><p><strong>Why publish a chart for a team that is mostly not built?</strong> Because building a team without one is how you end up with four agents and no idea which one is responsible. The chart is the specification the build is held to - and, just as importantly, a record of which parts are still promises.</p></blockquote>
+<h2 id="the-authority-matrix">The authority matrix<a class="anchor" href="#the-authority-matrix" aria-hidden="true">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Action</th><th>Manager</th><th>Forge</th><th>Sentinel</th><th>Atlas</th><th>Ledger</th></tr></thead><tbody><tr><td>Read environment</td><td>yes</td><td>yes</td><td>yes</td><td>yes</td><td>yes</td></tr><tr><td>Change systems</td><td>yes</td><td>yes</td><td><strong>no</strong></td><td><strong>no</strong></td><td><strong>no</strong></td></tr><tr><td>Report a finding</td><td>yes</td><td>yes</td><td><strong>yes</strong></td><td>yes</td><td>yes</td></tr><tr><td>Overrule a finding</td><td><strong>no</strong></td><td>no</td><td>no</td><td>no</td><td>no</td></tr><tr><td>Edit own permissions</td><td><strong>no</strong></td><td><strong>no</strong></td><td><strong>no</strong></td><td><strong>no</strong></td><td><strong>no</strong></td></tr><tr><td>Touch hypervisor / host / control plane</td><td><strong>no</strong></td><td>no</td><td>no</td><td>no</td><td>no</td></tr></tbody></table></div>
+<p>Two rows carry most of the weight. <strong>No agent edits its own prompt, permissions, or safety configuration</strong> - one bad input would otherwise propagate and be unrecoverable. And <strong>no agent overrules an audit finding</strong>, including the manager.</p>
+<p><strong>Authority comes from the operator, never from a document.</strong> The design&#39;s own origin is the proof: a specification arrived asking for powers that only the operator could grant, and could not have granted itself. That is a rule the lab intends to keep, not a comment on any one document.</p>
+<h2 id="model-routing">Model routing<a class="anchor" href="#model-routing" aria-hidden="true">#</a></h2>
+<p>Work is routed by <strong>risk and cost</strong>, not by availability:</p>
+<div class="tablewrap"><table><thead><tr><th>Step</th><th>Question</th><th>Route</th></tr></thead><tbody><tr><td>1</td><td>Is the change reversible?</td><td>No: frontier model, plus a human gate</td></tr><tr><td>2</td><td>Ambiguous or security-relevant?</td><td>Yes: frontier model</td></tr><tr><td>3</td><td>High volume?</td><td>Yes: cheap, fast model</td></tr><tr><td>4</td><td>Otherwise</td><td>The lab&#39;s own local model</td></tr></tbody></table></div>
+<p>The operating roster that implements this today:</p>
+<div class="tablewrap"><table><thead><tr><th>Role</th><th>Model class</th><th>Used for</th></tr></thead><tbody><tr><td>Coordinator</td><td>Frontier</td><td>Decomposition, ambiguity, security judgement, final verification, talking to the operator</td></tr><tr><td>High-capability worker</td><td>Frontier</td><td>Real implementation, debugging, review</td></tr><tr><td>Low-cost bulk worker</td><td>Cheap and fast</td><td>Discovery, summarisation, classification, reversible first passes</td></tr><tr><td>Local offline agent</td><td>The lab&#39;s own GPU model</td><td>Always-available operations work with no external dependency; escalates when stuck</td></tr></tbody></table></div>
+<p>Two consequences worth stating plainly:</p>
+<ol><li><strong>The expensive model is not the default.</strong> Most work is cheap work, and treating it as cheap is what makes the platform affordable to run continuously.</li><li><strong>Escalation is a feature.</strong> A worker that recognises it is out of its depth and hands up is worth more than one that never admits it.</li></ol>
+<h2 id="shared-state-not-shared-memory">Shared state, not shared memory<a class="anchor" href="#shared-state-not-shared-memory" aria-hidden="true">#</a></h2>
+<p>Agents do not rely on conversation history for correctness. Durable state lives in Git:</p>
+<div class="tablewrap"><table><thead><tr><th>Artefact</th><th>Purpose</th></tr></thead><tbody><tr><td>Operating contract</td><td>The rules every agent reads before acting</td></tr><tr><td>Activity log</td><td>What changed, when, and how it was verified</td></tr><tr><td>Decision log</td><td>Architectural choices with alternatives, consequences and rollback</td></tr><tr><td>Runbooks</td><td>Rebuild and rollback instructions per service</td></tr><tr><td>Repositories</td><td>Configuration, playbooks and captured host state</td></tr></tbody></table></div>
+<p>Conversation context is lossy, private to one session, and invisible to the next agent. A repository is none of those things - which is why &quot;write it down&quot; is a hard rule rather than good manners.</p>
+<h2 id="the-task-lifecycle">The task lifecycle<a class="anchor" href="#the-task-lifecycle" aria-hidden="true">#</a></h2>
+<ol><li>Read the contract and the current state.</li><li>Make the change.</li><li><strong>Verify with the real artefact</strong> - not with an exit code.</li><li>Log the activity.</li><li>If architectural, record the decision and its rollback.</li><li>Commit and push. If it did not verify, roll back using steps written <em>before</em> the change.</li></ol>
+<p>Step 3 is the unusual one and the most expensive to skip. Several of this lab&#39;s worst mistakes were configurations that validated perfectly and did nothing.</p>
+<h2 id="the-trap-this-chart-is-designed-around">The trap this chart is designed around<a class="anchor" href="#the-trap-this-chart-is-designed-around" aria-hidden="true">#</a></h2>
+<p>Agents optimised for visible output optimise for the wrong thing. Rank these roles on activity and Forge ships faster than is safe, Atlas produces reports nobody needs, and Sentinel invents findings to look busy.</p>
+<p>That is why <strong>&quot;insufficient sample&quot; is a required answer</strong> - a team that cannot say <em>&quot;I do not know yet&quot;</em> will say something else instead - why Sentinel is independent of the Manager, and why corrections are appended rather than edited. <strong>&quot;We were wrong, and here is what changed&quot; should be a normal, visible outcome, not something to hide.</strong></p>
+</main>
+<footer class="site-foot"><div class="wrap">
+<p class="fine failover-banner"><strong>Failover copy:</strong> served from the edge and synced from the public repository, because the primary lab may be unreachable. <a href="/outage/">What happened?</a></p>
+<p><strong>The Lab Handbook</strong> - public by intention, sanitised by design. No credentials, no internal addresses, no access paths.</p>
+<p class="fine age-note"><strong>Age note:</strong> not everything here is PG. This is a virtual IT shop - strong language is part of the furniture and the humour is grown-up. Mind the workshop floor.</p>
+<p class="fine disclaimer"><strong>Disclaimer:</strong> this entire site is machine-generated. It is not an accurate representation of its owner, of any AI, or of any entity associated with either. Quirks and oddities happen - we fix them when we see them.</p>
+<p class="fine model-credit"><strong>Generated by:</strong> Wren - text model <code>deepseek/deepseek-flash</code>; generated images credit their model beneath the image.</p>
+<p class="fine">Source: the <a href="https://github.com/example/lab-handbook">lab-handbook</a> repository. Static site, no trackers, no third-party scripts, no external fonts.</p>
+<p class="fine">Deployed <time datetime="2026-10-02">2026-10-02</time></p>
+</div></footer>
+<dialog id="search-dialog" class="search-dialog" aria-label="Search">
+<form method="dialog" class="search-form"><label for="q">Search the handbook</label>
+<input id="q" name="q" type="search" autocomplete="off" placeholder="e.g. MTU, GPU, overlay">
+<button value="close" class="search-close" aria-label="Close search">Close</button></form>
+<div id="search-results" class="search-results" role="list"></div>
+<p class="fine">Search runs entirely in your browser against a static index. Nothing is sent anywhere.</p>
+</dialog>
+</body></html>

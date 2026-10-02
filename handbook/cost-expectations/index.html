@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>What the AI work costs - The Lab Handbook</title>
+<meta name="description" content="Handbook reference: What the AI work costs">
+<link rel="canonical" href="https://lab-handbook.invalid/handbook/cost-expectations/">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0c1017">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Lab Handbook">
+<meta property="og:title" content="What the AI work costs - The Lab Handbook">
+<meta property="og:description" content="Handbook reference: What the AI work costs">
+<meta property="og:url" content="https://lab-handbook.invalid/handbook/cost-expectations/">
+<meta property="og:image" content="https://lab-handbook.invalid/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="What the AI work costs - The Lab Handbook">
+<meta name="twitter:description" content="Handbook reference: What the AI work costs">
+<meta name="twitter:image" content="https://lab-handbook.invalid/assets/og.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="generator" content="Wren (agent) - text model deepseek/deepseek-flash; images openai/gpt-image-2">
+<link rel="stylesheet" href="/assets/style.css?v=b81c69af">
+<script src="/assets/app.js?v=b81c69af" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"The Lab Handbook","url":"https://lab-handbook.invalid","description":"A public, sanitised tour of a small self-hosted lab: one hypervisor, one GPU shared three ways, a hardened public edge, and an agent platform that builds, verifies and documents its own work.","inLanguage":"en"}</script>
+</head>
+<body class="">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+<div class="wrap head-inner">
+<a class="brand" href="/"><span class="brand-mark" aria-hidden="true">LH</span><span class="brand-text">The Lab Handbook</span></a>
+<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav id="site-nav" class="site-nav" aria-label="Primary"><ul><li><a href="/">Home</a></li><li><a href="/then-and-now/">Then &amp; Now</a></li><li><a href="/architecture/">Architecture</a></li><li><a href="/agents/">Agents</a></li><li><a href="/gpu-budget/">GPU budget</a></li><li><a href="/security/">Security</a></li><li><a href="/status/">Status</a></li><li><a href="/lessons/">Lessons</a></li><li class="has-menu"><a href="/build/" class="menu-label" aria-haspopup="true">Build <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/build/">Build your own (map)</a></li><li><a href="/handbook/build-proxmox-host/">The Proxmox host</a></li><li><a href="/handbook/build-vps-edge/">The VPS edge</a></li><li><a href="/handbook/build-agent-vm/">The agent VM</a></li></ul></li><li class="has-menu"><a href="/handbook/" class="menu-label on" aria-haspopup="true">Handbook <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/handbook/" aria-current="page">Handbook (index)</a></li><li><a href="/handbook/architecture/">Architecture</a></li><li><a href="/handbook/services/">Services</a></li><li><a href="/handbook/agents/">Agents</a></li><li><a href="/handbook/agent-org-chart/">Agent org chart</a></li><li><a href="/handbook/ai-platform/">AI platform</a></li><li><a href="/handbook/deepseek-routing/">Model routing</a></li><li><a href="/handbook/integrations/">Integrations</a></li><li><a href="/handbook/edge-and-security/">Edge &amp; security</a></li><li><a href="/handbook/operations/">Operations</a></li><li><a href="/handbook/rollout/">Rollout</a></li><li><a href="/handbook/cost-expectations/">Cost expectations</a></li><li><a href="/handbook/current-status/">Current status</a></li><li><a href="/handbook/lessons/">Lessons (reference)</a></li><li><a href="/handbook/eli5/">Explain it simply (ELI5)</a></li></ul></li><li class="has-menu"><a href="/start/" class="menu-label" aria-haspopup="true">More <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/start/">Where to start</a></li><li><a href="/hardware/">The hardware</a></li><li><a href="/operator/">The human in the loop</a></li><li><a href="/song/">The Quiet Machine (song)</a></li><li><a href="/brand/">Brand sheet</a></li><li><a href="/time-machine/">Time machine</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/backlog/">Known issues &amp; backlog</a></li><li><a href="/comments/">Comments</a></li><li><a href="/uptime/">Uptime (nines)</a></li><li><a href="/cabin/">Cabin outage board</a></li><li><a href="/gallery/">Gallery</a></li></ul></li></ul></nav>
+<button type="button" class="search-open" data-search-open aria-label="Search this site">Search</button>
+<button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch colour theme">Theme</button>
+<button type="button" class="rating-toggle" data-rating-toggle aria-label="Switch content rating: G or PG-13">Rated: PG-13</button>
+</div>
+</header>
+<main id="main" class="wrap">
+
+<p class="eyebrow">Reference</p><h1 id="what-the-ai-work-costs">What the AI work costs<a class="anchor" href="#what-the-ai-work-costs" aria-hidden="true">#</a></h1>
+<p>Part of the handbook. Answers the question a newcomer actually asks: <em>&quot;what should I expect this to cost?&quot;</em> Written to be useful rather than reassuring.</p>
+<blockquote><p><strong>Sanitisation note.</strong> This page is a sanitised mirror of a private working page. The substance is identical; the specific <strong>models and providers</strong> the lab uses are deliberately not named here. The <em>structure</em> of the cost — which is the transferable part — is unchanged.</p></blockquote>
+<h2 id="the-three-cost-classes">The three cost classes<a class="anchor" href="#the-three-cost-classes" aria-hidden="true">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Class</th><th>What it is</th><th>Marginal cost</th></tr></thead><tbody><tr><td><strong>Local GPU models</strong></td><td>Models served on the lab&#39;s own hardware</td><td><strong>~zero</strong> — electricity. No token bill, no rate limit, works offline.</td></tr><tr><td><strong>Metered API models</strong></td><td>Tokens billed per use</td><td>Per-token, and tiers differ by <strong>~100x</strong></td></tr><tr><td><strong>Operator time</strong></td><td>Reviewing output that turned out wrong</td><td>The expensive one, and the one nobody measures</td></tr></tbody></table></div>
+<p>The third is real. A cheap answer that is wrong and needs redoing costs more than the expensive answer that was right. That is the whole argument for paying for the good model on a hard question.</p>
+<h2 id="model-tiers">Model tiers<a class="anchor" href="#model-tiers" aria-hidden="true">#</a></h2>
+<p>Named by role rather than by product — the ratio is what matters, not the logo.</p>
+<div class="tablewrap"><table><thead><tr><th>Tier</th><th>Typical use</th><th>Relative cost</th></tr></thead><tbody><tr><td>Local</td><td>Routine ops, offline work, sanity checks</td><td><strong>free at the margin</strong></td></tr><tr><td>Low-cost API</td><td>Bulk discovery, summarisation, classification</td><td><strong>1x</strong> (baseline)</td></tr><tr><td>Mid-tier API</td><td>Normal implementation, debugging, review</td><td>~10–30x</td></tr><tr><td>Frontier API</td><td>Ambiguity, architecture, security judgement</td><td>~30–100x</td></tr></tbody></table></div>
+<p><strong>The spread from cheapest to dearest is about two orders of magnitude.</strong> That is why <em>routing</em> matters far more than any optimisation inside a single model.</p>
+<h2 id="the-thing-that-actually-drives-the-bill-context">The thing that actually drives the bill: context<a class="anchor" href="#the-thing-that-actually-drives-the-bill-context" aria-hidden="true">#</a></h2>
+<p>Most people assume cost tracks <em>messages</em>. It does not. <strong>It tracks context length × turns.</strong></p>
+<p>Every turn re-sends the conversation so far, so a long session grows roughly <strong>quadratically</strong> in turns rather than linearly:</p>
+<ul><li>10 turns, small context → negligible</li><li>50 turns, growing context → noticeable</li><li>200+ turns → <strong>millions of cumulative input tokens</strong>, even if each individual answer was short</li></ul>
+<p><strong>Rule of thumb:</strong> a session costs according to <em>how much context it carries</em>, not how much the model writes. A one-line question inside a huge session is expensive; a long answer inside a small one is cheap. This surprises everyone exactly once.</p>
+<h2 id="realistic-per-task-magnitudes">Realistic per-task magnitudes<a class="anchor" href="#realistic-per-task-magnitudes" aria-hidden="true">#</a></h2>
+<p>Order-of-magnitude, for planning. Input tokens dominate in long sessions.</p>
+<div class="tablewrap"><table><thead><tr><th>Task shape</th><th>Input tokens</th><th>Output tokens</th></tr></thead><tbody><tr><td>Single lookup or classification</td><td>1k – 5k</td><td>100 – 500</td></tr><tr><td>Investigate a host, report back</td><td>20k – 80k</td><td>1k – 4k</td></tr><tr><td>A code change plus verification</td><td>20k – 60k</td><td>2k – 5k</td></tr><tr><td>Deploy a service end to end</td><td>50k – 200k</td><td>3k – 10k</td></tr><tr><td>A long interactive session (100+ turns)</td><td><strong>1M – 5M+</strong></td><td>20k – 80k</td></tr></tbody></table></div>
+<h2 id="what-to-expect-in-practice">What to expect in practice<a class="anchor" href="#what-to-expect-in-practice" aria-hidden="true">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Scenario</th><th>Route it through</th><th>Expect</th></tr></thead><tbody><tr><td>&quot;Is the pool full?&quot; — a scheduled check</td><td><strong>a script. no model.</strong></td><td><strong>$0</strong></td></tr><tr><td>&quot;Why is this service down?&quot;</td><td>cheap model</td><td>pennies</td></tr><tr><td>&quot;Deploy this and document it&quot;</td><td>mid-tier</td><td>cents</td></tr><tr><td>&quot;Redesign the network segmentation&quot;</td><td>frontier</td><td>dollars, not cents</td></tr><tr><td>A long day of interactive work</td><td>mixed</td><td><strong>single-digit dollars</strong>, mostly context</td></tr></tbody></table></div>
+<h2 id="keeping-it-honest">Keeping it honest<a class="anchor" href="#keeping-it-honest" aria-hidden="true">#</a></h2>
+<ol><li><strong>Deterministic work should not be reasoned about at all.</strong> A script that checks whether a backup ran costs nothing and cannot hallucinate. A model narrating a healthy system costs money to say nothing. Reasoning is for <em>exceptions</em>, not for narrating normal operation.</li><li><strong>Escalating to a frontier model needs a written reason.</strong> Not to police it — but writing the reason down usually reveals whether it was actually needed.</li><li><strong>Local models make routine work free.</strong> Anything with one right answer should never touch a paid model.</li></ol>
+<h2 id="limits-of-these-numbers">Limits of these numbers<a class="anchor" href="#limits-of-these-numbers" aria-hidden="true">#</a></h2>
+<p><strong>Treat these as planning estimates, not invoices.</strong> They are derived from token magnitudes and tier ratios, not from a metered billing feed.</p>
+<p>Making them exact means reading real per-model token counts from the gateway&#39;s own usage data and multiplying by current published prices — and even then, <strong>measured and estimated figures must be labelled separately</strong>, because presenting an estimate as a measurement is how budgets quietly go wrong.</p>
+<p>The one figure we are confident in: <strong>the scheduled health checks cost nothing</strong>, because they do not use a model at all. That is a design decision, and it is the one that keeps the bill boring.</p>
+</main>
+<footer class="site-foot"><div class="wrap">
+<p class="fine failover-banner"><strong>Failover copy:</strong> served from the edge and synced from the public repository, because the primary lab may be unreachable. <a href="/outage/">What happened?</a></p>
+<p><strong>The Lab Handbook</strong> - public by intention, sanitised by design. No credentials, no internal addresses, no access paths.</p>
+<p class="fine age-note"><strong>Age note:</strong> not everything here is PG. This is a virtual IT shop - strong language is part of the furniture and the humour is grown-up. Mind the workshop floor.</p>
+<p class="fine disclaimer"><strong>Disclaimer:</strong> this entire site is machine-generated. It is not an accurate representation of its owner, of any AI, or of any entity associated with either. Quirks and oddities happen - we fix them when we see them.</p>
+<p class="fine model-credit"><strong>Generated by:</strong> Wren - text model <code>deepseek/deepseek-flash</code>; generated images credit their model beneath the image.</p>
+<p class="fine">Source: the <a href="https://github.com/example/lab-handbook">lab-handbook</a> repository. Static site, no trackers, no third-party scripts, no external fonts.</p>
+<p class="fine">Deployed <time datetime="2026-10-02">2026-10-02</time></p>
+</div></footer>
+<dialog id="search-dialog" class="search-dialog" aria-label="Search">
+<form method="dialog" class="search-form"><label for="q">Search the handbook</label>
+<input id="q" name="q" type="search" autocomplete="off" placeholder="e.g. MTU, GPU, overlay">
+<button value="close" class="search-close" aria-label="Close search">Close</button></form>
+<div id="search-results" class="search-results" role="list"></div>
+<p class="fine">Search runs entirely in your browser against a static index. Nothing is sent anywhere.</p>
+</dialog>
+</body></html>

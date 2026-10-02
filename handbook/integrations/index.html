@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Integrations - The Lab Handbook</title>
+<meta name="description" content="Handbook reference: Integrations">
+<link rel="canonical" href="https://lab-handbook.invalid/handbook/integrations/">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0c1017">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Lab Handbook">
+<meta property="og:title" content="Integrations - The Lab Handbook">
+<meta property="og:description" content="Handbook reference: Integrations">
+<meta property="og:url" content="https://lab-handbook.invalid/handbook/integrations/">
+<meta property="og:image" content="https://lab-handbook.invalid/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Integrations - The Lab Handbook">
+<meta name="twitter:description" content="Handbook reference: Integrations">
+<meta name="twitter:image" content="https://lab-handbook.invalid/assets/og.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="generator" content="Wren (agent) - text model deepseek/deepseek-flash; images openai/gpt-image-2">
+<link rel="stylesheet" href="/assets/style.css?v=b81c69af">
+<script src="/assets/app.js?v=b81c69af" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"The Lab Handbook","url":"https://lab-handbook.invalid","description":"A public, sanitised tour of a small self-hosted lab: one hypervisor, one GPU shared three ways, a hardened public edge, and an agent platform that builds, verifies and documents its own work.","inLanguage":"en"}</script>
+</head>
+<body class="">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+<div class="wrap head-inner">
+<a class="brand" href="/"><span class="brand-mark" aria-hidden="true">LH</span><span class="brand-text">The Lab Handbook</span></a>
+<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav id="site-nav" class="site-nav" aria-label="Primary"><ul><li><a href="/">Home</a></li><li><a href="/then-and-now/">Then &amp; Now</a></li><li><a href="/architecture/">Architecture</a></li><li><a href="/agents/">Agents</a></li><li><a href="/gpu-budget/">GPU budget</a></li><li><a href="/security/">Security</a></li><li><a href="/status/">Status</a></li><li><a href="/lessons/">Lessons</a></li><li class="has-menu"><a href="/build/" class="menu-label" aria-haspopup="true">Build <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/build/">Build your own (map)</a></li><li><a href="/handbook/build-proxmox-host/">The Proxmox host</a></li><li><a href="/handbook/build-vps-edge/">The VPS edge</a></li><li><a href="/handbook/build-agent-vm/">The agent VM</a></li></ul></li><li class="has-menu"><a href="/handbook/" class="menu-label on" aria-haspopup="true">Handbook <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/handbook/" aria-current="page">Handbook (index)</a></li><li><a href="/handbook/architecture/">Architecture</a></li><li><a href="/handbook/services/">Services</a></li><li><a href="/handbook/agents/">Agents</a></li><li><a href="/handbook/agent-org-chart/">Agent org chart</a></li><li><a href="/handbook/ai-platform/">AI platform</a></li><li><a href="/handbook/deepseek-routing/">Model routing</a></li><li><a href="/handbook/integrations/">Integrations</a></li><li><a href="/handbook/edge-and-security/">Edge &amp; security</a></li><li><a href="/handbook/operations/">Operations</a></li><li><a href="/handbook/rollout/">Rollout</a></li><li><a href="/handbook/cost-expectations/">Cost expectations</a></li><li><a href="/handbook/current-status/">Current status</a></li><li><a href="/handbook/lessons/">Lessons (reference)</a></li><li><a href="/handbook/eli5/">Explain it simply (ELI5)</a></li></ul></li><li class="has-menu"><a href="/start/" class="menu-label" aria-haspopup="true">More <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/start/">Where to start</a></li><li><a href="/hardware/">The hardware</a></li><li><a href="/operator/">The human in the loop</a></li><li><a href="/song/">The Quiet Machine (song)</a></li><li><a href="/brand/">Brand sheet</a></li><li><a href="/time-machine/">Time machine</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/backlog/">Known issues &amp; backlog</a></li><li><a href="/comments/">Comments</a></li><li><a href="/uptime/">Uptime (nines)</a></li><li><a href="/cabin/">Cabin outage board</a></li><li><a href="/gallery/">Gallery</a></li></ul></li></ul></nav>
+<button type="button" class="search-open" data-search-open aria-label="Search this site">Search</button>
+<button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch colour theme">Theme</button>
+<button type="button" class="rating-toggle" data-rating-toggle aria-label="Switch content rating: G or PG-13">Rated: PG-13</button>
+</div>
+</header>
+<main id="main" class="wrap">
+
+<p class="eyebrow">Reference</p><h1 id="integrations">Integrations<a class="anchor" href="#integrations" aria-hidden="true">#</a></h1>
+<p>_Detail behind the <a href="/handbook/">README</a>. Everything talks to something; this is the map._</p>
+<p>An integration is not just a connection — it is a <strong>contract</strong> with a failure mode. Each entry below records what is wired to what, over which protocol, who owns the credential, and what happens when it breaks.</p>
+<hr>
+<h2 id="the-whole-map">The whole map<a class="anchor" href="#the-whole-map" aria-hidden="true">#</a></h2>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart TB
+    subgraph Human[&quot;Human-facing&quot;]
+        BROWSER[Browser]
+        VAULTUI[Vault UI]
+        MEDIAPLAY[Media players]
+        GEVUI[Visualisation UI]
+    end
+
+    subgraph EdgeL[&quot;Edge&quot;]
+        PROXY2[DNS + proxy provider]
+        EDGE[Edge reverse proxy]
+        OVL[(Private overlay)]
+    end
+
+    subgraph AIL[&quot;AI&quot;]
+        CHAT2[Chat front-end]
+        LLM4[Local LLM API]
+        IMGAPI[Image API]
+        PARSE2[Parser sidecar]
+        SEARCH2[Search sidecar]
+    end
+
+    subgraph AgentsL[&quot;Agents&quot;]
+        COORD2[Coordinator]
+        WORKERS[Workers]
+        CLOUDAPI[Frontier model APIs]
+    end
+
+    subgraph OpsL[&quot;Operations&quot;]
+        ANS[Ansible control]
+        GITREPO[Git repositories]
+        SYSLOG2[Syslog collector]
+        INDEX2[Search index]
+    end
+
+    subgraph DataL[&quot;Data&quot;]
+        MEDIASTORE[Media store]
+        MEDIAPP[Media front-ends]
+        AUTOSTACK[Automation]
+    end
+
+    BROWSER --&gt; PROXY2 --&gt; EDGE --&gt; OVL
+    OVL --&gt; CHAT2
+    OVL --&gt; MEDIAPP
+    OVL --&gt; LLM4
+    OVL --&gt; GEVUI
+    MEDIAPLAY --&gt; PROXY2
+    CHAT2 --&gt; LLM4
+    CHAT2 --&gt; IMGAPI
+    CHAT2 --&gt; PARSE2
+    CHAT2 --&gt; SEARCH2
+    COORD2 --&gt; WORKERS
+    WORKERS --&gt; LLM4
+    WORKERS --&gt; CLOUDAPI
+    ANS --&gt; GITREPO
+    ANS --&gt; MEDIAPP
+    ANS --&gt; AUTOSTACK
+    CHAT2 --&gt; SYSLOG2
+    EDGE --&gt; SYSLOG2
+    MEDIAPP --&gt; MEDIASTORE
+    AUTOSTACK --&gt; MEDIAPP</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<hr>
+<h2 id="1-browser-published-service">1. Browser → published service<a class="anchor" href="#1-browser-published-service" aria-hidden="true">#</a></h2>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>sequenceDiagram
+    participant BR as Browser
+    participant PP as DNS + proxy provider
+    participant EP as Edge proxy
+    participant OV as Overlay
+    participant SV as Lab service
+    BR-&gt;&gt;PP: resolve + connect
+    PP-&gt;&gt;EP: proxied request
+    EP-&gt;&gt;EP: headers, access log
+    EP-&gt;&gt;EP: authenticate
+    EP-&gt;&gt;OV: forward
+    OV-&gt;&gt;SV: deliver
+    SV--&gt;&gt;BR: response</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<ul><li><strong>Contract:</strong> HTTPS in, plain HTTP over the tunnel, a single auth layer.</li><li><strong>Owner of the credential:</strong> depends on the service — the app, or the edge.</li><li><strong>Failure mode:</strong> if the overlay is down, <em>every</em> published service fails at once while the lab is healthy. Distinguishing &quot;edge problem&quot; from &quot;app problem&quot; is the first triage question.</li></ul>
+<hr>
+<h2 id="2-chat-front-end-local-llm">2. Chat front-end → local LLM<a class="anchor" href="#2-chat-front-end-local-llm" aria-hidden="true">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Aspect</th><th>Detail</th></tr></thead><tbody><tr><td>Protocol</td><td>OpenAI-compatible HTTP</td></tr><tr><td>Direction</td><td>Chat front-end initiates; the LLM never calls out</td></tr><tr><td>Credential</td><td>A placeholder key — the local LLM does not authenticate</td></tr><tr><td>Dependency</td><td>The GPU</td></tr></tbody></table></div>
+<ul><li><strong>Contract:</strong> chat completions with the OpenAI schema. Any OpenAI-shaped client can be pointed at it.</li><li><strong>Failure mode:</strong> if the LLM is down, the chat UI loads but every reply fails. If the GPU is busy transcoding, replies slow down rather than fail — a nice property of the shared card.</li></ul>
+<hr>
+<h2 id="3-chat-front-end-image-api">3. Chat front-end → image API<a class="anchor" href="#3-chat-front-end-image-api" aria-hidden="true">#</a></h2>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>sequenceDiagram
+    participant U as User
+    participant C as Chat front-end
+    participant I as Image API
+    participant G as GPU
+    U-&gt;&gt;C: &quot;draw me ...&quot;
+    C-&gt;&gt;I: POST text-to-image (prompt, size, steps)
+    I-&gt;&gt;G: run inference
+    G--&gt;&gt;I: image
+    I--&gt;&gt;C: base64 image
+    C--&gt;&gt;U: rendered image</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<ul><li><strong>Contract:</strong> the Automatic1111 text-to-image shape — the front-end&#39;s own code posts <code>prompt</code>, <code>width</code>, <code>height</code>, <code>steps</code>, <code>negative_prompt</code>. The backend accepts that and ignores the rest.</li><li><strong>Step count is the contract&#39;s sharp edge:</strong> the front-end defaults to a large step count that suits a conventional diffusion model. A fast distilled model needs <strong>few</strong> steps, so the step count is set explicitly rather than left to the default.</li><li><strong>Failure mode:</strong> if the GPU cannot fit the model, generation fails at inference rather than at load — the deceptive shape.</li></ul>
+<hr>
+<h2 id="4-chat-front-end-parser-sidecar">4. Chat front-end → parser sidecar<a class="anchor" href="#4-chat-front-end-parser-sidecar" aria-hidden="true">#</a></h2>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>sequenceDiagram
+    participant U as User
+    participant C as Chat front-end
+    participant P as Parser sidecar
+    U-&gt;&gt;C: upload doc.pdf / bundle.zip
+    C-&gt;&gt;P: send bytes
+    P-&gt;&gt;P: identify format, iterate members
+    P--&gt;&gt;C: extracted text
+    C-&gt;&gt;C: chunk + embed locally
+    C--&gt;&gt;U: model can answer from the file</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<ul><li><strong>Contract:</strong> send bytes, accept plain text back. No shared filesystem, no shared credentials.</li><li><strong>Why a sidecar:</strong> the front-end does not need to know what a zip <em>is</em>. Every format the parser understands becomes available at once, and adding a format is the parser&#39;s problem, not the app&#39;s.</li><li><strong>Failure mode:</strong> if the parser is unreachable, uploads still succeed but index as empty — the user sees a file attached and the model &quot;knowing nothing&quot;. Worth watching for.</li></ul>
+<hr>
+<h2 id="5-chat-front-end-search-sidecar">5. Chat front-end → search sidecar<a class="anchor" href="#5-chat-front-end-search-sidecar" aria-hidden="true">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Aspect</th><th>Detail</th></tr></thead><tbody><tr><td>Protocol</td><td>HTTP, JSON result format</td></tr><tr><td>Credential</td><td>None — the search service is internal</td></tr><tr><td>Direction</td><td>Outbound from the front-end to the sidecar</td></tr></tbody></table></div>
+<ul><li><strong>Contract:</strong> the sidecar returns a JSON result set for a query string.</li><li><strong>Sharp edge:</strong> the metasearch service disables its JSON output by default, with good reason (JSON is normally for trusted internal callers). It must be enabled explicitly for this integration to work at all — the front-end asks for JSON and gets an error page otherwise.</li><li><strong>Failure mode:</strong> search silently returns nothing, and the model answers from memory instead.</li></ul>
+<hr>
+<h2 id="6-agents-models">6. Agents → models<a class="anchor" href="#6-agents-models" aria-hidden="true">#</a></h2>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart LR
+    T{Task arrives} --&gt; R{Risk or cost?}
+    R --&gt;|ambiguous, risky, security| HI[High-capability frontier model]
+    R --&gt;|bulk, reversible| LO[Cheap fast model]
+    R --&gt;|offline or operations| LOC[Local GPU model]
+    LOC -.-&gt;|stuck| ESC[Escalate to coordinator]
+    ESC --&gt; HI</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<ul><li><strong>Contract:</strong> every model is reached through an OpenAI-compatible API, so the routing layer is uniform and a provider can be swapped without rewriting the work.</li><li><strong>Credential ownership:</strong> cloud keys live in a managed secret store, are scoped to the provider&#39;s host, and are injected into the environment rather than written into configuration.</li><li><strong>Failure mode:</strong> a provider outage degrades capability rather than stopping work, because the local model is always available.</li></ul>
+<hr>
+<h2 id="7-ansible-the-estate">7. Ansible → the estate<a class="anchor" href="#7-ansible-the-estate" aria-hidden="true">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Aspect</th><th>Detail</th></tr></thead><tbody><tr><td>Protocol</td><td>SSH from one control node</td></tr><tr><td>Auth</td><td>Key-only, one dedicated key</td></tr><tr><td>Scope</td><td>Hypervisor + media group today; expanding</td></tr></tbody></table></div>
+<ul><li><strong>Contract:</strong> the control node can reach every managed host with the same identity, and playbooks are idempotent.</li><li><strong>Why it matters:</strong> patching and config capture stop being manual rituals and become reproducible commands.</li><li><strong>Failure mode:</strong> a stale inventory — Ansible cheerfully reports success against hosts that no longer exist, or misses hosts that were added without being recorded.</li></ul>
+<hr>
+<h2 id="8-everything-the-log-index">8. Everything → the log index<a class="anchor" href="#8-everything-the-log-index" aria-hidden="true">#</a></h2>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart LR
+    HVL[Hypervisor] --&gt; COL[Syslog collector]
+    EDGEL[Edge] --&gt; COL
+    FWL[Firewall] --&gt; COL
+    GL[Guests and services] --&gt; COL
+    COL --&gt; IDX[(Searchable index)]
+    IDX --&gt; RET[Retention policy]</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<ul><li><strong>Contract:</strong> syslog, over UDP/TCP, from everything that has an opinion.</li><li><strong>The firewall and the edge are the important sources:</strong> they are the only places that can answer &quot;what is actually exposed&quot; and &quot;who actually connected&quot;.</li><li><strong>Failure mode:</strong> the collector fills its disk and ingestion stops <em>silently</em>. Observability outages do not announce themselves.</li></ul>
+<hr>
+<h2 id="9-media-pipeline">9. Media pipeline<a class="anchor" href="#9-media-pipeline" aria-hidden="true">#</a></h2>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart LR
+    REQ[Request] --&gt; AUTO2[Automation]
+    AUTO2 --&gt; IDX3[Indexers]
+    IDX3 --&gt; DL[Download client]
+    DL --&gt; STORE2[Media store]
+    STORE2 --&gt; FRONT[Front-ends]
+    FRONT --&gt; TRANS2[GPU transcode]
+    TRANS2 --&gt; VIEW[Player]</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<ul><li><strong>Contract:</strong> the store is read-only to the front-ends, so the pipeline only ever appends.</li><li><strong>Failure mode:</strong> indexers are the usual culprit, and they fail quietly — the pipeline looks healthy while nothing new arrives.</li></ul>
+<hr>
+<h2 id="integration-hygiene">Integration hygiene<a class="anchor" href="#integration-hygiene" aria-hidden="true">#</a></h2>
+<ol><li><strong>One credential per integration</strong>, owned by one side, stored in the secret store — never in Git.</li><li><strong>One auth layer.</strong> Two layers is a bug with a support ticket.</li><li><strong>Verify with the artifact.</strong> An integration is proven by an extracted archive, a rendered image, a returned search result — not by a green status.</li><li><strong>Prefer a sidecar to embedded logic.</strong> The parser and search services are capabilities the app consumes, not code the app carries.</li><li><strong>Write the failure mode down.</strong> If you cannot say how it breaks, you do not yet understand it.</li></ol>
+</main>
+<footer class="site-foot"><div class="wrap">
+<p class="fine failover-banner"><strong>Failover copy:</strong> served from the edge and synced from the public repository, because the primary lab may be unreachable. <a href="/outage/">What happened?</a></p>
+<p><strong>The Lab Handbook</strong> - public by intention, sanitised by design. No credentials, no internal addresses, no access paths.</p>
+<p class="fine age-note"><strong>Age note:</strong> not everything here is PG. This is a virtual IT shop - strong language is part of the furniture and the humour is grown-up. Mind the workshop floor.</p>
+<p class="fine disclaimer"><strong>Disclaimer:</strong> this entire site is machine-generated. It is not an accurate representation of its owner, of any AI, or of any entity associated with either. Quirks and oddities happen - we fix them when we see them.</p>
+<p class="fine model-credit"><strong>Generated by:</strong> Wren - text model <code>deepseek/deepseek-flash</code>; generated images credit their model beneath the image.</p>
+<p class="fine">Source: the <a href="https://github.com/example/lab-handbook">lab-handbook</a> repository. Static site, no trackers, no third-party scripts, no external fonts.</p>
+<p class="fine">Deployed <time datetime="2026-10-02">2026-10-02</time></p>
+</div></footer>
+<dialog id="search-dialog" class="search-dialog" aria-label="Search">
+<form method="dialog" class="search-form"><label for="q">Search the handbook</label>
+<input id="q" name="q" type="search" autocomplete="off" placeholder="e.g. MTU, GPU, overlay">
+<button value="close" class="search-close" aria-label="Close search">Close</button></form>
+<div id="search-results" class="search-results" role="list"></div>
+<p class="fine">Search runs entirely in your browser against a static index. Nothing is sent anywhere.</p>
+</dialog>
+</body></html>

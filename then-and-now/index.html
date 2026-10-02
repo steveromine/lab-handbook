@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Then and now - The Lab Handbook</title>
+<meta name="description" content="What the lab looked like before consolidation, what changed, and the three problems that forced the change.">
+<link rel="canonical" href="https://lab-handbook.invalid/then-and-now/">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0c1017">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Lab Handbook">
+<meta property="og:title" content="Then and now - The Lab Handbook">
+<meta property="og:description" content="What the lab looked like before consolidation, what changed, and the three problems that forced the change.">
+<meta property="og:url" content="https://lab-handbook.invalid/then-and-now/">
+<meta property="og:image" content="https://lab-handbook.invalid/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Then and now - The Lab Handbook">
+<meta name="twitter:description" content="What the lab looked like before consolidation, what changed, and the three problems that forced the change.">
+<meta name="twitter:image" content="https://lab-handbook.invalid/assets/og.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="generator" content="Wren (agent) - text model deepseek/deepseek-flash; images openai/gpt-image-2">
+<link rel="stylesheet" href="/assets/style.css?v=b81c69af">
+<script src="/assets/app.js?v=b81c69af" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"The Lab Handbook","url":"https://lab-handbook.invalid","description":"A public, sanitised tour of a small self-hosted lab: one hypervisor, one GPU shared three ways, a hardened public edge, and an agent platform that builds, verifies and documents its own work.","inLanguage":"en"}</script>
+</head>
+<body class="">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+<div class="wrap head-inner">
+<a class="brand" href="/"><span class="brand-mark" aria-hidden="true">LH</span><span class="brand-text">The Lab Handbook</span></a>
+<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav id="site-nav" class="site-nav" aria-label="Primary"><ul><li><a href="/">Home</a></li><li><a href="/then-and-now/" aria-current="page">Then &amp; Now</a></li><li><a href="/architecture/">Architecture</a></li><li><a href="/agents/">Agents</a></li><li><a href="/gpu-budget/">GPU budget</a></li><li><a href="/security/">Security</a></li><li><a href="/status/">Status</a></li><li><a href="/lessons/">Lessons</a></li><li class="has-menu"><a href="/build/" class="menu-label" aria-haspopup="true">Build <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/build/">Build your own (map)</a></li><li><a href="/handbook/build-proxmox-host/">The Proxmox host</a></li><li><a href="/handbook/build-vps-edge/">The VPS edge</a></li><li><a href="/handbook/build-agent-vm/">The agent VM</a></li></ul></li><li class="has-menu"><a href="/handbook/" class="menu-label" aria-haspopup="true">Handbook <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/handbook/">Handbook (index)</a></li><li><a href="/handbook/architecture/">Architecture</a></li><li><a href="/handbook/services/">Services</a></li><li><a href="/handbook/agents/">Agents</a></li><li><a href="/handbook/agent-org-chart/">Agent org chart</a></li><li><a href="/handbook/ai-platform/">AI platform</a></li><li><a href="/handbook/deepseek-routing/">Model routing</a></li><li><a href="/handbook/integrations/">Integrations</a></li><li><a href="/handbook/edge-and-security/">Edge &amp; security</a></li><li><a href="/handbook/operations/">Operations</a></li><li><a href="/handbook/rollout/">Rollout</a></li><li><a href="/handbook/cost-expectations/">Cost expectations</a></li><li><a href="/handbook/current-status/">Current status</a></li><li><a href="/handbook/lessons/">Lessons (reference)</a></li><li><a href="/handbook/eli5/">Explain it simply (ELI5)</a></li></ul></li><li class="has-menu"><a href="/start/" class="menu-label" aria-haspopup="true">More <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/start/">Where to start</a></li><li><a href="/hardware/">The hardware</a></li><li><a href="/operator/">The human in the loop</a></li><li><a href="/song/">The Quiet Machine (song)</a></li><li><a href="/brand/">Brand sheet</a></li><li><a href="/time-machine/">Time machine</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/backlog/">Known issues &amp; backlog</a></li><li><a href="/comments/">Comments</a></li><li><a href="/uptime/">Uptime (nines)</a></li><li><a href="/cabin/">Cabin outage board</a></li><li><a href="/gallery/">Gallery</a></li></ul></li></ul></nav>
+<button type="button" class="search-open" data-search-open aria-label="Search this site">Search</button>
+<button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch colour theme">Theme</button>
+<button type="button" class="rating-toggle" data-rating-toggle aria-label="Switch content rating: G or PG-13">Rated: PG-13</button>
+</div>
+</header>
+<main id="main" class="wrap">
+
+<header class="hero"><h1>Then and now</h1><p class="lede">The lab did not start as a platform. It started as a pile of half-finished guests, and it stayed that way until three problems became impossible to ignore.</p><p class="hero-actions"><a class="btn" href="/handbook/">Read the handbook</a> <a class="btn btn-ghost" href="/start/">Where do I start?</a></p></header><h2 id="then-archaeology-not-operations">Then: archaeology, not operations<a class="anchor" href="#then-archaeology-not-operations" aria-hidden="true">#</a></h2>
+<p>One Proxmox host carrying guests that had accumulated organically. A service would be built, half-finished, replaced, and left switched off. By the time consolidation began the host carried:</p>
+<ul><li><strong>Seven retired guests</strong>, several still literally named <code>*-retired-pending-deletion</code>.</li><li><strong>Duplicated agent VMs</strong> across two generations, both nominally live.</li><li><strong>A storage pool close to full</strong>, mostly with disk images nobody would ever boot again.</li><li><strong>Configuration that lived in shell history</strong>, not in a repository.</li></ul>
+<p>Three problems stood out, and each one is a class of problem rather than an incident:</p>
+<div class="tablewrap"><table><thead><tr><th>Problem</th><th>What it actually cost</th></tr></thead><tbody><tr><td><strong>No source of truth</strong></td><td>Configuration and knowledge existed only on the hosts, so a rebuild meant archaeology</td></tr><tr><td><strong>Secrets hygiene</strong></td><td>Credentials were scattered across the estate, and some services assumed nobody would ever look</td></tr><tr><td><strong>No shared spine</strong></td><td>Media, logging, DNS, secrets, AI and public access were separate islands with no consistent pattern</td></tr></tbody></table></div>
+<h2 id="what-changed">What changed<a class="anchor" href="#what-changed" aria-hidden="true">#</a></h2>
+<h3 id="1-git-became-the-source-of-truth">1. Git became the source of truth<a class="anchor" href="#1-git-became-the-source-of-truth" aria-hidden="true">#</a></h3>
+<p>Every material change lands in a repository: an operating contract, an activity log, a decision log, runbooks, and captured host configuration. The rule is blunt - <em>if it is not in Git, it did not happen</em> - and it is what makes the next four changes possible.</p>
+<h3 id="2-the-estate-was-cleaned-not-tidied">2. The estate was cleaned, not tidied<a class="anchor" href="#2-the-estate-was-cleaned-not-tidied" aria-hidden="true">#</a></h3>
+<p>Abandoned guests were <strong>captured</strong> (their configuration preserved) and then <strong>destroyed</strong>. Their roles were folded into properly named, documented replacements. Seven guests were reclaimed, taking the thin pool from nearly full to roughly one-eighth used.</p>
+<p>That reclaim taught a lesson worth repeating: the number that moved was the <strong>thin pool&#39;s own usage</strong>, not the volume group&#39;s free space. Watching the wrong number makes a successful cleanup look like a failed one - see <a href="/lessons/">Lessons</a>.</p>
+<h3 id="3-a-real-edge-replaced-direct-exposure">3. A real edge replaced direct exposure<a class="anchor" href="#3-a-real-edge-replaced-direct-exposure" aria-hidden="true">#</a></h3>
+<p>Instead of exposing services directly, the lab now publishes through a single edge: a small public VPS terminating TLS behind a DNS proxy, joined to the lab by a private overlay network. Nothing at home is reachable from the internet except through that edge, and every published service is authenticated at exactly one layer.</p>
+<h3 id="4-the-ai-platform-was-consolidated">4. The AI platform was consolidated<a class="anchor" href="#4-the-ai-platform-was-consolidated" aria-hidden="true">#</a></h3>
+<p>A local GPU model so routine work does not depend on a paid API, surfaced through a full-featured chat front-end, with image generation, web search, and document <em>and archive</em> ingestion. Local embeddings mean retrieval never sends a user&#39;s document anywhere.</p>
+<h3 id="5-operations-went-onto-rails">5. Operations went onto rails<a class="anchor" href="#5-operations-went-onto-rails" aria-hidden="true">#</a></h3>
+<p>Ansible handles patching and configuration capture. Logs from the hypervisor, the edge, the firewall and the guests flow into one searchable index. The agent platform runs from a documented workspace with explicit rules, and its monitoring is <strong>deterministic</strong> - a script on an hourly timer, not a model narrating a healthy system.</p>
+<h2 id="now">Now<a class="anchor" href="#now" aria-hidden="true">#</a></h2>
+<p>A small, documented, reproducible platform: segmented networks, a hardened edge, a shared GPU doing three jobs, centralised observability, and an AI layer genuinely usable from a browser - with the whole thing described in Git rather than in someone&#39;s memory.</p>
+<h2 id="what-did-not-change">What did not change<a class="anchor" href="#what-did-not-change" aria-hidden="true">#</a></h2>
+<ul><li><strong>One host.</strong> Still a single point of failure. That is a trade, not an oversight.</li><li><strong>Trust inside the server zone.</strong> Most services still listen broadly and rely on the network boundary. A security review named this rather than papering over it; the <a href="/security/">security page</a> states it plainly.</li><li><strong>The tendency to believe a green check.</strong> The lab&#39;s most expensive mistakes were configurations that validated perfectly and did nothing. The countermeasure is procedural: <em>verify with the artefact</em>.</li></ul>
+<h2 id="the-thing-that-made-it-2026-and-not-2016">The thing that made it 2026 and not 2016<a class="anchor" href="#the-thing-that-made-it-2026-and-not-2016" aria-hidden="true">#</a></h2>
+<p>None of the individual pieces is new. Hypervisors, VPN tunnels, reverse proxies and log collectors are all decades old. What changed is that the <strong>coordination layer</strong> - the part that reads the estate, decides what to do, does it, proves it, and writes it down - can now be delegated to software with a written contract and a rollback note. That is the whole difference, and it is why the <a href="/agents/">agent org chart</a> is on this site at all.</p>
+</main>
+<footer class="site-foot"><div class="wrap">
+<p class="fine failover-banner"><strong>Failover copy:</strong> served from the edge and synced from the public repository, because the primary lab may be unreachable. <a href="/outage/">What happened?</a></p>
+<p><strong>The Lab Handbook</strong> - public by intention, sanitised by design. No credentials, no internal addresses, no access paths.</p>
+<p class="fine age-note"><strong>Age note:</strong> not everything here is PG. This is a virtual IT shop - strong language is part of the furniture and the humour is grown-up. Mind the workshop floor.</p>
+<p class="fine disclaimer"><strong>Disclaimer:</strong> this entire site is machine-generated. It is not an accurate representation of its owner, of any AI, or of any entity associated with either. Quirks and oddities happen - we fix them when we see them.</p>
+<p class="fine model-credit"><strong>Generated by:</strong> Wren - text model <code>deepseek/deepseek-flash</code>; generated images credit their model beneath the image.</p>
+<p class="fine">Source: the <a href="https://github.com/example/lab-handbook">lab-handbook</a> repository. Static site, no trackers, no third-party scripts, no external fonts.</p>
+<p class="fine">Deployed <time datetime="2026-10-02">2026-10-02</time></p>
+</div></footer>
+<dialog id="search-dialog" class="search-dialog" aria-label="Search">
+<form method="dialog" class="search-form"><label for="q">Search the handbook</label>
+<input id="q" name="q" type="search" autocomplete="off" placeholder="e.g. MTU, GPU, overlay">
+<button value="close" class="search-close" aria-label="Close search">Close</button></form>
+<div id="search-results" class="search-results" role="list"></div>
+<p class="fine">Search runs entirely in your browser against a static index. Nothing is sent anywhere.</p>
+</dialog>
+</body></html>

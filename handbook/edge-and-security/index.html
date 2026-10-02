@@ -1,0 +1,151 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edge and security posture - The Lab Handbook</title>
+<meta name="description" content="Handbook reference: Edge and security posture">
+<link rel="canonical" href="https://lab-handbook.invalid/handbook/edge-and-security/">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0c1017">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Lab Handbook">
+<meta property="og:title" content="Edge and security posture - The Lab Handbook">
+<meta property="og:description" content="Handbook reference: Edge and security posture">
+<meta property="og:url" content="https://lab-handbook.invalid/handbook/edge-and-security/">
+<meta property="og:image" content="https://lab-handbook.invalid/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Edge and security posture - The Lab Handbook">
+<meta name="twitter:description" content="Handbook reference: Edge and security posture">
+<meta name="twitter:image" content="https://lab-handbook.invalid/assets/og.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="generator" content="Wren (agent) - text model deepseek/deepseek-flash; images openai/gpt-image-2">
+<link rel="stylesheet" href="/assets/style.css?v=b81c69af">
+<script src="/assets/app.js?v=b81c69af" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"The Lab Handbook","url":"https://lab-handbook.invalid","description":"A public, sanitised tour of a small self-hosted lab: one hypervisor, one GPU shared three ways, a hardened public edge, and an agent platform that builds, verifies and documents its own work.","inLanguage":"en"}</script>
+</head>
+<body class="">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+<div class="wrap head-inner">
+<a class="brand" href="/"><span class="brand-mark" aria-hidden="true">LH</span><span class="brand-text">The Lab Handbook</span></a>
+<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav id="site-nav" class="site-nav" aria-label="Primary"><ul><li><a href="/">Home</a></li><li><a href="/then-and-now/">Then &amp; Now</a></li><li><a href="/architecture/">Architecture</a></li><li><a href="/agents/">Agents</a></li><li><a href="/gpu-budget/">GPU budget</a></li><li><a href="/security/">Security</a></li><li><a href="/status/">Status</a></li><li><a href="/lessons/">Lessons</a></li><li class="has-menu"><a href="/build/" class="menu-label" aria-haspopup="true">Build <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/build/">Build your own (map)</a></li><li><a href="/handbook/build-proxmox-host/">The Proxmox host</a></li><li><a href="/handbook/build-vps-edge/">The VPS edge</a></li><li><a href="/handbook/build-agent-vm/">The agent VM</a></li></ul></li><li class="has-menu"><a href="/handbook/" class="menu-label on" aria-haspopup="true">Handbook <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/handbook/" aria-current="page">Handbook (index)</a></li><li><a href="/handbook/architecture/">Architecture</a></li><li><a href="/handbook/services/">Services</a></li><li><a href="/handbook/agents/">Agents</a></li><li><a href="/handbook/agent-org-chart/">Agent org chart</a></li><li><a href="/handbook/ai-platform/">AI platform</a></li><li><a href="/handbook/deepseek-routing/">Model routing</a></li><li><a href="/handbook/integrations/">Integrations</a></li><li><a href="/handbook/edge-and-security/">Edge &amp; security</a></li><li><a href="/handbook/operations/">Operations</a></li><li><a href="/handbook/rollout/">Rollout</a></li><li><a href="/handbook/cost-expectations/">Cost expectations</a></li><li><a href="/handbook/current-status/">Current status</a></li><li><a href="/handbook/lessons/">Lessons (reference)</a></li><li><a href="/handbook/eli5/">Explain it simply (ELI5)</a></li></ul></li><li class="has-menu"><a href="/start/" class="menu-label" aria-haspopup="true">More <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/start/">Where to start</a></li><li><a href="/hardware/">The hardware</a></li><li><a href="/operator/">The human in the loop</a></li><li><a href="/song/">The Quiet Machine (song)</a></li><li><a href="/brand/">Brand sheet</a></li><li><a href="/time-machine/">Time machine</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/backlog/">Known issues &amp; backlog</a></li><li><a href="/comments/">Comments</a></li><li><a href="/uptime/">Uptime (nines)</a></li><li><a href="/cabin/">Cabin outage board</a></li><li><a href="/gallery/">Gallery</a></li></ul></li></ul></nav>
+<button type="button" class="search-open" data-search-open aria-label="Search this site">Search</button>
+<button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch colour theme">Theme</button>
+<button type="button" class="rating-toggle" data-rating-toggle aria-label="Switch content rating: G or PG-13">Rated: PG-13</button>
+</div>
+</header>
+<main id="main" class="wrap">
+
+<p class="eyebrow">Reference</p><h1 id="edge-and-security-posture">Edge and security posture<a class="anchor" href="#edge-and-security-posture" aria-hidden="true">#</a></h1>
+<p>_Detail behind the <a href="/handbook/">README</a>. No addresses, hostnames or credentials._</p>
+<h2 id="the-principle">The principle<a class="anchor" href="#the-principle" aria-hidden="true">#</a></h2>
+<p><strong>Internet-facing services use the edge.</strong> A public service exists only because it was deliberately published through the edge, with authentication, and with the ability to unpublish it in one step.</p>
+<h2 id="trust-boundaries">Trust boundaries<a class="anchor" href="#trust-boundaries" aria-hidden="true">#</a></h2>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart TB
+    subgraph T0[&quot;Untrusted&quot;]
+        INTERNET[The internet]
+    end
+    subgraph T1[&quot;Semi-trusted&quot;]
+        PROVIDER[Proxy provider]
+        EDGEH[Edge host]
+    end
+    subgraph T2[&quot;Trusted - servers&quot;]
+        SVC[Lab services]
+        STORE[Data and storage]
+    end
+    subgraph T3[&quot;Most trusted&quot;]
+        HYPER[Hypervisor]
+        SECRETS[Secret store]
+    end
+    INTERNET --&gt; PROVIDER --&gt; EDGEH
+    EDGEH --&gt;|overlay only, allowlisted| SVC
+    SVC --&gt; STORE
+    HYPER --&gt; SVC
+    SECRETS -.-&gt;|scoped injection| SVC</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<p>Every boundary is crossed in exactly one direction and for a stated reason. The interesting crossings:</p>
+<div class="tablewrap"><table><thead><tr><th>Boundary</th><th>Control</th></tr></thead><tbody><tr><td>Internet to provider</td><td>Provider absorbs floods, hides origin, terminates the public edge</td></tr><tr><td>Provider to edge host</td><td>Host firewall allows HTTP/HTTPS <strong>only</strong> from the provider</td></tr><tr><td>Edge host to lab</td><td>Private overlay; lab services have no public listeners</td></tr><tr><td>Lab to secrets</td><td>Scoped injection for a named host; never a wildcard</td></tr><tr><td>Client zone to management</td><td>Explicit destination/service allowances; not a blanket isolation claim</td></tr></tbody></table></div>
+<h2 id="the-edge-chain">The edge chain<a class="anchor" href="#the-edge-chain" aria-hidden="true">#</a></h2>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>sequenceDiagram
+    participant I as Internet
+    participant P as Proxy provider
+    participant E as Edge proxy
+    participant O as Overlay
+    participant A as Application
+    I-&gt;&gt;P: request
+    P-&gt;&gt;E: proxied request
+    E-&gt;&gt;E: security headers + access log
+    E-&gt;&gt;E: authenticate (when the app has none)
+    E-&gt;&gt;O: forward to the private address
+    O-&gt;&gt;A: deliver
+    A--&gt;&gt;I: response</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<h2 id="the-authentication-model">The authentication model<a class="anchor" href="#the-authentication-model" aria-hidden="true">#</a></h2>
+<p><strong>Exactly one authentication layer per published service.</strong> Two layers is worse than one: it doubles the failure modes, and the second prompt is usually the one that breaks.</p>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart TB
+    Q{Does the application parse the Authorization header itself?}
+    Q --&gt;|Yes| A1[Let the app own its login]
+    Q --&gt;|No - a bare API| A2[Put one auth layer at the edge]
+    A1 --&gt; B1[Publish the UI plainly; gate the raw API separately]
+    A2 --&gt; B2[Single credential prompt at the edge]</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<p>This is not stylistic. HTTP Basic credentials and an application&#39;s own bearer token occupy the <strong>same</strong> request header. If the edge injects a Basic header into a request to an app that reads that header, the app tries to interpret the edge&#39;s credentials as its own token, rejects them, and its front-end signs the user out — <em>while the login itself appears to succeed</em>. The symptom reads as a wrong password, which is why it consumes so much time.</p>
+<p><strong>Rule of thumb:</strong> an application with a login form gets a bare edge block. A bare API gets an edge credential. Never both in the same path.</p>
+<h2 id="exposure-discipline">Exposure discipline<a class="anchor" href="#exposure-discipline" aria-hidden="true">#</a></h2>
+<ul><li>Public HTTP/HTTPS on the edge host is reachable <strong>only through the provider</strong>; from anywhere else it reads as closed. That is intended.</li><li>Lab services are reachable from the internet <strong>only</strong> through the private overlay.</li><li>Every published hostname is individually revocable in three steps: remove the proxy block, remove the DNS record, remove the overlay peer.</li><li>The agent platform&#39;s own control plane stays <strong>loopback-only</strong> on its host.</li></ul>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart LR
+    PUB[Published hostname] --&gt; P1[Proxy block]
+    P1 --&gt; P2[DNS record]
+    P2 --&gt; P3[Overlay peer]
+    P3 -.-&gt;|removing any one breaks the path| DEAD[Not reachable]</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<h2 id="host-hardening">Host hardening<a class="anchor" href="#host-hardening" aria-hidden="true">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Control</th><th>Applies to</th></tr></thead><tbody><tr><td>SSH hardening</td><td>Per-host state varies; a temporary single-account recovery exception is recorded</td></tr><tr><td>Connection rate limiting on the edge&#39;s SSH</td><td>Edge host (bursts look like an outage — a known false alarm)</td></tr><tr><td>Host firewall allowlisting the provider</td><td>Edge host</td></tr><tr><td>Private overlay instead of open ports</td><td>All lab services</td></tr><tr><td>Repositories <strong>secret-free</strong> (private where they hold internal detail)</td><td>Everything</td></tr></tbody></table></div>
+<h2 id="secrets-handling">Secrets handling<a class="anchor" href="#secrets-handling" aria-hidden="true">#</a></h2>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart LR
+    OP[Operator supplies a value] --&gt; STORE[(Managed secret store)]
+    STORE --&gt;|scoped to named hosts only| CMD[The command that needs it]
+    CMD --&gt; USE[Use]
+    STORE -.-&gt;|never| GITREPO[(Git)]
+    CMD -.-&gt;|never printed| LOGS[(Logs)]</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<ul><li>Credentials are stored in a <strong>managed secret store</strong>, not in files inside repositories.</li><li>A stored credential is injected into the environment for <strong>specific destinations only</strong>; a request to any other host gets nothing.</li><li>Agents <strong>use</strong> credentials without reading them into their reasoning whenever the tooling allows.</li><li>Being secret-free is the first layer of defence; repository privacy is only a second.</li><li>Nothing that grants access is documented — not the value, not the location.</li></ul>
+<h2 id="what-we-would-not-do">What we would not do<a class="anchor" href="#what-we-would-not-do" aria-hidden="true">#</a></h2>
+<ul><li>Put two auth layers on one path.</li><li>Expose a lab service directly to the internet.</li><li>Store a credential in Git &quot;temporarily&quot;.</li><li>Let an agent decide to widen exposure.</li><li>Treat a validated configuration as a working service.</li></ul>
+<h2 id="internal-trust-the-honest-caveat">Internal trust — the honest caveat<a class="anchor" href="#internal-trust-the-honest-caveat" aria-hidden="true">#</a></h2>
+<p>The edge is hardened; the server zone is where the assumptions live.</p>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart LR
+    subgraph Hard[&quot;Hardened boundary&quot;]
+        E2[Edge: deny by default, key-only, brute-force defence]
+    end
+    subgraph Soft[&quot;Trusted by assumption&quot;]
+        S3[Server zone: services listen broadly]
+    end
+    E2 --&gt; Soft
+    S3 -.-&gt;|a compromised guest has real reach| S3</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<p>A security review found that most services in the server zone listen on <strong>all interfaces</strong> and rely on the network boundary rather than on authentication. That is a defensible posture for a lab — but it should be stated rather than assumed, because it means a single compromised guest currently has a lot of reach: it could call the model APIs, query the log index, and reach management interfaces.</p>
+<p>The two exposures that were least defensible have been fixed: an unauthenticated document parser and the full log index are no longer reachable from the network. The remaining items are mostly <strong>policy choices</strong> about how much the internal network should be trusted, and they are tracked as findings rather than silently accepted.</p>
+<p><strong>If you build this pattern yourself:</strong> decide explicitly whether the internal network is trusted. If it is not, every service needs either its own authentication or a source restriction at the firewall — and the day you discover this by compromise is too late to make it a choice.</p>
+<h2 id="administrative-ui-and-recovery-exceptions">Administrative UI and recovery exceptions<a class="anchor" href="#administrative-ui-and-recovery-exceptions" aria-hidden="true">#</a></h2>
+<p>The Gateway listener stays loopback-only. An HTTPS reverse proxy on the control host provides the approved client-zone path; only the local proxy is trusted to forward client identity, and it overwrites forwarded headers. Internal certificate trust and browser pairing may be required. A page returning success does not prove authenticated browser use.</p>
+<p>The raw local-model interface has an approved client-zone allowance and was recorded as unauthenticated. It is distinct from the richer chat front-end, which owns its login. This is an existing exposure, not a recommendation to publish an unauthenticated model API.</p>
+<p>A temporary password-login exception was recorded for one recovery account on the control host. Removal awaits installation and testing of the operator key; do not describe the entire estate as uniformly key-only. No credential or credential delivery location belongs here.</p>
+</main>
+<footer class="site-foot"><div class="wrap">
+<p class="fine failover-banner"><strong>Failover copy:</strong> served from the edge and synced from the public repository, because the primary lab may be unreachable. <a href="/outage/">What happened?</a></p>
+<p><strong>The Lab Handbook</strong> - public by intention, sanitised by design. No credentials, no internal addresses, no access paths.</p>
+<p class="fine age-note"><strong>Age note:</strong> not everything here is PG. This is a virtual IT shop - strong language is part of the furniture and the humour is grown-up. Mind the workshop floor.</p>
+<p class="fine disclaimer"><strong>Disclaimer:</strong> this entire site is machine-generated. It is not an accurate representation of its owner, of any AI, or of any entity associated with either. Quirks and oddities happen - we fix them when we see them.</p>
+<p class="fine model-credit"><strong>Generated by:</strong> Wren - text model <code>deepseek/deepseek-flash</code>; generated images credit their model beneath the image.</p>
+<p class="fine">Source: the <a href="https://github.com/example/lab-handbook">lab-handbook</a> repository. Static site, no trackers, no third-party scripts, no external fonts.</p>
+<p class="fine">Deployed <time datetime="2026-10-02">2026-10-02</time></p>
+</div></footer>
+<dialog id="search-dialog" class="search-dialog" aria-label="Search">
+<form method="dialog" class="search-form"><label for="q">Search the handbook</label>
+<input id="q" name="q" type="search" autocomplete="off" placeholder="e.g. MTU, GPU, overlay">
+<button value="close" class="search-close" aria-label="Close search">Close</button></form>
+<div id="search-results" class="search-results" role="list"></div>
+<p class="fine">Search runs entirely in your browser against a static index. Nothing is sent anywhere.</p>
+</dialog>
+</body></html>

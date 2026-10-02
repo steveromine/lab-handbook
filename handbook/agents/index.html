@@ -1,0 +1,174 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The agent platform - The Lab Handbook</title>
+<meta name="description" content="Handbook reference: The agent platform">
+<link rel="canonical" href="https://lab-handbook.invalid/handbook/agents/">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0c1017">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Lab Handbook">
+<meta property="og:title" content="The agent platform - The Lab Handbook">
+<meta property="og:description" content="Handbook reference: The agent platform">
+<meta property="og:url" content="https://lab-handbook.invalid/handbook/agents/">
+<meta property="og:image" content="https://lab-handbook.invalid/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The agent platform - The Lab Handbook">
+<meta name="twitter:description" content="Handbook reference: The agent platform">
+<meta name="twitter:image" content="https://lab-handbook.invalid/assets/og.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="generator" content="Wren (agent) - text model deepseek/deepseek-flash; images openai/gpt-image-2">
+<link rel="stylesheet" href="/assets/style.css?v=b81c69af">
+<script src="/assets/app.js?v=b81c69af" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"The Lab Handbook","url":"https://lab-handbook.invalid","description":"A public, sanitised tour of a small self-hosted lab: one hypervisor, one GPU shared three ways, a hardened public edge, and an agent platform that builds, verifies and documents its own work.","inLanguage":"en"}</script>
+</head>
+<body class="">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+<div class="wrap head-inner">
+<a class="brand" href="/"><span class="brand-mark" aria-hidden="true">LH</span><span class="brand-text">The Lab Handbook</span></a>
+<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav id="site-nav" class="site-nav" aria-label="Primary"><ul><li><a href="/">Home</a></li><li><a href="/then-and-now/">Then &amp; Now</a></li><li><a href="/architecture/">Architecture</a></li><li><a href="/agents/">Agents</a></li><li><a href="/gpu-budget/">GPU budget</a></li><li><a href="/security/">Security</a></li><li><a href="/status/">Status</a></li><li><a href="/lessons/">Lessons</a></li><li class="has-menu"><a href="/build/" class="menu-label" aria-haspopup="true">Build <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/build/">Build your own (map)</a></li><li><a href="/handbook/build-proxmox-host/">The Proxmox host</a></li><li><a href="/handbook/build-vps-edge/">The VPS edge</a></li><li><a href="/handbook/build-agent-vm/">The agent VM</a></li></ul></li><li class="has-menu"><a href="/handbook/" class="menu-label on" aria-haspopup="true">Handbook <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/handbook/" aria-current="page">Handbook (index)</a></li><li><a href="/handbook/architecture/">Architecture</a></li><li><a href="/handbook/services/">Services</a></li><li><a href="/handbook/agents/">Agents</a></li><li><a href="/handbook/agent-org-chart/">Agent org chart</a></li><li><a href="/handbook/ai-platform/">AI platform</a></li><li><a href="/handbook/deepseek-routing/">Model routing</a></li><li><a href="/handbook/integrations/">Integrations</a></li><li><a href="/handbook/edge-and-security/">Edge &amp; security</a></li><li><a href="/handbook/operations/">Operations</a></li><li><a href="/handbook/rollout/">Rollout</a></li><li><a href="/handbook/cost-expectations/">Cost expectations</a></li><li><a href="/handbook/current-status/">Current status</a></li><li><a href="/handbook/lessons/">Lessons (reference)</a></li><li><a href="/handbook/eli5/">Explain it simply (ELI5)</a></li></ul></li><li class="has-menu"><a href="/start/" class="menu-label" aria-haspopup="true">More <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/start/">Where to start</a></li><li><a href="/hardware/">The hardware</a></li><li><a href="/operator/">The human in the loop</a></li><li><a href="/song/">The Quiet Machine (song)</a></li><li><a href="/brand/">Brand sheet</a></li><li><a href="/time-machine/">Time machine</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/backlog/">Known issues &amp; backlog</a></li><li><a href="/comments/">Comments</a></li><li><a href="/uptime/">Uptime (nines)</a></li><li><a href="/cabin/">Cabin outage board</a></li><li><a href="/gallery/">Gallery</a></li></ul></li></ul></nav>
+<button type="button" class="search-open" data-search-open aria-label="Search this site">Search</button>
+<button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch colour theme">Theme</button>
+<button type="button" class="rating-toggle" data-rating-toggle aria-label="Switch content rating: G or PG-13">Rated: PG-13</button>
+</div>
+</header>
+<main id="main" class="wrap">
+
+<p class="eyebrow">Reference</p><h1 id="the-agent-platform">The agent platform<a class="anchor" href="#the-agent-platform" aria-hidden="true">#</a></h1>
+<p>_Detail behind the <a href="/handbook/">README</a>. How automated work is organised, routed and kept honest._</p>
+<p>The lab does not just run a chatbot. It runs an <strong>agent platform</strong>: software that takes a task, does multi-step work against real infrastructure, verifies it, and records what it did.</p>
+<hr>
+<h2 id="why-agents-at-all">Why agents at all<a class="anchor" href="#why-agents-at-all" aria-hidden="true">#</a></h2>
+<p>Running a lab is mostly undifferentiated work: patching, checking, capturing configuration, writing down what changed. That work is:</p>
+<ul><li><strong>Bounded</strong> — the correct outcome is checkable.</li><li><strong>Repetitive</strong> — the same shapes recur.</li><li><strong>Reversible or gated</strong> — most of it can be undone, and the rest can require approval.</li></ul>
+<p>Those three properties are exactly what makes a task safe to hand to an agent. Work that is ambiguous, irreversible, or security-critical is not <em>forbidden</em> — it is <strong>routed to a more capable model and gated on a human decision</strong> rather than handed to the cheapest worker.</p>
+<hr>
+<h2 id="the-roster">The roster<a class="anchor" href="#the-roster" aria-hidden="true">#</a></h2>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart TB
+    COORD[Coordinator]
+    HI[High-capability worker]
+    CHEAP[Low-cost bulk worker]
+    LOCAL[Local offline agent]
+    COORD --&gt; HI
+    COORD --&gt; CHEAP
+    COORD --&gt; LOCAL
+    COORD --&gt; HUMAN[Human operator]</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<div class="tablewrap"><table><thead><tr><th>Role</th><th>Model class</th><th>Used for</th></tr></thead><tbody><tr><td><strong>Coordinator</strong></td><td>Frontier</td><td>Decomposition, ambiguity, security-sensitive judgement, final verification, talking to the operator</td></tr><tr><td><strong>High-capability worker</strong></td><td>Frontier</td><td>Real implementation, debugging, review</td></tr><tr><td><strong>Low-cost bulk worker</strong></td><td>Cheap and fast</td><td>Discovery, summarisation, classification, reversible first passes</td></tr><tr><td><strong>Local offline agent</strong></td><td>The lab&#39;s own GPU model</td><td>Always-available operations work with no external dependency; escalates when stuck</td></tr></tbody></table></div>
+<p>The <strong>local agent is the interesting one</strong>: it runs on its own guest against the lab&#39;s own LLM, so it keeps working when the internet or a provider does not. It is deliberately given an escalation path, because a small local model is good at <em>routine</em> operations and bad at novel reasoning — and pretending otherwise is how you get confident nonsense.</p>
+<hr>
+<h2 id="model-routing">Model routing<a class="anchor" href="#model-routing" aria-hidden="true">#</a></h2>
+<p>Routing is by <strong>risk and cost</strong>, not by availability:</p>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart LR
+    T[Task] --&gt; Q1{Reversible?}
+    Q1 --&gt;|no| HI2[Frontier model + human gate]
+    Q1 --&gt;|yes| Q2{Ambiguous or security-relevant?}
+    Q2 --&gt;|yes| HI3[Frontier model]
+    Q2 --&gt;|no| Q3{High volume?}
+    Q3 --&gt;|yes| CH2[Cheap fast model]
+    Q3 --&gt;|no| LO2[Local model]</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<p>Two consequences worth stating plainly:</p>
+<ol><li><strong>The expensive model is not the default.</strong> Most work is cheap work, and treating it as cheap is what makes the platform affordable to run continuously.</li><li><strong>Escalation is a feature.</strong> A worker that recognises it is out of its depth and hands up is worth more than a worker that never admits it.</li></ol>
+<hr>
+<h2 id="shared-state-not-shared-memory">Shared state, not shared memory<a class="anchor" href="#shared-state-not-shared-memory" aria-hidden="true">#</a></h2>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart TB
+    WS[Single shared workspace] --&gt; R1[Operating contract]
+    WS --&gt; R2[Activity log]
+    WS --&gt; R3[Decision log]
+    WS --&gt; R4[Runbooks and skills]
+    WS --&gt; R5[Repositories]
+    R5 --&gt; GITREPO2[(Git)]</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<p>Agents do not rely on conversation history for correctness. Durable state lives in Git:</p>
+<div class="tablewrap"><table><thead><tr><th>Artefact</th><th>Purpose</th></tr></thead><tbody><tr><td><strong>Operating contract</strong></td><td>The rules every agent reads before acting</td></tr><tr><td><strong>Activity log</strong></td><td>What changed, when, and how it was verified</td></tr><tr><td><strong>Decision log</strong></td><td>Architectural choices with alternatives, consequences, rollback</td></tr><tr><td><strong>Runbooks</strong></td><td>Rebuild and rollback instructions per service</td></tr><tr><td><strong>Repositories</strong></td><td>Configuration, playbooks and captured host state</td></tr></tbody></table></div>
+<p><strong>Why:</strong> conversation context is lossy, private to one session, and invisible to the next agent. A repository is none of those things.</p>
+<hr>
+<h2 id="the-task-lifecycle">The task lifecycle<a class="anchor" href="#the-task-lifecycle" aria-hidden="true">#</a></h2>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart LR
+    A[Read the contract and current state] --&gt; B[Make the change]
+    B --&gt; C[Verify with the real artifact]
+    C --&gt; D[Log the activity]
+    D --&gt; E{Architectural?}
+    E --&gt;|yes| F[Record the decision]
+    E --&gt;|no| G[Commit and push]
+    F --&gt; G
+    G --&gt; H{Verified?}
+    H --&gt;|no| I[Roll back using written steps]
+    H --&gt;|yes| J[Done]</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<p>The <strong>unusual</strong> step is &quot;verify with the real artifact&quot;. It is not enough that a service was configured. The image must render, the archive must extract, the page must load, the file must contain the expected text. Several of this lab&#39;s most expensive mistakes were configurations that validated perfectly and did nothing.</p>
+<hr>
+<h2 id="guardrails">Guardrails<a class="anchor" href="#guardrails" aria-hidden="true">#</a></h2>
+<h3 id="authority">Authority<a class="anchor" href="#authority" aria-hidden="true">#</a></h3>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart TB
+    subgraph Operator[&quot;Operator&quot;]
+        DEC[Decisions, credentials, publication]
+    end
+    subgraph Auto[&quot;Agents&quot;]
+        BUILD[Build, verify, document, roll back]
+    end
+    DEC --&gt;|delegates work| BUILD
+    BUILD --&gt;|reports and proposes| DEC
+    BUILD -.-&gt;|never autonomous| DEC</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<p>Agents may build, verify, document, and roll back their own work. They do not decide to expand exposure, rotate credentials, or take irreversible action. Those require the operator.</p>
+<h3 id="secrets">Secrets<a class="anchor" href="#secrets" aria-hidden="true">#</a></h3>
+<ul><li>Credentials live in a <strong>managed secret store</strong>, injected into the environment only for the hosts they are scoped to. They are never written into repositories, and never printed into logs.</li><li>Where a credential must be <em>used</em>, it is consumed by the command that needs it, not read into the agent&#39;s reasoning.</li><li>Repositories are private as a second layer, not as the primary control.</li></ul>
+<h3 id="verification-of-subordinate-work">Verification of subordinate work<a class="anchor" href="#verification-of-subordinate-work" aria-hidden="true">#</a></h3>
+<p>A worker&#39;s report is <strong>evidence</strong>, not a conclusion. The coordinator checks the artifact before acting on it. This is the same rule as &quot;verify with the real artifact&quot;, applied to people-shaped inputs.</p>
+<h3 id="blast-radius">Blast radius<a class="anchor" href="#blast-radius" aria-hidden="true">#</a></h3>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart LR
+    P[Prefer reversible] --&gt; Q[Capture rollback before the change]
+    Q --&gt; R[Change one thing at a time]
+    R --&gt; S[Prefer gated over autonomous for the irreversible]</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<hr>
+<h2 id="skills-reusable-procedure">Skills: reusable procedure<a class="anchor" href="#skills-reusable-procedure" aria-hidden="true">#</a></h2>
+<p>Because the same tasks recur, procedure is captured as <strong>skills</strong> — short, opinionated runbooks that an agent loads when the task matches. Examples in this lab:</p>
+<div class="tablewrap"><table><thead><tr><th>Skill</th><th>Covers</th></tr></thead><tbody><tr><td>Edge operations</td><td>Publishing, unpublishing, password-protecting, overlay peers</td></tr><tr><td>Service deployment</td><td>Standing up a web app or container service on its own guest</td></tr><tr><td>Protected credentials</td><td>Requesting and consuming stored secrets without seeing them</td></tr><tr><td>Hypervisor access</td><td>Key installation and verification for guests</td></tr><tr><td>GPU media guests</td><td>Handing the shared GPU to a guest and proving it works</td></tr><tr><td>Log collection</td><td>Standing up a collector and pointing sources at it</td></tr><tr><td>Secrets handling</td><td>Reading and relocating credential files safely</td></tr></tbody></table></div>
+<p>Skills encode the <strong>sharp edges</strong> discovered the hard way — the tunnel MTU that must be pinned, the JSON output that must be enabled, the step count that must be lowered. A skill is where a lesson stops being a memory and becomes a procedure.</p>
+<hr>
+<h2 id="what-the-platform-does-not-do">What the platform does not do<a class="anchor" href="#what-the-platform-does-not-do" aria-hidden="true">#</a></h2>
+<ul><li><strong>It does not act on its own goals.</strong> There are no standing objectives, no self-directed expansion, no background acquisition of capability.</li><li><strong>It does not hold credentials it does not need.</strong> Access is per-task and scoped.</li><li><strong>It does not hide its work.</strong> Every material action lands in a log someone can read.</li><li><strong>It does not treat a green check as proof.</strong> The artifact is the proof.</li></ul>
+<hr>
+<h2 id="a-worked-example">A worked example<a class="anchor" href="#a-worked-example" aria-hidden="true">#</a></h2>
+<p>A representative task end to end:</p>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>sequenceDiagram
+    participant O as Operator
+    participant C as Coordinator
+    participant W as Worker
+    participant E as Estate
+    participant G as Git
+    O-&gt;&gt;C: &quot;publish this service publicly&quot;
+    C-&gt;&gt;C: decompose, assess risk, choose a model
+    C-&gt;&gt;W: implement (with the edge skill loaded)
+    W-&gt;&gt;E: create DNS record, add overlay peer, add proxy block
+    W-&gt;&gt;E: verify: no-credential request refused, credentialed request succeeds
+    W-&gt;&gt;G: log activity, update runbook, commit
+    W--&gt;&gt;C: report with evidence
+    C-&gt;&gt;C: verify the evidence independently
+    C--&gt;&gt;O: result, plus what was deliberately not done</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<p>The last line matters as much as the first: the platform is expected to say what it did <strong>and</strong> what it left alone, including the gaps it knows about.</p>
+<h2 id="current-routing-override">Current routing override<a class="anchor" href="#current-routing-override" aria-hidden="true">#</a></h2>
+<p>The operator has selected DeepSeek-only routing for all seven configured coordinator/worker identities, without automatic provider fallback. The tiered-model diagrams and descriptions below describe the prior design, not current routing policy. The local offline service is a separate capability. See <a href="/handbook/rollout/">rollout</a> for runtime verification gates and sequencing.</p>
+</main>
+<footer class="site-foot"><div class="wrap">
+<p class="fine failover-banner"><strong>Failover copy:</strong> served from the edge and synced from the public repository, because the primary lab may be unreachable. <a href="/outage/">What happened?</a></p>
+<p><strong>The Lab Handbook</strong> - public by intention, sanitised by design. No credentials, no internal addresses, no access paths.</p>
+<p class="fine age-note"><strong>Age note:</strong> not everything here is PG. This is a virtual IT shop - strong language is part of the furniture and the humour is grown-up. Mind the workshop floor.</p>
+<p class="fine disclaimer"><strong>Disclaimer:</strong> this entire site is machine-generated. It is not an accurate representation of its owner, of any AI, or of any entity associated with either. Quirks and oddities happen - we fix them when we see them.</p>
+<p class="fine model-credit"><strong>Generated by:</strong> Wren - text model <code>deepseek/deepseek-flash</code>; generated images credit their model beneath the image.</p>
+<p class="fine">Source: the <a href="https://github.com/example/lab-handbook">lab-handbook</a> repository. Static site, no trackers, no third-party scripts, no external fonts.</p>
+<p class="fine">Deployed <time datetime="2026-10-02">2026-10-02</time></p>
+</div></footer>
+<dialog id="search-dialog" class="search-dialog" aria-label="Search">
+<form method="dialog" class="search-form"><label for="q">Search the handbook</label>
+<input id="q" name="q" type="search" autocomplete="off" placeholder="e.g. MTU, GPU, overlay">
+<button value="close" class="search-close" aria-label="Close search">Close</button></form>
+<div id="search-results" class="search-results" role="list"></div>
+<p class="fine">Search runs entirely in your browser against a static index. Nothing is sent anywhere.</p>
+</dialog>
+</body></html>

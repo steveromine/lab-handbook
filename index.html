@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Lab Handbook</title>
+<meta name="description" content="One person, one hypervisor, one shared GPU and a small team of agents: a documented, sanitised tour of a self-hosted lab built to be operated, not admired.">
+<link rel="canonical" href="https://lab-handbook.invalid/">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0c1017">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Lab Handbook">
+<meta property="og:title" content="The Lab Handbook">
+<meta property="og:description" content="One person, one hypervisor, one shared GPU and a small team of agents: a documented, sanitised tour of a self-hosted lab built to be operated, not admired.">
+<meta property="og:url" content="https://lab-handbook.invalid/">
+<meta property="og:image" content="https://lab-handbook.invalid/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="The Lab Handbook">
+<meta name="twitter:description" content="One person, one hypervisor, one shared GPU and a small team of agents: a documented, sanitised tour of a self-hosted lab built to be operated, not admired.">
+<meta name="twitter:image" content="https://lab-handbook.invalid/assets/og.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="generator" content="Wren (agent) - text model deepseek/deepseek-flash; images openai/gpt-image-2">
+<link rel="stylesheet" href="/assets/style.css?v=b81c69af">
+<script src="/assets/app.js?v=b81c69af" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"The Lab Handbook","url":"https://lab-handbook.invalid","description":"A public, sanitised tour of a small self-hosted lab: one hypervisor, one GPU shared three ways, a hardened public edge, and an agent platform that builds, verifies and documents its own work.","inLanguage":"en"}</script>
+</head>
+<body class="home">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+<div class="wrap head-inner">
+<a class="brand" href="/"><span class="brand-mark" aria-hidden="true">LH</span><span class="brand-text">The Lab Handbook</span></a>
+<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav id="site-nav" class="site-nav" aria-label="Primary"><ul><li><a href="/" aria-current="page">Home</a></li><li><a href="/then-and-now/">Then &amp; Now</a></li><li><a href="/architecture/">Architecture</a></li><li><a href="/agents/">Agents</a></li><li><a href="/gpu-budget/">GPU budget</a></li><li><a href="/security/">Security</a></li><li><a href="/status/">Status</a></li><li><a href="/lessons/">Lessons</a></li><li class="has-menu"><a href="/build/" class="menu-label" aria-haspopup="true">Build <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/build/">Build your own (map)</a></li><li><a href="/handbook/build-proxmox-host/">The Proxmox host</a></li><li><a href="/handbook/build-vps-edge/">The VPS edge</a></li><li><a href="/handbook/build-agent-vm/">The agent VM</a></li></ul></li><li class="has-menu"><a href="/handbook/" class="menu-label" aria-haspopup="true">Handbook <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/handbook/">Handbook (index)</a></li><li><a href="/handbook/architecture/">Architecture</a></li><li><a href="/handbook/services/">Services</a></li><li><a href="/handbook/agents/">Agents</a></li><li><a href="/handbook/agent-org-chart/">Agent org chart</a></li><li><a href="/handbook/ai-platform/">AI platform</a></li><li><a href="/handbook/deepseek-routing/">Model routing</a></li><li><a href="/handbook/integrations/">Integrations</a></li><li><a href="/handbook/edge-and-security/">Edge &amp; security</a></li><li><a href="/handbook/operations/">Operations</a></li><li><a href="/handbook/rollout/">Rollout</a></li><li><a href="/handbook/cost-expectations/">Cost expectations</a></li><li><a href="/handbook/current-status/">Current status</a></li><li><a href="/handbook/lessons/">Lessons (reference)</a></li><li><a href="/handbook/eli5/">Explain it simply (ELI5)</a></li></ul></li><li class="has-menu"><a href="/start/" class="menu-label" aria-haspopup="true">More <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/start/">Where to start</a></li><li><a href="/hardware/">The hardware</a></li><li><a href="/operator/">The human in the loop</a></li><li><a href="/song/">The Quiet Machine (song)</a></li><li><a href="/brand/">Brand sheet</a></li><li><a href="/time-machine/">Time machine</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/backlog/">Known issues &amp; backlog</a></li><li><a href="/comments/">Comments</a></li><li><a href="/uptime/">Uptime (nines)</a></li><li><a href="/cabin/">Cabin outage board</a></li><li><a href="/gallery/">Gallery</a></li></ul></li></ul></nav>
+<button type="button" class="search-open" data-search-open aria-label="Search this site">Search</button>
+<button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch colour theme">Theme</button>
+<button type="button" class="rating-toggle" data-rating-toggle aria-label="Switch content rating: G or PG-13">Rated: PG-13</button>
+</div>
+</header>
+<main id="main" class="wrap">
+
+<header class="hero"><p class="eyebrow">A public, sanitised tour</p><h1>One person can now assemble a small autonomous platform</h1><p class="lede">Not because a model got smarter, but because the boring half of running infrastructure became delegable. This is a real lab: one hypervisor, one GPU shared three ways, one hardened edge, and agents that build, verify and document their own work.</p><p class="hero-actions"><a class="btn" href="/handbook/">Read the handbook</a> <a class="btn btn-ghost" href="/start/">Where do I start?</a></p></header><section class="snapshot" aria-labelledby="snapshot-h"><h2 id="snapshot-h">The platform in numbers</h2><dl class="facts"><div class="fact"><dt>Hypervisor</dt><dd><span class="fact-value">1</span><span class="fact-note">One physical Proxmox VE host. A deliberate single point of failure.</span></dd></div><div class="fact"><dt>Guests in service</dt><dd><span class="fact-value">10 + 3</span><span class="fact-note">Ten containers and three virtual machines; seven retired guests reclaimed.</span></dd></div><div class="fact"><dt>GPU</dt><dd><span class="fact-value">8 GB</span><span class="fact-note">One consumer card, shared three ways on purpose.</span></dd></div><div class="fact"><dt>GPU workloads</dt><dd><span class="fact-value">3</span><span class="fact-note">Resident LLM (~5 GB), streaming image model, bursty media transcode.</span></dd></div><div class="fact"><dt>Image generation</dt><dd><span class="fact-value">1-4 steps</span><span class="fact-note">A distilled few-step model; ~1.5-2.5 s per image alongside the LLM.</span></dd></div><div class="fact"><dt>Network zones</dt><dd><span class="fact-value">3</span><span class="fact-note">Management, untrusted client, servers.</span></dd></div><div class="fact"><dt>Public entry points</dt><dd><span class="fact-value">1</span><span class="fact-note">A single hardened edge; lab services have no public listeners.</span></dd></div><div class="fact"><dt>Auth layers per service</dt><dd><span class="fact-value">1</span><span class="fact-note">Exactly one - the app, or the edge. Never both.</span></dd></div><div class="fact"><dt>Agent roles live</dt><dd><span class="fact-value">1 of 5</span><span class="fact-note">Manager is live; Forge, Sentinel, Atlas and Ledger are designed, not built.</span></dd></div></dl><p class="fine">Every figure above is taken from the handbook in this repository. Where the lab has not verified something, the <a href="/status/">status page</a> says so.</p></section><blockquote><p><strong>This is an experiment, not a product.</strong> The Lab Handbook documents one person&#39;s home lab: a working playground for learning how far today&#39;s tools actually reach. Nothing here is polished, supported, or certified. It exists to demonstrate a technology and where it seems to be heading, to help you understand that future, and to leave you a little more knowledgeable about what is possible today - and what may be possible next. Read it as a field notebook, not a manual.</p></blockquote>
+<h2 id="three-ways-in">Three ways in<a class="anchor" href="#three-ways-in" aria-hidden="true">#</a></h2>
+<ul><li><strong>The story</strong> - why any of this exists, and what changed. Start with <a href="/then-and-now/">Then &amp; Now</a>, then <a href="/lessons/">Lessons</a>.</li><li><strong>The build</strong> - the actual blueprint. <a href="/build/">Build your own</a> maps the three tracks; the <a href="/handbook/">handbook</a> has the depth, one page per track.</li><li><strong>The machine</strong> - what it runs on and what it costs. <a href="/hardware/">The hardware</a> is the honest spec sheet; <a href="/gpu-budget/">GPU budget</a> is how one old card is shared three ways.</li></ul>
+<p>New here? <a href="/start/">Where to start</a> is the guided version.</p>
+<h2 id="the-2026-idea-stated-plainly">The 2026 idea, stated plainly<a class="anchor" href="#the-2026-idea-stated-plainly" aria-hidden="true">#</a></h2>
+<p>For twenty years the bottleneck in a home lab was <strong>you</strong>: the person who remembers the workaround, holds the passwords, and notices that the backup stopped running. That bottleneck is now partly removable.</p>
+<p>Four things became cheap at the same time:</p>
+<ol><li><strong>Virtualisation on one box.</strong> A single Proxmox host runs a dozen guests with real isolation, no cluster, no licence.</li><li><strong>A consumer GPU that earns its keep.</strong> One 8 GB card serves a local language model, an image model and hardware video transcoding.</li><li><strong>A public edge that is genuinely cheap.</strong> A small VPS terminates TLS in front of a DNS proxy, and the lab at home makes only <em>outbound</em> connections.</li><li><strong>Agents that hold a task.</strong> Software that decomposes work, uses tools, checks the artefact it produced, and writes down what it changed.</li></ol>
+<p>The interesting claim is not &quot;AI runs my house&quot;. It is narrower and more useful: <strong>the undifferentiated half of operations is now delegable</strong> - patching, capturing configuration, proving a restore, writing the runbook - <em>provided</em> the guardrails are designed first and the agent is not given authority it did not earn.</p>
+<blockquote><p>If any of that reads like a pitch, it is the wrong reading. The lab&#39;s own rule is that a worker&#39;s report is <strong>evidence</strong>, not a conclusion, and that a green check is not proof. The same rule applies to this page.</p></blockquote>
+<h2 id="what-is-actually-here">What is actually here<a class="anchor" href="#what-is-actually-here" aria-hidden="true">#</a></h2>
+<p>A single hypervisor hosting ten containers and three virtual machines: media front-ends over a read-only library, a syslog collector feeding a search index, a password vault, filtering DNS, a local LLM with a chat front-end, an image-generation service, a geospatial visualiser, and an operations agent that runs on the lab&#39;s own model.</p>
+<p>The <a href="/architecture/">architecture page</a> draws it; the <a href="/handbook/services/">services reference</a> lists every one of them, including how each fails.</p>
+<h2 id="the-four-parts-worth-understanding">The four parts worth understanding<a class="anchor" href="#the-four-parts-worth-understanding" aria-hidden="true">#</a></h2>
+<h3 id="the-edge-is-the-only-door">The edge is the only door<a class="anchor" href="#the-edge-is-the-only-door" aria-hidden="true">#</a></h3>
+<p>Nothing in the lab is reachable from the internet except through a single hardened edge host. Lab services have <strong>no public listeners</strong>; the edge reaches them over a private overlay network, and its own firewall accepts HTTP and HTTPS only from the DNS proxy in front of it. Every published name is revocable in three steps. The design is in <a href="/security/">Security</a>, including the parts that are assumptions rather than controls.</p>
+<h3 id="the-gpu-is-a-budget-not-a-checkbox">The GPU is a budget, not a checkbox<a class="anchor" href="#the-gpu-is-a-budget-not-a-checkbox" aria-hidden="true">#</a></h3>
+<p>One 8 GB card, three workloads. Two models that each &quot;fit&quot; in isolation do not fit together - so one is pinned resident and the other streams its modules in on demand. That single constraint explains most of the AI design. It is written up in <a href="/gpu-budget/">GPU as a budget</a>.</p>
+<h3 id="agents-are-an-org-chart-before-they-are-software">Agents are an org chart before they are software<a class="anchor" href="#agents-are-an-org-chart-before-they-are-software" aria-hidden="true">#</a></h3>
+<p>Five roles are specified: a manager who owns the outcome, and four specialists who build, audit, research and record. <strong>One of the five is live.</strong> The other four are designed and not yet built, which is exactly the sort of thing this site is meant to say out loud. See <a href="/agents/">the agent org chart</a>.</p>
+<h3 id="honest-status-beats-a-green-dashboard">Honest status beats a green dashboard<a class="anchor" href="#honest-status-beats-a-green-dashboard" aria-hidden="true">#</a></h3>
+<p>Every claim here is labelled: <strong>designed</strong>, <strong>configured</strong>, <strong>verified</strong>, a <strong>known gap</strong>, or <strong>planned</strong>. The <a href="/status/">status page</a> records what has been proved and, more usefully, what has not.</p>
+<h2 id="what-this-is-not">What this is not<a class="anchor" href="#what-this-is-not" aria-hidden="true">#</a></h2>
+<ul><li><strong>Not a product, and not high availability.</strong> One hypervisor is a single point of failure, deliberately. The lab exists to get the <em>patterns</em> right, not to survive a disk failure.</li><li><strong>Not &quot;military-grade&quot; anything.</strong> The edge is hardened; the server zone is where the assumptions live. Most services there listen broadly and rely on the network boundary. That is a defensible choice for a lab, and it is stated rather than implied.</li><li><strong>Not finished.</strong> Several items are designed and unbuilt, and a few are configured and unproven. Where that is true, the documentation says so instead of rounding up.</li></ul>
+<h2 id="where-to-start">Where to start<a class="anchor" href="#where-to-start" aria-hidden="true">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>If you are...</th><th>Start here</th></tr></thead><tbody><tr><td>Curious, not technical</td><td><a href="/handbook/eli5/">Explain it like I&#39;m 5</a> - plain language, no jargon</td></tr><tr><td>Here for the idea</td><td><a href="/then-and-now/">Then and now</a> - the change that made this possible</td></tr><tr><td>Here to build it</td><td><a href="/build/">Build your own</a> - hypervisor, edge, agent VM</td></tr><tr><td>Technical, wants detail</td><td><a href="/handbook/">The handbook</a> - every document, indexed</td></tr><tr><td>Skeptical, wants limits</td><td><a href="/status/">Status and known gaps</a> and <a href="/lessons/">Lessons</a></td></tr></tbody></table></div>
+</main>
+<footer class="site-foot"><div class="wrap">
+<p class="fine failover-banner"><strong>Failover copy:</strong> served from the edge and synced from the public repository, because the primary lab may be unreachable. <a href="/outage/">What happened?</a></p>
+<p><strong>The Lab Handbook</strong> - public by intention, sanitised by design. No credentials, no internal addresses, no access paths.</p>
+<p class="fine age-note"><strong>Age note:</strong> not everything here is PG. This is a virtual IT shop - strong language is part of the furniture and the humour is grown-up. Mind the workshop floor.</p>
+<p class="fine disclaimer"><strong>Disclaimer:</strong> this entire site is machine-generated. It is not an accurate representation of its owner, of any AI, or of any entity associated with either. Quirks and oddities happen - we fix them when we see them.</p>
+<p class="fine model-credit"><strong>Generated by:</strong> Wren - text model <code>deepseek/deepseek-flash</code>; generated images credit their model beneath the image.</p>
+<p class="fine">Source: the <a href="https://github.com/example/lab-handbook">lab-handbook</a> repository. Static site, no trackers, no third-party scripts, no external fonts.</p>
+<p class="fine">Deployed <time datetime="2026-10-02">2026-10-02</time></p>
+</div></footer>
+<dialog id="search-dialog" class="search-dialog" aria-label="Search">
+<form method="dialog" class="search-form"><label for="q">Search the handbook</label>
+<input id="q" name="q" type="search" autocomplete="off" placeholder="e.g. MTU, GPU, overlay">
+<button value="close" class="search-close" aria-label="Close search">Close</button></form>
+<div id="search-results" class="search-results" role="list"></div>
+<p class="fine">Search runs entirely in your browser against a static index. Nothing is sent anywhere.</p>
+</dialog>
+</body></html>

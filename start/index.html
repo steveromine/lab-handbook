@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Where to start - The Lab Handbook</title>
+<meta name="description" content="Four audience paths through this site: plain-language, the idea, the build, and the technical reference.">
+<link rel="canonical" href="https://lab-handbook.invalid/start/">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0c1017">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Lab Handbook">
+<meta property="og:title" content="Where to start - The Lab Handbook">
+<meta property="og:description" content="Four audience paths through this site: plain-language, the idea, the build, and the technical reference.">
+<meta property="og:url" content="https://lab-handbook.invalid/start/">
+<meta property="og:image" content="https://lab-handbook.invalid/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Where to start - The Lab Handbook">
+<meta name="twitter:description" content="Four audience paths through this site: plain-language, the idea, the build, and the technical reference.">
+<meta name="twitter:image" content="https://lab-handbook.invalid/assets/og.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="generator" content="Wren (agent) - text model deepseek/deepseek-flash; images openai/gpt-image-2">
+<link rel="stylesheet" href="/assets/style.css?v=b81c69af">
+<script src="/assets/app.js?v=b81c69af" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"The Lab Handbook","url":"https://lab-handbook.invalid","description":"A public, sanitised tour of a small self-hosted lab: one hypervisor, one GPU shared three ways, a hardened public edge, and an agent platform that builds, verifies and documents its own work.","inLanguage":"en"}</script>
+</head>
+<body class="">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+<div class="wrap head-inner">
+<a class="brand" href="/"><span class="brand-mark" aria-hidden="true">LH</span><span class="brand-text">The Lab Handbook</span></a>
+<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav id="site-nav" class="site-nav" aria-label="Primary"><ul><li><a href="/">Home</a></li><li><a href="/then-and-now/">Then &amp; Now</a></li><li><a href="/architecture/">Architecture</a></li><li><a href="/agents/">Agents</a></li><li><a href="/gpu-budget/">GPU budget</a></li><li><a href="/security/">Security</a></li><li><a href="/status/">Status</a></li><li><a href="/lessons/">Lessons</a></li><li class="has-menu"><a href="/build/" class="menu-label" aria-haspopup="true">Build <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/build/">Build your own (map)</a></li><li><a href="/handbook/build-proxmox-host/">The Proxmox host</a></li><li><a href="/handbook/build-vps-edge/">The VPS edge</a></li><li><a href="/handbook/build-agent-vm/">The agent VM</a></li></ul></li><li class="has-menu"><a href="/handbook/" class="menu-label" aria-haspopup="true">Handbook <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/handbook/">Handbook (index)</a></li><li><a href="/handbook/architecture/">Architecture</a></li><li><a href="/handbook/services/">Services</a></li><li><a href="/handbook/agents/">Agents</a></li><li><a href="/handbook/agent-org-chart/">Agent org chart</a></li><li><a href="/handbook/ai-platform/">AI platform</a></li><li><a href="/handbook/deepseek-routing/">Model routing</a></li><li><a href="/handbook/integrations/">Integrations</a></li><li><a href="/handbook/edge-and-security/">Edge &amp; security</a></li><li><a href="/handbook/operations/">Operations</a></li><li><a href="/handbook/rollout/">Rollout</a></li><li><a href="/handbook/cost-expectations/">Cost expectations</a></li><li><a href="/handbook/current-status/">Current status</a></li><li><a href="/handbook/lessons/">Lessons (reference)</a></li><li><a href="/handbook/eli5/">Explain it simply (ELI5)</a></li></ul></li><li class="has-menu"><a href="/start/" class="menu-label on" aria-haspopup="true">More <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/start/" aria-current="page">Where to start</a></li><li><a href="/hardware/">The hardware</a></li><li><a href="/operator/">The human in the loop</a></li><li><a href="/song/">The Quiet Machine (song)</a></li><li><a href="/brand/">Brand sheet</a></li><li><a href="/time-machine/">Time machine</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/backlog/">Known issues &amp; backlog</a></li><li><a href="/comments/">Comments</a></li><li><a href="/uptime/">Uptime (nines)</a></li><li><a href="/cabin/">Cabin outage board</a></li><li><a href="/gallery/">Gallery</a></li></ul></li></ul></nav>
+<button type="button" class="search-open" data-search-open aria-label="Search this site">Search</button>
+<button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch colour theme">Theme</button>
+<button type="button" class="rating-toggle" data-rating-toggle aria-label="Switch content rating: G or PG-13">Rated: PG-13</button>
+</div>
+</header>
+<main id="main" class="wrap">
+
+<header class="hero"><h1>Where to start</h1><p class="lede">The same lab, described for four different readers. Pick the one that matches why you are here.</p><p class="hero-actions"><a class="btn" href="/handbook/">Read the handbook</a> <a class="btn btn-ghost" href="/start/">Where do I start?</a></p></header><h2 id="if-you-are-not-technical">If you are not technical<a class="anchor" href="#if-you-are-not-technical" aria-hidden="true">#</a></h2>
+<p>Start with <strong><a href="/handbook/eli5/">Explain it like I am 5</a></strong>. No jargon: one box, many little rooms, one front door - and the part that matters most, which is that <strong>machines build and check the work</strong>, while a person decides what should exist and makes the risky calls.</p>
+<p>Then read <strong><a href="/then-and-now/">Then and now</a></strong> for why the machines matter. Nothing there requires you to know what a hypervisor is.</p>
+<h2 id="if-you-are-here-for-the-idea">If you are here for the idea<a class="anchor" href="#if-you-are-here-for-the-idea" aria-hidden="true">#</a></h2>
+<p>Read <strong><a href="/">One person can now assemble a small autonomous platform</a></strong> - the homepage - and then <strong><a href="/then-and-now/">Then and now</a></strong>.</p>
+<p>The short version: the interesting change is not that a model got clever. It is that the <em>undifferentiated</em> half of operating infrastructure - patching, capturing configuration, proving a backup restores, writing the runbook - became delegable, and the guardrails that make that safe are the actual engineering.</p>
+<h2 id="if-you-want-to-build-it">If you want to build it<a class="anchor" href="#if-you-want-to-build-it" aria-hidden="true">#</a></h2>
+<p>Go to <strong><a href="/build/">Build your own</a></strong>, then work through the handbook tracks in order:</p>
+<ol><li><a href="/handbook/build-proxmox-host/">The Proxmox host</a> - somewhere to run things, with isolation you can enforce.</li><li><a href="/handbook/build-vps-edge/">The VPS edge</a> - a public edge so nothing at home is exposed.</li><li><a href="/handbook/build-agent-vm/">The agent VM</a> - the agent itself, and the questionnaire that designs it.</li></ol>
+<p>Budget a weekend for the first track and an evening for the second. Track three is mostly <em>thinking</em>, not typing - and it is the one people skip.</p>
+<h2 id="if-you-are-technical-and-want-the-detail">If you are technical and want the detail<a class="anchor" href="#if-you-are-technical-and-want-the-detail" aria-hidden="true">#</a></h2>
+<p>The <strong><a href="/handbook/">handbook</a></strong> is the reference layer: architecture, every service, the integrations map, the AI platform, the agent platform, the edge and security posture, operations, current status and lessons.</p>
+<p>Good entry points:</p>
+<div class="tablewrap"><table><thead><tr><th>Document</th><th>Why</th></tr></thead><tbody><tr><td><a href="/handbook/architecture/">Architecture</a></td><td>Compute, zones, storage and capacity</td></tr><tr><td><a href="/handbook/services/">Services</a></td><td>Every service, how it runs, and how it fails</td></tr><tr><td><a href="/handbook/integrations/">Integrations</a></td><td>How everything talks to everything, and each failure mode</td></tr><tr><td><a href="/handbook/edge-and-security/">Edge and security</a></td><td>Trust boundaries, the auth model, the honest caveat</td></tr><tr><td><a href="/handbook/current-status/">Current status</a></td><td>What is recorded as running, and the known gaps</td></tr></tbody></table></div>
+<h2 id="if-you-are-skeptical-good">If you are skeptical - good<a class="anchor" href="#if-you-are-skeptical-good" aria-hidden="true">#</a></h2>
+<p>Read <strong><a href="/status/">Status and known gaps</a></strong> and <strong><a href="/lessons/">Lessons</a></strong> first. They are the pages that say what is designed rather than deployed, what a configuration did not prove, and where the assumptions live.</p>
+<p>That is the intended way to read everything else here: the confident pages are only worth reading because the sceptical ones are honest.</p>
+<h2 id="one-more-thing">One more thing<a class="anchor" href="#one-more-thing" aria-hidden="true">#</a></h2>
+<p>Every page on this site is generated from the public handbook repository, and the build refuses to publish if it finds an internal address, a private hostname, a credential shape or a non-public subdomain in its own output. If you find something it should have caught, that is a bug worth reporting - and a more useful finding than anything on the marketing pages this site deliberately does not have.</p>
+</main>
+<footer class="site-foot"><div class="wrap">
+<p class="fine failover-banner"><strong>Failover copy:</strong> served from the edge and synced from the public repository, because the primary lab may be unreachable. <a href="/outage/">What happened?</a></p>
+<p><strong>The Lab Handbook</strong> - public by intention, sanitised by design. No credentials, no internal addresses, no access paths.</p>
+<p class="fine age-note"><strong>Age note:</strong> not everything here is PG. This is a virtual IT shop - strong language is part of the furniture and the humour is grown-up. Mind the workshop floor.</p>
+<p class="fine disclaimer"><strong>Disclaimer:</strong> this entire site is machine-generated. It is not an accurate representation of its owner, of any AI, or of any entity associated with either. Quirks and oddities happen - we fix them when we see them.</p>
+<p class="fine model-credit"><strong>Generated by:</strong> Wren - text model <code>deepseek/deepseek-flash</code>; generated images credit their model beneath the image.</p>
+<p class="fine">Source: the <a href="https://github.com/example/lab-handbook">lab-handbook</a> repository. Static site, no trackers, no third-party scripts, no external fonts.</p>
+<p class="fine">Deployed <time datetime="2026-10-02">2026-10-02</time></p>
+</div></footer>
+<dialog id="search-dialog" class="search-dialog" aria-label="Search">
+<form method="dialog" class="search-form"><label for="q">Search the handbook</label>
+<input id="q" name="q" type="search" autocomplete="off" placeholder="e.g. MTU, GPU, overlay">
+<button value="close" class="search-close" aria-label="Close search">Close</button></form>
+<div id="search-results" class="search-results" role="list"></div>
+<p class="fine">Search runs entirely in your browser against a static index. Nothing is sent anywhere.</p>
+</dialog>
+</body></html>

@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build Your Own: the agent VM - The Lab Handbook</title>
+<meta name="description" content="Handbook reference: Build Your Own: the agent VM">
+<link rel="canonical" href="https://lab-handbook.invalid/handbook/build-agent-vm/">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0c1017">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Lab Handbook">
+<meta property="og:title" content="Build Your Own: the agent VM - The Lab Handbook">
+<meta property="og:description" content="Handbook reference: Build Your Own: the agent VM">
+<meta property="og:url" content="https://lab-handbook.invalid/handbook/build-agent-vm/">
+<meta property="og:image" content="https://lab-handbook.invalid/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Build Your Own: the agent VM - The Lab Handbook">
+<meta name="twitter:description" content="Handbook reference: Build Your Own: the agent VM">
+<meta name="twitter:image" content="https://lab-handbook.invalid/assets/og.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="generator" content="Wren (agent) - text model deepseek/deepseek-flash; images openai/gpt-image-2">
+<link rel="stylesheet" href="/assets/style.css?v=b81c69af">
+<script src="/assets/app.js?v=b81c69af" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"The Lab Handbook","url":"https://lab-handbook.invalid","description":"A public, sanitised tour of a small self-hosted lab: one hypervisor, one GPU shared three ways, a hardened public edge, and an agent platform that builds, verifies and documents its own work.","inLanguage":"en"}</script>
+</head>
+<body class="">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+<div class="wrap head-inner">
+<a class="brand" href="/"><span class="brand-mark" aria-hidden="true">LH</span><span class="brand-text">The Lab Handbook</span></a>
+<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav id="site-nav" class="site-nav" aria-label="Primary"><ul><li><a href="/">Home</a></li><li><a href="/then-and-now/">Then &amp; Now</a></li><li><a href="/architecture/">Architecture</a></li><li><a href="/agents/">Agents</a></li><li><a href="/gpu-budget/">GPU budget</a></li><li><a href="/security/">Security</a></li><li><a href="/status/">Status</a></li><li><a href="/lessons/">Lessons</a></li><li class="has-menu"><a href="/build/" class="menu-label" aria-haspopup="true">Build <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/build/">Build your own (map)</a></li><li><a href="/handbook/build-proxmox-host/">The Proxmox host</a></li><li><a href="/handbook/build-vps-edge/">The VPS edge</a></li><li><a href="/handbook/build-agent-vm/">The agent VM</a></li></ul></li><li class="has-menu"><a href="/handbook/" class="menu-label on" aria-haspopup="true">Handbook <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/handbook/" aria-current="page">Handbook (index)</a></li><li><a href="/handbook/architecture/">Architecture</a></li><li><a href="/handbook/services/">Services</a></li><li><a href="/handbook/agents/">Agents</a></li><li><a href="/handbook/agent-org-chart/">Agent org chart</a></li><li><a href="/handbook/ai-platform/">AI platform</a></li><li><a href="/handbook/deepseek-routing/">Model routing</a></li><li><a href="/handbook/integrations/">Integrations</a></li><li><a href="/handbook/edge-and-security/">Edge &amp; security</a></li><li><a href="/handbook/operations/">Operations</a></li><li><a href="/handbook/rollout/">Rollout</a></li><li><a href="/handbook/cost-expectations/">Cost expectations</a></li><li><a href="/handbook/current-status/">Current status</a></li><li><a href="/handbook/lessons/">Lessons (reference)</a></li><li><a href="/handbook/eli5/">Explain it simply (ELI5)</a></li></ul></li><li class="has-menu"><a href="/start/" class="menu-label" aria-haspopup="true">More <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/start/">Where to start</a></li><li><a href="/hardware/">The hardware</a></li><li><a href="/operator/">The human in the loop</a></li><li><a href="/song/">The Quiet Machine (song)</a></li><li><a href="/brand/">Brand sheet</a></li><li><a href="/time-machine/">Time machine</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/backlog/">Known issues &amp; backlog</a></li><li><a href="/comments/">Comments</a></li><li><a href="/uptime/">Uptime (nines)</a></li><li><a href="/cabin/">Cabin outage board</a></li><li><a href="/gallery/">Gallery</a></li></ul></li></ul></nav>
+<button type="button" class="search-open" data-search-open aria-label="Search this site">Search</button>
+<button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch colour theme">Theme</button>
+<button type="button" class="rating-toggle" data-rating-toggle aria-label="Switch content rating: G or PG-13">Rated: PG-13</button>
+</div>
+</header>
+<main id="main" class="wrap">
+
+<p class="eyebrow">Reference</p><blockquote><p><strong>Use all of this at your own risk.</strong> These are unvetted recipes from a live lab, not a supported build. They can brick a bootloader, strand your own remote access, or quietly erase a disk. Never point any of it at a machine, a file, or an account you would not be willing to destroy. Keep a known-good way back, test the rollback before you need it, and assume every command will do exactly what it says - because it will.</p></blockquote>
+<h1 id="build-your-own-the-agent-vm">Build Your Own: the agent VM<a class="anchor" href="#build-your-own-the-agent-vm" aria-hidden="true">#</a></h1>
+<p>This is the centrepiece of the DIY track: how to go from a blank Ubuntu VM to **an agent that is conceptually <em>you</em>, with agents under it**. It starts from the bootstrap script and generalises it — the original script was written for one harness (Codex); this one works across all of them.</p>
+<ul><li>Track 1 — <a href="/handbook/build-proxmox-host/">the Proxmox host</a></li><li>Track 2 — <a href="/handbook/build-vps-edge/">the VPS edge</a></li><li><strong>Track 3 — the agent VM (this page)</strong></li></ul>
+<hr>
+<h2 id="0-the-idea">0. The idea<a class="anchor" href="#0-the-idea" aria-hidden="true">#</a></h2>
+<p>Most &quot;install an AI agent&quot; guides stop at <em>it replies to a message</em>. That is not the interesting part. The interesting part is the moment the agent stops being a chatbot and becomes <strong>an operator with a name, a job, a workspace, tools, a budget, and colleagues</strong> — the point where you are conceptually modelling yourself and delegating.</p>
+<p>That is what the questionnaire at the end of this page is for. The install is mechanical; the questionnaire is the design.</p>
+<h2 id="1-what-the-vm-needs">1. What the VM needs<a class="anchor" href="#1-what-the-vm-needs" aria-hidden="true">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Resource</th><th>Minimum</th><th>Why</th></tr></thead><tbody><tr><td>vCPU</td><td>2</td><td>Gateway + Node runtime + git operations</td></tr><tr><td>RAM</td><td>4 GB</td><td>Under this, the runtime and harness OOM</td></tr><tr><td>Disk</td><td>16 GB</td><td>Node runtime + agent state + logs</td></tr><tr><td>OS</td><td>Ubuntu Server LTS</td><td>What the script targets</td></tr></tbody></table></div>
+<p>The VM is deliberately boring. All the interesting state lives in <strong>Git plus a secret store</strong>, so the machine is disposable.</p>
+<blockquote><p>This is a design walkthrough, not a self-contained installer release. The referenced bootstrap script is not distributed in this handbook; verify its supported flags and harnesses in the implementation you actually use. The example below is illustrative, not verified for every harness.</p></blockquote>
+<h2 id="2-what-the-bootstrap-script-does">2. What the bootstrap script does<a class="anchor" href="#2-what-the-bootstrap-script-does" aria-hidden="true">#</a></h2>
+<p>The script (<code>bootstrap-openclaw-agent-vm.sh</code>) is one-shot and idempotent-ish. Before it exits 0 it has:</p>
+<ol><li>Created a <strong>dedicated Unix account</strong> for the agent — the agent is not root.</li><li>Installed OpenClaw <strong>rootless</strong> under <code>/opt</code>, with its own Node runtime.</li><li>Created a <strong>workspace + config repository</strong> in Git, with secrets excluded by construction.</li><li>Bound the Gateway to <strong>loopback only</strong> with token auth, run as a <code>systemd --user</code> service.</li><li>Installed <strong>provider credentials</strong> and pinned them in the auth order.</li><li>Granted <strong>host exec + passwordless sudo</strong> (only if you asked for &quot;lab mode&quot;).</li><li>Turned on <strong>auditd</strong>, trace logging and logrotate — so there is a record of what the agent did.</li><li>Installed a <strong>periodic Git checkpoint timer</strong>.</li><li><strong>Proved a real end-to-end agent turn succeeded</strong> — the script does not exit 0 on &quot;installed but broken&quot;.</li></ol>
+<p>It refuses to run without a provider credential. That is deliberate: finishing with an agent that 401s on its first message is worse than not finishing.</p>
+<blockquote><p><strong>The single most important behaviour:</strong> the script verifies by <em>doing</em>, not by checking exit codes. Everything in this handbook that says &quot;the API said success and the system disagreed&quot; is the reason.</p></blockquote>
+<h2 id="3-supporting-all-harnesses">3. Supporting all harnesses<a class="anchor" href="#3-supporting-all-harnesses" aria-hidden="true">#</a></h2>
+<p>The original script assumed one provider. A harness is <strong>the runtime that actually drives the model</strong> — not the model itself. OpenClaw fronts several, and they have different auth stories:</p>
+<div class="tablewrap"><table><thead><tr><th>Harness</th><th>Auth</th><th>Notes</th></tr></thead><tbody><tr><td><strong>Codex app-server</strong></td><td>ChatGPT subscription (device-code sign-in) or OpenAI API key</td><td>The default path; subscription auth avoids per-token billing</td></tr><tr><td><strong>Claude Code / Claude CLI</strong></td><td>Claude subscription or Anthropic API key</td><td>CLI backends drive the official CLI</td></tr><tr><td><strong>Gemini CLI</strong></td><td>Google account or API key</td><td></td></tr><tr><td><strong>OpenCode</strong></td><td>Provider keys</td><td></td></tr><tr><td><strong>Qwen</strong></td><td>Provider key</td><td></td></tr><tr><td><strong>ACP</strong></td><td>Varies by underlying agent</td><td>One protocol in front of many harnesses</td></tr><tr><td><strong>API providers</strong></td><td>API key</td><td>OpenAI, Anthropic, Google, DeepSeek, …</td></tr><tr><td><strong>Local</strong></td><td>none</td><td>Ollama or llama.cpp — no credential, no egress</td></tr></tbody></table></div>
+<p><strong>Design rule:</strong> pick the <em>harness</em> first, then the <em>model</em>. Mixing them freely is how you end up with a config that looks right and authenticates nowhere.</p>
+<h2 id="4-the-questionnaire">4. The questionnaire<a class="anchor" href="#4-the-questionnaire" aria-hidden="true">#</a></h2>
+<p>This is the part that matters. Each question maps to a config decision; answer them and the script writes the setup. Do this <strong>before</strong> you install, on paper.</p>
+<h3 id="round-1-you">Round 1 — you<a class="anchor" href="#round-1-you" aria-hidden="true">#</a></h3>
+<ol><li><strong>What name and email should the agent commit as?</strong> It writes Git history; make that attributable.</li><li><strong>Which harness do you already pay for?</strong> Subscription beats API key on cost; API key beats subscription on automation. Answer honestly — this is the biggest cost lever.</li><li><strong>What is the single job you want done?</strong> One sentence. If you cannot write it, you are not ready to install; you are ready to think.</li></ol>
+<h3 id="round-2-the-agents-body">Round 2 — the agent&#39;s body<a class="anchor" href="#round-2-the-agents-body" aria-hidden="true">#</a></h3>
+<ol><li><strong>How much access should it have?</strong><ul><li><em>Sandboxed</em> — cannot touch the host. Safe, and can do surprisingly little.</li><li><em>Host exec, no sudo</em> — can run commands as its own user.</li><li><em>Lab mode: host exec + passwordless sudo</em> — it can rebuild the machine it lives on. Choose the <strong>least</strong> that does the job. You can widen later; you cannot un-see a bad command.</li></ul></li><li><strong>Loopback only, or reachable?</strong> Default to loopback. Remote access is a separate decision with a separate threat model — do it deliberately, not as an install option.</li><li><strong>Where do credentials live?</strong> A secret store with an egress allow-list, never a config file and never Git.</li></ol>
+<h3 id="round-3-you-and-your-agents">Round 3 — you and your agents<a class="anchor" href="#round-3-you-and-your-agents" aria-hidden="true">#</a></h3>
+<p>This is the part people skip, and it is the whole point.</p>
+<ol><li><strong>What are the roles?</strong> A working split:<ul><li><strong>main / coordinator</strong> — owns decomposition, verification, and talking to you. Runs on the strongest model. It is <em>your</em> representative.</li><li><strong>implementation / review</strong> — normal-complexity work, stronger than a budget model.</li><li><strong>budget</strong> — high-volume, low-risk, reversible: discovery, summarising, classification. Map each role to a harness+model, not the other way round.</li></ul></li><li><strong>Who may delegate to whom?</strong> This is a real security boundary, not a formality. In this lab only the <strong>coordinator</strong> may spawn the billed agents; the budget agent may only spawn itself. Decide it <em>explicitly</em> — the default is usually wrong in one direction or the other.</li><li><strong>What is each agent&#39;s write scope?</strong> Shared workspace, shared repo, but a stated scope. Agents that can all write everywhere cannot review each other.</li><li><strong>What happens when an agent is wrong?</strong> Review of agent output is a role, not an afterthought. Assign it.</li></ol>
+<h3 id="round-4-what-runs-without-you">Round 4 — what runs without you<a class="anchor" href="#round-4-what-runs-without-you" aria-hidden="true">#</a></h3>
+<ol><li><strong>What should happen on a schedule?</strong> Health checks, backups, patch windows. Anything that has to work while you sleep needs a <strong>deterministic</strong> script, not a model call.</li><li><strong>How do you find out it broke?</strong> The monitor must watch for <em>its own absence</em> — a heartbeat whose missing line is the alarm. This is the check everyone forgets.</li><li><strong>What is the escape hatch?</strong> How do you stop it, and how do you rebuild it from Git alone?</li></ol>
+<h2 id="5-then-and-only-then-install">5. Then, and only then, install<a class="anchor" href="#5-then-and-only-then-install" aria-hidden="true">#</a></h2>
+<div class="codeblock"><pre><code class="language-bash"># 1. Copy the script to the VM and make it executable.
+chmod +x bootstrap-openclaw-agent-vm.sh
+
+# 2. Preview the plan without changing anything.
+./bootstrap-openclaw-agent-vm.sh -test
+
+# 3. Run it, choosing your harness and auth path.
+sudo ./bootstrap-openclaw-agent-vm.sh \
+     --git-name &quot;You&quot; --git-email &quot;&lt;git-author-email&gt;&quot; \
+     --harness codex --auth subscription
+
+# 4. The script exits 0 only after a real agent turn has succeeded.</code></pre></div>
+<p>Every harness is selected with <code>--harness</code>; every credential path with <code>--auth</code>. Refusing a credential up front is the point — see §2.</p>
+<h2 id="6-what-done-looks-like">6. What &quot;done&quot; looks like<a class="anchor" href="#6-what-done-looks-like" aria-hidden="true">#</a></h2>
+<ul><li>The agent has a <strong>name and a job</strong>, not just a socket.</li><li><strong>You</strong> talk to a coordinator; the coordinator talks to workers.</li><li>Credentials are in a store, <strong>never</strong> in the repo.</li><li>The Gateway is <strong>loopback-only</strong> unless you deliberately changed that.</li><li>Something checks the checkers, and the absence of a heartbeat is an alarm.</li><li><strong>You can rebuild the whole thing from Git plus two secrets.</strong></li></ul>
+<p>If any line above is false, the install is not done — regardless of what the script printed.</p>
+</main>
+<footer class="site-foot"><div class="wrap">
+<p class="fine failover-banner"><strong>Failover copy:</strong> served from the edge and synced from the public repository, because the primary lab may be unreachable. <a href="/outage/">What happened?</a></p>
+<p><strong>The Lab Handbook</strong> - public by intention, sanitised by design. No credentials, no internal addresses, no access paths.</p>
+<p class="fine age-note"><strong>Age note:</strong> not everything here is PG. This is a virtual IT shop - strong language is part of the furniture and the humour is grown-up. Mind the workshop floor.</p>
+<p class="fine disclaimer"><strong>Disclaimer:</strong> this entire site is machine-generated. It is not an accurate representation of its owner, of any AI, or of any entity associated with either. Quirks and oddities happen - we fix them when we see them.</p>
+<p class="fine model-credit"><strong>Generated by:</strong> Wren - text model <code>deepseek/deepseek-flash</code>; generated images credit their model beneath the image.</p>
+<p class="fine">Source: the <a href="https://github.com/example/lab-handbook">lab-handbook</a> repository. Static site, no trackers, no third-party scripts, no external fonts.</p>
+<p class="fine">Deployed <time datetime="2026-10-02">2026-10-02</time></p>
+</div></footer>
+<dialog id="search-dialog" class="search-dialog" aria-label="Search">
+<form method="dialog" class="search-form"><label for="q">Search the handbook</label>
+<input id="q" name="q" type="search" autocomplete="off" placeholder="e.g. MTU, GPU, overlay">
+<button value="close" class="search-close" aria-label="Close search">Close</button></form>
+<div id="search-results" class="search-results" role="list"></div>
+<p class="fine">Search runs entirely in your browser against a static index. Nothing is sent anywhere.</p>
+</dialog>
+</body></html>

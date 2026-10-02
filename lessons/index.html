@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Lessons, written down - The Lab Handbook</title>
+<meta name="description" content="Expensive failures from a real lab, each with the symptom, what was assumed, what it actually was, the fix and the permanent rule it produced.">
+<link rel="canonical" href="https://lab-handbook.invalid/lessons/">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0c1017">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Lab Handbook">
+<meta property="og:title" content="Lessons, written down - The Lab Handbook">
+<meta property="og:description" content="Expensive failures from a real lab, each with the symptom, what was assumed, what it actually was, the fix and the permanent rule it produced.">
+<meta property="og:url" content="https://lab-handbook.invalid/lessons/">
+<meta property="og:image" content="https://lab-handbook.invalid/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Lessons, written down - The Lab Handbook">
+<meta name="twitter:description" content="Expensive failures from a real lab, each with the symptom, what was assumed, what it actually was, the fix and the permanent rule it produced.">
+<meta name="twitter:image" content="https://lab-handbook.invalid/assets/og.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="generator" content="Wren (agent) - text model deepseek/deepseek-flash; images openai/gpt-image-2">
+<link rel="stylesheet" href="/assets/style.css?v=b81c69af">
+<script src="/assets/app.js?v=b81c69af" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"The Lab Handbook","url":"https://lab-handbook.invalid","description":"A public, sanitised tour of a small self-hosted lab: one hypervisor, one GPU shared three ways, a hardened public edge, and an agent platform that builds, verifies and documents its own work.","inLanguage":"en"}</script>
+</head>
+<body class="">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+<div class="wrap head-inner">
+<a class="brand" href="/"><span class="brand-mark" aria-hidden="true">LH</span><span class="brand-text">The Lab Handbook</span></a>
+<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav id="site-nav" class="site-nav" aria-label="Primary"><ul><li><a href="/">Home</a></li><li><a href="/then-and-now/">Then &amp; Now</a></li><li><a href="/architecture/">Architecture</a></li><li><a href="/agents/">Agents</a></li><li><a href="/gpu-budget/">GPU budget</a></li><li><a href="/security/">Security</a></li><li><a href="/status/">Status</a></li><li><a href="/lessons/" aria-current="page">Lessons</a></li><li class="has-menu"><a href="/build/" class="menu-label" aria-haspopup="true">Build <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/build/">Build your own (map)</a></li><li><a href="/handbook/build-proxmox-host/">The Proxmox host</a></li><li><a href="/handbook/build-vps-edge/">The VPS edge</a></li><li><a href="/handbook/build-agent-vm/">The agent VM</a></li></ul></li><li class="has-menu"><a href="/handbook/" class="menu-label" aria-haspopup="true">Handbook <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/handbook/">Handbook (index)</a></li><li><a href="/handbook/architecture/">Architecture</a></li><li><a href="/handbook/services/">Services</a></li><li><a href="/handbook/agents/">Agents</a></li><li><a href="/handbook/agent-org-chart/">Agent org chart</a></li><li><a href="/handbook/ai-platform/">AI platform</a></li><li><a href="/handbook/deepseek-routing/">Model routing</a></li><li><a href="/handbook/integrations/">Integrations</a></li><li><a href="/handbook/edge-and-security/">Edge &amp; security</a></li><li><a href="/handbook/operations/">Operations</a></li><li><a href="/handbook/rollout/">Rollout</a></li><li><a href="/handbook/cost-expectations/">Cost expectations</a></li><li><a href="/handbook/current-status/">Current status</a></li><li><a href="/handbook/lessons/">Lessons (reference)</a></li><li><a href="/handbook/eli5/">Explain it simply (ELI5)</a></li></ul></li><li class="has-menu"><a href="/start/" class="menu-label" aria-haspopup="true">More <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/start/">Where to start</a></li><li><a href="/hardware/">The hardware</a></li><li><a href="/operator/">The human in the loop</a></li><li><a href="/song/">The Quiet Machine (song)</a></li><li><a href="/brand/">Brand sheet</a></li><li><a href="/time-machine/">Time machine</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/backlog/">Known issues &amp; backlog</a></li><li><a href="/comments/">Comments</a></li><li><a href="/uptime/">Uptime (nines)</a></li><li><a href="/cabin/">Cabin outage board</a></li><li><a href="/gallery/">Gallery</a></li></ul></li></ul></nav>
+<button type="button" class="search-open" data-search-open aria-label="Search this site">Search</button>
+<button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch colour theme">Theme</button>
+<button type="button" class="rating-toggle" data-rating-toggle aria-label="Switch content rating: G or PG-13">Rated: PG-13</button>
+</div>
+</header>
+<main id="main" class="wrap">
+
+<header class="hero"><h1>Failures, and what they actually were</h1><p class="lede">These are not general principles. Each one cost hours in this lab, and each is now encoded in a skill or a runbook so it cannot recur silently.</p><p class="hero-actions"><a class="btn" href="/handbook/">Read the handbook</a> <a class="btn btn-ghost" href="/start/">Where do I start?</a></p></header><blockquote><p>The most common shape of failure here is <strong>a claim that reported success and did nothing</strong>. The second most common is <strong>a failure that looked like a different failure</strong>. Both are why the lab&#39;s first rule is <em>verify with the artefact</em>.</p></blockquote>
+<h2 id="1-the-network-is-broken-usually-it-is-an-mtu-problem">1. The network is broken - usually it is an MTU problem<a class="anchor" href="#1-the-network-is-broken-usually-it-is-an-mtu-problem" aria-hidden="true">#</a></h2>
+<p><strong>SYMPTOM</strong> - A page prompts for a password and then hangs. Small requests succeed. Large ones never complete. A ping works fine.</p>
+<p><strong>WHAT WE THOUGHT</strong> - An application bug, then an authentication bug. The investigation started in the wrong place entirely, twice.</p>
+<p><strong>WHAT IT ACTUALLY WAS</strong> - An overlay link without working path-MTU discovery. Small packets pass; anything larger is silently dropped. Nothing errors - the payload simply never arrives.</p>
+<p><strong>FIX</strong> - Pin the tunnel&#39;s MTU below the path MTU on <strong>both</strong> ends, and verify with a correctly sized probe: a payload just under the limit must pass, and one over it must fail for the expected reason.</p>
+<p><strong>PERMANENT LESSON</strong> - A selective failure keyed to payload size is a network fault, not an application fault. Check the link before rewriting the app.</p>
+<h2 id="2-two-authentication-layers-fight-each-other">2. Two authentication layers fight each other<a class="anchor" href="#2-two-authentication-layers-fight-each-other" aria-hidden="true">#</a></h2>
+<p><strong>SYMPTOM</strong> - The login POST succeeds, the profile loads, and then the front-end signs the user out in a burst. It reads as a wrong password.</p>
+<p><strong>WHAT WE THOUGHT</strong> - The password was wrong, then that the app had a session bug, then that the edge credentials were mistyped.</p>
+<p><strong>WHAT IT ACTUALLY WAS</strong> - An edge proxy fronting an application that has its own login, with both using the <strong>same request header</strong>. The app tried to read the edge&#39;s credentials as its own token and rejected them.</p>
+<p><strong>FIX</strong> - Exactly one authentication layer. An application with its own login gets a bare edge block. <strong>Stripping the header at the edge does not work</strong> - that same header carries the application&#39;s own token, so removing it breaks the app instead. The fix is architectural.</p>
+<p><strong>PERMANENT LESSON</strong> - Count your authentication layers before you debug a login. A success that is immediately undone is a layering problem, not a credential problem.</p>
+<h2 id="3-validation-is-not-verification">3. Validation is not verification<a class="anchor" href="#3-validation-is-not-verification" aria-hidden="true">#</a></h2>
+<p><strong>SYMPTOM</strong> - A configuration edit is reported as applied. Validation passes. The reload succeeds. Nothing changed.</p>
+<p><strong>WHAT WE THOUGHT</strong> - The change was live, because the tool said so and the service accepted it.</p>
+<p><strong>WHAT IT ACTUALLY WAS</strong> - A programmatic edit that matched nothing - a pattern aimed at a structure that had since nested one level deeper. Two rounds were lost reporting a rule change that was never written, on an unchanged file.</p>
+<p><strong>FIX</strong> - Read the file back after editing and compare against what was intended, not against the exit code. Match on structure, such as balanced blocks, rather than on a pattern.</p>
+<p><strong>PERMANENT LESSON</strong> - Every claim of done needs an artefact: a rendered image, an extracted archive, a page that loads, a file containing the expected text.</p>
+<h2 id="4-a-gpu-is-a-budget-not-a-checkbox">4. A GPU is a budget, not a checkbox<a class="anchor" href="#4-a-gpu-is-a-budget-not-a-checkbox" aria-hidden="true">#</a></h2>
+<p><strong>SYMPTOM</strong> - A model loads successfully, then fails at inference with an out-of-memory error.</p>
+<p><strong>WHAT WE THOUGHT</strong> - The model was broken, or the quantisation was bad, or the driver was at fault.</p>
+<p><strong>WHAT IT ACTUALLY WAS</strong> - Two workloads that each fit in 8 GB, but not together. The first owns roughly 5 GB permanently.</p>
+<p><strong>FIX</strong> - Make the second workload <strong>stream</strong> rather than reside. Modules move in on demand; steady-state cost drops to a few hundred megabytes. The model class is then chosen for its ability to stream - see <a href="/gpu-budget/">GPU as a budget</a>.</p>
+<p><strong>PERMANENT LESSON</strong> - Capacity that works in isolation is not capacity that works together. Budget VRAM the way you would budget RAM on a shared host, and monitor it as a first-class metric.</p>
+<h2 id="5-retirement-is-a-task-not-a-state">5. Retirement is a task, not a state<a class="anchor" href="#5-retirement-is-a-task-not-a-state" aria-hidden="true">#</a></h2>
+<p><strong>SYMPTOM</strong> - Guests accumulate, each labelled <code>*-retired-pending-deletion</code>, consuming hundreds of gigabytes of a pool that is slowly filling. The label reads like a process; nothing is progressing.</p>
+<p><strong>WHAT WE THOUGHT</strong> - The work was essentially done, because everything was marked for deletion.</p>
+<p><strong>WHAT IT ACTUALLY WAS</strong> - Renaming is easy and deleting feels risky, so nothing forced the second step. The naming convention had become a way of <em>feeling</em> organised.</p>
+<p><strong>FIX</strong> - Capture the configuration, then destroy the guest. The configuration is what you might want again; the disk image almost never is.</p>
+<p><strong>PERMANENT LESSON</strong> - A state label is not a task. If nothing schedules the second half of the work, the first half is decoration.</p>
+<h2 id="6-measure-the-number-that-actually-moves">6. Measure the number that actually moves<a class="anchor" href="#6-measure-the-number-that-actually-moves" aria-hidden="true">#</a></h2>
+<p><strong>SYMPTOM</strong> - Several hundred gigabytes of guest disks are deleted and the storage free space is unchanged. The cleanup looks like a failure.</p>
+<p><strong>WHAT WE THOUGHT</strong> - The deletion had not worked, or the space was not reclaimed.</p>
+<p><strong>WHAT IT ACTUALLY WAS</strong> - The volume group reports <em>its own</em> unallocated space. A thin pool owns the space, so the volume group&#39;s free space barely moves when thin volumes are deleted. The pool&#39;s own usage percentage is the number that moved.</p>
+<p><strong>FIX</strong> - Measure the layer that owns the resource - and watch the thin pool&#39;s <strong>metadata</strong> as well as its data, because a pool that runs out of metadata goes read-only and its guests fail confusingly.</p>
+<p><strong>PERMANENT LESSON</strong> - Picking the wrong metric makes a working change look broken and a broken one look fine. This generalises far beyond storage.</p>
+<h2 id="7-silent-capability-gaps-are-better-stated-than-hidden">7. Silent capability gaps are better stated than hidden<a class="anchor" href="#7-silent-capability-gaps-are-better-stated-than-hidden" aria-hidden="true">#</a></h2>
+<p><strong>SYMPTOM</strong> - A user attaches a picture and the model says nothing useful about it. Or attaches an archive and the model knows nothing, while the interface happily shows the file attached.</p>
+<p><strong>WHAT WE THOUGHT</strong> - The model was weak, or the upload had failed.</p>
+<p><strong>WHAT IT ACTUALLY WAS</strong> - Two different things: there is no vision model at all, and a parser sidecar was unreachable, so the upload indexed as empty while still appearing attached.</p>
+<p><strong>FIX</strong> - State the gap in the documentation and make the failure mode explicit. A documented gap is a roadmap item; an undocumented one is a support incident.</p>
+<p><strong>PERMANENT LESSON</strong> - If you cannot say how a capability fails, you do not yet understand it. Write the failure mode next to the feature.</p>
+<h2 id="8-the-default-is-often-wrong-for-your-case">8. The default is often wrong for your case<a class="anchor" href="#8-the-default-is-often-wrong-for-your-case" aria-hidden="true">#</a></h2>
+<p><strong>SYMPTOM</strong> - Three unrelated components behaved strangely: an image model was slow, a web search silently returned nothing, and a tunnel black-holed large packets.</p>
+<p><strong>WHAT WE THOUGHT</strong> - Three separate bugs, in three separate subsystems.</p>
+<p><strong>WHAT IT ACTUALLY WAS</strong> - Three defaults, all reasonable for the common case and wrong for this one: a large diffusion step count, JSON output disabled in a metasearch service, and an optimistic tunnel MTU.</p>
+<p><strong>FIX</strong> - Set the values explicitly rather than inheriting them: few steps for a distilled model, JSON enabled for a trusted internal caller, MTU pinned on both ends.</p>
+<p><strong>PERMANENT LESSON</strong> - Defaults are tuned for the common case. When your case is unusual, the default fails in a way that looks like something else entirely. Read the defaults of every component you introduce, and record the sharp edges in the runbook.</p>
+<h2 id="the-summary">The summary<a class="anchor" href="#the-summary" aria-hidden="true">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Lesson</th><th>Now encoded as</th></tr></thead><tbody><tr><td>MTU black-holing</td><td>A rule in the edge operations skill</td></tr><tr><td>One authentication layer</td><td>A rule in the edge operations skill</td></tr><tr><td>Validation is not verification</td><td>A step in the operating contract</td></tr><tr><td>GPU as a budget</td><td>A note in the image-generation runbook</td></tr><tr><td>Retirement is a task</td><td>This page</td></tr><tr><td>Measure the right number</td><td>This page</td></tr><tr><td>State your gaps</td><td>The roadmap section of every document</td></tr><tr><td>Defaults are wrong for unusual cases</td><td>The sharp-edges sections of the runbooks</td></tr><tr><td>Context belongs in Git</td><td>The operating contract</td></tr><tr><td>Sidecars for capabilities</td><td>The parser and search deployment pattern</td></tr></tbody></table></div>
+<h2 id="where-these-came-from">Where these came from<a class="anchor" href="#where-these-came-from" aria-hidden="true">#</a></h2>
+<p>Each lesson is a summary of a real incident recorded in the private operating logs. The public handbook keeps the shape of the failure and the rule it produced; it deliberately omits the addresses, credentials and access paths involved.</p>
+</main>
+<footer class="site-foot"><div class="wrap">
+<p class="fine failover-banner"><strong>Failover copy:</strong> served from the edge and synced from the public repository, because the primary lab may be unreachable. <a href="/outage/">What happened?</a></p>
+<p><strong>The Lab Handbook</strong> - public by intention, sanitised by design. No credentials, no internal addresses, no access paths.</p>
+<p class="fine age-note"><strong>Age note:</strong> not everything here is PG. This is a virtual IT shop - strong language is part of the furniture and the humour is grown-up. Mind the workshop floor.</p>
+<p class="fine disclaimer"><strong>Disclaimer:</strong> this entire site is machine-generated. It is not an accurate representation of its owner, of any AI, or of any entity associated with either. Quirks and oddities happen - we fix them when we see them.</p>
+<p class="fine model-credit"><strong>Generated by:</strong> Wren - text model <code>deepseek/deepseek-flash</code>; generated images credit their model beneath the image.</p>
+<p class="fine">Source: the <a href="https://github.com/example/lab-handbook">lab-handbook</a> repository. Static site, no trackers, no third-party scripts, no external fonts.</p>
+<p class="fine">Deployed <time datetime="2026-10-02">2026-10-02</time></p>
+</div></footer>
+<dialog id="search-dialog" class="search-dialog" aria-label="Search">
+<form method="dialog" class="search-form"><label for="q">Search the handbook</label>
+<input id="q" name="q" type="search" autocomplete="off" placeholder="e.g. MTU, GPU, overlay">
+<button value="close" class="search-close" aria-label="Close search">Close</button></form>
+<div id="search-results" class="search-results" role="list"></div>
+<p class="fine">Search runs entirely in your browser against a static index. Nothing is sent anywhere.</p>
+</dialog>
+</body></html>

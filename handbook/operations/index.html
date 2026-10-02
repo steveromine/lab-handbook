@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Operations - The Lab Handbook</title>
+<meta name="description" content="Handbook reference: Operations">
+<link rel="canonical" href="https://lab-handbook.invalid/handbook/operations/">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0c1017">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Lab Handbook">
+<meta property="og:title" content="Operations - The Lab Handbook">
+<meta property="og:description" content="Handbook reference: Operations">
+<meta property="og:url" content="https://lab-handbook.invalid/handbook/operations/">
+<meta property="og:image" content="https://lab-handbook.invalid/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Operations - The Lab Handbook">
+<meta name="twitter:description" content="Handbook reference: Operations">
+<meta name="twitter:image" content="https://lab-handbook.invalid/assets/og.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="generator" content="Wren (agent) - text model deepseek/deepseek-flash; images openai/gpt-image-2">
+<link rel="stylesheet" href="/assets/style.css?v=b81c69af">
+<script src="/assets/app.js?v=b81c69af" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"The Lab Handbook","url":"https://lab-handbook.invalid","description":"A public, sanitised tour of a small self-hosted lab: one hypervisor, one GPU shared three ways, a hardened public edge, and an agent platform that builds, verifies and documents its own work.","inLanguage":"en"}</script>
+</head>
+<body class="">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+<div class="wrap head-inner">
+<a class="brand" href="/"><span class="brand-mark" aria-hidden="true">LH</span><span class="brand-text">The Lab Handbook</span></a>
+<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav id="site-nav" class="site-nav" aria-label="Primary"><ul><li><a href="/">Home</a></li><li><a href="/then-and-now/">Then &amp; Now</a></li><li><a href="/architecture/">Architecture</a></li><li><a href="/agents/">Agents</a></li><li><a href="/gpu-budget/">GPU budget</a></li><li><a href="/security/">Security</a></li><li><a href="/status/">Status</a></li><li><a href="/lessons/">Lessons</a></li><li class="has-menu"><a href="/build/" class="menu-label" aria-haspopup="true">Build <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/build/">Build your own (map)</a></li><li><a href="/handbook/build-proxmox-host/">The Proxmox host</a></li><li><a href="/handbook/build-vps-edge/">The VPS edge</a></li><li><a href="/handbook/build-agent-vm/">The agent VM</a></li></ul></li><li class="has-menu"><a href="/handbook/" class="menu-label on" aria-haspopup="true">Handbook <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/handbook/" aria-current="page">Handbook (index)</a></li><li><a href="/handbook/architecture/">Architecture</a></li><li><a href="/handbook/services/">Services</a></li><li><a href="/handbook/agents/">Agents</a></li><li><a href="/handbook/agent-org-chart/">Agent org chart</a></li><li><a href="/handbook/ai-platform/">AI platform</a></li><li><a href="/handbook/deepseek-routing/">Model routing</a></li><li><a href="/handbook/integrations/">Integrations</a></li><li><a href="/handbook/edge-and-security/">Edge &amp; security</a></li><li><a href="/handbook/operations/">Operations</a></li><li><a href="/handbook/rollout/">Rollout</a></li><li><a href="/handbook/cost-expectations/">Cost expectations</a></li><li><a href="/handbook/current-status/">Current status</a></li><li><a href="/handbook/lessons/">Lessons (reference)</a></li><li><a href="/handbook/eli5/">Explain it simply (ELI5)</a></li></ul></li><li class="has-menu"><a href="/start/" class="menu-label" aria-haspopup="true">More <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/start/">Where to start</a></li><li><a href="/hardware/">The hardware</a></li><li><a href="/operator/">The human in the loop</a></li><li><a href="/song/">The Quiet Machine (song)</a></li><li><a href="/brand/">Brand sheet</a></li><li><a href="/time-machine/">Time machine</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/backlog/">Known issues &amp; backlog</a></li><li><a href="/comments/">Comments</a></li><li><a href="/uptime/">Uptime (nines)</a></li><li><a href="/cabin/">Cabin outage board</a></li><li><a href="/gallery/">Gallery</a></li></ul></li></ul></nav>
+<button type="button" class="search-open" data-search-open aria-label="Search this site">Search</button>
+<button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch colour theme">Theme</button>
+<button type="button" class="rating-toggle" data-rating-toggle aria-label="Switch content rating: G or PG-13">Rated: PG-13</button>
+</div>
+</header>
+<main id="main" class="wrap">
+
+<p class="eyebrow">Reference</p><h1 id="operations">Operations<a class="anchor" href="#operations" aria-hidden="true">#</a></h1>
+<p>_Detail behind the <a href="/handbook/">README</a>._</p>
+<h2 id="the-change-loop">The change loop<a class="anchor" href="#the-change-loop" aria-hidden="true">#</a></h2>
+<p>Every material change follows the same loop, whether a human or an agent is doing it.</p>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart LR
+    A[Inspect current state] --&gt; B[Write the rollback first]
+    B --&gt; C[Make the change]
+    C --&gt; D[Verify with the real artifact]
+    D --&gt; E[Log the activity]
+    E --&gt; F{Architectural?}
+    F --&gt;|yes| G[Record the decision]
+    F --&gt;|no| H[Commit and push]
+    G --&gt; H
+    H --&gt; I{Verified?}
+    I --&gt;|no| J[Roll back]
+    I --&gt;|yes| K[Next task]</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<p>Two steps are frequently skipped elsewhere and are non-negotiable here:</p>
+<p><strong>Write the rollback first.</strong> If the change cannot be undone, that fact should be known <em>before</em> it is made, not discovered during the incident.</p>
+<p><strong>Verify with the real artifact.</strong> A service that validates is not a service that works. Several of this lab&#39;s most expensive mistakes were configurations that passed every check and did nothing.</p>
+<h2 id="configuration-as-code">Configuration as code<a class="anchor" href="#configuration-as-code" aria-hidden="true">#</a></h2>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart TB
+    GIT[(Git repositories)] --&gt; INV[Inventory]
+    GIT --&gt; PLAY[Playbooks]
+    GIT --&gt; RUN[Runbooks]
+    GIT --&gt; CONTRACT[Agent contract]
+    INV --&gt; EXEC[Ansible execution]
+    PLAY --&gt; EXEC
+    EXEC --&gt; HOSTS[Hypervisor and guests]
+    HOSTS --&gt;|config capture| CAPTURED[Captured state]
+    CAPTURED --&gt; GIT</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<div class="tablewrap"><table><thead><tr><th>Thing</th><th>Where it lives</th></tr></thead><tbody><tr><td>Patching, verification, config capture</td><td>Ansible inventory, playbooks, host vars</td></tr><tr><td>Host configuration snapshots</td><td>Captured into Git on a schedule</td></tr><tr><td>Per-service rebuild instructions</td><td>One runbook per service</td></tr><tr><td>Agent behaviour and rules</td><td>The operating repository&#39;s contract and workspace</td></tr><tr><td>The narrative (this)</td><td>This repository</td></tr></tbody></table></div>
+<p><strong>Why capture configuration:</strong> it turns a rebuild from archaeology into a diff. A host whose configuration is in Git can be compared, reviewed, and restored.</p>
+<h2 id="observability">Observability<a class="anchor" href="#observability" aria-hidden="true">#</a></h2>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart LR
+    HVN[Hypervisor] --&gt; COL[Syslog collector]
+    EN[Edge] --&gt; COL
+    FN[Firewall] --&gt; COL
+    GN[Guests] --&gt; COL
+    COL --&gt; IDX[(Searchable index)]
+    IDX --&gt; RET[Retention policy]
+    IDX --&gt; ASK[Questions answered: what is exposed, who connected, what changed]</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<ul><li><strong>One index</strong> for the whole estate, rather than a per-host log hunt.</li><li>The <strong>edge</strong> logs are the record of what was published and what connected to it.</li><li>The <strong>firewall</strong> logs are how zone policy is validated rather than assumed.</li><li>Retention is deliberate: logs are only useful if the index does not fill the disk first.</li></ul>
+<p><strong>The failure to watch for:</strong> observability outages are silent. If the collector&#39;s disk fills, ingestion stops and nothing warns you — you simply stop having evidence.</p>
+<h2 id="backup-and-recovery">Backup and recovery<a class="anchor" href="#backup-and-recovery" aria-hidden="true">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Layer</th><th>Approach</th></tr></thead><tbody><tr><td>Intent</td><td>Everything in Git; recovery of <em>intent</em> is a clone</td></tr><tr><td>Guest disks</td><td>Thin-provisioned on the hypervisor pool; capacity tracked before adding guests</td></tr><tr><td>Credentials</td><td>Managed secret store, backed up separately from the estate</td></tr><tr><td>Rollback</td><td>Written before each change, so undoing does not require re-deriving the original state</td></tr></tbody></table></div>
+<p><strong>The uncomfortable truth about backups:</strong> an untested restore is a hypothesis. The vault matters most here — a password vault without a verified restore is a liability dressed as an asset.</p>
+<h2 id="recurring-chores">Recurring chores<a class="anchor" href="#recurring-chores" aria-hidden="true">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Cadence</th><th>Chore</th><th>Why</th></tr></thead><tbody><tr><td>Daily</td><td>Index health, disk headroom</td><td>Both fail silently</td></tr><tr><td>Weekly</td><td>Patch window via Ansible; review failed units</td><td>Drift accumulates quietly</td></tr><tr><td>On change</td><td>Activity log entry, runbook update, config capture</td><td>The change is not finished until it is written down</td></tr><tr><td>Periodic</td><td>Exposure and firewall review</td><td>Policy rots as services come and go</td></tr><tr><td>Periodic</td><td>Restore test</td><td>A backup is only a backup once it has been restored</td></tr></tbody></table></div>
+<h2 id="conventions">Conventions<a class="anchor" href="#conventions" aria-hidden="true">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Convention</th><th>Reason</th></tr></thead><tbody><tr><td>Names describe <strong>roles</strong></td><td>The role is the durable part; the address is not</td></tr><tr><td>One guest, one purpose</td><td>Small blast radius, clear ownership</td></tr><tr><td>Static addresses, recorded in inventory</td><td>Automation needs determinism</td></tr><tr><td>No secrets in Git</td><td>History is forever</td></tr><tr><td>Verify by artifact</td><td>Configuration is not evidence</td></tr><tr><td>Log before moving on</td><td>Context is lost within a day</td></tr></tbody></table></div>
+<h2 id="incident-triage-order">Incident triage order<a class="anchor" href="#incident-triage-order" aria-hidden="true">#</a></h2>
+<p>When something is broken, the questions are asked in this order, because each one explains a larger class of failure than the next:</p>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart TB
+    Q1{Is everything broken at once?} --&gt;|yes| OVERLAY[Check the overlay and the edge]
+    Q1 --&gt;|no| Q2{Is it one service?}
+    Q2 --&gt;|yes| APP[Check that service&#39;s dependency chain]
+    Q2 --&gt;|no| Q3{Is it slow rather than broken?}
+    Q3 --&gt;|yes| RES[Check the shared GPU and the storage pool]
+    Q3 --&gt;|no| Q4[Check the network path - and the MTU]</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<p>The MTU item is not a joke. A tunnel that lacks working path-MTU discovery fails selectively on payload size: small replies arrive, large ones never do, and the application looks flaky rather than the network looking broken.</p>
+<h2 id="documentation-completion-gate">Documentation completion gate<a class="anchor" href="#documentation-completion-gate" aria-hidden="true">#</a></h2>
+<p>“All documentation” means both public and private repositories in the same change:</p>
+<ol><li>Update the private operating activity/decision logs and affected service runbooks.</li><li>Update the public handbook with the sanitized architecture, result and known limitations.</li><li>Use role placeholders only: no actual addresses, DNS names, credentials or internal access paths.</li><li>Scan all publication history, file names and commit metadata, not just the latest files. Pattern checks are a gate, not a substitute for reviewing meaning and context.</li><li>Push each repository explicitly and compare its remote branch with the intended local commit.</li><li>Verify the public content anonymously. Report incomplete checks as incomplete.</li></ol>
+<p>The operating repository&#39;s checkpoint timer does not synchronize the other repositories. Never equate “private logs pushed” with “all documentation updated.”</p>
+<h2 id="recovery-and-monitoring-evidence">Recovery and monitoring evidence<a class="anchor" href="#recovery-and-monitoring-evidence" aria-hidden="true">#</a></h2>
+<p>The weekly backup job was corrected to include the vault and other stateful guests. A scratch restore proved the vault data was present; browser login was not tested. All archives remain on the hypervisor, so host loss remains an unresolved recovery gap.</p>
+<p>An hourly deterministic monitor checks capacity, backup freshness, log growth, GPU pressure, sidecars and published service health. Reports go to files and syslog; push alerts are still pending. See <a href="/handbook/current-status/">current status</a> for the boundary of each verification claim.</p>
+</main>
+<footer class="site-foot"><div class="wrap">
+<p class="fine failover-banner"><strong>Failover copy:</strong> served from the edge and synced from the public repository, because the primary lab may be unreachable. <a href="/outage/">What happened?</a></p>
+<p><strong>The Lab Handbook</strong> - public by intention, sanitised by design. No credentials, no internal addresses, no access paths.</p>
+<p class="fine age-note"><strong>Age note:</strong> not everything here is PG. This is a virtual IT shop - strong language is part of the furniture and the humour is grown-up. Mind the workshop floor.</p>
+<p class="fine disclaimer"><strong>Disclaimer:</strong> this entire site is machine-generated. It is not an accurate representation of its owner, of any AI, or of any entity associated with either. Quirks and oddities happen - we fix them when we see them.</p>
+<p class="fine model-credit"><strong>Generated by:</strong> Wren - text model <code>deepseek/deepseek-flash</code>; generated images credit their model beneath the image.</p>
+<p class="fine">Source: the <a href="https://github.com/example/lab-handbook">lab-handbook</a> repository. Static site, no trackers, no third-party scripts, no external fonts.</p>
+<p class="fine">Deployed <time datetime="2026-10-02">2026-10-02</time></p>
+</div></footer>
+<dialog id="search-dialog" class="search-dialog" aria-label="Search">
+<form method="dialog" class="search-form"><label for="q">Search the handbook</label>
+<input id="q" name="q" type="search" autocomplete="off" placeholder="e.g. MTU, GPU, overlay">
+<button value="close" class="search-close" aria-label="Close search">Close</button></form>
+<div id="search-results" class="search-results" role="list"></div>
+<p class="fine">Search runs entirely in your browser against a static index. Nothing is sent anywhere.</p>
+</dialog>
+</body></html>

@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Explain It Like I&#39;m 5 - The Lab Handbook</title>
+<meta name="description" content="Handbook reference: Explain It Like I&#39;m 5">
+<link rel="canonical" href="https://lab-handbook.invalid/handbook/eli5/">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0c1017">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Lab Handbook">
+<meta property="og:title" content="Explain It Like I&#39;m 5 - The Lab Handbook">
+<meta property="og:description" content="Handbook reference: Explain It Like I&#39;m 5">
+<meta property="og:url" content="https://lab-handbook.invalid/handbook/eli5/">
+<meta property="og:image" content="https://lab-handbook.invalid/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Explain It Like I&#39;m 5 - The Lab Handbook">
+<meta name="twitter:description" content="Handbook reference: Explain It Like I&#39;m 5">
+<meta name="twitter:image" content="https://lab-handbook.invalid/assets/og.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="generator" content="Wren (agent) - text model deepseek/deepseek-flash; images openai/gpt-image-2">
+<link rel="stylesheet" href="/assets/style.css?v=b81c69af">
+<script src="/assets/app.js?v=b81c69af" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"The Lab Handbook","url":"https://lab-handbook.invalid","description":"A public, sanitised tour of a small self-hosted lab: one hypervisor, one GPU shared three ways, a hardened public edge, and an agent platform that builds, verifies and documents its own work.","inLanguage":"en"}</script>
+</head>
+<body class="">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+<div class="wrap head-inner">
+<a class="brand" href="/"><span class="brand-mark" aria-hidden="true">LH</span><span class="brand-text">The Lab Handbook</span></a>
+<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav id="site-nav" class="site-nav" aria-label="Primary"><ul><li><a href="/">Home</a></li><li><a href="/then-and-now/">Then &amp; Now</a></li><li><a href="/architecture/">Architecture</a></li><li><a href="/agents/">Agents</a></li><li><a href="/gpu-budget/">GPU budget</a></li><li><a href="/security/">Security</a></li><li><a href="/status/">Status</a></li><li><a href="/lessons/">Lessons</a></li><li class="has-menu"><a href="/build/" class="menu-label" aria-haspopup="true">Build <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/build/">Build your own (map)</a></li><li><a href="/handbook/build-proxmox-host/">The Proxmox host</a></li><li><a href="/handbook/build-vps-edge/">The VPS edge</a></li><li><a href="/handbook/build-agent-vm/">The agent VM</a></li></ul></li><li class="has-menu"><a href="/handbook/" class="menu-label on" aria-haspopup="true">Handbook <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/handbook/" aria-current="page">Handbook (index)</a></li><li><a href="/handbook/architecture/">Architecture</a></li><li><a href="/handbook/services/">Services</a></li><li><a href="/handbook/agents/">Agents</a></li><li><a href="/handbook/agent-org-chart/">Agent org chart</a></li><li><a href="/handbook/ai-platform/">AI platform</a></li><li><a href="/handbook/deepseek-routing/">Model routing</a></li><li><a href="/handbook/integrations/">Integrations</a></li><li><a href="/handbook/edge-and-security/">Edge &amp; security</a></li><li><a href="/handbook/operations/">Operations</a></li><li><a href="/handbook/rollout/">Rollout</a></li><li><a href="/handbook/cost-expectations/">Cost expectations</a></li><li><a href="/handbook/current-status/">Current status</a></li><li><a href="/handbook/lessons/">Lessons (reference)</a></li><li><a href="/handbook/eli5/">Explain it simply (ELI5)</a></li></ul></li><li class="has-menu"><a href="/start/" class="menu-label" aria-haspopup="true">More <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/start/">Where to start</a></li><li><a href="/hardware/">The hardware</a></li><li><a href="/operator/">The human in the loop</a></li><li><a href="/song/">The Quiet Machine (song)</a></li><li><a href="/brand/">Brand sheet</a></li><li><a href="/time-machine/">Time machine</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/backlog/">Known issues &amp; backlog</a></li><li><a href="/comments/">Comments</a></li><li><a href="/uptime/">Uptime (nines)</a></li><li><a href="/cabin/">Cabin outage board</a></li><li><a href="/gallery/">Gallery</a></li></ul></li></ul></nav>
+<button type="button" class="search-open" data-search-open aria-label="Search this site">Search</button>
+<button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch colour theme">Theme</button>
+<button type="button" class="rating-toggle" data-rating-toggle aria-label="Switch content rating: G or PG-13">Rated: PG-13</button>
+</div>
+</header>
+<main id="main" class="wrap">
+
+<p class="eyebrow">Reference</p><h1 id="explain-it-like-im-5">Explain It Like I&#39;m 5<a class="anchor" href="#explain-it-like-im-5" aria-hidden="true">#</a></h1>
+<p>_No jargon. If you have never seen a server, start here._</p>
+<hr>
+<h2 id="what-is-this-thing">What is this thing?<a class="anchor" href="#what-is-this-thing" aria-hidden="true">#</a></h2>
+<p>Imagine a <strong>very tall filing cabinet with lots of little rooms inside it.</strong></p>
+<p>Each room does <strong>one job</strong>:</p>
+<div class="tablewrap"><table><thead><tr><th>Room</th><th>What it does</th></tr></thead><tbody><tr><td>🎬 Movie room</td><td>Keeps your films and plays them</td></tr><tr><td>🔑 Key room</td><td>Remembers all your passwords, locked up tight</td></tr><tr><td>🧠 Thinking room</td><td>Answers questions and helps write things</td></tr><tr><td>🎨 Drawing room</td><td>Makes pictures when you ask for one</td></tr><tr><td>📚 Reading room</td><td>Reads your documents and archives</td></tr><tr><td>🔍 Looking-things-up room</td><td>Searches the web when it needs to know something</td></tr><tr><td>📝 Diary room</td><td>Writes down everything that happens</td></tr><tr><td>🚪 Front door</td><td>The only way in from the outside</td></tr></tbody></table></div>
+<p>All of those rooms sit inside <strong>one real computer</strong>, in one physical box.</p>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart TB
+    BOX[One computer box] --&gt; R1[Movie room]
+    BOX --&gt; R2[Key room]
+    BOX --&gt; R3[Thinking room]
+    BOX --&gt; R4[Drawing room]
+    BOX --&gt; R5[Reading room]
+    BOX --&gt; R6[Diary room]</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<hr>
+<h2 id="how-does-anything-get-in">How does anything get in?<a class="anchor" href="#how-does-anything-get-in" aria-hidden="true">#</a></h2>
+<p>There is exactly <strong>one front door</strong>.</p>
+<p>Everything from the internet comes to that door. The door checks who you are, decides if you are allowed, and then walks your request to the right room.</p>
+<p>No room has its own door to the street. That is on purpose — one door is much easier to guard than ten.</p>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart LR
+    YOU[You, on the internet] --&gt; DOOR[One front door]
+    DOOR --&gt; CHECK{Allowed?}
+    CHECK --&gt;|yes| ROOM[The right room]
+    CHECK --&gt;|no| NOPE[Turned away]</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<hr>
+<h2 id="here-is-the-part-that-matters-most">Here is the part that matters most<a class="anchor" href="#here-is-the-part-that-matters-most" aria-hidden="true">#</a></h2>
+<p><strong>Almost everything in here was built by machines. And machines keep it running.</strong></p>
+<p>Think about a house. A person decides <em>&quot;we need a room for the movies.&quot;</em> But they do not lay every brick by hand — a builder does that, following a plan, and checking the work.</p>
+<p>In this lab, <strong>the builder is a machine.</strong></p>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart TB
+    HUMAN[👤 A person decides WHAT and WHY] --&gt; BOT[🤖 A machine does HOW]
+    BOT --&gt; B1[Builds the thing]
+    B1 --&gt; B2[Checks it actually works]
+    B2 --&gt; B3[Writes down what it did]
+    B3 --&gt; B4[Makes sure it can be undone]
+    B4 --&gt; DONE[✅ Finished and recorded]</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<p>A normal day looks like this:</p>
+<ol><li>A person says: <em>&quot;the picture room should also read scanned documents.&quot;</em></li><li>A machine goes and sets it up.</li><li>It <strong>tests it by actually using it</strong> — not just by asking &quot;did that work?&quot; and trusting the answer.</li><li>It writes a note: what changed, why, and how to undo it.</li><li>If it is not sure, it <strong>says so</strong> instead of guessing.</li></ol>
+<hr>
+<h2 id="why-machines-doing-the-work-is-a-big-deal">Why machines doing the work is a big deal<a class="anchor" href="#why-machines-doing-the-work-is-a-big-deal" aria-hidden="true">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>A person would…</th><th>A machine instead…</th></tr></thead><tbody><tr><td>Get tired and rush the last bit</td><td>Does the last bit the same as the first</td></tr><tr><td>Forget to write it down</td><td>Writes it down every single time</td></tr><tr><td>Assume it works because nothing errored</td><td><strong>Checks by actually doing the thing</strong></td></tr><tr><td>Maybe not notice a quiet problem</td><td>Watches for things that break <em>silently</em></td></tr><tr><td>Be too polite to say &quot;I don&#39;t know&quot;</td><td>Says &quot;I couldn&#39;t verify this&quot;</td></tr></tbody></table></div>
+<p><strong>The most important habit:</strong> never trust &quot;it should work.&quot; Go and <em>use</em> it, and see. We have been fooled by this before — a setting that said it was fixed, and wasn&#39;t. The machine now checks the <em>real result</em> every time.</p>
+<hr>
+<h2 id="the-machines-four-rules">The machine&#39;s four rules<a class="anchor" href="#the-machines-four-rules" aria-hidden="true">#</a></h2>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart LR
+    A[🔨 Build it] --&gt; B[🔬 Prove it works]
+    B --&gt; C[✍️ Write it down]
+    C --&gt; D[↩️ Be able to undo it]</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<ol><li><strong>Build it.</strong></li><li><strong>Prove it works</strong> — by using it, not by assuming.</li><li><strong>Write it down</strong> — so the next machine knows.</li><li><strong>Be able to undo it</strong> — before starting, not after something goes wrong.</li></ol>
+<p>There is a fifth, quieter rule: <strong>if you cannot check it, say so.</strong> An honest &quot;I don&#39;t know&quot; is worth more than a confident guess.</p>
+<hr>
+<h2 id="things-that-fix-themselves-and-things-that-need-a-person">Things that fix themselves, and things that need a person<a class="anchor" href="#things-that-fix-themselves-and-things-that-need-a-person" aria-hidden="true">#</a></h2>
+<p>The machines handle the boring, repeatable, safe work. They also <strong>watch for quiet problems</strong> — like a backup that stopped running, or a diary that stopped filling up. Nobody would notice those until it was far too late, so a machine checks every hour.</p>
+<p>But some things still need a human:</p>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart TB
+    Q{Is it risky or hard to undo?} --&gt;|no| BOT[🤖 Machines handle it]
+    Q --&gt;|yes| HUMAN[👤 A person decides]
+    HUMAN --&gt; H1[Spending money]
+    HUMAN --&gt; H2[Opening something to the internet]
+    HUMAN --&gt; H3[Changing who can log in]</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<p>That is the deal: <strong>machines do the work, people make the risky choices.</strong></p>
+<hr>
+<h2 id="the-short-version">The short version<a class="anchor" href="#the-short-version" aria-hidden="true">#</a></h2>
+<ul><li>One box, many little rooms, each doing one job.</li><li>One front door, carefully guarded.</li><li><strong>Built by machines, watched by machines, written down by machines.</strong></li><li>A person sets the direction and makes the risky calls.</li><li>Nothing is believed until it has been <em>actually tried</em>.</li></ul>
+<hr>
+<h2 id="where-to-go-next">Where to go next<a class="anchor" href="#where-to-go-next" aria-hidden="true">#</a></h2>
+<ul><li><a href="/handbook/architecture/">Architecture</a> — the same picture, but for grown-ups</li><li><a href="/handbook/agents/">The agent platform</a> — how the machines are organised</li><li><a href="/handbook/lessons/">Lessons</a> — the mistakes that taught us the rules above</li></ul>
+</main>
+<footer class="site-foot"><div class="wrap">
+<p class="fine failover-banner"><strong>Failover copy:</strong> served from the edge and synced from the public repository, because the primary lab may be unreachable. <a href="/outage/">What happened?</a></p>
+<p><strong>The Lab Handbook</strong> - public by intention, sanitised by design. No credentials, no internal addresses, no access paths.</p>
+<p class="fine age-note"><strong>Age note:</strong> not everything here is PG. This is a virtual IT shop - strong language is part of the furniture and the humour is grown-up. Mind the workshop floor.</p>
+<p class="fine disclaimer"><strong>Disclaimer:</strong> this entire site is machine-generated. It is not an accurate representation of its owner, of any AI, or of any entity associated with either. Quirks and oddities happen - we fix them when we see them.</p>
+<p class="fine model-credit"><strong>Generated by:</strong> Wren - text model <code>deepseek/deepseek-flash</code>; generated images credit their model beneath the image.</p>
+<p class="fine">Source: the <a href="https://github.com/example/lab-handbook">lab-handbook</a> repository. Static site, no trackers, no third-party scripts, no external fonts.</p>
+<p class="fine">Deployed <time datetime="2026-10-02">2026-10-02</time></p>
+</div></footer>
+<dialog id="search-dialog" class="search-dialog" aria-label="Search">
+<form method="dialog" class="search-form"><label for="q">Search the handbook</label>
+<input id="q" name="q" type="search" autocomplete="off" placeholder="e.g. MTU, GPU, overlay">
+<button value="close" class="search-close" aria-label="Close search">Close</button></form>
+<div id="search-results" class="search-results" role="list"></div>
+<p class="fine">Search runs entirely in your browser against a static index. Nothing is sent anywhere.</p>
+</dialog>
+</body></html>

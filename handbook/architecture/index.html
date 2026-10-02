@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Architecture - The Lab Handbook</title>
+<meta name="description" content="Handbook reference: Architecture">
+<link rel="canonical" href="https://lab-handbook.invalid/handbook/architecture/">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0c1017">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Lab Handbook">
+<meta property="og:title" content="Architecture - The Lab Handbook">
+<meta property="og:description" content="Handbook reference: Architecture">
+<meta property="og:url" content="https://lab-handbook.invalid/handbook/architecture/">
+<meta property="og:image" content="https://lab-handbook.invalid/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Architecture - The Lab Handbook">
+<meta name="twitter:description" content="Handbook reference: Architecture">
+<meta name="twitter:image" content="https://lab-handbook.invalid/assets/og.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="generator" content="Wren (agent) - text model deepseek/deepseek-flash; images openai/gpt-image-2">
+<link rel="stylesheet" href="/assets/style.css?v=b81c69af">
+<script src="/assets/app.js?v=b81c69af" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"The Lab Handbook","url":"https://lab-handbook.invalid","description":"A public, sanitised tour of a small self-hosted lab: one hypervisor, one GPU shared three ways, a hardened public edge, and an agent platform that builds, verifies and documents its own work.","inLanguage":"en"}</script>
+</head>
+<body class="">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+<div class="wrap head-inner">
+<a class="brand" href="/"><span class="brand-mark" aria-hidden="true">LH</span><span class="brand-text">The Lab Handbook</span></a>
+<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav id="site-nav" class="site-nav" aria-label="Primary"><ul><li><a href="/">Home</a></li><li><a href="/then-and-now/">Then &amp; Now</a></li><li><a href="/architecture/">Architecture</a></li><li><a href="/agents/">Agents</a></li><li><a href="/gpu-budget/">GPU budget</a></li><li><a href="/security/">Security</a></li><li><a href="/status/">Status</a></li><li><a href="/lessons/">Lessons</a></li><li class="has-menu"><a href="/build/" class="menu-label" aria-haspopup="true">Build <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/build/">Build your own (map)</a></li><li><a href="/handbook/build-proxmox-host/">The Proxmox host</a></li><li><a href="/handbook/build-vps-edge/">The VPS edge</a></li><li><a href="/handbook/build-agent-vm/">The agent VM</a></li></ul></li><li class="has-menu"><a href="/handbook/" class="menu-label on" aria-haspopup="true">Handbook <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/handbook/" aria-current="page">Handbook (index)</a></li><li><a href="/handbook/architecture/">Architecture</a></li><li><a href="/handbook/services/">Services</a></li><li><a href="/handbook/agents/">Agents</a></li><li><a href="/handbook/agent-org-chart/">Agent org chart</a></li><li><a href="/handbook/ai-platform/">AI platform</a></li><li><a href="/handbook/deepseek-routing/">Model routing</a></li><li><a href="/handbook/integrations/">Integrations</a></li><li><a href="/handbook/edge-and-security/">Edge &amp; security</a></li><li><a href="/handbook/operations/">Operations</a></li><li><a href="/handbook/rollout/">Rollout</a></li><li><a href="/handbook/cost-expectations/">Cost expectations</a></li><li><a href="/handbook/current-status/">Current status</a></li><li><a href="/handbook/lessons/">Lessons (reference)</a></li><li><a href="/handbook/eli5/">Explain it simply (ELI5)</a></li></ul></li><li class="has-menu"><a href="/start/" class="menu-label" aria-haspopup="true">More <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/start/">Where to start</a></li><li><a href="/hardware/">The hardware</a></li><li><a href="/operator/">The human in the loop</a></li><li><a href="/song/">The Quiet Machine (song)</a></li><li><a href="/brand/">Brand sheet</a></li><li><a href="/time-machine/">Time machine</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/backlog/">Known issues &amp; backlog</a></li><li><a href="/comments/">Comments</a></li><li><a href="/uptime/">Uptime (nines)</a></li><li><a href="/cabin/">Cabin outage board</a></li><li><a href="/gallery/">Gallery</a></li></ul></li></ul></nav>
+<button type="button" class="search-open" data-search-open aria-label="Search this site">Search</button>
+<button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch colour theme">Theme</button>
+<button type="button" class="rating-toggle" data-rating-toggle aria-label="Switch content rating: G or PG-13">Rated: PG-13</button>
+</div>
+</header>
+<main id="main" class="wrap">
+
+<p class="eyebrow">Reference</p><h1 id="architecture">Architecture<a class="anchor" href="#architecture" aria-hidden="true">#</a></h1>
+<p>_Detail behind the <a href="/handbook/">README</a>. Addresses are abstracted — see the README&#39;s conventions._</p>
+<h2 id="shape-of-the-estate">Shape of the estate<a class="anchor" href="#shape-of-the-estate" aria-hidden="true">#</a></h2>
+<p>Everything runs on <strong>one physical hypervisor</strong>. That is a deliberate trade: a single host is simple, cheap and easy to reason about, and the lab&#39;s purpose is to make the <em>patterns</em> right rather than to demonstrate high availability. The cost is obvious — the hypervisor is a single point of failure, and its GPU is a single point of contention.</p>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart TB
+    HV[Hypervisor] --&gt; LXC[10 containers]
+    HV --&gt; VM[3 virtual machines]
+    HV --&gt; GPU[(GPU)]
+    HV --&gt; POOL[Thin-provisioned storage pool]
+    LXC --&gt; ROLES1[Media, logging, vault, DNS, LLM, chat, image, visualisation, ops-agent]
+    VM --&gt; ROLES2[Agent control host, storage server, automation host]</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<h3 id="why-containers-for-most-things">Why containers for most things<a class="anchor" href="#why-containers-for-most-things" aria-hidden="true">#</a></h3>
+<p>Most services are Linux containers: cheap, fast to clone, and a natural fit for single-process services. Virtual machines are reserved for the three guests that want a real kernel of their own — the agent control host, the storage server, and the media automation host.</p>
+<h2 id="zones">Zones<a class="anchor" href="#zones" aria-hidden="true">#</a></h2>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart LR
+    M[Management zone] --&gt; FW{Firewall}
+    C[Client zone - untrusted] --&gt; FW
+    FW --&gt; S[Server zone]
+    S --&gt; FW</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<div class="tablewrap"><table><thead><tr><th>Zone</th><th>Character</th></tr></thead><tbody><tr><td><strong>Management</strong></td><td>The firewall and the infrastructure that defines policy</td></tr><tr><td><strong>Client</strong></td><td>Treated as hostile. Devices reach named services, not the network</td></tr><tr><td><strong>Server</strong></td><td>All guests. Reached from the client zone only through explicit policy</td></tr></tbody></table></div>
+<p>Client-to-server access is allowlisted, not universally denied. Selected management and AI interfaces are explicitly reachable from the client zone. A compromised client can attempt those allowed services; application authentication and narrow destination rules still matter.</p>
+<h2 id="storage">Storage<a class="anchor" href="#storage" aria-hidden="true">#</a></h2>
+<p>Two distinct storage ideas coexist:</p>
+<ul><li><strong>Guest disks</strong> live on a thin-provisioned LVM pool. Thin provisioning means guests can each be given generous disks without pre-allocating the whole estate — but it also means the pool&#39;s <em>actual</em> usage is the number that matters, and it is invisible in the place people usually look.</li><li><strong>Media</strong> lives on its own guest and is exported to the media front-ends <strong>read-only</strong>, so a misbehaving application cannot damage the library.</li></ul>
+<p><strong>Capacity lesson:</strong> after the cleanup, the reclaim showed up in the thin pool&#39;s data percentage and not in the volume group&#39;s free space. A volume group that hosts a thin pool reports <em>its own</em> unallocated space, which barely moves when guest volumes are deleted. Watching the wrong number makes a successful reclaim look like a failed one.</p>
+<h2 id="guest-anatomy">Guest anatomy<a class="anchor" href="#guest-anatomy" aria-hidden="true">#</a></h2>
+<p>Each guest follows the same shape:</p>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart LR
+    A[Static address on the server zone] --&gt; B[Service under a supervisor]
+    B --&gt; C[Logs forwarded to the collector]
+    C --&gt; D[Config captured into Git]
+    D --&gt; E[Runbook describing rebuild and rollback]</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<p>That shape is the point. A guest without a runbook is a guest that cannot be rebuilt.</p>
+<h2 id="resource-headroom">Resource headroom<a class="anchor" href="#resource-headroom" aria-hidden="true">#</a></h2>
+<div class="tablewrap"><table><thead><tr><th>Resource</th><th>Character</th></tr></thead><tbody><tr><td>CPU</td><td>Comfortably over-provisioned; the hypervisor schedules it</td></tr><tr><td>Memory</td><td>Generous per guest; the GPU host is the tight one</td></tr><tr><td>Storage</td><td>Thin pool back to roughly one-eighth used after reclamation</td></tr><tr><td>GPU</td><td><strong>The scarce resource</strong> — see below</td></tr></tbody></table></div>
+<h2 id="the-gpu-is-the-constraint">The GPU is the constraint<a class="anchor" href="#the-gpu-is-the-constraint" aria-hidden="true">#</a></h2>
+<p>One 8 GB card serves three workloads. Design decisions follow from it, not from preference.</p>
+<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>flowchart TB
+    GPU2[8 GB GPU] --&gt; LLM3[Resident local LLM ~5 GB]
+    GPU2 --&gt; IMGW[Image model streaming in and out]
+    GPU2 --&gt; TRANS[Media transcoding on demand]
+    LLM3 -.-&gt;|must not be evicted| GPU2
+    IMGW -.-&gt;|CPU offload keeps it small| GPU2
+    TRANS -.-&gt;|bursty, latency tolerant| GPU2</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>
+<p>Two rules emerged:</p>
+<ol><li><strong>The resident workload wins.</strong> The LLM loads once and stays. Anything else must fit around it.</li><li><strong>Streaming beats resident for the second model.</strong> A model that loads its modules on demand costs a little latency and almost no standing memory — which is the only way two models coexist on this card.</li></ol>
+<h2 id="growth-path">Growth path<a class="anchor" href="#growth-path" aria-hidden="true">#</a></h2>
+<ul><li>Add a second hypervisor and move the always-on services to it, leaving the GPU host for GPU work.</li><li>Split the LLM and the image model onto different cards so neither has to yield.</li><li>Keep the media library on dedicated storage rather than a guest disk.</li></ul>
+</main>
+<footer class="site-foot"><div class="wrap">
+<p class="fine failover-banner"><strong>Failover copy:</strong> served from the edge and synced from the public repository, because the primary lab may be unreachable. <a href="/outage/">What happened?</a></p>
+<p><strong>The Lab Handbook</strong> - public by intention, sanitised by design. No credentials, no internal addresses, no access paths.</p>
+<p class="fine age-note"><strong>Age note:</strong> not everything here is PG. This is a virtual IT shop - strong language is part of the furniture and the humour is grown-up. Mind the workshop floor.</p>
+<p class="fine disclaimer"><strong>Disclaimer:</strong> this entire site is machine-generated. It is not an accurate representation of its owner, of any AI, or of any entity associated with either. Quirks and oddities happen - we fix them when we see them.</p>
+<p class="fine model-credit"><strong>Generated by:</strong> Wren - text model <code>deepseek/deepseek-flash</code>; generated images credit their model beneath the image.</p>
+<p class="fine">Source: the <a href="https://github.com/example/lab-handbook">lab-handbook</a> repository. Static site, no trackers, no third-party scripts, no external fonts.</p>
+<p class="fine">Deployed <time datetime="2026-10-02">2026-10-02</time></p>
+</div></footer>
+<dialog id="search-dialog" class="search-dialog" aria-label="Search">
+<form method="dialog" class="search-form"><label for="q">Search the handbook</label>
+<input id="q" name="q" type="search" autocomplete="off" placeholder="e.g. MTU, GPU, overlay">
+<button value="close" class="search-close" aria-label="Close search">Close</button></form>
+<div id="search-results" class="search-results" role="list"></div>
+<p class="fine">Search runs entirely in your browser against a static index. Nothing is sent anywhere.</p>
+</dialog>
+</body></html>

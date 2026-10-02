@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Build Your Own: the Proxmox host - The Lab Handbook</title>
+<meta name="description" content="Handbook reference: Build Your Own: the Proxmox host">
+<link rel="canonical" href="https://lab-handbook.invalid/handbook/build-proxmox-host/">
+<meta name="robots" content="index,follow">
+<meta name="theme-color" content="#0c1017">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="The Lab Handbook">
+<meta property="og:title" content="Build Your Own: the Proxmox host - The Lab Handbook">
+<meta property="og:description" content="Handbook reference: Build Your Own: the Proxmox host">
+<meta property="og:url" content="https://lab-handbook.invalid/handbook/build-proxmox-host/">
+<meta property="og:image" content="https://lab-handbook.invalid/assets/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Build Your Own: the Proxmox host - The Lab Handbook">
+<meta name="twitter:description" content="Handbook reference: Build Your Own: the Proxmox host">
+<meta name="twitter:image" content="https://lab-handbook.invalid/assets/og.png">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/assets/favicon.png" sizes="32x32" type="image/png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="generator" content="Wren (agent) - text model deepseek/deepseek-flash; images openai/gpt-image-2">
+<link rel="stylesheet" href="/assets/style.css?v=b81c69af">
+<script src="/assets/app.js?v=b81c69af" defer></script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebSite","name":"The Lab Handbook","url":"https://lab-handbook.invalid","description":"A public, sanitised tour of a small self-hosted lab: one hypervisor, one GPU shared three ways, a hardened public edge, and an agent platform that builds, verifies and documents its own work.","inLanguage":"en"}</script>
+</head>
+<body class="">
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-head">
+<div class="wrap head-inner">
+<a class="brand" href="/"><span class="brand-mark" aria-hidden="true">LH</span><span class="brand-text">The Lab Handbook</span></a>
+<button type="button" class="nav-toggle" aria-expanded="false" aria-controls="site-nav">Menu</button>
+<nav id="site-nav" class="site-nav" aria-label="Primary"><ul><li><a href="/">Home</a></li><li><a href="/then-and-now/">Then &amp; Now</a></li><li><a href="/architecture/">Architecture</a></li><li><a href="/agents/">Agents</a></li><li><a href="/gpu-budget/">GPU budget</a></li><li><a href="/security/">Security</a></li><li><a href="/status/">Status</a></li><li><a href="/lessons/">Lessons</a></li><li class="has-menu"><a href="/build/" class="menu-label" aria-haspopup="true">Build <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/build/">Build your own (map)</a></li><li><a href="/handbook/build-proxmox-host/">The Proxmox host</a></li><li><a href="/handbook/build-vps-edge/">The VPS edge</a></li><li><a href="/handbook/build-agent-vm/">The agent VM</a></li></ul></li><li class="has-menu"><a href="/handbook/" class="menu-label on" aria-haspopup="true">Handbook <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/handbook/" aria-current="page">Handbook (index)</a></li><li><a href="/handbook/architecture/">Architecture</a></li><li><a href="/handbook/services/">Services</a></li><li><a href="/handbook/agents/">Agents</a></li><li><a href="/handbook/agent-org-chart/">Agent org chart</a></li><li><a href="/handbook/ai-platform/">AI platform</a></li><li><a href="/handbook/deepseek-routing/">Model routing</a></li><li><a href="/handbook/integrations/">Integrations</a></li><li><a href="/handbook/edge-and-security/">Edge &amp; security</a></li><li><a href="/handbook/operations/">Operations</a></li><li><a href="/handbook/rollout/">Rollout</a></li><li><a href="/handbook/cost-expectations/">Cost expectations</a></li><li><a href="/handbook/current-status/">Current status</a></li><li><a href="/handbook/lessons/">Lessons (reference)</a></li><li><a href="/handbook/eli5/">Explain it simply (ELI5)</a></li></ul></li><li class="has-menu"><a href="/start/" class="menu-label" aria-haspopup="true">More <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu"><li><a href="/start/">Where to start</a></li><li><a href="/hardware/">The hardware</a></li><li><a href="/operator/">The human in the loop</a></li><li><a href="/song/">The Quiet Machine (song)</a></li><li><a href="/brand/">Brand sheet</a></li><li><a href="/time-machine/">Time machine</a></li><li><a href="/privacy/">Privacy</a></li><li><a href="/backlog/">Known issues &amp; backlog</a></li><li><a href="/comments/">Comments</a></li><li><a href="/uptime/">Uptime (nines)</a></li><li><a href="/cabin/">Cabin outage board</a></li><li><a href="/gallery/">Gallery</a></li></ul></li></ul></nav>
+<button type="button" class="search-open" data-search-open aria-label="Search this site">Search</button>
+<button type="button" class="theme-toggle" data-theme-toggle aria-label="Switch colour theme">Theme</button>
+<button type="button" class="rating-toggle" data-rating-toggle aria-label="Switch content rating: G or PG-13">Rated: PG-13</button>
+</div>
+</header>
+<main id="main" class="wrap">
+
+<p class="eyebrow">Reference</p><blockquote><p><strong>Use all of this at your own risk.</strong> These are unvetted recipes from a live lab, not a supported build. They can brick a bootloader, strand your own remote access, or quietly erase a disk. Never point any of it at a machine, a file, or an account you would not be willing to destroy. Keep a known-good way back, test the rollback before you need it, and assume every command will do exactly what it says - because it will.</p></blockquote>
+<h1 id="build-your-own-the-proxmox-host">Build Your Own: the Proxmox host<a class="anchor" href="#build-your-own-the-proxmox-host" aria-hidden="true">#</a></h1>
+<p>The hypervisor is the <strong>only machine in the lab with a GPU</strong>, and the only one you must treat as precious. Everything else is disposable and rebuildable. Design accordingly.</p>
+<ul><li><strong>Track 1 — the Proxmox host (this page)</strong></li><li>Track 2 — <a href="/handbook/build-vps-edge/">the VPS edge</a></li><li>Track 3 — <a href="/handbook/build-agent-vm/">the agent VM</a></li></ul>
+<hr>
+<h2 id="1-hardware">1. Hardware<a class="anchor" href="#1-hardware" aria-hidden="true">#</a></h2>
+<p>One box. A consumer CPU, as much RAM as you will pay for, NVMe, and — if you want the AI capabilities — a single consumer GPU.</p>
+<div class="tablewrap"><table><thead><tr><th>Component</th><th>Guidance</th><th>Why</th></tr></thead><tbody><tr><td>CPU</td><td>6+ cores</td><td>Guests are cheap; contention is not</td></tr><tr><td>RAM</td><td>32 GB+</td><td>The single best upgrade; VMs are RAM-hungry</td></tr><tr><td>NVMe</td><td>1 TB+</td><td><strong>Never single-disk for guest storage</strong> — see §4</td></tr><tr><td>GPU</td><td>One mid-range card</td><td>Shared between LLM, transcoding and image work — see §6</td></tr></tbody></table></div>
+<p><strong>Two disks minimum.</strong> One for the OS, and a mirrored pair (or better) for guest storage. A hypervisor with one disk is not a lab, it is a countdown.</p>
+<h2 id="2-install-proxmox-ve">2. Install Proxmox VE<a class="anchor" href="#2-install-proxmox-ve" aria-hidden="true">#</a></h2>
+<p>Install Proxmox VE from the ISO. It is Debian underneath, which is the whole reason this stack works — everything you know about Debian applies.</p>
+<p>Post-install, before anything else:</p>
+<ol><li><strong>Remove the enterprise repository</strong> and enable the no-subscription repo, or <code>apt update</code> fails forever and you will not notice for a week.</li><li><strong>Update</strong>, then reboot.</li><li><strong>Verify the management interface</strong> is reachable and on the address you expect.</li><li><strong>Set up a root SSH key</strong> and confirm you can log in with <em>no password</em>. Do this before you start changing network config — it is the difference between a mistake and a drive to the machine.</li></ol>
+<h2 id="3-networking">3. Networking<a class="anchor" href="#3-networking" aria-hidden="true">#</a></h2>
+<p>Start simple, then add isolation.</p>
+<div class="codeblock"><pre><code>auto vmbr0
+iface vmbr0 inet manual
+        bridge-ports &lt;nic&gt;
+        bridge-stp off
+        bridge-fd 0
+        bridge-vlan-aware yes</code></pre></div>
+<p>Two things that cost real time:</p>
+<ul><li><strong>VLAN-aware bridge from day one.</strong> Retrofitting it means touching live guest networking.</li><li><strong><code>source /etc/network/interfaces.d/*</code> must exist</strong> in <code>/etc/network/interfaces</code>. If it does not, Proxmox SDN writes perfectly valid bridge definitions into that directory and <strong>nothing reads them</strong>. The SDN apply reports success, and no interface ever appears. Verify with <code>ifquery &lt;iface&gt;</code>.</li></ul>
+<p>Then add segmentation. Proxmox has a real SDN stack — zones, VNets, subnets and a per-VNet firewall — which gives you <strong>microsegmentation without a VMware licence</strong>:</p>
+<div class="tablewrap"><table><thead><tr><th>Zone type</th><th>Use</th></tr></thead><tbody><tr><td><code>simple</code></td><td>Isolated local bridges. Zero blast radius — <strong>start here</strong></td></tr><tr><td><code>vlan</code></td><td>802.1q on an existing bridge</td></tr><tr><td><code>vxlan</code> / <code>evpn</code></td><td>Real overlay; needs peers (i.e. usually a second node)</td></tr></tbody></table></div>
+<p>Order of operations, and it matters:</p>
+<ol><li>Zone → VNet → subnet → <strong>apply</strong> → confirm the bridge exists.</li><li><strong>Then</strong> firewall rules. Verify the <em>order</em>: SDN rules are first-match-wins, and <code>pvesh create</code> <strong>prepends</strong> — creating rules in their declared order silently inverts them, turning &quot;allow X, then deny the rest&quot; into &quot;deny everything&quot;. Check <code>pos</code> after creating.</li><li>Confirm rules are actually <strong>enabled</strong> and not merely present.</li></ol>
+<h2 id="4-storage-the-silent-killer">4. Storage — the silent killer<a class="anchor" href="#4-storage-the-silent-killer" aria-hidden="true">#</a></h2>
+<p>If you use thin provisioning (LVM-thin or ZFS), understand this before you trust it:</p>
+<blockquote><p>**A thin pool has <em>data</em> space and <em>metadata</em> space. When metadata runs out, the pool goes read-only.** Guests do not fail cleanly; they fail with confusing errors, and writes stop.</p></blockquote>
+<p>Watch both numbers, not just free space. This is the archetypal silent failure: nothing alarms, and the capability is simply gone.</p>
+<p>Other rules:</p>
+<ul><li><strong>Mirror your guest storage.</strong> Always.</li><li><strong>Back up the irreplaceable guests</strong>, and prove a restore. A backup you have never restored is a hope, not a backup. Restore-test to a scratch VMID before you trust the archive.</li><li>Keep the OS on its own disk so you can reinstall the hypervisor without touching guest data.</li></ul>
+<h2 id="5-guests">5. Guests<a class="anchor" href="#5-guests" aria-hidden="true">#</a></h2>
+<p>The choice is about isolation, not performance:</p>
+<div class="tablewrap"><table><thead><tr><th></th><th>LXC container</th><th>VM</th></tr></thead><tbody><tr><td>Overhead</td><td>Very low</td><td>Low</td></tr><tr><td>Isolation</td><td>Shared kernel</td><td>Real boundary</td></tr><tr><td>GPU passthrough</td><td>Possible, fiddly</td><td>Clean</td></tr><tr><td>Best for</td><td>Services, apps, media</td><td>Anything untrusted, or needing a GPU</td></tr></tbody></table></div>
+<p>Use containers for services and VMs for anything you do not fully trust. <strong>Retire guests you no longer use</strong> — dead guests are standing attack surface and stale config that lies to you.</p>
+<h2 id="6-gpu-passthrough">6. GPU passthrough<a class="anchor" href="#6-gpu-passthrough" aria-hidden="true">#</a></h2>
+<p>One consumer GPU can serve a local LLM, hardware transcoding, and image generation at once — which is genuinely a few years ahead of what this cost before. Two lessons:</p>
+<ul><li><strong>VRAM is the constraint, not compute.</strong> Three workloads contending for 8 GB will hit OOM under load, and the failure looks like &quot;the model is broken&quot;.</li><li><strong>Monitor VRAM as a first-class metric.</strong> It is exactly the kind of pressure that builds silently.</li></ul>
+<h2 id="7-backups-and-the-monitor">7. Backups and the monitor<a class="anchor" href="#7-backups-and-the-monitor" aria-hidden="true">#</a></h2>
+<p>Two scheduled things, both deterministic (no model calls — a scheduler that needs an LLM to decide whether to run is a liability):</p>
+<ol><li><strong>Backups</strong> — a job covering <em>every</em> VMID that exists, not the list you happened to write once. Reconcile the job against reality periodically.</li><li><strong>A health monitor</strong> — the checks that catch <em>silent</em> failure:<ul><li>root filesystem full</li><li>thin pool <strong>data and metadata</strong></li><li>newest backup archive age</li><li>log index reachable <strong>and growing</strong></li><li>GPU VRAM</li><li>sidecars actually functioning</li><li>published endpoints responding</li><li><strong>a heartbeat whose absence is the alarm</strong> — the monitor catching its own death</li></ul></li></ol>
+<h2 id="8-what-done-looks-like">8. What &quot;done&quot; looks like<a class="anchor" href="#8-what-done-looks-like" aria-hidden="true">#</a></h2>
+<ul><li>You can reach the host with a key, with no password, from a known-good path.</li><li>Guest storage is mirrored; the OS is on its own disk.</li><li>A restore has been <strong>performed</strong>, not just configured.</li><li>The monitor runs hourly and its absence would be noticed.</li><li>You know which single guest, if lost, would actually hurt — and it is backed up.</li></ul>
+<h2 id="lab-result-versus-tutorial-intent">Lab result versus tutorial intent<a class="anchor" href="#lab-result-versus-tutorial-intent" aria-hidden="true">#</a></h2>
+<p>The lab&#39;s later traffic probes did <strong>not</strong> prove the configured SDN policy was enforced. See <a href="current-status.md#sdn-configuration-is-not-enforcement">the current enforcement finding</a>. Do not use rule presence or a healthy firewall daemon as proof of isolation.</p>
+</main>
+<footer class="site-foot"><div class="wrap">
+<p class="fine failover-banner"><strong>Failover copy:</strong> served from the edge and synced from the public repository, because the primary lab may be unreachable. <a href="/outage/">What happened?</a></p>
+<p><strong>The Lab Handbook</strong> - public by intention, sanitised by design. No credentials, no internal addresses, no access paths.</p>
+<p class="fine age-note"><strong>Age note:</strong> not everything here is PG. This is a virtual IT shop - strong language is part of the furniture and the humour is grown-up. Mind the workshop floor.</p>
+<p class="fine disclaimer"><strong>Disclaimer:</strong> this entire site is machine-generated. It is not an accurate representation of its owner, of any AI, or of any entity associated with either. Quirks and oddities happen - we fix them when we see them.</p>
+<p class="fine model-credit"><strong>Generated by:</strong> Wren - text model <code>deepseek/deepseek-flash</code>; generated images credit their model beneath the image.</p>
+<p class="fine">Source: the <a href="https://github.com/example/lab-handbook">lab-handbook</a> repository. Static site, no trackers, no third-party scripts, no external fonts.</p>
+<p class="fine">Deployed <time datetime="2026-10-02">2026-10-02</time></p>
+</div></footer>
+<dialog id="search-dialog" class="search-dialog" aria-label="Search">
+<form method="dialog" class="search-form"><label for="q">Search the handbook</label>
+<input id="q" name="q" type="search" autocomplete="off" placeholder="e.g. MTU, GPU, overlay">
+<button value="close" class="search-close" aria-label="Close search">Close</button></form>
+<div id="search-results" class="search-results" role="list"></div>
+<p class="fine">Search runs entirely in your browser against a static index. Nothing is sent anywhere.</p>
+</dialog>
+</body></html>
