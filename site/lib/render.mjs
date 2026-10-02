@@ -163,6 +163,7 @@ export function layout(opts) {
   parts.push(opts.content);
   parts.push('</main>');
   parts.push('<footer class="site-foot"><div class="wrap">');
+  if (process.env.FAILOVER) parts.push('<p class="fine failover-banner"><strong>Failover copy:</strong> served from the edge and synced from the public repository, because the primary lab may be unreachable. <a href="/outage/">What happened?</a></p>');
   parts.push('<p><strong>' + esc(SITE.title) + '</strong> - public by intention, sanitised by design. No credentials, no internal addresses, no access paths.</p>');
   parts.push('<p class="fine age-note"><strong>Age note:</strong> not everything here is PG. This is a virtual IT shop - strong language is part of the furniture and the humour is grown-up. Mind the workshop floor.</p>');
   parts.push('<p class="fine disclaimer"><strong>Disclaimer:</strong> this entire site is machine-generated. It is not an accurate representation of its owner, of any AI, or of any entity associated with either. Quirks and oddities happen - we fix them when we see them.</p>');

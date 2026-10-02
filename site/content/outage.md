@@ -36,3 +36,13 @@ No one has lost data. No one is being paged at 3am for a colour on a dashboard. 
 logs are being written down, because that is the one habit this lab never drops.
 
 > A lab that never goes down is a lab that is not in the woods yet.
+
+## What a failure actually looks like
+
+Two different failures, two different pages - worth knowing which one you are seeing:
+
+- **The lab is down, the edge is up** - you get the [failover copy](https://failover.steveromine.com/),
+  a static copy served from the edge and re-synced from the public repository. It carries a
+  *"Failover copy"* banner at the bottom so you can tell it apart at a glance.
+- **The edge itself is down** - nothing of ours can answer, so you would get the CDN's own error page
+  instead. Stock, not bespoke. We cannot draw on a screen that is not switched on.
