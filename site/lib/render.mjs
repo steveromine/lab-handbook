@@ -122,6 +122,8 @@ export function layout(opts) {
   parts.push('<head>');
   parts.push('<meta charset="utf-8">');
   parts.push('<meta name="viewport" content="width=device-width, initial-scale=1">');
+  // noscript-nav: if scripting is unavailable, show the nav anyway rather than hiding it
+  parts.push('<noscript><style>.nav-toggle{display:none !important}.site-nav{display:block !important;flex-basis:100%}</style></noscript>');
   parts.push('<title>' + esc(title) + '</title>');
   parts.push('<meta name="description" content="' + esc(desc) + '">');
   parts.push('<link rel="canonical" href="' + esc(canonical) + '">');
