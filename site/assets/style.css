@@ -219,3 +219,7 @@ html { scroll-behavior: smooth; }
 .uptime-stats li { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 10px; padding: .6rem .8rem; }
 .uptime-stats strong { display: block; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
 .uptime-stats span { font-size: 1.15rem; }
+
+.rating-toggle, .theme-toggle { font: inherit; color: var(--fg); background: var(--bg-soft); border: 1px solid var(--line); border-radius: 999px; padding: .3rem .8rem; cursor: pointer; }
+.rating-toggle:hover, .theme-toggle:hover { border-color: var(--accent); }
+html[data-rating='g'] .age-note { display: none; }

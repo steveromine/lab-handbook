@@ -233,3 +233,50 @@
     });
   });
 })();
+
+// --- content rating toggle (G / PG-13) ---
+(function () {
+  'use strict';
+  var KEY = 'lab-handbook-rating';
+  var root = document.documentElement;
+  var btn = document.querySelector('[data-rating-toggle]');
+  var MAP = [
+    [/\bfucking\b/gi, 'very'], [/\bfuck\b/gi, 'fudge'], [/\bshit\b/gi, 'stuff'],
+    [/\bbullshit\b/gi, 'nonsense'], [/\bdamn\b/gi, 'darn'], [/\bhell\b/gi, 'heck'],
+    [/\bass\b/gi, 'donkey'], [/\bpiss\b/gi, 'tinkle'], [/\bcrap\b/gi, 'crud'],
+    [/\bbastard\b/gi, 'rascal'], [/\bgoddamn\b/gi, 'gosh-darn']
+  ];
+  var orig = new WeakMap();
+  function walk(node, apply) {
+    if (node.nodeType === 3) {
+      var t = node.nodeValue;
+      if (apply) {
+        if (!orig.has(node)) orig.set(node, t);
+        var n = orig.get(node);
+        for (var i = 0; i < MAP.length; i++) n = n.replace(MAP[i][0], MAP[i][1]);
+        node.nodeValue = n;
+      } else if (orig.has(node)) { node.nodeValue = orig.get(node); }
+      return;
+    }
+    if (node.nodeType !== 1) return;
+    var tag = node.tagName;
+    if (tag === 'SCRIPT' || tag === 'STYLE' || tag === 'CODE' || tag === 'PRE' || tag === 'TEXTAREA') return;
+    for (var j = 0; j < node.childNodes.length; j++) walk(node.childNodes[j], apply);
+  }
+  function apply(rating) {
+    var g = rating === 'g';
+    walk(document.body, g);
+    root.setAttribute('data-rating', g ? 'g' : 'pg13');
+    if (btn) btn.textContent = 'Rated: ' + (g ? 'G' : 'PG-13');
+  }
+  var saved = null;
+  try { saved = localStorage.getItem(KEY); } catch (e) {}
+  apply(saved === 'g' ? 'g' : 'pg13');
+  if (btn) {
+    btn.addEventListener('click', function () {
+      var next = root.getAttribute('data-rating') === 'g' ? 'pg13' : 'g';
+      apply(next);
+      try { localStorage.setItem(KEY, next); } catch (e) {}
+    });
+  }
+})();

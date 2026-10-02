@@ -53,3 +53,32 @@ meaning, not decoration.
 
 Where something falls short, it goes on the [known issues](/backlog/) page rather than being quietly
 ignored. If you hit a barrier, that is a bug - and it will be logged like one.
+
+## Verify this yourself
+
+Do not take our word for any of this. Run the lab through independent checkers:
+
+- **EFF Cover Your Tracks** - [coveryourtracks.eff.org](https://coveryourtracks.eff.org/) - shows how
+  fingerprintable you are while browsing, from the Electronic Frontier Foundation.
+- **The Markup's Blacklight** - [themarkup.org/blacklight](https://themarkup.org/blacklight) - scans a
+  page and reports third-party trackers, cookies, fingerprinting and session recording.
+- **Webbkoll** - [webbkoll.dataskydd.net](https://webbkoll.dataskydd.net/) - lists every third-party
+  request, cookie and header a page makes.
+
+But the honest answer is that there are two different questions here:
+
+**What this site does** - nothing hidden. It is static, self-hosted, and serves **no third-party
+scripts, no web fonts, no analytics, no cookies and no tracking pixels**. The comments endpoint keeps
+no IP, sets no cookie and stores nothing about you. The uptime probe measures the machine, not you. You
+can read the whole thing - the source is public.
+
+**What is upstream and not ours to promise** - and this is the part most privacy pages quietly skip:
+
+- **The CDN in front of the domain** terminates the connection and can see the traffic that reaches it.
+  That is the price of a front door.
+- **The host that runs the edge** sees the connections to its machine.
+- **Your browser, your extensions and your network** are yours, not ours.
+
+So if an independent checker ever reports tracking on this site, one of two things is true: it is
+wrong, or it is seeing something **upstream of us**. Either way we want to know which - and that report
+goes straight on the [known issues](/backlog/) list.
