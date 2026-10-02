@@ -84,7 +84,14 @@ function injectPartials(s) {
     .replace(/<p>\s*\{\{FORM:([a-z0-9-]+)\}\}\s*<\/p>/g, (m, n) => partial(n))
     .replace(/\{\{FORM:([a-z0-9-]+)\}\}/g, (m, n) => partial(n));
 }
-function write(rel, data) { const p = path.join(DIST, rel); ensureDir(path.dirname(p)); fs.writeFileSync(p, injectPartials(data)); }
+function write(rel, data) {
+  const p = path.join(DIST, rel);
+  ensureDir(path.dirname(p));
+  // Partial injection is for HTML output ONLY. Running it over search-index.json substituted raw
+  // form HTML (with unescaped quotes) into already-escaped JSON and made the index unparseable.
+  const isHtml = typeof rel === 'string' && /\.html?$/i.test(rel);
+  fs.writeFileSync(p, isHtml ? injectPartials(data) : data);
+}
 function read(p) { return fs.readFileSync(p, 'utf8'); }
 
 function readStory(entry) {
@@ -202,10 +209,16 @@ function copyAssets(dir, prefix) {
 
 // ---------- search / sitemap ----------
 function searchIndex(pages) {
+  // Strip markup before indexing: raw HTML in the text field produced unescaped quotes and made the
+  // file invalid JSON (newsletter form, char 22103) which also broke the site's own search.
+  const clean = (s) => String(s == null ? '' : s).replace(/<[^>]*>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 1500);
   const entries = pages.map(function (p) {
-    return { u: p.slug, t: p.title, k: p.kind === 'doc' ? 'Handbook' : p.kind === 'index' ? 'Handbook' : 'Story', x: p.text.slice(0, 1500) };
+    return { u: p.slug, t: clean(p.title), k: p.kind === 'doc' ? 'Handbook' : p.kind === 'index' ? 'Handbook' : 'Story', x: clean(p.text) };
   });
-  write('search-index.json', JSON.stringify(entries));
+  const json = JSON.stringify(entries);
+  // Fail loudly rather than publish an index that cannot be parsed.
+  try { JSON.parse(json); } catch (e) { console.error('SEARCH INDEX GATE: generated index is not valid JSON: ' + e.message); process.exit(2); }
+  write('search-index.json', json);
 }
 
 function sitemap(pages) {
