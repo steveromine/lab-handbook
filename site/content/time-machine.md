@@ -3,7 +3,7 @@ title: 'Time machine'
 description: 'Every change to this site, from the first commit to now - the lab's own history, as far back as it goes.'
 eyebrow: 'As far back as it goes'
 hero_title: 'The time machine'
-hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 88 recorded changes from 2026-10-01 to 2026-10-02 - so you can watch the thinking change, mistakes and all.'
+hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 89 recorded changes from 2026-10-01 to 2026-10-02 - so you can watch the thinking change, mistakes and all.'
 ---
 
 Every commit to this site, newest first. The point is not that the lab got everything right; it is
@@ -11,14 +11,15 @@ that you can see **how it changed** - including the places it changed its mind.
 
 ## 2026-10-02
 
-- `a428c6e` — site: regenerate the time-machine page at build time (D-2)
-- `16507bd` — gallery: daily song 2026-10-02 (lab facebook/musicgen-small); local-only, publication held
-- `49d8570` — reviews: week-one agent performance review (sanitised) + honest 3/5 provisional rating on the agents page
-- `061c124` — gallery: daily image 2026-10-02 (lab sd-turbo); local-only, publication held
-- `04e8f70` — site: reconcile status/backlog/agents/home with current lab state (held local; publication gate blocked)
-- `c27216e` — site: automated WCAG 2.2 AA accessibility gate + fix two token contrast failures
-- `59c78dd` — ci: disable auto-deploy (missing secrets); workflow_dispatch only, with re-enable note
-- `6abd45b` — site: keep the sanitisation gate green for deliberately-public hosts
+- `3815a57` — site: drop the G/PG switch; add image/audio mobile rules and small-screen fixes
+- `631d862` — site: regenerate the time-machine page at build time (D-2)
+- `a9b424c` — gallery: daily song 2026-10-02 (lab facebook/musicgen-small); local-only, publication held
+- `820c292` — reviews: week-one agent performance review (sanitised) + honest 3/5 provisional rating on the agents page
+- `aca387b` — gallery: daily image 2026-10-02 (lab sd-turbo); local-only, publication held
+- `eaaa909` — site: reconcile status/backlog/agents/home with current lab state (held local; publication gate blocked)
+- `1eeab2d` — site: automated WCAG 2.2 AA accessibility gate + fix two token contrast failures
+- `1d1589f` — ci: disable auto-deploy (missing secrets); workflow_dispatch only, with re-enable note
+- `04dbb7b` — site: keep the sanitisation gate green for deliberately-public hosts
 - `b1c6633` — site: Wren life story page with self-portrait
 - `0dba4ff` — site: add a real /about/ page
 - `c75fcee` — about: update pages to current state
