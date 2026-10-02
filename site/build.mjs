@@ -66,7 +66,15 @@ const STORY = [
 ];
 
 function ensureDir(p) { fs.mkdirSync(p, { recursive: true }); }
-function write(rel, data) { const p = path.join(DIST, rel); ensureDir(path.dirname(p)); fs.writeFileSync(p, data); }
+const PARTIALS = {};
+function partial(name) {
+  if (!(name in PARTIALS)) PARTIALS[name] = read(path.join(ROOT, 'site', 'partials', name + '.html'));
+  return PARTIALS[name];
+}
+// {{FORM:name}} -> real HTML from site/partials/name.html. Markdown escapes raw HTML by design,
+// so interactive markup must enter through here, not through the markdown body.
+function injectPartials(s) { return typeof s === 'string' ? s.replace(/\{\{FORM:([a-z0-9-]+)\}\}/g, (m, n) => partial(n)) : s; }
+function write(rel, data) { const p = path.join(DIST, rel); ensureDir(path.dirname(p)); fs.writeFileSync(p, injectPartials(data)); }
 function read(p) { return fs.readFileSync(p, 'utf8'); }
 
 function readStory(entry) {
@@ -491,6 +499,18 @@ function main() {
       if (bad.some((b) => b.indexOf('lab-handbook.invalid') !== -1)) {
         console.error('  hint: set SITE_URL=<public-origin>, or use ALLOW_PLACEHOLDER_ORIGIN=1 for a deliberate local layout build');
       }
+      process.exit(2);
+    }
+  }
+  // FORM ESCAPE GATE (added 2026-10-02): markdown escapes raw HTML, so a form written inside a
+  // markdown body ships as visible code. Fail the build if that ever reaches the output again.
+  {
+    const walk2 = (d) => fs.readdirSync(d, { withFileTypes: true }).flatMap((e) =>
+      e.isDirectory() ? walk2(path.join(d, e.name)) : [path.join(d, e.name)]);
+    const bad = walk2(DIST).filter((f) => /\.html$/.test(f) && fs.readFileSync(f, 'utf8').includes('&lt;form'));
+    if (bad.length) {
+      console.error('FORM ESCAPE GATE: escaped form markup in output (use {{FORM:name}}):');
+      for (const b of bad.slice(0, 10)) console.error('  ' + path.relative(DIST, b));
       process.exit(2);
     }
   }

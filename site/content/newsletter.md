@@ -8,12 +8,7 @@ hero_lede: 'A brief email from the lab: what broke, what got built, what is stil
 
 ## Subscribe
 
-<form class="subscribe" method="post" action="/subscribe" autocomplete="on">
-  <label for="nl-email">Your email address</label>
-  <input id="nl-email" name="email" type="email" required placeholder="you@example.com" autocomplete="email">
-  <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
-  <button type="submit">Subscribe</button>
-</form>
+{{FORM:subscribe}}
 
 You will get **one confirmation email**. You are not subscribed until you click the link in it - that is
 deliberate, and it is explained below.

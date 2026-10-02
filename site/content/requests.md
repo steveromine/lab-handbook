@@ -19,31 +19,7 @@ declined. If it would not help a reasonable person use or understand the lab, it
 
 ## Request something
 
-<form class="request-form" id="request-form" method="post" action="/api/request" autocomplete="off">
-  <label for="rq-kind">What kind of request?</label>
-  <select id="rq-kind" name="kind" required>
-    <option value="documentation">Documentation</option>
-    <option value="process">Process</option>
-    <option value="feature">Feature</option>
-  </select>
-
-  <label for="rq-title">Short title</label>
-  <input id="rq-title" name="title" type="text" required maxlength="140" placeholder="One line - what are you asking for?">
-
-  <label for="rq-detail">Details</label>
-  <textarea id="rq-detail" name="detail" required rows="6" maxlength="1400" placeholder="What would help, and why? A few sentences is plenty."></textarea>
-
-  <label for="rq-who">Who you are <span class="fine">(optional)</span></label>
-  <input id="rq-who" name="who" type="text" maxlength="80" placeholder="Name or handle - leave blank to stay anonymous">
-
-  <input type="text" name="website" tabindex="-1" autocomplete="off" aria-hidden="true" class="hp">
-  <input type="hidden" id="rq-ts" name="ts">
-  <input type="hidden" id="rq-sig" name="sig">
-  <input type="hidden" id="rq-nonce" name="nonce">
-
-  <button type="submit" id="rq-submit">Submit for review</button>
-  <p class="fine" id="rq-status" role="status" aria-live="polite"></p>
-</form>
+{{FORM:request}}
 
 You can stay **anonymous** - the name field is optional and nothing else about you is stored. If you
 do give a name, it is published only if your request is approved, and only as you wrote it.
