@@ -161,3 +161,28 @@
       .catch(function () { status.textContent = 'Could not reach the server.'; });
   });
 })();
+
+
+// --- uptime tally (uptime page only) ---
+(function () {
+  'use strict';
+  var el = document.querySelector('[data-uptime]');
+  if (!el) return;
+  function nines(p) {
+    if (p == null) return '-';
+    if (p >= 99.99) return '4'; if (p >= 99.9) return '3';
+    if (p >= 99) return '2'; if (p >= 90) return '1'; return '0';
+  }
+  function ts(t) { return t ? new Date(t * 1000).toISOString().replace('T', ' ').slice(0, 16) + ' UTC' : '-'; }
+  fetch('/api/uptime').then(function (r) { return r.json(); }).then(function (d) {
+    var s = (d && d.stats) || {};
+    el.innerHTML = '<ul class="uptime-stats">' +
+      '<li><strong>Uptime</strong><span>' + (s.uptime_pct == null ? '-' : s.uptime_pct + '%') + '</span></li>' +
+      '<li><strong>Nines</strong><span>' + nines(s.uptime_pct) + '</span></li>' +
+      '<li><strong>Samples</strong><span>' + (s.samples || 0) + ' (' + (s.up || 0) + ' up)</span></li>' +
+      '<li><strong>Since</strong><span>' + ts(s.since) + '</span></li>' +
+      '</ul>';
+  }).catch(function () {
+    el.innerHTML = '<p class="fine">Tally unavailable right now - which, fittingly, tells you something.</p>';
+  });
+})();

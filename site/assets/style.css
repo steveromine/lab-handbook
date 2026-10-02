@@ -214,3 +214,8 @@ html { scroll-behavior: smooth; }
 .live-comments .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
 .live-comments blockquote { border-left: 3px solid var(--accent); margin: 1rem 0; padding: .1rem 0 .1rem 1rem; }
 .live-comments blockquote footer { color: var(--muted); font-size: .85rem; }
+
+.uptime-stats { list-style: none; padding: 0; display: grid; gap: .4rem; grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr)); }
+.uptime-stats li { background: var(--bg-soft); border: 1px solid var(--line); border-radius: 10px; padding: .6rem .8rem; }
+.uptime-stats strong { display: block; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted); }
+.uptime-stats span { font-size: 1.15rem; }

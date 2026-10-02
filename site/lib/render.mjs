@@ -33,7 +33,6 @@ export const NAV = [
   { label: 'Security', href: '/security/' },
   { label: 'Status', href: '/status/' },
   { label: 'Lessons', href: '/lessons/' },
-  { label: 'Futures', href: '/futures/' },
   { label: 'Build', children: [
     { href: '/build/', label: 'Build your own (map)' },
     { href: '/handbook/build-proxmox-host/', label: 'The Proxmox host' },
@@ -61,13 +60,13 @@ export const NAV = [
     { href: '/start/', label: 'Where to start' },
     { href: '/hardware/', label: 'The hardware' },
     { href: '/operator/', label: 'The human in the loop' },
-    { href: '/futures/', label: 'Wren (the agent)' },
     { href: '/song/', label: 'The Quiet Machine (song)' },
     { href: '/brand/', label: 'Brand sheet' },
     { href: '/time-machine/', label: 'Time machine' },
     { href: '/privacy/', label: 'Privacy' }
     , { href: '/backlog/', label: 'Known issues & backlog' }
     , { href: '/comments/', label: 'Comments' }
+    , { href: '/uptime/', label: 'Uptime (nines)' }
     , { href: '/gallery/', label: 'Gallery' }
   ] }
 ];
