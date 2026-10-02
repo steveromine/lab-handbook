@@ -50,6 +50,12 @@ Output goes to `site/dist/`. The build **fails** (exit 2) if the sanitisation ga
 a private hostname, a non-public subdomain, key material or a token shape in the content, the assets,
 or the generated output. Nothing is published from a failing build.
 
+Gates run in order and each one fails the build closed with its own exit code: sanitisation (exit 2),
+accessibility - WCAG 2.2 AA structure and contrast (exit 3), internal-link - no unrewritten relative
+Markdown href survives (exit 4), and **link-target** (exit 5) - every internal href must resolve to a
+generated page and, when it carries a `#fragment`, to an anchor that exists in that page, so a
+hand-written link to a renamed page or a mistyped anchor cannot ship as a 404.
+
 Pages are written into a staging tree (`site/dist.tmp/`) and every gate runs against it; only a
 build that passes **all** gates is renamed over `site/dist/`. So a failed build leaves the previous
 `site/dist/` untouched (never a half-gated tree), and a deploy that ignores the exit code cannot
