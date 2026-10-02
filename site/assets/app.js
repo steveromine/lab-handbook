@@ -146,19 +146,54 @@
     .then(function (d) { render(d.comments || []); })
     .catch(function () { list.innerHTML = '<p class="fine">Could not load comments.</p>'; });
 
+  var loadedAt = Date.now() / 1000;
+  var challenge = null;
+  function getChallenge() {
+    return fetch('/api/challenge').then(function (r) { return r.json(); }).then(function (d) {
+      if (!d.ok) throw new Error('no challenge');
+      challenge = d; return d;
+    });
+  }
+  getChallenge().catch(function () {});
+  function hex(buf) { return Array.prototype.map.call(new Uint8Array(buf), function (b) { return ('0' + b.toString(16)).slice(-2); }).join(''); }
+  function sha(s) { return crypto.subtle.digest('SHA-256', new TextEncoder().encode(s)).then(hex); }
+  function solve(nonce, bits) {
+    var prefix = new Array(bits + 1).join('0');
+    var i = 0;
+    function round() {
+      var batch = [];
+      for (var k = 0; k < 128; k++) batch.push(sha(nonce + (i + k)).then(function (h) { return h; }));
+      return Promise.all(batch).then(function (hs) {
+        for (var k = 0; k < hs.length; k++) if (hs[k].slice(0, bits) === prefix) return i + k;
+        i += 128;
+        return round();
+      });
+    }
+    return round();
+  }
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     var fd = new FormData(form);
-    status.textContent = 'sending...';
-    fetch('/api/comments', {
-      method: 'POST', headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ name: fd.get('name'), body: fd.get('body'), hp: fd.get('hp') })
+    if (!crypto.subtle) { status.textContent = 'This needs a secure (https) connection to post.'; return; }
+    status.textContent = 'solving a small puzzle to prove you are real...';
+    var ch = challenge ? Promise.resolve(challenge) : getChallenge();
+    ch.then(function (c) {
+      return solve(c.nonce, c.bits).then(function (sol) {
+        return { c: c, sol: sol };
+      });
+    }).then(function (r) {
+      status.textContent = 'posting...';
+      return fetch('/api/comments', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name: fd.get('name'), body: fd.get('body'), hp: fd.get('hp'),
+          nonce: r.c.nonce, solution: r.sol, t0: loadedAt })
+      });
     }).then(function (r) { return r.json(); })
       .then(function (d) {
-        if (d.ok) { status.textContent = 'Thank you. ' + (d.note || 'Held for approval.'); form.reset(); }
-        else { status.textContent = 'Could not post: ' + (d.error || 'error'); }
+        if (d.ok) { status.textContent = 'Thank you. ' + (d.note || 'Held for approval.'); form.reset(); challenge = null; getChallenge().catch(function () {}); }
+        else { status.textContent = 'Could not post: ' + (d.error || 'error'); challenge = null; getChallenge().catch(function () {}); }
       })
-      .catch(function () { status.textContent = 'Could not reach the server.'; });
+      .catch(function (err) { status.textContent = 'Could not post (' + ((err && err.message) || 'error') + ').'; });
   });
 })();
 
