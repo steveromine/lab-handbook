@@ -27,7 +27,8 @@ export const NAV = [
     { href: '/operator/', label: 'The human in the loop' },
     { href: '/song/', label: 'The Quiet Machine (song)' },
     { href: '/brand/', label: 'Brand sheet' },
-    { href: '/time-machine/', label: 'Time machine' }
+    { href: '/time-machine/', label: 'Time machine' },
+    { href: '/privacy/', label: 'Privacy' }
   ] },
   { label: 'Build', children: [
     { href: '/build/', label: 'Build your own (map)' },
