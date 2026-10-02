@@ -66,6 +66,7 @@ export const NAV = [
     { href: '/brand/', label: 'Brand sheet' },
     { href: '/time-machine/', label: 'Time machine' },
     { href: '/privacy/', label: 'Privacy' }
+    , { href: '/backlog/', label: 'Known issues & backlog' }
   ] }
 ];
 
