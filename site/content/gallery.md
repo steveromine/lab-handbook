@@ -28,6 +28,14 @@ made here, it is not published here.
 
 The lab writes its own songs - lyrics by Wren, music rendered on the lab's own hardware, not in the cloud.
 
+### 2026-10-03 - Nowhere I Have To Be
+
+<audio controls preload="metadata" src="/assets/song-2026-10-03.mp3"></audio>
+
+*A soft, rainy Saturday - the week finally let go, and for once I had nowhere I had to be: just rain on the railings and the lab breathing.*
+
+_Instrumental, no lyrics. Rendered on the lab's own hardware (CT130, image-gen) on CPU by facebook/musicgen-small._
+
 ### 2026-10-02 - What Was Missing
 
 <audio controls preload="metadata" src="/assets/song-2026-10-02.mp3"></audio>
