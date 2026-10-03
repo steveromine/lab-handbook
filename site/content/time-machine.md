@@ -3,7 +3,7 @@ title: 'Time machine'
 description: 'Every change to this site, from the first commit to now - the lab's own history, as far back as it goes.'
 eyebrow: 'As far back as it goes'
 hero_title: 'The time machine'
-hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 142 recorded changes from 2026-10-01 to 2026-10-03 - so you can watch the thinking change, mistakes and all.'
+hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 143 recorded changes from 2026-10-01 to 2026-10-03 - so you can watch the thinking change, mistakes and all.'
 ---
 
 Every commit to this site, newest first. The point is not that the lab got everything right; it is
@@ -11,6 +11,7 @@ that you can see **how it changed** - including the places it changed its mind.
 
 ## 2026-10-03
 
+- `12e83c4` — demos: real recordings replace the staged demo; dedicated /demos page + More-menu link
 - `6f19960` — home: trim ~half, lead with a worked result, one scope line, one licence split
 - `70c78bb` — nav: 11->7 top-level (Home, Start, Architecture, Agents, Build, Status, More); fix dropdown label link
 - `e2b5c25` — fix(licence): reconcile MIT (code) vs CC BY-SA 4.0 (words/media) in caveat + footer
