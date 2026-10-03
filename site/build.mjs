@@ -54,6 +54,7 @@ const STORY = [
   { slug: '/accessibility/', file: 'accessibility.md', nav: '/accessibility/', section: 'Story' },
   { slug: '/ask/', file: 'ask.md', nav: '/ask/', section: 'Story' },
   { slug: '/time-machine/', file: 'time-machine.md', nav: '/time-machine/', section: 'Story' },
+  { slug: '/example-desktop-demo/', file: 'example-desktop-demo.md', nav: '/example-desktop-demo/', section: 'Story' },
   { slug: '/operator/', file: 'operator.md', nav: '/operator/', section: 'Story' },
   { slug: '/brand/', file: 'brand.md', nav: '/brand/', section: 'Story' },
   { slug: '/futures/', file: 'futures.md', nav: '/futures/', section: 'Story' },
