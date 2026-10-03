@@ -3,7 +3,7 @@ title: 'Time machine'
 description: 'Every change to this site, from the first commit to now - the lab's own history, as far back as it goes.'
 eyebrow: 'As far back as it goes'
 hero_title: 'The time machine'
-hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 134 recorded changes from 2026-10-01 to 2026-10-03 - so you can watch the thinking change, mistakes and all.'
+hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 135 recorded changes from 2026-10-01 to 2026-10-03 - so you can watch the thinking change, mistakes and all.'
 ---
 
 Every commit to this site, newest first. The point is not that the lab got everything right; it is
@@ -11,6 +11,7 @@ that you can see **how it changed** - including the places it changed its mind.
 
 ## 2026-10-03
 
+- `155fc53` — gallery: 2026-10-03 daily image - 'Rain on the railings' (stabilityai/sd-turbo, lab GPU)
 - `c1c00cc` — site-refresh(08:00): reconcile public handbook to the live estate - Atlas runs (local model; daily audit still unproven), 17+3 guests, refreshed rack snapshot, new dated status section
 - `d8d1299` — backlog: document WiFi/BT signal-intel sidequests
 - `db69534` — example: agent-built desktop demo page with video

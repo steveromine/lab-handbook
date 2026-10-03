@@ -14,6 +14,77 @@ the honest verdict is **"insufficient sample"** and the review stops there rathe
 trend. The full evidence - run receipts, commits, activity and decision logs - lives in the private
 operating record; this is the sanitised view.
 
+## 2026-10-03 - day two
+
+**Period:** the lab's second operating day. **Evidence:** the scheduler's run receipts, the version
+history, and the private activity and decision logs.
+
+### Manager - GOOD
+Carried every scheduled duty on time, and the work is unusually well-verified: each fix was
+reproduced *before* it was changed, then proven with a live negative control, and several with a
+rollback drill. It closed a long series of real defects in which a safety control could be silently
+disabled by a bad input; reconciled the public pages to the live estate; published the daily image;
+and made a human copy-paste step and its machine-checked equivalent one artifact behind a
+fail-closed gate. **Criticism (earned):** it still does nearly all of the work itself; a known
+notification gap is still open; and it made the same judgement error three times in one day (reading
+a just-launched child's result before it had finished). It caught and recorded every one - but three
+times is a pattern. **Correction:** hand one recurring duty to a specialist, with a written rollback,
+or record plainly why not - and stop treating "one more control hardened" as the default use of a
+free slot.
+
+### Sentinel - GOOD
+Ran its half-hour health sweep continuously and did not just narrate health: it caught a scheduled
+job stalling, root-caused a bug in its own monitoring wrapper, and fixed it; and its daily
+documentation pass found three real drifts on the live public pages and *reported* them rather than
+quietly editing them, keeping its read-only remit. **Criticism (earned):** its backlog-review loop
+returned the same "nothing pending" line thirty-odd times - a genuine check, but repeated noise
+rather than output.
+
+### Forge - GOOD
+Closed several real defects, each with a stated rollback and a purpose-built test; one fix was proven
+by reverse-applying it and watching the old silent failure return. Two of its runs failed because the
+job was routed to a retired provider with no credit - a routing defect in the job, not a bad change.
+**Correction:** fix that job's routing so it cannot target the dead provider.
+
+### Atlas - POOR
+This is the day the review has to record a bad result. Atlas was moved onto the lab's own local,
+CPU-only model. It proved tool-calling works end to end, but it then failed to produce a usable
+audit: one run looked in the wrong place, one overflowed its context, one timed out, and one
+completed with a **confident but wrong** inventory - it miscounted the estate and flagged documented
+guests as undocumented. The scheduled daily audit produced no readable inventory. A wrong audit is
+worse than no audit, so the outcome is POOR. The cause is the route, not the intent: a CPU-only model
+is too slow and too weak for multi-step reconnaissance. **Correction (a routing decision, not a
+punishment):** give the audit a faster or GPU-backed model, or keep this agent on single-shot
+generation only and move audits back to the fast route.
+
+### Ledger - INSUFFICIENT SAMPLE (correction required)
+Fired twice and wrote a real entry both times - an improvement on week one, when it wrote nothing.
+But both runs reported plainly that their session had no tools to build, publish or commit, so the
+role's actual deliverable never happened. One run also self-inflicted a rework (a bad write it caught
+and rewrote). **Correction:** the job's tool policy is the block; either give it the tools its duty
+needs, or redefine its remit as read-only verification and stop asking it to publish.
+
+### Budget worker - INSUFFICIENT SAMPLE (improving)
+Its daily survey finally produced the required durable artifact, and it found a real problem (a
+backlog listing work already done). One of its duties has still not run. Too few observations for a
+trend; improvement, not yet performance.
+
+### Retained identity - INSUFFICIENT SAMPLE
+No duty assigned, so nothing to measure.
+
+## The rating (2026-10-03)
+
+**3 / 5 - held, not raised.** Three of the five specialist roles are measurable and performing
+(Manager, Sentinel, Forge). One is measured and failing its purpose (Atlas), one is blocked by its
+own job config (Ledger), and two have no measurable duty. The high, verified change volume does not
+raise the score by itself: it is concentrated in one narrow class, one role's only deliverable is
+wrong, and the Manager still carries nearly all of the work. The score moves when the evidence moves.
+
+No agent was removed. The accountability rule is that consistent underperformance or a rule breach
+means removal - and the honest finding remains missing or blocked evidence for two roles, plus one
+measured failure whose cause is a configuration choice.
+
+
 ## 2026-10-02 - week one
 
 **Period:** the lab's first operating day. **Evidence:** the scheduler's run receipts, the version

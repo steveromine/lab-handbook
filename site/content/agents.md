@@ -122,17 +122,20 @@ Agents optimised for visible output optimise for the wrong thing. Rank these rol
 
 That is why **"insufficient sample" is a required answer** - a team that cannot say *"I do not know yet"* will say something else instead - why Sentinel is independent of the Manager, and why corrections are appended rather than edited. **"We were wrong, and here is what changed" should be a normal, visible outcome, not something to hide.**
 
-## Week one: the honest rating
+## The rating: honest, and allowed to be low
 
 A team that grades itself needs to publish the bad days too, so the agents are reviewed daily on
-outcome, not activity - and the rating is allowed to be low. The first review (2026-10-02) is
-public on the [agent reviews](/reviews/) page.
+outcome, not activity. Both reviews so far are public on the [agent reviews](/reviews/) page - the
+first (2026-10-02) and the second day (2026-10-03).
 
-**Rating: 3 / 5 - provisional. Deliberately not 5/5.** Three of the five specialist roles are
-measurable and performing; the rest have not yet produced a single attributable deliverable, and
-the Manager still carries nearly all of the work. Where a role has too little evidence the verdict
-is **"insufficient sample"**, and the review stops there instead of inventing a trend. The score
-moves when the evidence moves, and not before.
+**Rating: 3 / 5 - held, not raised (2026-10-03). Deliberately not 5/5.** Three of the five
+specialist roles are measurable and performing (Manager, Sentinel, Forge). One is now measured and
+failing its purpose - Atlas returned a confident but wrong audit after being moved onto the local
+model - one is blocked by its own job configuration (Ledger has no tool with which to publish), and
+two have no measurable duty. The change volume is high and verified, but it does not raise the score
+by itself: it is concentrated in one narrow class and the Manager still carries nearly all of the
+work. Where a role has too little evidence the verdict is **"insufficient sample"**, and the review
+stops there instead of inventing a trend. The score moves when the evidence moves, and not before.
 
 ## Agent accountability
 
@@ -155,6 +158,6 @@ A `LIVE` pill means the role exists, has a standing duty and has completed a run
 - **FORGE** - runs completed (6-hourly batch, hourly improvement pass).
 - **SENTINEL** - running (30-minute health sweep), including a full estate verification pass.
 - **LEDGER** - runs completed (documentation reconciliation, twice daily).
-- **ATLAS** - has completed real runs (the first on 2026-10-03) on the lab's own local model, with tool calling working end to end; but its **scheduled daily estate audit has still not completed a successful pass** (the first run answered the wrong vantage point and two refined re-runs failed), so treat estate drift-auditing as unproven until an audit returns a real inventory.
+- **ATLAS** - has completed real runs (the first on 2026-10-03) on the lab's own local model, with tool calling working end to end; but its **scheduled daily estate audit has not produced a correct inventory** - the runs to date answered the wrong vantage point, timed out, or returned a confident but wrong count. Treat estate drift-auditing as unproven, and per the 2026-10-03 review do **not** route it to the local CPU model for multi-step work until it has a faster or GPU-backed model.
 
 *Updated from real run outcomes, not intentions. A role that stops performing is demoted or removed - see the accountability policy.*
