@@ -31,7 +31,7 @@ is the trap most people never read:
 - **`stabilityai/sd-turbo`** ships under **non-commercial** community terms.
 
 So: everything here is legitimately ours to publish, but the **generated media inherits a
-non-commercial limitation** from the weights that produced it. MIT on the prose, **no-commercial** on
+non-commercial limitation** from the weights that produced it. CC BY-SA 4.0 on the prose, **no-commercial** on
 the pictures and the songs. If you ever wanted to sell something with this art in it, that is the line.
 
 ## 🔒 Closed source, and honestly named
