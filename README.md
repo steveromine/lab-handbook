@@ -25,7 +25,7 @@ Historical deployment proofs are not a fresh whole-estate health check.
 | Area | Summary |
 |---|---|
 | **Hypervisor** | One Proxmox VE host; the only machine with a GPU |
-| **Guests** | 10 containers + 3 virtual machines in service; 7 retired guests reclaimed |
+| **Guests** | 17 containers + 3 virtual machines in service; 7 retired guests reclaimed |
 | **GPU** | A single 8 GB NVIDIA card, deliberately shared between LLM inference, media transcoding and image generation |
 | **Edge** | A public VPS terminating Cloudflare-fronted HTTPS, joined to the lab by WireGuard |
 | **AI platform** | Local LLM, a chat front-end, image generation, archive-aware file ingestion, web search |

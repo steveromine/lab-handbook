@@ -58,6 +58,6 @@ personal data. Requests are summarised, not quoted verbatim.
 
 | Preference | Value |
 |---|---|
-| Trusted correspondents | the operator's three addresses (three provider mailboxes) - accept and reply automatically |
+| Trusted correspondents | the operator's three trusted addresses - accept and reply automatically |
 | Tone | direct; mistakes stated rather than hidden |
 | Autonomy | act on reversible/testing-verified changes; escalate only high-risk ones |

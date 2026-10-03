@@ -11,7 +11,7 @@ its GPU is a single point of contention.
 
 ```mermaid
 flowchart TB
-    HV[Hypervisor] --> LXC[10 containers]
+    HV[Hypervisor] --> LXC[17 containers]
     HV --> VM[3 virtual machines]
     HV --> GPU[(GPU)]
     HV --> POOL[Thin-provisioned storage pool]
