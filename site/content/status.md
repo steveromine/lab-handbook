@@ -53,6 +53,16 @@ That incident is why this site is generated from a repository with an automated 
 
 The theme of that day was **verification**: several items that reported success had not actually worked, and several that looked like failures were fine. The [Lessons](/lessons/) page records the specifics.
 
+## Refreshed 2026-10-03 08:03 UTC
+
+| Area | State | What is recorded | What remains unproven |
+|---|---|---|---|
+| **Monitoring** | <span class="pill pill-verified">VERIFIED</span> <span class="pill pill-gap">KNOWN GAP</span> | The hourly read-only monitor runs **43 deterministic checks**; its most recent run passed 42 of 43, the one warning being the standing alert-mailbox bounce. Re-read at refresh: the agent host, the hypervisor and the edge each report 0 failed units; the agent gateway answers health on loopback only; all 28 scheduled jobs are present and enabled; TLS on the four published names has 86 days left. | The single warning is that alert email to one operator mailbox is still rejected by that external provider's own policy; the lab's send path is otherwise green. |
+| **Mail (own server)** | <span class="pill pill-verified">VERIFIED</span> <span class="pill pill-gap">KNOWN GAP</span> | Re-read at refresh: the mail server and web server are active and the mail queue is empty. | **Outbound is still earning trust:** DKIM signing is not generated and reverse DNS is deferred, so one large consumer provider still rejects the lab's own alert mail (554 5.7.1, provider local policy); the other provider accepts it. |
+| **Uptime tally** | <span class="pill pill-verified">VERIFIED</span> | A probe records whether the public site answers every few minutes. Read back at 08:01 UTC: **316 samples, 316 up, 100%** since the probe began. | The probe measures the public edge, not the home lab behind it. |
+| **Estate** | <span class="pill pill-verified">VERIFIED</span> | The hypervisor runs **17 containers and 3 virtual machines** with 0 failed units, and the single GPU is shared three ways. | Three virtual machines still expose no in-band channel from the hypervisor, and the local model guest added on 2026-10-03 sits outside the recorded estate baseline. |
+| **Agent org** | <span class="pill pill-verified">VERIFIED</span> <span class="pill pill-gap">KNOWN GAP</span> | All five agent roles have now completed at least one run; the Atlas role was moved onto the lab's own local model on 2026-10-03 and tool calling is proven end to end. | **Atlas's scheduled daily estate audit has still not completed a successful pass**, so scheduled configuration-drift auditing remains unproven. |
+
 ## Refreshed 2026-10-02 23:36 UTC
 
 | Area | State | What is recorded | What remains unproven |

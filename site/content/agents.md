@@ -2,7 +2,7 @@
 title: 'The agent org chart'
 description: 'Five specified agent roles, all now configured and scheduled. Who exists, what each may not do, how far the specialists really go, and why the authority matrix matters more than the personalities.'
 hero_title: 'The agent org chart'
-hero_lede: 'An org chart drawn before the team exists is a specification, not a description. All five roles below are configured and scheduled; four have completed runs and the fifth has not yet. Being precise about how far each really goes is the point of the page.'
+hero_lede: "An org chart drawn before the team exists is a specification, not a description. All five roles below are configured and scheduled and each has now completed at least one run; the fifth of them has a scheduled estate audit that is still unproven. Being precise about how far each really goes is the point of the page."
 ---
 
 ## One agent, two names - and a bigger roster than the chart
@@ -14,7 +14,9 @@ means Wren.
 
 **Seven agents are configured in total**, not five: the five roles below, plus a budget agent for
 high-volume reversible work (discovery, summarising, classification) and a retained identity that is
-no longer an active provider selection. All seven currently route to the same fast, low-cost model route.
+no longer an active provider selection. Six route to the same fast, low-cost cloud model; **Atlas was
+moved onto the lab's own local model on 2026-10-03**, which is the split the routing table below
+actually intends.
 
 ## The chart
 
@@ -38,14 +40,14 @@ The Manager reports to the operator and to no one else. **Sentinel's audit findi
 | **MANAGER** | <span class="pill pill-live">LIVE</span> | Decompose work, choose the model and tools, verify the result, report honestly | Approve its own exceptions; override an audit finding; change its own permissions |
 | **FORGE** | <span class="pill pill-live">LIVE</span> | Implement changes: deploy, configure, write the scripts | Deploy without a written rollback; repeat a failed method more than twice |
 | **SENTINEL** | <span class="pill pill-live">LIVE</span> | Adversarial review: attack the design, verify the verification, hunt for exposure | Be overruled by the Manager; ship a fix for a finding it also reported |
-| **ATLAS** | <span class="pill pill-configured">CONFIGURED</span> | Reconnaissance: what is here, what version, what depends on what | Change anything - read-only by construction |
+| **ATLAS** | <span class="pill pill-live">LIVE</span> | Reconnaissance: what is here, what version, what depends on what | Change anything - read-only by construction |
 | **LEDGER** | <span class="pill pill-live">LIVE</span> | Records: decision log, activity log, backlog, cost accounting | Rewrite history - corrections are **appended**, never edited in place |
 
 ### What that means in practice
 
-The **Manager** is the coordinator: it takes a task, decomposes it, picks a model and tools, verifies the outcome and reports. Forge, Sentinel, Atlas and Ledger now exist as configured agents with scheduled duties - builds and improvements, adversarial audits, reconnaissance and the records. Four of the five roles have completed a run; **Atlas is scheduled but has not yet run**, so it is shown as configured rather than live.
+The **Manager** is the coordinator: it takes a task, decomposes it, picks a model and tools, verifies the outcome and reports. Forge, Sentinel, Atlas and Ledger now exist as configured agents with scheduled duties - builds and improvements, adversarial audits, reconnaissance and the records. All five roles have now completed at least one run; **Atlas first ran on 2026-10-03**, on the lab's own local model - but its scheduled daily estate audit has still not completed a successful pass, so that goal is called out as unproven below.
 
-The honest caveat: all five are routed to the *same* fast, low-cost model route today. The frontier-class split the routing table below describes is the target, not the present. "Live" here means an agent has an identity, a job and a schedule - not that it is a different class of model.
+The honest caveat: four of the five run on the *same* fast, low-cost cloud route today, and Atlas runs on the lab's own local model rather than the frontier-class worker the routing table describes. The frontier split is the target, not the present. "Live" here means an agent has an identity, a job and a schedule (and, for Atlas, has completed a run) - not that it is a different class of model.
 
 > **Why publish a chart for a team that has only just started running?** Because building a team without one is how you end up with five agents and no idea which is responsible. The chart is the specification the build was held to - and the running record of how far each role has actually got.
 
@@ -75,7 +77,7 @@ Work is routed by **risk and cost**, not by availability:
 | 3 | High volume? | Yes: cheap, fast model |
 | 4 | Otherwise | The lab's own local model |
 
-The operating roster that implements this today - with one deliberate simplification: every role currently runs on the same fast, low-cost model route, so the "model class" column names the *intended* split rather than the present one:
+The operating roster that implements this today - with one deliberate simplification: every role except Atlas currently runs on the same fast, low-cost cloud route (Atlas runs on the lab's own local model), so the "model class" column names the *intended* split rather than the present one:
 
 | Role | Model class | Used for |
 |---|---|---|
@@ -145,7 +147,7 @@ made and explained.
 *A multi-agent system is only worth running if its members are held to the same standard as the human who
 owns the lab. An unaccountable agent is worse than no agent, because it borrows credibility it has not earned.*
 
-## Where each role actually stands (2026-10-02)
+## Where each role actually stands (2026-10-03)
 
 A `LIVE` pill means the role exists, has a standing duty and has completed a run on the working model; a `CONFIGURED` pill means the role is scheduled and routable but has not yet run. Either way it does not mean every role has yet proved itself. The honest split, as of this date:
 
@@ -153,6 +155,6 @@ A `LIVE` pill means the role exists, has a standing duty and has completed a run
 - **FORGE** - runs completed (6-hourly batch, hourly improvement pass).
 - **SENTINEL** - running (30-minute health sweep), including a full estate verification pass.
 - **LEDGER** - runs completed (documentation reconciliation, twice daily).
-- **ATLAS** - scheduled daily, but has **not yet completed its first run**. Until it has, treat its role as configured rather than proven.
+- **ATLAS** - has completed real runs (the first on 2026-10-03) on the lab's own local model, with tool calling working end to end; but its **scheduled daily estate audit has still not completed a successful pass** (the first run answered the wrong vantage point and two refined re-runs failed), so treat estate drift-auditing as unproven until an audit returns a real inventory.
 
 *Updated from real run outcomes, not intentions. A role that stops performing is demoted or removed - see the accountability policy.*

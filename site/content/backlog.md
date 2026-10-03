@@ -19,7 +19,7 @@ the private register.
 | **Guest-inference revocation untested** | security | The design is written, but the feature is not built and **revocation has never been exercised**. Until it has, the isolation is a plan, not a proven control. |
 | **New public endpoints not independently tested** | security | `/api/request` and `/subscribe` are rate-limited, proof-of-work gated and reviewed - but no independent penetration test has been run against them. |
 | **Subscriber retention is manual** | privacy | The list stores the minimum and unsubscribe deletes the record, but there is **no automated retention limit** - deletion is on request. |
-| **Atlas has never run** | stability | The daily estate audit is scheduled and has **not completed a single run**, so nothing is currently being proven about configuration drift. |
+| **Atlas's daily estate audit is still unproven** | stability | The Atlas agent now runs - its first real tool-using run completed on 2026-10-03 - but the **scheduled daily estate audit has not completed a successful pass** (the first run answered the wrong vantage point; two refined re-runs failed), so scheduled configuration-drift auditing is not yet being proven. |
 | **Weekly note has no scheduled sender** | stability | Store, confirmation and PGP signing are live; nothing sends the note on a schedule yet. |
 | **Mobile nav fix unconfirmed on iOS** | stability | The sticky-header overflow is fixed and deployed, but has not been confirmed on the reporter's device (DuckDuckGo on iOS). |
 | **Music model upgrade** | media | The higher-quality render needs a model that will not finish downloading inside its container. Blocked on a reliable fetch path, not on the GPU. |

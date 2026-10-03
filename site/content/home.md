@@ -57,7 +57,7 @@ One 8 GB card, three workloads. Two models that each "fit" in isolation do not f
 
 ### Agents are an org chart before they are software
 
-Five roles are specified: a manager who owns the outcome, and four specialists who build, audit, research and record. All five now exist as configured agents and run scheduled work - though the four specialists share the manager's fast model route rather than the frontier-class split the design describes. The honest accounting is on [the agent org chart](/agents/).
+Five roles are specified: a manager who owns the outcome, and four specialists who build, audit, research and record. All five now exist as configured agents and have completed runs - though the four specialists share the manager's fast cloud route, with Atlas moved onto the lab's own local model on 2026-10-03, rather than the frontier-class split the design describes. The honest accounting is on [the agent org chart](/agents/).
 
 ### Honest status beats a green dashboard
 
@@ -100,7 +100,7 @@ same reason: credit where it is due, blame nowhere it is not.
 
 Full text: [LICENSE](https://github.com/steveromine/lab-handbook/blob/main/LICENSE). The [licence page](/license/) names the split and, honestly, the closed things this lab still leans on.
 
-## About this lab, as of 2026-10-02
+## About this lab, as of 2026-10-03
 
 One person, one hypervisor, one shared GPU, and a small team of agents that now have to earn their keep.
 
@@ -124,11 +124,12 @@ and the evidence is in the repository, not in a promise.
 | **Forge** | Ships one small verified improvement an hour | Runs completed |
 | **Sentinel** | Health sweep every 30 minutes; reviews public requests every 30 | Running |
 | **Ledger** | Reconciles public and private documentation twice a day | Runs completed |
-| **Atlas** | Audits the estate daily - proves or disproves what is configured | Awaiting first run |
+| **Atlas** | Audits the estate daily - proves or disproves what is configured | Run completed; daily audit unproven |
 
-The count is deliberately unflattering where it should be: **Atlas is scheduled but has not yet
-completed a run**, so it is described as configured rather than proven. A role that stops performing is
-demoted or removed - see the [accountability policy](/agents/).
+The count is deliberately unflattering where it should be: **Atlas has now completed runs but its
+scheduled daily estate audit has still not passed**, so estate drift-auditing is described as unproven
+rather than claimed. A role that stops performing is demoted or removed - see the
+[accountability policy](/agents/).
 
 Three of these agents found and fixed real faults on their own, including a monitor that measured the
 wrong host and a publication gate that was silently blocking deploys. **You can see the results in the

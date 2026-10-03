@@ -117,14 +117,14 @@ function heroHtml(meta) {
 
 const FACTS = [
   ['Hypervisor', '1', 'One physical Proxmox VE host. A deliberate single point of failure.'],
-  ['Guests in service', '10 + 3', 'Ten containers and three virtual machines; seven retired guests reclaimed.'],
+  ['Guests in service', '17 + 3', 'Seventeen containers and three virtual machines in service.'],
   ['GPU', '8 GB', 'One consumer card, shared three ways on purpose.'],
   ['GPU workloads', '3', 'Resident LLM (~5 GB), streaming image model, bursty media transcode.'],
   ['Image generation', '1-4 steps', 'A distilled few-step model; ~1.5-2.5 s per image alongside the LLM.'],
   ['Network zones', '3', 'Management, untrusted client, servers.'],
   ['Public entry points', '1', 'A single hardened edge; lab services have no public listeners.'],
   ['Auth layers per service', '1', 'Exactly one - the app, or the edge. Never both.'],
-  ['Agent roles live', '4 of 5', 'Manager, Forge, Sentinel and Ledger have each completed real runs, verified in the job log. Atlas is scheduled daily but has not yet completed its first run - configured, not proven.'],
+  ['Agent roles live', '5 of 5', 'Manager, Forge, Sentinel, Ledger and Atlas have each completed real runs, verified in the job log. The scheduled daily estate audit has not yet completed a successful pass, so drift-auditing is still unproven.'],
 ];
 
 function factsHtml() {

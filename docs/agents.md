@@ -225,7 +225,9 @@ The last line matters as much as the first: the platform is expected to say what
 left alone, including the gaps it knows about.
 ## Current routing override
 
-The operator has selected DeepSeek-only routing for all seven configured coordinator/worker
-identities, without automatic provider fallback. The tiered-model diagrams and descriptions below
-describe the prior design, not current routing policy. The local offline service is a separate
-capability. See [rollout](rollout.md) for runtime verification gates and sequencing.
+Six of the seven configured coordinator/worker identities run on DeepSeek-only routing, without
+automatic provider fallback. The seventh, **Atlas**, was moved onto the lab's own local model on
+2026-10-03; that local route is now a real selection, not only the "local offline" fallback
+described below. The tiered-model diagrams and descriptions below otherwise describe the target
+design, not current routing policy. See [rollout](rollout.md) for runtime verification gates and
+sequencing.
