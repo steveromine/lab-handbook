@@ -3,7 +3,7 @@ title: 'Time machine'
 description: 'Every change to this site, from the first commit to now - the lab's own history, as far back as it goes.'
 eyebrow: 'As far back as it goes'
 hero_title: 'The time machine'
-hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 129 recorded changes from 2026-10-01 to 2026-10-02 - so you can watch the thinking change, mistakes and all.'
+hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 130 recorded changes from 2026-10-01 to 2026-10-02 - so you can watch the thinking change, mistakes and all.'
 ---
 
 Every commit to this site, newest first. The point is not that the lab got everything right; it is
@@ -11,6 +11,7 @@ that you can see **how it changed** - including the places it changed its mind.
 
 ## 2026-10-02
 
+- `fe16485` — status: reconcile to 42 checks (the lab scheduled-jobs control, finding C-41)
 - `f6390b8` — status: latest monitor run now 41 checks (40 of 41)
 - `66017df` — status: reconcile the monitoring row with the live monitor (41 checks; process-memory-kill control)
 - `100f8af` — status: reconcile the monitoring row with the live monitor (40 checks, 39/40 at 22:28Z)
