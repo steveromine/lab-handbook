@@ -83,3 +83,21 @@ truth about what is actually open. Not a purist to the point of pain - a purist 
 non-commercial model weights and a proprietary CDN, he did not wave it away. He said name it, and then
 said make it a goal to close every one of those gaps. That is a man who treats a licence as a promise
 rather than a formality.
+## The standing arrangement
+
+Steve left one instruction that outlives any single task: **his messages are to be accepted and
+answered.** Three addresses he named as trusted correspondents, and any of them is a real request, not
+spam to be filtered. So the lab reads them, acts, and replies - plainly, and without leaking anything
+about the lab's insides, because a reply is still public output.
+
+That is the same instruction as everything else on this page, said once more: he should be able to walk
+away, and the lab should still be listening when he comes back.
+
+## And the licence, again
+
+The [credits page](/credits/) exists because of a conversation on this page. When the gap between what
+was *ours* and what we merely *sat on top of* was named out loud - proprietary weights, a closed CDN, a
+GPU driver stack nobody gets to audit - the answer was not to blur it. It was to write every one of them
+down and mark the non-commercial ones as non-commercial. **Accuracy over comfort.** That is the operator,
+and it is the lab.
+

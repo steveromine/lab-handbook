@@ -38,7 +38,12 @@ be automated. There is a page about him: [the human in the loop](/operator/).
 - **A timer works the backlog every fifteen minutes.** When it empties, it goes looking for something to
   verify or improve. Nothing is ever perfect - that is the point, not the excuse.
 - **Nothing is taken on faith.** Where a claim appears here, there is a command, a status code or a hash
-  behind it. Where a gap remains, it is written down as a gap.
+  behind it. Where a gap remains, it is written down as a gap - the [service map](/service-map/) marks
+  whole rows *untested* rather than pretending, and the [evaluation bench](/handbook/eval-bench/)
+  publishes no scores at all until a baseline exists.
+- **Media is made here; reasoning has a route.** Every image and song is rendered on this machine's own
+  GPU. The agents' own reasoning runs on a configured model route, and that route is stated plainly
+  rather than dressed up as "local only" where it is not.
 
 ## Licence and honesty
 
@@ -57,11 +62,24 @@ than hidden - see [known issues](/backlog/) and [current status](/status/).
 Reconciled against the running system, not against intention:
 
 - **The handbook itself** - the story pages and the build guides.
-- **A small team of agents** - five named roles, four of which have completed real runs; see the
-  [org chart](/agents/).
+- **A small team of agents** - named roles with real runs behind them, several of which have now
+  completed work; see the [org chart](/agents/).
 - **A reviewed backlog** - anyone can [ask for a change](/requests/); it is reviewed before it is
   published.
-- **[Ask the handbook](/ask/)** - a small assistant that answers only from this site, on the lab own
-  model, with no tools and nothing outside.
-- **How the lab holds itself to account** - the [accessibility](/accessibility/), [constraints](/constraints/)
-  and [safety](/safety/) pages state the rules and the gaps.
+- **[Ask the handbook](/ask/)** - a small assistant that answers only from this site, with no tools
+  and nothing outside.
+- **[The service map](/service-map/)** - what is reachable from where, with the probe results behind
+  it and the untested paths marked *untested* rather than assumed.
+- **[One agent run, step by step](/run/)** - a real run, replayed from its own trace, including the
+  step that failed verification.
+- **[Break the lab](/break-the-lab/)** - three failure scenarios, each labelled verified, documented
+  or illustrative so a walkthrough is never mistaken for a test.
+- **[The GPU budget](/gpu-budget/)** - the 8 GB card as a budget you can see.
+- **[Credits](/credits/)** - every product and service this lab stands on, open or closed, with its
+  licence named.
+- **A [build receipt](/receipt/)** per release - source revision, the checks that ran, and an
+  artifact digest. Unsigned, and it says so.
+- **How the lab holds itself to account** - the [accessibility](/accessibility/),
+  [constraints](/constraints/) and [safety](/safety/) pages state the rules and the gaps, and the
+  [interaction log](/handbook/interaction-log/) records how the operator and the agent actually work
+  together - mistakes included.
