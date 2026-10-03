@@ -74,3 +74,37 @@ A backlog is a promise to be straight about what is **not** finished yet. We wou
 cracks than pretend the wall is perfect.
 
 - [2026-10-02] **GOAL: all-FOSS, no outside hosted dependencies.** Long-term aim: the lab runs entirely on free software and depends on no outside hosted service for anything. Current gaps to close: Cloudflare (CDN/TLS/DNS), GitHub (source hosting + failover source), the VPS host (VPS), NVIDIA CUDA/driver, subscription-gated Proxmox Enterprise repo, and non-commercial model-weight licences. Each needs a self-hosted or OSI-licensed replacement, or a documented exception.
+
+## Sidequests
+
+Not everything here is core infrastructure. Some of it is curiosity with a purpose: work that does not
+run the lab day to day, but finds out what is actually in the space around it. These are the sidequests
+- written down while they are unfinished, which is the whole point of this page.
+
+### Wireless signal intelligence
+
+A passive survey of what is broadcasting nearby - Wi-Fi and Bluetooth - with the aim of identifying
+devices by **type and vendor**, and estimating rough distance from signal strength. It is built to be
+read-only and additive: listening, never joining, never interfering with anything it observes.
+
+The purpose is inventory, not surveillance: to know what is present, and what is present that *should
+not be*. The output is device type and vendor - **not** "who is this person". It does not track people,
+and it never will.
+
+- **Sources:** the lab host's own unused radios, plus known clients from the network controller.
+- **Status:** scoped, not built.
+
+### Bluetooth detection for body cameras and licence-plate readers
+
+A narrow, deliberate detector: watch for the specific Bluetooth signatures of two classes of
+surveillance hardware - body-worn cameras, and fixed licence-plate readers - and raise an alert when
+one is near.
+
+The intent is the exact opposite of surveillance. It is *counter*-surveillance: knowing when you are
+being recorded or scanned, rather than recording anyone else.
+
+- **Hardware:** a Flipper Zero attached to the lab hypervisor.
+- **Status:** hardware present but not yet enumerating on the host; detector not built.
+
+Both are documented here rather than buried, because a sidequest that is written down honestly is
+still honest while it is unfinished.
