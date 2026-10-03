@@ -1,0 +1,38 @@
+<div class="break-lab" data-break-lab>
+  <fieldset class="break-choices">
+    <legend>Choose a scenario</legend>
+    <label><input type="radio" name="scenario" value="edge" checked /> Edge outage</label>
+    <label><input type="radio" name="scenario" value="client" /> Compromised client</label>
+    <label><input type="radio" name="scenario" value="rule" /> Missing firewall rule</label>
+  </fieldset>
+  <div class="break-stage">
+    <svg viewBox="0 0 460 200" role="img" aria-labelledby="break-title break-desc" class="break-svg">
+      <title id="break-title">Lab path diagram</title>
+      <desc id="break-desc">A diagram of internet, edge, provider, server zone, client zone and secrets, with the affected path highlighted.</desc>
+      <rect x="8"  y="80" width="80" height="40" rx="6" class="n" data-node="internet" />
+      <text x="48" y="105" class="t">Internet</text>
+      <rect x="110" y="80" width="80" height="40" rx="6" class="n" data-node="provider" />
+      <text x="150" y="105" class="t">Provider</text>
+      <rect x="212" y="80" width="80" height="40" rx="6" class="n" data-node="edge" />
+      <text x="252" y="105" class="t">Edge</text>
+      <rect x="330" y="20" width="110" height="40" rx="6" class="n" data-node="server" />
+      <text x="385" y="45" class="t">Server zone</text>
+      <rect x="330" y="80" width="110" height="40" rx="6" class="n" data-node="client" />
+      <text x="385" y="105" class="t">Client zone</text>
+      <rect x="330" y="140" width="110" height="40" rx="6" class="n" data-node="secrets" />
+      <text x="385" y="165" class="t">Secrets</text>
+      <line x1="88"  y1="100" x2="110" y2="100" class="e" data-edge="internet-provider" />
+      <line x1="190" y1="100" x2="212" y2="100" class="e" data-edge="provider-edge" />
+      <line x1="292" y1="100" x2="330" y2="100" class="e" data-edge="edge-client" />
+      <line x1="292" y1="95"  x2="330" y2="45"  class="e" data-edge="edge-server" />
+      <line x1="385" y1="120" x2="385" y2="140" class="e" data-edge="client-secrets" />
+    </svg>
+    <div class="break-legend">
+      <span class="badge verified">verified</span>
+      <span class="badge documented">documented</span>
+      <span class="badge illustrative">illustrative</span>
+    </div>
+    <p class="break-impact" data-break-impact aria-live="polite"></p>
+  </div>
+  <noscript><p>This demo needs JavaScript. Its findings are written out in the text above.</p></noscript>
+</div>

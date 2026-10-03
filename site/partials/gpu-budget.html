@@ -1,0 +1,21 @@
+<div class="gpu-budget" data-gpu-budget>
+  <svg viewBox="0 0 460 170" role="img" aria-labelledby="gpu-title gpu-desc" class="gpu-svg">
+    <title id="gpu-title">8 GB GPU budget</title>
+    <desc id="gpu-desc">A bar showing roughly 5 GB resident language model, under 1 GB streaming image model, a small transcode allocation, and the remaining headroom.</desc>
+    <rect x="10" y="50" width="440" height="52" rx="8" class="gpu-bg" />
+    <rect x="10" y="50" width="275" height="52" class="gpu-seg gpu-resident" data-seg="resident" />
+    <rect x="285" y="50" width="44" height="52" class="gpu-seg gpu-stream" data-seg="stream" />
+    <rect x="329" y="50" width="22" height="52" class="gpu-seg gpu-transcode" data-seg="transcode" />
+    <rect x="351" y="50" width="99" height="52" class="gpu-seg gpu-free" data-seg="free" />
+    <text x="10" y="30" class="gpu-cap">0 GB</text>
+    <text x="410" y="30" class="gpu-cap">8 GB</text>
+  </svg>
+  <ul class="gpu-key">
+    <li><button type="button" data-gpu-focus="resident"><span class="sw gpu-resident"></span> Resident language model - ~5 GB, must not be evicted</button></li>
+    <li><button type="button" data-gpu-focus="stream"><span class="sw gpu-stream"></span> Streaming image model - under 1 GB at steady state</button></li>
+    <li><button type="button" data-gpu-focus="transcode"><span class="sw gpu-transcode"></span> Transcode - bursty, latency tolerant</button></li>
+    <li><button type="button" data-gpu-focus="free"><span class="sw gpu-free"></span> Headroom - estimates, not live telemetry</button></li>
+  </ul>
+  <p class="gpu-note" data-gpu-note aria-live="polite">All figures are estimates from documented configuration and measurement, not a live readout.</p>
+  <noscript><p>Needs JavaScript; the same proportions are given in the table above.</p></noscript>
+</div>

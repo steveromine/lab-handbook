@@ -63,3 +63,14 @@ Two more defaults had to be corrected, both of which fail in ways that look like
 "A GPU is a budget" is the local case of a broader rule the lab applies elsewhere: **measure the number that actually moves**. A volume group's free space is not a thin pool's usage; a container's disk usage is not the host's; a tunnel's throughput is not the link's. Picking the wrong number makes a working change look broken and a broken one look fine.
 
 > **Watch VRAM as a first-class metric.** VRAM pressure is exactly the kind of thing that builds silently until something fails at the worst moment, so the hourly monitor checks it - with a script, not a model.
+
+
+## The budget, visually
+
+{{FORM:gpu-budget}}
+
+The bar is the whole argument: **the resident model is most of the card**, the streaming model is a thin
+slice because a few-step model loads only what it needs, and transcoding is bursty enough to share. The
+remaining headroom is what makes the sharing safe rather than lucky. Every figure above is an
+**estimate from documented configuration and measurement**, not a live telemetry readout, and it is
+labelled as such on purpose.
