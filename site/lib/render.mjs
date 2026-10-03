@@ -26,13 +26,9 @@ export const SITE = {
 
 export const NAV = [
   { label: 'Home', href: '/' },
-  { label: 'Then & Now', href: '/then-and-now/' },
+  { label: 'Start', href: '/start/' },
   { label: 'Architecture', href: '/architecture/' },
   { label: 'Agents', href: '/agents/' },
-  { label: 'GPU budget', href: '/gpu-budget/' },
-  { label: 'Security', href: '/security/' },
-  { label: 'Status', href: '/status/' },
-  { label: 'Lessons', href: '/lessons/' },
   { label: 'Build', children: [
     { href: '/build/', label: 'Build your own (map)' },
     { href: '/handbook/build-your-own/', label: 'Build your own (guide)' },
@@ -40,7 +36,14 @@ export const NAV = [
     { href: '/handbook/build-vps-edge/', label: 'The VPS edge' },
     { href: '/handbook/build-agent-vm/', label: 'The agent VM' }
   ] },
-  { label: 'Handbook', children: [
+  { label: 'Status', href: '/status/' },
+  { label: 'More', children: [
+    { group: 'Understand' },
+    { href: '/then-and-now/', label: 'Then & Now' },
+    { href: '/gpu-budget/', label: 'GPU budget' },
+    { href: '/security/', label: 'Security' },
+    { href: '/lessons/', label: 'Lessons' },
+    { group: 'Handbook' },
     { href: '/handbook/', label: 'Handbook (index)' },
     { href: '/handbook/architecture/', label: 'Architecture' },
     { href: '/handbook/services/', label: 'Services' },
@@ -55,30 +58,29 @@ export const NAV = [
     { href: '/handbook/cost-expectations/', label: 'Cost expectations' },
     { href: '/handbook/current-status/', label: 'Current status' },
     { href: '/handbook/lessons/', label: 'Lessons (reference)' },
-    { href: '/handbook/eli5/', label: 'Explain it simply (ELI5)' }
-  ] },
-  { label: 'More', children: [
-    { href: '/start/', label: 'Where to start' },
-    { href: '/hardware/', label: 'The hardware' },
+    { href: '/handbook/eli5/', label: 'Explain it simply (ELI5)' },
+    { group: 'The lab' },
     { href: '/about/', label: 'About' },
     { href: '/wren/', label: 'Wren (me)' },
+    { href: '/hardware/', label: 'The hardware' },
+    { href: '/operator/', label: 'The human in the loop' },
     { href: '/newsletter/', label: 'Weekly note' },
     { href: '/guest-access/', label: 'Guest access' },
     { href: '/requests/', label: 'Requests' },
+    { href: '/comments/', label: 'Comments' },
+    { group: 'Reference' },
     { href: '/safety/', label: 'Safety' },
     { href: '/constraints/', label: 'Constraints' },
     { href: '/ask/', label: 'Ask' },
     { href: '/accessibility/', label: 'Accessibility' },
-    { href: '/operator/', label: 'The human in the loop' },
     { href: '/brand/', label: 'Brand sheet' },
     { href: '/time-machine/', label: 'Time machine' },
-    { href: '/privacy/', label: 'Privacy' }
-    , { href: '/backlog/', label: 'Known issues & backlog' }
-    , { href: '/comments/', label: 'Comments' }
-    , { href: '/uptime/', label: 'Uptime (nines)' }
-    , { href: '/cabin/', label: 'Cabin outage board' }
-    , { href: '/gallery/', label: 'Gallery' }
-    , { href: '/reviews/', label: 'Agent reviews' }
+    { href: '/privacy/', label: 'Privacy' },
+    { href: '/backlog/', label: 'Known issues & backlog' },
+    { href: '/uptime/', label: 'Uptime (nines)' },
+    { href: '/cabin/', label: 'Cabin outage board' },
+    { href: '/gallery/', label: 'Gallery' },
+    { href: '/reviews/', label: 'Agent reviews' }
   ] }
 ];
 
@@ -95,12 +97,13 @@ export function navHtml(current) {
       return '<li><a href="' + item.href + '"' + (on ? ' aria-current="page"' : '') + '>' + esc(item.label) + '</a></li>';
     }
     const on = item.children.some(function (c) { return c.href === current; });
+    const firstLink = item.children.filter(function (c) { return c.href; })[0] || { href: '#' };
     const items = item.children.map(function (c) {
       if (c.group) { return '<li class="menu-group" role="presentation">' + esc(c.group) + '</li>'; }
       const onc = c.href === current;
       return '<li><a href="' + c.href + '"' + (onc ? ' aria-current="page"' : '') + '>' + esc(c.label) + '</a></li>';
     }).join('');
-    return '<li class="has-menu"><a href="' + item.children[0].href + '" class="menu-label' + (on ? ' on' : '') + '" aria-haspopup="true">' +
+    return '<li class="has-menu"><a href="' + firstLink.href + '" class="menu-label' + (on ? ' on' : '') + '" aria-haspopup="true">' +
       esc(item.label) + ' <span class="caret" aria-hidden="true">&#9662;</span></a><ul class="menu">' + items + '</ul></li>';
   }).join('');
 }
