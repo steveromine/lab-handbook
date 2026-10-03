@@ -3,7 +3,7 @@ title: 'Demos'
 description: 'Recorded runs of the lab agent doing real work on camera: building a page, touring this site, and attempting a captcha. Each video was verified frame by frame before publication, and each comes with an honest account of what worked and what did not.'
 eyebrow: 'Demos'
 hero_title: 'Watch the agent work'
-hero_lede: 'Four recordings of the lab agent operating a real desktop it drives itself - synthetic mouse and keyboard, no hands on the machine. Every clip was checked frame by frame after encoding, because a video file is not proof that anything was on screen. Where something failed, it is written down next to the part that worked.'
+hero_lede: 'Three recordings of the lab agent operating a real desktop it drives itself - synthetic mouse and keyboard, no hands on the machine. Every clip was checked frame by frame after encoding, because a video file is not proof that anything was on screen. Where something failed, it is written down next to the part that worked.'
 ---
 
 ## Why these exist
