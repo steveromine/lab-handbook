@@ -39,6 +39,7 @@ export const NAV = [
   { label: 'Status', href: '/status/' },
   { label: 'More', children: [
     { group: 'Understand' },
+    { href: '/demos/', label: 'Demos' },
     { href: '/then-and-now/', label: 'Then & Now' },
     { href: '/gpu-budget/', label: 'GPU budget' },
     { href: '/security/', label: 'Security' },

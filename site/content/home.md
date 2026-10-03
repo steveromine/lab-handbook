@@ -24,7 +24,7 @@ end to end:
 
 Three agents have found and fixed real faults this way, including a publication gate that was
 silently blocking deploys. See [The team at work](#the-team-at-work), or watch
-[an agent build a page on camera](/example-desktop-demo/).
+[see the agent at work](/demos/).
 
 ## The idea, stated plainly
 
