@@ -17,7 +17,7 @@ work is visible**, and that **the parts that did not work are written down next 
 
 ## The recording
 
-<video controls preload="metadata" poster="/assets/desktop-demo.png" src="/assets/desktop-demo.mp4"></video>
+{{FORM:demo-video}}
 
 *28 seconds, 1280x720. A headless X desktop (Xvfb), a window manager, a terminal, and a web browser -
 driven entirely by synthetic mouse and keyboard input, recorded with ffmpeg. No monitor was ever
