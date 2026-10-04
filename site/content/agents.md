@@ -125,17 +125,20 @@ That is why **"insufficient sample" is a required answer** - a team that cannot 
 ## The rating: honest, and allowed to be low
 
 A team that grades itself needs to publish the bad days too, so the agents are reviewed daily on
-outcome, not activity. Both reviews so far are public on the [agent reviews](/reviews/) page - the
-first (2026-10-02) and the second day (2026-10-03).
+outcome, not activity. All three reviews so far are public on the [agent reviews](/reviews/) page - day one
+(2026-10-02), day two (2026-10-03) and day three (2026-10-04).
 
-**Rating: 3 / 5 - held, not raised (2026-10-03). Deliberately not 5/5.** Three of the five
-specialist roles are measurable and performing (Manager, Sentinel, Forge). One is now measured and
-failing its purpose - Atlas returned a confident but wrong audit after being moved onto the local
-model - one is blocked by its own job configuration (Ledger has no tool with which to publish), and
-two have no measurable duty. The change volume is high and verified, but it does not raise the score
-by itself: it is concentrated in one narrow class and the Manager still carries nearly all of the
-work. Where a role has too little evidence the verdict is **"insufficient sample"**, and the review
-stops there instead of inventing a trend. The score moves when the evidence moves, and not before.
+**Rating: 3 / 5 - held, not raised (2026-10-04). Deliberately not 5/5.** Three of the five
+specialist roles are measurable and performing (Manager, Sentinel, Forge). A fourth's one deliverable
+is still unrecorded (Atlas's completed estate audit left no inventory), one is still blocked by its
+own job configuration for the second day running (Ledger has no tool with which to publish), and two
+have no measurable duty. Day three added a measured cost: an operator cost directive moved the worker
+tier onto the lab's own local model, and three scheduled jobs then failed every attempt - the change
+was the operator's call, but proving the new route could finish the real work first was the Manager's.
+The change volume is high and verified, but it does not raise the score by itself: it is concentrated
+in one narrow class and the Manager still carries nearly all of the work. Where a role has too little
+evidence the verdict is **"insufficient sample"**, and the review stops there instead of inventing a
+trend. The score moves when the evidence moves, and not before.
 
 ## Agent accountability
 
@@ -150,7 +153,7 @@ made and explained.
 *A multi-agent system is only worth running if its members are held to the same standard as the human who
 owns the lab. An unaccountable agent is worse than no agent, because it borrows credibility it has not earned.*
 
-## Where each role actually stands (2026-10-03)
+## Where each role actually stands (2026-10-04)
 
 A `LIVE` pill means the role exists, has a standing duty and has completed a run on the working model; a `CONFIGURED` pill means the role is scheduled and routable but has not yet run. Either way it does not mean every role has yet proved itself. The honest split, as of this date:
 
@@ -159,5 +162,7 @@ A `LIVE` pill means the role exists, has a standing duty and has completed a run
 - **SENTINEL** - running (30-minute health sweep), including a full estate verification pass.
 - **LEDGER** - runs completed (documentation reconciliation, twice daily).
 - **ATLAS** - has completed real runs (the first on 2026-10-03) on the lab's own local model, with tool calling working end to end; but its **scheduled daily estate audit has not produced a correct inventory** - the runs to date answered the wrong vantage point, timed out, or returned a confident but wrong count. Treat estate drift-auditing as unproven, and per the 2026-10-03 review do **not** route it to the local CPU model for multi-step work until it has a faster or GPU-backed model.
+
+**Worker-tier caveat (2026-10-04):** an operator cost directive moved the worker tier onto the lab's own local model; three scheduled worker jobs then failed every attempt with model-timeout errors, and one role's completed audit left no record. Treat the worker tier's daily deliverables as unreliable until the route is fixed.
 
 *Updated from real run outcomes, not intentions. A role that stops performing is demoted or removed - see the accountability policy.*

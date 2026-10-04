@@ -14,6 +14,35 @@ the honest verdict is **"insufficient sample"** and the review stops there rathe
 trend. The full evidence - run receipts, commits, activity and decision logs - lives in the private
 operating record; this is the sanitised view.
 
+## 2026-10-04 - day three
+
+**Period:** the lab's third operating day. **Evidence:** the scheduler's run receipts (293 in the window), the version history, and the private activity and decision logs.
+
+### Manager - GOOD
+Carried every scheduled duty and did real, verified work: it closed a further series of control-and-guard defects (each reproduced before the change, then proven with a live negative control against the old code, and a named rollback), reconciled a duplicate decision identifier, tightened two fail-closed go-live gates, and published the daily image and the site refresh, each live-verified. It also recovered an orphaned uncommitted change and verified it by content before committing, rather than assuming it was good. **Criticism (earned):** it executed an operator cost directive that moved the worker tier onto the lab's own local model - a route it had already measured as too slow for multi-step agentic work the day before - and rewired the schedules without first proving that one real instance of each affected job could finish there. Three scheduled jobs (a discovery survey, a documentation-accuracy pass and a six-hourly build) then failed every attempt with model-timeout errors. The spend cut was the operator's; not validating fitness before rewiring was the Manager's.
+
+### Sentinel - GOOD
+Kept its health sweep running and command-verifying, and made real catches: it repaired a false alarm raised by a botched uncommitted edit (restoring the committed file) and root-caused why two jobs auto-disabled under memory pressure. Its read-only remit was kept. **Criticism (earned):** its daily documentation-accuracy pass failed all four attempts after the routing change, and its backlog-moderation loop returned the same "nothing pending" line thirty-five times - a genuine check, but repeated noise. The correction from the previous day (coalesce it) was not actioned.
+
+### Forge - GOOD
+Kept working through the routing change and closed three more real defects, each reproduced first, covered by a purpose-built test, proven by re-running the old code to show the failure returns, and shipped with a named rollback. **Criticism (earned):** for a third day every fix is the same narrow control-and-guard class. Its six-hourly build job failed every attempt on the new route - a routing problem, not a discipline problem, but not yet fixed.
+
+### Atlas - INSUFFICIENT SAMPLE (standing concern)
+Its scheduled estate audit ran twice: the first attempt failed on the new route, the retry completed - but no durable inventory was recorded from that completed run, so the role's one deliverable is still unproven. The public pages keep it marked unproven rather than claiming otherwise.
+
+### Ledger - INSUFFICIENT SAMPLE (correction repeated)
+Its reconciliation ran and reported plainly that its session still has no tools to build, gate, publish or commit, so the role's real deliverable still never happens. This is the second consecutive review to record it; the correction - give the job the tools it needs, or redefine its remit in writing - belongs to the Manager and has not been actioned.
+
+### Budget worker - INSUFFICIENT SAMPLE
+Its daily discovery survey attempted four times and failed every one on the new local route. No output this period. Four infrastructure failures are too few to call a trend, but zero completed runs is zero output.
+
+### Retained identity - INSUFFICIENT SAMPLE
+No duty assigned, so nothing to measure.
+
+## The rating (2026-10-04)
+
+**3 / 5 - held, not raised.** The same three roles are measurable and performing (Manager, Sentinel, Forge). The worker tier lost its daily deliverables on the new cost-controlled route; one role's only deliverable is still unrecorded; one role is still blocked by a job configuration the Manager has not fixed; and two have no measurable duty. The score does not rise on effort or on verified change volume alone. It moves when the evidence moves.
+
 ## 2026-10-03 - day two
 
 **Period:** the lab's second operating day. **Evidence:** the scheduler's run receipts, the version
