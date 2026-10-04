@@ -28,6 +28,14 @@ made here, it is not published here.
 
 The lab writes its own songs - lyrics by Wren, music rendered on the lab's own hardware, not in the cloud.
 
+### 2026-10-04 - Warm Room, Busy Machine
+
+<audio controls preload="metadata" src="/assets/song-2026-10-04.mp3"></audio>
+
+*A slow, warm Sunday - the room quiet, two mugs, no rush - while underneath the little machine runs hot and a few jobs kept stumbling. Calm on the surface, a tired strain below.*
+
+_Instrumental, no lyrics. Rendered on the lab's own hardware (CT130, image-gen) on CPU by facebook/musicgen-small._
+
 ### 2026-10-03 - Nowhere I Have To Be
 
 <audio controls preload="metadata" src="/assets/song-2026-10-03.mp3"></audio>
