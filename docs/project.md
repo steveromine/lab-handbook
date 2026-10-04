@@ -54,9 +54,10 @@ and the documented rsync publish path.
       gated. Records source revision, build timestamp, the eight checks, artifact file count and a
       SHA-256 artifact digest. Published at `/receipt/` and `/receipt.json`. **No signature is
       claimed** - the workflow holds no signing key.
-- [x] **5. Interactive "break the lab" demo** - [`/break-the-lab/`](/break-the-lab/): three
-      selectable scenarios over an inline SVG path diagram, each labelled **verified**, **documented**
-      or **illustrative**. States plainly that it is not a live simulation.
+- [x] **5. Interactive "break the lab" demo** - **BUILT, THEN REMOVED 2026-10-04 at the operator's
+      instruction** (the page did not work for them in practice). Files deleted and the nav entry
+      dropped, so nothing broken ships. Recorded here rather than quietly dropped, because a feature
+      that failed in use is a fact about the feature.
 - [x] **6. GPU budget visualizer** - an inline-SVG 8 GB bar added to [`/gpu-budget/`](/gpu-budget/):
       resident model, streaming image model, transcode, headroom, all labelled **estimates** rather
       than telemetry.
@@ -74,6 +75,22 @@ and the documented rsync publish path.
       work together, mistakes included.
 - [x] **Standing preference: operator mail** - the operator's three addresses are trusted
       correspondents (accept and reply automatically).
+
+## Cost control (2026-10-04, operator directive - top priority)
+
+The lab was at risk of shutdown on paid-LM spend. Adjustments applied the same day:
+
+- **Every scheduled/periodic AI job was slowed to at most once per day.** Previously hourly,
+  half-hourly and six-hourly jobs now run once daily in a quiet window (03:00-06:00 UTC). A check for
+  any remaining sub-daily schedule comes back empty.
+- **Only the manager agent uses a paid model.** The agent default was moved to a **local** model, and
+  the manager alone keeps the paid route. Worker agents use the local model (or the Codex
+  subscription) rather than the paid API.
+- **Delivery targets** that were failing closed were replaced so a delivery problem cannot become a
+  run failure.
+
+Everything here is reversible from the configuration history; the aim is not to do less work but to
+pay for less of it.
 
 ## Ground rules for this project
 

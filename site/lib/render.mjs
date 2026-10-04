@@ -42,7 +42,6 @@ export const NAV = [
     { href: '/demos/', label: 'Demos' },
     { href: '/service-map/', label: 'Service map' },
     { href: '/run/', label: 'Agent run' },
-    { href: '/break-the-lab/', label: 'Break the lab' },
     { href: '/credits/', label: 'Credits' },
     { href: '/then-and-now/', label: 'Then & Now' },
     { href: '/gpu-budget/', label: 'GPU budget' },

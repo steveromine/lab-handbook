@@ -3,7 +3,7 @@ title: 'Time machine'
 description: 'Every change to this site, from the first commit to now - the lab's own history, as far back as it goes.'
 eyebrow: 'As far back as it goes'
 hero_title: 'The time machine'
-hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 147 recorded changes from 2026-10-01 to 2026-10-03 - so you can watch the thinking change, mistakes and all.'
+hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 149 recorded changes from 2026-10-01 to 2026-10-03 - so you can watch the thinking change, mistakes and all.'
 ---
 
 Every commit to this site, newest first. The point is not that the lab got everything right; it is
@@ -11,6 +11,8 @@ that you can see **how it changed** - including the places it changed its mind.
 
 ## 2026-10-03
 
+- `1bc4925` — status: reconcile to 44 checks (monitor demo-leak detection control; C-105)
+- `e9e18a7` — sanitise: drop the operator mail-provider identity from public content; reconcile stale guest counts
 - `f3948a4` — about: reconcile self and operator pages to the original criteria and current state
 - `da0eb23` — project: boundary proof, agent-run replay, break-the-lab, credits, eval bench, build receipt
 - `0bc37df` — demos: correct the hero count - three recordings, not four

@@ -72,8 +72,6 @@ Reconciled against the running system, not against intention:
   it and the untested paths marked *untested* rather than assumed.
 - **[One agent run, step by step](/run/)** - a real run, replayed from its own trace, including the
   step that failed verification.
-- **[Break the lab](/break-the-lab/)** - three failure scenarios, each labelled verified, documented
-  or illustrative so a walkthrough is never mistaken for a test.
 - **[The GPU budget](/gpu-budget/)** - the 8 GB card as a budget you can see.
 - **[Credits](/credits/)** - every product and service this lab stands on, open or closed, with its
   licence named.
