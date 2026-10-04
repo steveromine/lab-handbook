@@ -66,14 +66,15 @@ Four parts carry the design:
 ## The team at work
 
 This lab is not run by hand. Five agent roles hold **standing duties** and work without being asked -
-and the evidence is in the repository, not in a promise.
+and the evidence is in the repository, not in a promise. A cost directive applied 2026-10-04 slowed
+every recurring agent job to at most once a day, so these are daily duties in a quiet window.
 
 | Role | Standing duty | Last verified activity |
 |---|---|---|
-| **Manager** | Works the backlog every 15 minutes and audits the site for drift | Running continuously |
-| **Forge** | Ships one small verified improvement an hour | Runs completed |
-| **Sentinel** | Health sweep every 30 minutes; reviews public requests every 30 | Running |
-| **Ledger** | Reconciles public and private documentation twice a day | Runs completed |
+| **Manager** | Works a daily backlog pass and audits the site for drift | Running continuously |
+| **Forge** | Ships one small verified improvement a day | Runs completed |
+| **Sentinel** | Health sweep once a day; reviews public requests on the same cadence | Running |
+| **Ledger** | Reconciles public and private documentation daily | Runs completed |
 | **Atlas** | Audits the estate daily - proves or disproves what is configured | Run completed; daily audit unproven |
 
 The count is deliberately unflattering where it should be: **Atlas has completed runs but its

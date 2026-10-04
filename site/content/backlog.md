@@ -31,6 +31,12 @@ the private register.
 
 ## Recently fixed
 
+- **The lab's own scheduled self-maintenance loops resumed.** Two jobs that had auto-disabled after
+  repeated failures were re-enabled and are running again on the once-a-day cadence. Alert email to
+  the operator is also delivering again after a single mailbox had been bouncing.
+- **A personal identifier reached the published site, and was cleared.** The publish check re-reads
+  what the edge actually serves, not just the build output; it found the identifier on three pages
+  and in the site's search index. They were re-sanitised, redeployed, and the live check is green.
 - **A handbook cross-reference with an anchor was a dead link.** The page on building the Proxmox
   host pointed at "the current enforcement finding" using a link ending in `#sdn-configuration-is-not-enforcement`.
   The site's link rewriter only handled links ending in `.md`, so this one shipped to the live site

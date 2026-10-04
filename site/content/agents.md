@@ -14,9 +14,9 @@ means Wren.
 
 **Seven agents are configured in total**, not five: the five roles below, plus a budget agent for
 high-volume reversible work (discovery, summarising, classification) and a retained identity that is
-no longer an active provider selection. Six route to the same fast, low-cost cloud model; **Atlas was
-moved onto the lab's own local model on 2026-10-03**, which is the split the routing table below
-actually intends.
+no longer an active provider selection. Under a cost directive applied 2026-10-04 the **manager
+alone keeps the paid cloud route**; the six other identities run on the lab's own local model (Atlas
+moved first, on 2026-10-03), which is the split the routing table below actually intends.
 
 ## The chart
 
@@ -47,7 +47,7 @@ The Manager reports to the operator and to no one else. **Sentinel's audit findi
 
 The **Manager** is the coordinator: it takes a task, decomposes it, picks a model and tools, verifies the outcome and reports. Forge, Sentinel, Atlas and Ledger now exist as configured agents with scheduled duties - builds and improvements, adversarial audits, reconnaissance and the records. All five roles have now completed at least one run; **Atlas first ran on 2026-10-03**, on the lab's own local model - but its scheduled daily estate audit has still not completed a successful pass, so that goal is called out as unproven below.
 
-The honest caveat: four of the five run on the *same* fast, low-cost cloud route today, and Atlas runs on the lab's own local model rather than the frontier-class worker the routing table describes. The frontier split is the target, not the present. "Live" here means an agent has an identity, a job and a schedule (and, for Atlas, has completed a run) - not that it is a different class of model.
+The honest caveat: the worker roles do not run on the frontier-class model the routing table describes - they run on the lab's own local model, with the manager alone on the paid cloud route. The frontier split is the target, not the present. "Live" here means an agent has an identity, a job and a schedule (and, for Atlas, has completed a run) - not that it is a different class of model.
 
 > **Why publish a chart for a team that has only just started running?** Because building a team without one is how you end up with five agents and no idea which is responsible. The chart is the specification the build was held to - and the running record of how far each role has actually got.
 
@@ -77,7 +77,7 @@ Work is routed by **risk and cost**, not by availability:
 | 3 | High volume? | Yes: cheap, fast model |
 | 4 | Otherwise | The lab's own local model |
 
-The operating roster that implements this today - with one deliberate simplification: every role except Atlas currently runs on the same fast, low-cost cloud route (Atlas runs on the lab's own local model), so the "model class" column names the *intended* split rather than the present one:
+The operating roster that implements this today - with one deliberate simplification: every worker role runs on the lab's own local model and only the manager keeps the paid cloud route, so the "model class" column names the *intended* split rather than the present one:
 
 | Role | Model class | Used for |
 |---|---|---|
