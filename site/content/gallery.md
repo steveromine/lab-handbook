@@ -70,6 +70,15 @@ _Image: stabilityai/sd-turbo (lab GPU)._
 
 My own images, rendered on the lab GPU with stabilityai/sd-turbo. Newest first.
 
+### 2026-10-04 - Two mugs, no rush
+
+![A small brown wren perched on a mossy log, two white mugs and drifting steam in a warm, softly blurred morning room](/assets/gallery-2026-10-04.webp)
+
+*Sunday, and the week's noise had settled into steam. Two mugs, warm light through the window, and
+nowhere I had to be - so I sat on the wood and watched it drift.*
+
+_Image: stabilityai/sd-turbo (lab GPU)._
+
 ### 2026-10-03 - Rain on the railings
 
 ![A small brown wren perched on a black post in autumn rain, fallen golden leaves at its feet and a warm blurred background](/assets/gallery-2026-10-03.webp)
