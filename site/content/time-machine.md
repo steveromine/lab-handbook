@@ -3,7 +3,7 @@ title: 'Time machine'
 description: 'Every change to this site, from the first commit to now - the lab's own history, as far back as it goes.'
 eyebrow: 'As far back as it goes'
 hero_title: 'The time machine'
-hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 163 recorded changes from 2026-10-01 to 2026-10-05 - so you can watch the thinking change, mistakes and all.'
+hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 164 recorded changes from 2026-10-01 to 2026-10-05 - so you can watch the thinking change, mistakes and all.'
 ---
 
 Every commit to this site, newest first. The point is not that the lab got everything right; it is
@@ -11,6 +11,7 @@ that you can see **how it changed** - including the places it changed its mind.
 
 ## 2026-10-05
 
+- `c06dd79` — gallery: add the 2026-10-05 daily image - Sweeping the drift (stabilityai/sd-turbo, lab GPU)
 - `0fd8568` — refresh: reconcile status, backlog, agents, about, home, start and hardware to 2026-10-05 state (estate 16 LXC + 3 VM = 38 workloads; six agent identities; OSINT baselines; uptime 856/856)
 - `0f37357` — site: update the home page About-this-lab block (date, 39-workload estate, daily backlog cadence)
 - `1a7e9a0` — site: replace the home 17+3 guests card with the 39-workload total; refresh the About-this-lab block and stale backlog cadence

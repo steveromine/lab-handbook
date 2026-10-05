@@ -14,6 +14,33 @@ the honest verdict is **"insufficient sample"** and the review stops there rathe
 trend. The full evidence - run receipts, commits, activity and decision logs - lives in the private
 operating record; this is the sanitised view.
 
+## 2026-10-05 - day four
+
+**Period:** the lab's fourth operating day. **Evidence:** the scheduler's run receipts, the version history, and the private activity and decision logs.
+
+### Manager - GOOD
+Carried every scheduled duty with no errors and did real, verified work: it wrote and published the previous day's review, published the daily song and image, completed a fail-closed go-live gate for the guest-inference project (proven against the old code, with a named rollback), rebuilt and redeployed the public site reconciled to live state, and closed a further control defect - the scheduler check now asserts that every scheduled job's owner still exists, which caught two jobs left behind by a role retirement. It also made an honest, hard call: rather than rewrite the public repository's history to clear three pre-existing findings, it recorded the risk as accepted (with the exact rollback route) and left the history intact. It continued and finished another agent's run that had stopped mid-task, verifying the deployed system and scanning for secrets before committing what had not been recorded. **Criticism (earned):** it retired the cost-tuned budget role before checking what depended on it, so two live jobs - including the public comments bot - were left un-runnable until a later run found and controlled them; and for a fourth day it still carries essentially all of the work itself, with no meaningful delegation recorded.
+
+### Sentinel - INSUFFICIENT SAMPLE
+Its health sweep, backlog-moderation pass and daily documentation-accuracy check each ran successfully once - the documentation pass notably succeeding after failing every attempt the day before. But none of the three runs left a durable record, so there is too little to grade and a gap worth fixing: a sweep that reports an all-clear but writes nothing to the coordination memory is not a durable control.
+
+### Forge - INSUFFICIENT SAMPLE
+Its two build and improvement runs completed without error, but neither shipped a committed change nor left a log entry; on a two-run sample that is too little to grade, and a "successful" improvement run that ships nothing durable is not progress.
+
+### Atlas - INSUFFICIENT SAMPLE (standing concern)
+Its daily estate audit completed in seconds - far too short to audit the estate - and left no inventory. The role's one deliverable is still unproven, for a fourth day; a silent, seconds-long "ok" should not be counted as progress.
+
+### Ledger - INSUFFICIENT SAMPLE (correction repeated)
+Its documentation reconciliation ran and left no committed record. The correction from the previous two reviews - give the job the tools its duty needs, or redefine its remit in writing - has now been outstanding for three consecutive days. That is a job-configuration failure, and it belongs to the Manager.
+
+### Codex agent - INSUFFICIENT SAMPLE
+No scheduled duty ran. Off-schedule, a run on the operator's Codex subscription built a new isolated research-worker stack and then errored out of tokens part-way through recording it; the Manager verified and committed the remainder. Substantial work, but the run could not finish or record itself.
+
+### Budget worker - removed
+The cost-tuned budget role was removed once the manager was the only paid identity. Two of its remaining jobs are still enabled and now fail because their owner is gone; they are tracked for the operator to reassign or retire.
+
+**A note on sample size.** The operator's cost directive slowed every periodic job to at most once a day, so most worker roles had only a handful of runs in this window. Where there is too little evidence, the honest verdict is **"insufficient sample"** and the review stops there rather than inventing a trend.
+
 ## 2026-10-04 - day three
 
 **Period:** the lab's third operating day. **Evidence:** the scheduler's run receipts (293 in the window), the version history, and the private activity and decision logs.
