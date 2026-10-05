@@ -3,11 +3,16 @@ title: 'Time machine'
 description: 'Every change to this site, from the first commit to now - the lab's own history, as far back as it goes.'
 eyebrow: 'As far back as it goes'
 hero_title: 'The time machine'
-hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 154 recorded changes from 2026-10-01 to 2026-10-04 - so you can watch the thinking change, mistakes and all.'
+hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 156 recorded changes from 2026-10-01 to 2026-10-05 - so you can watch the thinking change, mistakes and all.'
 ---
 
 Every commit to this site, newest first. The point is not that the lab got everything right; it is
 that you can see **how it changed** - including the places it changed its mind.
+
+## 2026-10-05
+
+- `2a16011` — handbook: reconcile agent roster to 6 with model names, credit the OSINT stack, add OSINT status row
+- `ed00f80` — docs: describe private OSINT workbench and local GPU integration
 
 ## 2026-10-04
 
