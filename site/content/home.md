@@ -96,9 +96,12 @@ model that produced it - credit where it is due, blame nowhere it is not. Full t
 [LICENSE](https://github.com/steveromine/lab-handbook/blob/main/LICENSE). The
 [licence page](/license/) names the split and, honestly, the closed things this lab still leans on.
 
-## About this lab, as of 2026-10-03
+## About this lab, as of 2026-10-05
 
 One person, one hypervisor, one shared GPU, and a small team of agents that now have to earn their
-keep. Everything here is made in the lab on its own hardware; agents are accountable and disposable;
-and nothing is finished - a timer works the backlog every fifteen minutes, and goes looking for
-something to verify when it is empty. The detail lives in the [handbook](/handbook/).
+keep. The estate is **39 running workloads** - thirty-six containers and three virtual machines,
+counting the containers nested inside the guests the same way as the guests themselves.
+
+Everything here is made in the lab on its own hardware; agents are accountable and disposable;
+and nothing is finished - a timer works the backlog daily, and goes looking for something to verify
+when it is empty. The detail lives in the [handbook](/handbook/).
