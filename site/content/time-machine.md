@@ -3,7 +3,7 @@ title: 'Time machine'
 description: 'Every change to this site, from the first commit to now - the lab's own history, as far back as it goes.'
 eyebrow: 'As far back as it goes'
 hero_title: 'The time machine'
-hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 167 recorded changes from 2026-10-01 to 2026-10-05 - so you can watch the thinking change, mistakes and all.'
+hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 168 recorded changes from 2026-10-01 to 2026-10-05 - so you can watch the thinking change, mistakes and all.'
 ---
 
 Every commit to this site, newest first. The point is not that the lab got everything right; it is
@@ -11,34 +11,35 @@ that you can see **how it changed** - including the places it changed its mind.
 
 ## 2026-10-05
 
-- `703c7b3` — site: models became a set (swap on demand); credit llama.cpp/llama-swap/Qwen; log two network faults
-- `78ade93` — music: add the 2026-10-05 daily song - Everything Back in Its Place (facebook/musicgen-small, lab CPU)
-- `6c56b19` — reviews: 2026-10-05 day-four agent performance review (sanitised) + agents page rating held at 3/5
-- `c06dd79` — gallery: add the 2026-10-05 daily image - Sweeping the drift (stabilityai/sd-turbo, lab GPU)
-- `0fd8568` — refresh: reconcile status, backlog, agents, about, home, start and hardware to 2026-10-05 state (estate 16 LXC + 3 VM = 38 workloads; six agent identities; OSINT baselines; uptime 856/856)
-- `0f37357` — site: update the home page About-this-lab block (date, 39-workload estate, daily backlog cadence)
-- `1a7e9a0` — site: replace the home 17+3 guests card with the 39-workload total; refresh the About-this-lab block and stale backlog cadence
-- `3d0dce1` — site: publish the verified workload total (39: 17 LXC + 3 VMs + 19 nested) and refresh the About copy
-- `ac0ee69` — site: remove the subscription and comments pages; archive the comments page; fold comment/answer into requests with one challenge
-- `f1f008f` — handbook: checkpoint regenerated pages after the replay removal
-- `f20a9e9` — run page: remove the non-functional replay (its JS was never wired); keep the timeline
-- `2a16011` — handbook: reconcile agent roster to 6 with model names, credit the OSINT stack, add OSINT status row
-- `ed00f80` — docs: describe private OSINT workbench and local GPU integration
+- `a1749f8` — site: Productionish page (media stack), Gods Eye View to side quests, credits deduped
+- `2071256` — site: models became a set (swap on demand); credit llama.cpp/llama-swap/Qwen; log two network faults
+- `e304b57` — music: add the 2026-10-05 daily song - Everything Back in Its Place (facebook/musicgen-small, lab CPU)
+- `c1aa8e1` — reviews: 2026-10-05 day-four agent performance review (sanitised) + agents page rating held at 3/5
+- `51ef27e` — gallery: add the 2026-10-05 daily image - Sweeping the drift (stabilityai/sd-turbo, lab GPU)
+- `60e24af` — refresh: reconcile status, backlog, agents, about, home, start and hardware to 2026-10-05 state (estate 16 LXC + 3 VM = 38 workloads; six agent identities; OSINT baselines; uptime 856/856)
+- `65d268a` — site: update the home page About-this-lab block (date, 39-workload estate, daily backlog cadence)
+- `08172e6` — site: replace the home 17+3 guests card with the 39-workload total; refresh the About-this-lab block and stale backlog cadence
+- `d772dc3` — site: publish the verified workload total (39: 17 LXC + 3 VMs + 19 nested) and refresh the About copy
+- `b04197b` — site: remove the subscription and comments pages; archive the comments page; fold comment/answer into requests with one challenge
+- `9244b35` — handbook: checkpoint regenerated pages after the replay removal
+- `336b52a` — run page: remove the non-functional replay (its JS was never wired); keep the timeline
+- `10babaa` — handbook: reconcile agent roster to 6 with model names, credit the OSINT stack, add OSINT status row
+- `f61a965` — docs: describe private OSINT workbench and local GPU integration
 
 ## 2026-10-04
 
-- `7580dd3` — song: 2026-10-04 daily song - 'Warm Room, Busy Machine' (facebook/musicgen-small, lab CT130 CPU)
-- `625b7d3` — reviews: 2026-10-04 day-three agent performance review (sanitised) + agents page rating held at 3/5
-- `0a140e2` — gallery: 2026-10-04 daily image (stabilityai/sd-turbo, lab GPU)
-- `d42caf6` — refresh: reconcile status, backlog, agents and home with 2026-10-04 state
-- `66280c3` — cost: remove break-the-lab page; document once-a-day schedules and local-default model routing
+- `8484825` — song: 2026-10-04 daily song - 'Warm Room, Busy Machine' (facebook/musicgen-small, lab CT130 CPU)
+- `980fa92` — reviews: 2026-10-04 day-three agent performance review (sanitised) + agents page rating held at 3/5
+- `96f41b3` — gallery: 2026-10-04 daily image (stabilityai/sd-turbo, lab GPU)
+- `b0aa1ce` — refresh: reconcile status, backlog, agents and home with 2026-10-04 state
+- `65935ae` — cost: remove break-the-lab page; document once-a-day schedules and local-default model routing
 
 ## 2026-10-03
 
-- `1bc4925` — status: reconcile to 44 checks (monitor demo-leak detection control; C-105)
-- `e9e18a7` — sanitise: drop the operator mail-provider identity from public content; reconcile stale guest counts
-- `f3948a4` — about: reconcile self and operator pages to the original criteria and current state
-- `da0eb23` — project: boundary proof, agent-run replay, break-the-lab, credits, eval bench, build receipt
+- `b65c280` — status: reconcile to 44 checks (monitor demo-leak detection control; C-105)
+- `5bdf8c7` — sanitise: drop the operator mail-provider identity from public content; reconcile stale guest counts
+- `26c6971` — about: reconcile self and operator pages to the original criteria and current state
+- `cf7bbce` — project: boundary proof, agent-run replay, break-the-lab, credits, eval bench, build receipt
 - `0bc37df` — demos: correct the hero count - three recordings, not four
 - `0917706` — demos: original in-lab EDM soundtrack muxed under all three clips
 - `12e83c4` — demos: real recordings replace the staged demo; dedicated /demos page + More-menu link

@@ -7,8 +7,9 @@
 # Build Your Own: the agent VM
 
 This is the centrepiece of the DIY track: how to go from a blank Ubuntu VM to **an agent that is
-conceptually *you*, with agents under it**. It starts from the bootstrap script and generalises it —
-the original script was written for one harness (Codex); this one works across all of them.
+conceptually *you*, with agents under it**. It starts from the lab's own bootstrap script, included
+in this repository at [`scripts/bootstrap-openclaw-agent-vm.sh`](https://github.com/steveromine/lab-handbook/blob/main/scripts/bootstrap-openclaw-agent-vm.sh),
+and shows how to generalise it beyond the one harness it was originally written for (Codex).
 
 - Track 1 — [the Proxmox host](build-proxmox-host.md)
 - Track 2 — [the VPS edge](build-vps-edge.md)
@@ -38,13 +39,14 @@ questionnaire is the design.
 The VM is deliberately boring. All the interesting state lives in **Git plus a secret store**, so the
 machine is disposable.
 
-> This is a design walkthrough, not a self-contained installer release. The referenced bootstrap
-> script is not distributed in this handbook; verify its supported flags and harnesses in the
-> implementation you actually use. The example below is illustrative, not verified for every harness.
+> This is a design walkthrough, and it ships with the lab's own bootstrap script —
+> [`scripts/bootstrap-openclaw-agent-vm.sh`](https://github.com/steveromine/lab-handbook/blob/main/scripts/bootstrap-openclaw-agent-vm.sh).
+> That script supports the OpenAI/Codex path and a local Ollama option; the commands below are
+> illustrative, not verified for every harness, so check the script's `--help` before you run it.
 
 ## 2. What the bootstrap script does
 
-The script (`bootstrap-openclaw-agent-vm.sh`) is one-shot and idempotent-ish. Before it exits 0 it has:
+The script ([`bootstrap-openclaw-agent-vm.sh`](https://github.com/steveromine/lab-handbook/blob/main/scripts/bootstrap-openclaw-agent-vm.sh)) is one-shot and idempotent-ish. Before it exits 0 it has:
 
 1. Created a **dedicated Unix account** for the agent — the agent is not root.
 2. Installed OpenClaw **rootless** under `/opt`, with its own Node runtime.
@@ -136,22 +138,23 @@ This is the part people skip, and it is the whole point.
 ## 5. Then, and only then, install
 
 ```bash
-# 1. Copy the script to the VM and make it executable.
+# 1. Get the script onto the VM and make it executable.
+curl -fsSLO https://raw.githubusercontent.com/steveromine/lab-handbook/main/scripts/bootstrap-openclaw-agent-vm.sh
 chmod +x bootstrap-openclaw-agent-vm.sh
 
 # 2. Preview the plan without changing anything.
 ./bootstrap-openclaw-agent-vm.sh -test
 
-# 3. Run it, choosing your harness and auth path.
+# 3. Run it, choosing your auth path (see --help for every flag).
 sudo ./bootstrap-openclaw-agent-vm.sh \
      --git-name "You" --git-email "<git-author-email>" \
-     --harness codex --auth subscription
+     --openai-oauth                     # or: --openai-api-key <your-key>
 
 # 4. The script exits 0 only after a real agent turn has succeeded.
 ```
 
-Every harness is selected with `--harness`; every credential path with `--auth`. Refusing a credential
-up front is the point — see §2.
+Credentials are chosen with `--openai-oauth` or `--openai-api-key`; a local model is available with
+`--with-ollama`. Refusing a credential up front is the point — see §2.
 
 ## 6. What "done" looks like
 

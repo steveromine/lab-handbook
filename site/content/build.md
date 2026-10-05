@@ -21,6 +21,8 @@ The depth lives in the handbook, one page per track. This page is the map and th
 | 3 | [The agent VM](/handbook/build-agent-vm/) | An agent with a name, a job, tools, a budget - and colleagues |
 
 Read them in order the first time. The agent VM assumes there is somewhere for the agent to *act*.
+Every track page — and the scripts they reference, including the agent VM's bootstrap script — is in
+the public repository: [lab-handbook on GitHub](https://github.com/steveromine/lab-handbook).
 
 ## Why this shape
 

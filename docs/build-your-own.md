@@ -10,7 +10,8 @@ How to build this lab from nothing: **a Proxmox host, a cheap VPS at the edge, a
 agent is conceptually *you* — with agents under it.**
 
 This track is written so that the *reasoning* survives even if the versions do not. Commands age;
-decisions do not.
+decisions do not. The full source of every page here — and the scripts they reference — lives in the
+[public repository](https://github.com/steveromine/lab-handbook).
 
 | Track | Page | What you end up with |
 |---|---|---|
