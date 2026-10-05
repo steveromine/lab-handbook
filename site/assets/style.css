@@ -314,6 +314,34 @@ svg.figure line + polygon { fill: #9fb6cd; }
 svg.figure rect { fill: #243244; stroke: #8fa6bd; }
 svg.figure path, svg.figure circle, svg.figure ellipse, svg.figure polyline { fill: #243244; stroke: #9fb6cd; }
 svg.figure text { fill: #e6eef7; }
+
+/* GPU budget bar. The segment palette is defined ONCE per segment and used by both
+   the SVG rects (fill) and the key swatches (background). Without these rules every
+   <rect> defaults to black and the whole budget renders as one solid black bar. */
+.gpu-budget { margin: 1.5rem 0; }
+.gpu-svg { display: block; width: 100%; height: auto; margin: 0 0 .9rem; }
+.gpu-bg { fill: var(--bg-soft); stroke: var(--line); }
+.gpu-seg { stroke: none; }
+.gpu-cap { fill: var(--fg-soft); font-size: 12px; font-weight: 600; }
+.gpu-key { list-style: none; margin: 0; padding: 0; display: grid; gap: .3rem; }
+.gpu-key li { margin: 0; }
+.gpu-key button { display: inline-flex; align-items: center; gap: .55rem; width: 100%; text-align: left;
+  background: none; border: 0; padding: .35rem .45rem; border-radius: 8px; color: var(--fg);
+  font: inherit; cursor: pointer; }
+.gpu-key button:hover, .gpu-key button:focus-visible { background: var(--bg-soft); }
+.gpu-key button[aria-pressed='true'] { background: var(--bg-soft); outline: 1px solid var(--line); }
+.sw { display: inline-block; flex: 0 0 auto; width: .85rem; height: .85rem; border-radius: 3px;
+  border: 1px solid var(--line); }
+.gpu-note { color: var(--muted); font-size: .85rem; margin-top: .8rem; }
+/* segment palette: one definition, two consumers */
+.gpu-svg .gpu-resident  { fill: var(--accent); }
+.gpu-svg .gpu-stream    { fill: var(--warn); }
+.gpu-svg .gpu-transcode { fill: var(--ok); }
+.gpu-svg .gpu-free      { fill: var(--bg-card); stroke: var(--line); }
+.sw.gpu-resident  { background: var(--accent); }
+.sw.gpu-stream    { background: var(--warn); }
+.sw.gpu-transcode { background: var(--ok); }
+.sw.gpu-free      { background: var(--bg-card); }
 img[src="/assets/logo.svg"] { background: #fff; border-radius: var(--radius); padding: 1rem; }
 
 .architecture-diagram { max-width: 100%; overflow-x: auto; }
