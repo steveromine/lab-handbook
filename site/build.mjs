@@ -33,6 +33,7 @@ const ASSETS = path.join(HERE, 'assets');
 const DOCS = path.join(ROOT, 'docs');
 
 const STORY = [
+  { slug: '/governance/', file: 'governance.md', nav: '/governance/', section: 'Governance' },
   { slug: '/', file: 'home.md', nav: '/' },
   { slug: '/then-and-now/', file: 'then-and-now.md', nav: '/then-and-now/', section: 'Story' },
   { slug: '/architecture/', file: 'architecture.md', nav: '/architecture/', section: 'Story' },
@@ -166,6 +167,8 @@ function rewriteRefLinks(html) {
   return String(html).replace(/href="([^"]+)"/g, function (m, href) {
     if (/^(https?:|mailto:|#|\/)/.test(href)) return m;
     const frag = href.indexOf('#') >= 0 ? href.slice(href.indexOf('#')) : '';
+    const story = STORY.find(entry => 'site/content/' + entry.file === href.split('#')[0]);
+    if (story) return 'href="' + story.slug + frag + '"';
     if (/(^|\/)README\.md(#[A-Za-z0-9._-]+)?$/.test(href)) return 'href="/handbook/' + frag + '"';
     const mm = href.match(/^(?:\.\/|\.\.\/|docs\/)*([A-Za-z0-9][A-Za-z0-9._-]*)\.md(#[A-Za-z0-9._-]+)?$/);
     if (mm) return 'href="/handbook/' + mm[1] + '/' + frag + '"';
@@ -507,7 +510,9 @@ function main() {
   for (const entry of STORY) {
     const { meta, rendered } = readStory(entry);
     const title = meta.title || 'The Lab Handbook';
-    const content = heroHtml(meta) + (meta.facts === 'true' ? factsHtml() : '') + rendered.html;
+    const governancePages = new Set(['operator.md','safety.md','constraints.md','security.md','privacy.md','accessibility.md','reviews.md','requests.md','backlog.md']);
+    const sectionLink = governancePages.has(entry.file) ? '<nav class="crumbs" aria-label="Breadcrumb"><a href="/governance/">Governance</a></nav>' : '';
+    const content = sectionLink + heroHtml(meta) + (meta.facts === 'true' ? factsHtml() : '') + rendered.html;
     const html = layout({
       title: entry.slug === '/' ? null : title,
       description: meta.description, url: entry.slug, navCurrent: entry.slug, content,

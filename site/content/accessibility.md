@@ -72,3 +72,11 @@ mis-tapped a field. Contrast helps in sunlight. Reflow helps on a phone.
 
 **None of it is special-cased for a minority - it is the fundamentals, done properly, for the person
 actually using the site.**
+
+
+## Diagram readability
+
+Diagrams have an explicit high-contrast canvas independent of the selected page theme. Wide diagrams
+scroll inside their own keyboard-focusable panel instead of shrinking their labels to illegible size.
+Each Mermaid diagram includes an **Open full size** link and an expandable source/text alternative.
+Dark mode is the initial site theme; the Theme control preserves an explicitly chosen alternative.

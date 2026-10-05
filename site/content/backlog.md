@@ -164,3 +164,10 @@ failure, because it looks like the *destination* is down.
 The request form hid rejection details, reused challenges, and the backend shared a rate limit
 across visitors behind its reverse proxy. Corrected with fresh challenges, visible actionable
 errors, matching input validation, and separate accepted-submission limits. Review remains mandatory.
+
+
+## Fixed: diagrams missing from the handbook (2026-10-05)
+
+Mermaid blocks previously showed source only. They now have locally rendered SVGs, explicit contrast,
+full-size links and text alternatives. The architecture illustration and logo have fixed canvases
+so their colours remain visible when the page theme changes.

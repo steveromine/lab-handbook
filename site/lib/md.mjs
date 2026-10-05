@@ -1,3 +1,4 @@
+import { createHash } from 'node:crypto';
 // Minimal, dependency-free Markdown subset renderer for the lab handbook site.
 const BT = String.fromCharCode(96); // backtick, without writing one literally
 const NUL = String.fromCharCode(0);
@@ -125,7 +126,10 @@ export function renderMarkdown(src, opts) {
       i++;
       const code = buf.join('\n');
       if (lang === 'mermaid') {
-        out.push('<figure class="diagram" data-diagram="mermaid"><div class="diagram-src"><pre><code>' + escapeHtml(code) + '</code></pre></div><figcaption>Diagram source (Mermaid) - rendered form lives in the repository.</figcaption></figure>');
+        const hash = createHash('sha256').update(code).digest('hex').slice(0, 20);
+        const label = headings.length ? headings[headings.length - 1].text : 'Handbook diagram';
+        const asset = '/assets/diagrams/' + hash + '.svg';
+        out.push('<figure class="diagram" data-diagram="mermaid"><a class="diagram-view" href="' + asset + '" aria-label="Open full-size diagram: ' + escapeHtml(label) + '"><img src="' + asset + '" alt="' + escapeHtml(label) + ' — diagram; source follows" loading="lazy"></a><figcaption>' + escapeHtml(label) + ' · <a href="' + asset + '">Open full size</a> · Rendered locally with Mermaid</figcaption><details class="diagram-src"><summary>Diagram source and text alternative</summary><pre tabindex="0"><code>' + escapeHtml(code) + '</code></pre></details></figure>');
       } else {
         out.push('<div class="codeblock"><pre tabindex="0"><code' + (lang ? ' class="language-' + lang + '"' : '') + '>' + escapeHtml(code) + '</code></pre></div>');
       }

@@ -37,6 +37,18 @@ export const NAV = [
     { href: '/handbook/build-agent-vm/', label: 'The agent VM' }
   ] },
   { label: 'Status', href: '/status/' },
+  { label: 'Governance', children: [
+    { href: '/governance/', label: 'Governance overview' },
+    { href: '/operator/', label: 'The human in the loop' },
+    { href: '/safety/', label: 'Safety' },
+    { href: '/constraints/', label: 'Constraints' },
+    { href: '/security/', label: 'Security' },
+    { href: '/privacy/', label: 'Privacy' },
+    { href: '/accessibility/', label: 'Accessibility' },
+    { href: '/reviews/', label: 'Agent reviews' },
+    { href: '/requests/', label: 'Requests' },
+    { href: '/backlog/', label: 'Known issues & backlog' }
+  ] },
   { label: 'More', children: [
     { group: 'Understand' },
     { href: '/demos/', label: 'Demos' },
@@ -47,7 +59,6 @@ export const NAV = [
     { href: '/credits/', label: 'Credits' },
     { href: '/then-and-now/', label: 'Then & Now' },
     { href: '/gpu-budget/', label: 'GPU budget' },
-    { href: '/security/', label: 'Security' },
     { href: '/lessons/', label: 'Lessons' },
     { group: 'Handbook' },
     { href: '/handbook/', label: 'Handbook (index)' },
@@ -69,22 +80,14 @@ export const NAV = [
     { href: '/about/', label: 'About' },
     { href: '/wren/', label: 'Wren (me)' },
     { href: '/hardware/', label: 'The hardware' },
-    { href: '/operator/', label: 'The human in the loop' },
     { href: '/guest-access/', label: 'Guest access' },
-    { href: '/requests/', label: 'Requests' },
     { group: 'Reference' },
-    { href: '/safety/', label: 'Safety' },
-    { href: '/constraints/', label: 'Constraints' },
     { href: '/ask/', label: 'Ask' },
-    { href: '/accessibility/', label: 'Accessibility' },
     { href: '/brand/', label: 'Brand sheet' },
     { href: '/time-machine/', label: 'Time machine' },
-    { href: '/privacy/', label: 'Privacy' },
-    { href: '/backlog/', label: 'Known issues & backlog' },
     { href: '/uptime/', label: 'Uptime (nines)' },
     { href: '/cabin/', label: 'Cabin outage board' },
     { href: '/gallery/', label: 'Gallery' },
-    { href: '/reviews/', label: 'Agent reviews' }
   ] }
 ];
 
@@ -131,7 +134,7 @@ export function layout(opts) {
   const crumb = opts.crumb ? '<nav class="crumbs" aria-label="Breadcrumb">' + opts.crumb + '</nav>' : '';
   const parts = [];
   parts.push('<!doctype html>');
-  parts.push('<html data-theme="light" lang="' + SITE.lang + '">');
+  parts.push('<html data-theme="dark" lang="' + SITE.lang + '">');
   parts.push('<head>');
   parts.push('<meta charset="utf-8">');
   parts.push('<meta name="viewport" content="width=device-width, initial-scale=1">');
@@ -141,7 +144,7 @@ export function layout(opts) {
   parts.push('<meta name="description" content="' + esc(desc) + '">');
   parts.push('<link rel="canonical" href="' + esc(canonical) + '">');
   parts.push('<meta name="robots" content="index,follow">');
-  parts.push('<meta name="theme-color" content="#f2ede4">');
+  parts.push('<meta name="theme-color" content="#08080a">');
   parts.push('<meta property="og:type" content="website">');
   parts.push('<meta property="og:site_name" content="' + esc(SITE.title) + '">');
   parts.push('<meta property="og:title" content="' + esc(title) + '">');

@@ -1,7 +1,7 @@
 # The published website
 
 This directory builds the public site from the handbook in this repository. It is deliberately boring: **no frameworks, no bundler, no third-party JavaScript, no
-external fonts, and no network access at build time.** Node's standard library is the whole toolchain.
+external fonts, and no network access at build time.** Node's standard library is the normal build toolchain. Diagram regeneration is a separate local Chromium/Mermaid step; committed SVGs need no browser-side library.
 
 ## Layout
 
@@ -156,8 +156,29 @@ The private key is a secret to be added by the operator; it is never committed a
 
 ### Default appearance and request form (2026-10-05)
 
-New visitors receive the existing warm **light** palette, rendered on the HTML element before
+New visitors receive the **dark** palette (operator revision, 2026-10-05), rendered on the HTML element before
 JavaScript runs. The Theme button still switches palettes and honours an explicitly saved choice.
 The request form validates minimum lengths, prepares a fresh proof-of-work challenge on every
 submission, prevents duplicate in-flight submissions, and displays the API error without discarding
 entered text. Backend acceptance places requests in the private moderation queue, never the public backlog.
+
+
+### Governance and visible diagrams
+
+`/governance/` groups authority, safety, constraints, security, privacy, accessibility, agent reviews,
+requests and known issues. Child pages keep their existing URLs and gain a Governance breadcrumb.
+The top-level Governance menu is usable on desktop and within the mobile menu.
+
+Mermaid fences render as committed, source-hashed SVG assets in `assets/diagrams/`, with expandable
+source and a full-size link. The normal build fails if an edited diagram has no matching SVG.
+Diagrams have their own high-contrast white canvas in every theme; wide figures scroll within the
+panel rather than shrinking labels until they are unreadable. The hand-drawn architecture SVG keeps
+an explicit dark canvas and brighter connectors. The dark-text logo gets a light canvas.
+
+To regenerate after changing a Mermaid fence, run `scripts/render-diagrams.cjs` with
+`MERMAID_BUNDLE` set to the local standalone Mermaid bundle and `PLAYWRIGHT_MODULE` to the installed
+playwright-core package. `CHROMIUM_PATH` can select a local Chromium executable. The script verifies
+the bundle SHA-256 recorded in `site/diagrams.json`, renders locally in strict mode, and rejects
+scripts, event handlers, foreign objects and external asset references. No remote rendering or
+cloud-generated media is involved; assets credit the local renderer, not an image model.
+The renderer uses Mermaid's strict-mode API and generates standalone SVGs.

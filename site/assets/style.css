@@ -299,3 +299,17 @@ html { scroll-behavior: smooth; }
 .chat-msg.bot { background: var(--bg-card); }
 .chat-who { margin: 0 0 .3rem; font-size: .72rem; letter-spacing: .1em; text-transform: uppercase; color: var(--muted, #8b8590); }
 .chat-msg p { margin: .2rem 0; }
+
+/* Diagrams use an explicit canvas so page theme cannot erase labels or connectors. */
+.diagram-view { display: block; overflow-x: auto; background: #fff; border: 1px solid #65758a; border-radius: var(--radius); padding: 1rem; }
+.diagram-view img { display: block; width: auto; max-width: none; height: auto; margin: 0 auto; }
+.diagram-src { margin-top: .7rem; }
+.diagram-src summary { cursor: pointer; color: var(--fg-soft); padding: .4rem 0; }
+svg.figure { background: #101722; }
+svg.figure line, svg.figure polygon { stroke: #9fb6cd; }
+svg.figure line + polygon { fill: #9fb6cd; }
+svg.figure rect { stroke: #7891ab; }
+img[src="/assets/logo.svg"] { background: #fff; border-radius: var(--radius); padding: 1rem; }
+
+.architecture-diagram { max-width: 100%; overflow-x: auto; }
+.architecture-diagram svg.figure { width: 960px; max-width: none; }

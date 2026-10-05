@@ -1,0 +1,178 @@
+{
+  "renderer": "Mermaid (local Chromium)",
+  "bundleSha256": "581ed7d74bd9048d0e3a91363927d72ef22942d7722546b27f7cc29e35390eb8",
+  "diagrams": [
+    {
+      "file": "README.md",
+      "hash": "cc3c54a9eded825a0421"
+    },
+    {
+      "file": "README.md",
+      "hash": "8dfa3df1741c30445d13"
+    },
+    {
+      "file": "README.md",
+      "hash": "64cd017738afe2e68d1e"
+    },
+    {
+      "file": "README.md",
+      "hash": "31b40b8734e0f9b928c6"
+    },
+    {
+      "file": "docs/agents.md",
+      "hash": "914b9fd9e4b58488b879"
+    },
+    {
+      "file": "docs/agents.md",
+      "hash": "37684e7e794806aa7cfb"
+    },
+    {
+      "file": "docs/agents.md",
+      "hash": "7771d3e8d3067d65fcbc"
+    },
+    {
+      "file": "docs/agents.md",
+      "hash": "4bad14040180d576c9b9"
+    },
+    {
+      "file": "docs/agents.md",
+      "hash": "3c1b21d13ff9dd81f96c"
+    },
+    {
+      "file": "docs/agents.md",
+      "hash": "a568d9c0ceb0615c9dbb"
+    },
+    {
+      "file": "docs/agents.md",
+      "hash": "2c99919f0261cbc2000a"
+    },
+    {
+      "file": "docs/ai-platform.md",
+      "hash": "07f245614ef3473923a4"
+    },
+    {
+      "file": "docs/ai-platform.md",
+      "hash": "f403ec1b0d763c2f0c48"
+    },
+    {
+      "file": "docs/ai-platform.md",
+      "hash": "20ea971f24b1431a4805"
+    },
+    {
+      "file": "docs/ai-platform.md",
+      "hash": "63fca637b9dd0b3d5d70"
+    },
+    {
+      "file": "docs/architecture.md",
+      "hash": "c481a91776d283aba0d7"
+    },
+    {
+      "file": "docs/architecture.md",
+      "hash": "2312ec7b289078a84f18"
+    },
+    {
+      "file": "docs/architecture.md",
+      "hash": "be316b6d1694a9b3ad15"
+    },
+    {
+      "file": "docs/architecture.md",
+      "hash": "ddabc777b87b77a445aa"
+    },
+    {
+      "file": "docs/edge-and-security.md",
+      "hash": "5d12919870831f734b76"
+    },
+    {
+      "file": "docs/edge-and-security.md",
+      "hash": "3f25a9e6dd19c7ac81d0"
+    },
+    {
+      "file": "docs/edge-and-security.md",
+      "hash": "a5d9a0fc4d38a39f5bec"
+    },
+    {
+      "file": "docs/edge-and-security.md",
+      "hash": "cb8c4974212e1338a5ef"
+    },
+    {
+      "file": "docs/edge-and-security.md",
+      "hash": "8984ae84edc8a4d32190"
+    },
+    {
+      "file": "docs/edge-and-security.md",
+      "hash": "fa20dd710dd5690c088d"
+    },
+    {
+      "file": "docs/eli5.md",
+      "hash": "4c6e1d9ca610b2bbc8d2"
+    },
+    {
+      "file": "docs/eli5.md",
+      "hash": "7cf395780839a9c710ec"
+    },
+    {
+      "file": "docs/eli5.md",
+      "hash": "b3efa0f84f41602dc62b"
+    },
+    {
+      "file": "docs/eli5.md",
+      "hash": "b3d4be3115beec8ddccc"
+    },
+    {
+      "file": "docs/eli5.md",
+      "hash": "021bc8e673da64f91f0a"
+    },
+    {
+      "file": "docs/integrations.md",
+      "hash": "f9055f2b49b1bd2a63df"
+    },
+    {
+      "file": "docs/integrations.md",
+      "hash": "88f4f8ae6447193fc8e2"
+    },
+    {
+      "file": "docs/integrations.md",
+      "hash": "720a2b88223cc47241a0"
+    },
+    {
+      "file": "docs/integrations.md",
+      "hash": "8ccaa08d49041cc105a6"
+    },
+    {
+      "file": "docs/integrations.md",
+      "hash": "d723bf6abef89b4685c8"
+    },
+    {
+      "file": "docs/integrations.md",
+      "hash": "46ba362c48f89940174b"
+    },
+    {
+      "file": "docs/integrations.md",
+      "hash": "3be01938e1ec52e982f5"
+    },
+    {
+      "file": "docs/lessons.md",
+      "hash": "55b3bc77510d726dbcc9"
+    },
+    {
+      "file": "docs/operations.md",
+      "hash": "e162ed490800d51301ec"
+    },
+    {
+      "file": "docs/operations.md",
+      "hash": "ec99a0735a480ed9dbf2"
+    },
+    {
+      "file": "docs/operations.md",
+      "hash": "e561455495911d5d2eb2"
+    },
+    {
+      "file": "docs/operations.md",
+      "hash": "c78c667360d525ad1915"
+    },
+    {
+      "file": "site/content/service-map.md",
+      "hash": "7f807309a11489ebc686"
+    }
+  ]
+}
