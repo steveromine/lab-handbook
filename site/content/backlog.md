@@ -114,3 +114,8 @@ being recorded or scanned, rather than recording anyone else.
 
 Both are documented here rather than buried, because a sidequest that is written down honestly is
 still honest while it is unfinished.
+
+## OSINT workbench follow-up
+
+- Shodan lookup activation requires a locally provisioned provider credential; no key is stored in the handbook.
+- This site update is held by a pre-existing full-history publication-gate failure. No gate bypass or history rewrite is part of the OSINT deployment.

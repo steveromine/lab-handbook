@@ -79,3 +79,9 @@ designated client-zone host, agreed with the operator.*
 
 *Probe evidence is recorded without addresses by design. The method is reproducible with the
 documented build checks.*
+
+## Private OSINT workbench
+
+The [OSINT workbench](/osint/) connects five isolated research tools to the local GPU chat model.
+Worker ports are not published; the separate operator interface is loopback-only.
+See the workbench page for verification scope, credential requirements and retention limits.

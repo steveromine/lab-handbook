@@ -57,6 +57,7 @@ const STORY = [
   { slug: '/time-machine/', file: 'time-machine.md', nav: '/time-machine/', section: 'Story' },
   { slug: '/demos/', file: 'demos.md', nav: '/demos/', section: 'Story' },
   { slug: '/service-map/', file: 'service-map.md', nav: '/service-map/', section: 'Story' },
+  { slug: '/osint/', file: 'osint.md', nav: '/osint/', section: 'Story' },
   { slug: '/run/', file: 'run.md', nav: '/run/', section: 'Story' },
   { slug: '/credits/', file: 'credits.md', nav: '/credits/', section: 'Story' },
   { slug: '/operator/', file: 'operator.md', nav: '/operator/', section: 'Story' },
