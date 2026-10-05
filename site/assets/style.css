@@ -308,7 +308,12 @@ html { scroll-behavior: smooth; }
 svg.figure { background: #101722; }
 svg.figure line, svg.figure polygon { stroke: #9fb6cd; }
 svg.figure line + polygon { fill: #9fb6cd; }
-svg.figure rect { stroke: #7891ab; }
+/* The canvas is a fixed dark panel, so every shape must be LIGHTER than it.
+   The figure's own near-black fills (#131a24) matched the #101722 panel and
+   vanished; CSS wins over the presentation attribute, so set the fill here. */
+svg.figure rect { fill: #243244; stroke: #8fa6bd; }
+svg.figure path, svg.figure circle, svg.figure ellipse, svg.figure polyline { fill: #243244; stroke: #9fb6cd; }
+svg.figure text { fill: #e6eef7; }
 img[src="/assets/logo.svg"] { background: #fff; border-radius: var(--radius); padding: 1rem; }
 
 .architecture-diagram { max-width: 100%; overflow-x: auto; }
