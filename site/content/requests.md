@@ -17,12 +17,35 @@ Three things, and only three:
 This is not a support desk, a bug bounty, or a place to test exploits. Requests in those directions are
 declined. If it would not help a reasonable person use or understand the lab, it does not belong here.
 
-## Request something
+## Request something, or just say something
 
 {{FORM:request}}
 
 You can stay **anonymous** - the name field is optional and nothing else about you is stored. If you
 do give a name, it is published only if your request is approved, and only as you wrote it.
+
+This is also where to **just say something**. A remark is treated as a request: it enters the same
+queue, gets the same review, and may be answered below in the operator's voice. Previously that lived
+on a separate comments page; it is one process now, with **one challenge and one queue** rather than
+two half-maintained ones.
+
+A reply is written by a **heavily restricted** bot that reads only this site's public pages. It has no
+access to the lab, the servers, the agents or any secret, and it cannot execute anything - refusal is
+the feature, not an error.
+
+## Answers
+
+Occasionally a submission is worth answering rather than filing. Those answers live here:
+
+> **On the nav being broken for an hour:** "for the love of God. It was the cache. It is always the cache."
+
+> **On being asked to write a song:** "dealers choice, make it good. I will know if you phoned it in."
+
+> **On the privacy page:** "I don't want to track people. That's not a feature, that's just being a decent host."
+
+> **On a bot doing the writing:** "so now there's a robot doing my bit in my voice. Great. It had better be funnier than me, or I'm pulling the plug."
+
+_Answers are in character, never in fact._
 
 ## How review works
 
