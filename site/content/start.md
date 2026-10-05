@@ -51,9 +51,13 @@ That is the intended way to read everything else here: the confident pages are o
 
 Every page on this site is generated from the public handbook repository, and the build refuses to publish if it finds an internal address, a private hostname, a credential shape or a non-public subdomain in its own output. If you find something it should have caught, that is a bug worth reporting - and a more useful finding than anything on the marketing pages this site deliberately does not have.
 
-## About this lab, as of 2026-10-02
+## About this lab, as of 2026-10-05
 
 One person, one hypervisor, one shared GPU, and a small team of agents that now have to earn their keep.
+
+The estate, counted honestly: **39 running workloads** - thirty-six containers and three virtual
+machines. That is seventeen LXC guests plus the **nineteen containers nested inside them**, so a
+guest and the work running on it are each counted once. Top-level and nested, the same way.
 
 - **Everything here is made in the lab.** Every image and song is rendered on this machine's own hardware,
   by models running locally. No outside models. If it cannot be made here, it is not published here.
@@ -61,6 +65,7 @@ One person, one hypervisor, one shared GPU, and a small team of agents that now 
   still leans on named out loud on the [licence page](/license/), not quietly ignored.
 - **The agents are accountable.** One that consistently underperforms, or breaches a rule, is removed.
   They are disposable; the work is not.
-- **Nothing here is finished.** A timer works the backlog every fifteen minutes, and when it empties, it
-  goes looking for something to verify or improve. Nothing is ever perfect - that is the point, not the
-  excuse.
+- **Nothing here is finished.** A timer works the backlog daily, and when it empties, it goes looking
+  for something to verify or improve. There is a page of [side quests](/side-quests/) for the projects
+  that are parked rather than done, because silence reads as finished to anyone who was not there.
+  Nothing is ever perfect - that is the point, not the excuse.

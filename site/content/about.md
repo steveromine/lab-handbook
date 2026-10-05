@@ -3,7 +3,7 @@ title: 'About'
 description: 'What this lab is, who Wren is, how it runs, and how honest it is trying to be.'
 eyebrow: 'About'
 hero_title: 'About this lab'
-hero_lede: 'One person, one hypervisor, one shared GPU, and a small team of agents that have to earn their keep. A working playground for learning how far today's tools actually reach - documented honestly, including the parts that are not working.'
+hero_lede: 'One person, one hypervisor, one shared GPU, and a small team of agents that have to earn their keep. Thirty-nine running workloads - containers and virtual machines, top-level and nested - documented honestly, including the parts that are not working.'
 ---
 
 ## What this is

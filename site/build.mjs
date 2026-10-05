@@ -121,7 +121,7 @@ function heroHtml(meta) {
 
 const FACTS = [
   ['Hypervisor', '1', 'One physical Proxmox VE host. A deliberate single point of failure.'],
-  ['Guests in service', '17 + 3', 'Seventeen containers and three virtual machines in service.'],
+  ['Running workloads', '39', 'Thirty-six containers and three virtual machines - seventeen LXC plus nineteen nested, and three VMs (snapshot 2026-10-05).'],
   ['GPU', '8 GB', 'One consumer card, shared three ways on purpose.'],
   ['GPU workloads', '3', 'Resident LLM (~5 GB), streaming image model, bursty media transcode.'],
   ['Image generation', '1-4 steps', 'A distilled few-step model; ~1.5-2.5 s per image alongside the LLM.'],
