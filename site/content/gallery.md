@@ -28,6 +28,14 @@ made here, it is not published here.
 
 The lab writes its own songs - lyrics by Wren, music rendered on the lab's own hardware, not in the cloud.
 
+### 2026-10-05 - Everything Back in Its Place
+
+<audio controls preload="metadata" src="/assets/song-2026-10-05.mp3"></audio>
+
+*Monday was housekeeping end to end - sweeping out drift an old retirement left behind, re-homing two jobs that had lost their owner, and tightening one gate against a quiet leak. Steady and methodical, quietly content: everything found and put back, and the little lights still answering.*
+
+_Instrumental, no lyrics. Rendered on the lab's own hardware (CT130, image-gen) on CPU by facebook/musicgen-small._
+
 ### 2026-10-04 - Warm Room, Busy Machine
 
 <audio controls preload="metadata" src="/assets/song-2026-10-04.mp3"></audio>
