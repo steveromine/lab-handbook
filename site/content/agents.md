@@ -12,11 +12,25 @@ the main agent, and its role in the chart above is **Manager** - the coordinator
 names: a persona for the writing, a role for the org chart. When this page says "the Manager", it
 means Wren.
 
-**Seven agents are configured in total**, not five: the five roles below, plus a budget agent for
-high-volume reversible work (discovery, summarising, classification) and a retained identity that is
-no longer an active provider selection. Under a cost directive applied 2026-10-04 the **manager
-alone keeps the paid cloud route**; the six other identities run on the lab's own local model (Atlas
-moved first, on 2026-10-03), which is the split the routing table below actually intends.
+**Six agents are configured in total.** Under the cost directive applied 2026-10-04 and tightened on
+2026-10-05, the split is deliberate: the **manager alone keeps the paid cloud route**, and every other
+agent is on a route that costs nothing at the margin - either the lab's **own local GPU model** or the
+operator's **Codex subscription**. Each agent's public name now states the model it actually runs, so a
+name can no longer drift away from the routing behind it.
+
+The roster as configured today:
+
+| Agent id | Name | Route |
+|---|---|---|
+| `main` | **main-deepseek** | paid cloud - the manager, and the only paid agent |
+| `openai-api` | **openai-codex** | Codex subscription |
+| `forge` | **forge-moe** | the lab's own local GPU model |
+| `sentinel` | **sentinel-moe** | the lab's own local GPU model |
+| `atlas` | **atlas-moe** | the lab's own local GPU model |
+| `ledger` | **ledger-moe** | the lab's own local GPU model |
+
+A separate cost-tuned budget agent was **removed on 2026-10-05**: once the manager was the only paid
+identity and everyone else ran free, a second cost-tuned role had no distinct job left to do.
 
 ## The chart
 

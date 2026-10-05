@@ -98,6 +98,32 @@ but not free · **non-commercial** - restricts commercial use · **service** - a
 | **Inkscape** (where used) | SVG authoring | GPLv3 (**open**) |
 | **Git** | Version control | GPLv2 (**open**) |
 
+## OSINT and research
+
+Five upstream research tools, each run as its **own non-root container**, joined to the lab's internal
+network with no published host port, and pinned by image digest:
+
+| Piece | Role | Licence |
+|---|---|---|
+| **shodan-python** | Host and exposure lookups against the Shodan API | per upstream (**not declared** to the licence registry) |
+| **theHarvester** | Domain, host and email reconnaissance | **GPL-2.0** (**open**) |
+| **SpiderFoot** | Attack-surface scanning (loopback UI only) | **MIT** (**open**) |
+| **Maigret** | Username and profile discovery | **MIT** (**open**) |
+| **Blackbird** | Account search across public sources | **none declared upstream** - see the caveat below |
+| **Open WebUI** | Chat front-end that hosts the Lab OSINT model | **its own licence** (**source-available / controlled**) |
+
+### The honest part
+
+The **licences here genuinely differ, and one of them is missing.** Blackbird ships **no licence file at
+all**, which means the default "all rights reserved" applies until its author says otherwise - so it is
+used only as an unmodified, internal, non-redistributed tool, and that limitation is written down rather
+than assumed away. Shodan's Python client likewise flags no licence to the registry. Neither fact is
+buried in a footnote: if a credit is wrong or missing, that is a bug worth
+[reporting](/requests/). The pinned source revisions live in the lab's own `sources.json`.
+
+Running alongside them is an **admin-owned `lab-osint` model** served on the lab's own GPU - so the
+research tools and the language model that summarises their output both stay inside the lab.
+
 ## Non-commercial caveat, restated
 
 Everything on this site is legitimately ours to publish, **but the generated pictures and songs inherit
