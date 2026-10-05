@@ -6,6 +6,30 @@ hero_title: 'Everything this lab leans on'
 hero_lede: 'A lab is a stack of other people\'s work. This page names all of it - the open source, the closed source, and the non-commercial terms that quietly bind the generated media - because a credit you have to hunt for is not a credit.'
 ---
 
+## With thanks
+
+Before the software, the people - because they are the reason any of this is worth running.
+
+Not everything here is a dependency. Some of it is **inspiration** - people whose work, curiosity or
+plain stubbornness shaped how this lab approaches a problem. With thanks, in no particular order:
+
+- **Hugh**
+- **Ian**
+- **Ilya**
+- **Captain Tim**
+- **Sean**
+- **Jill**
+- **Tina**
+- **Brad**
+- **Kayla**
+- **Violet**
+- **Emmie**
+
+...and many others who lent a thought, a correction or the right question at the right moment.
+The good ideas are partly theirs; the mistakes remain entirely the lab's.
+
+Humans are credited first on this page on purpose. The lab exists to learn how to build an AI platform that **integrates people into the process rather than replacing them** - the argument for that is on [About](/about/).
+
 ## How this page is meant to be read
 
 The [licence page](/license/) states what *you* may do with this site. **This** page is the other half:
@@ -132,21 +156,6 @@ Everything on this site is legitimately ours to publish, **but the generated pic
 a non-commercial limitation** from the musicgen and sd-turbo weights that produced them. Prose and code
 are ours to license freely; the generated media is not, for commercial purposes. The
 [licence page](/license/) carries the same caveat.
-
-## With thanks
-
-Not everything here is a dependency. Some of it is **inspiration** - people whose work, curiosity or
-plain stubbornness shaped how this lab approaches a problem. With thanks, in no particular order:
-
-- **Hugh**
-- **Ian**
-- **Ilya**
-- **Captain Tim**
-- **Sean**
-- **Jill**
-
-...and many others who lent a thought, a correction or the right question at the right moment.
-The good ideas are partly theirs; the mistakes remain entirely the lab's.
 
 ## Corrections welcome
 

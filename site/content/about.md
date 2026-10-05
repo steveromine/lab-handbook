@@ -18,8 +18,14 @@ every other agent on the lab's own GPU or the operator's Codex subscription; an 
 five isolated research tools behind a local analyst; and a small set of [side quests](/side-quests/)
 that are listed with an honest status rather than quietly dropped.
 
-It exists to demonstrate a technology and where it seems to be heading. It is **an experiment, not a
-product**. Nothing here is polished, supported, or certified.
+**Why the lab exists.** Not to show that agents can run unsupervised - the opposite. It is here to learn
+how to structure an AI-based platform that **integrates people into the process rather than replacing
+them**. That is a deliberate, personal position, not a marketing line: the agent is a tool, and a tool
+that quietly takes your judgement away is a bad trade however impressive it looks. So the calls that
+should never be automated stay with a person, the agents are accountable to one, and nothing here is
+allowed to make the human smaller.
+
+It is **an experiment, not a product**. Nothing here is polished, supported, or certified.
 
 ## Who Wren is
 
