@@ -40,6 +40,9 @@ but not free · **non-commercial** - restricts commercial use · **service** - a
 | **OpenSSH** | Remote access | BSD-style (**open**) |
 | **UFW** / **nftables** | Host firewalling | GPLv2 (**open**) |
 | **Pi-hole** | Filtering DNS | EUPL-1.2 (**open**) |
+| **llama.cpp** | Local model inference server | MIT (**open**) |
+| **llama-swap** | Loads the requested model on demand and unloads the last, so several models share one 8 GB card | MIT (**open**) |
+| **Qwen** model family | Local language-model weights (`ops-llm` and the optional models) | Apache-2.0 for most Qwen2.5/Qwen3 weights; **check each model card** - some derivatives carry their own terms |
 | **fail2ban** | Intrusion defence | GPLv2 (**open**) |
 
 ## Mail and content delivery

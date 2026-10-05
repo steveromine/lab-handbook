@@ -2,14 +2,14 @@
 title: 'GPU as a budget'
 description: 'One 8 GB card shared by three workloads: what fits, what does not, and how a few-step model became a sharing strategy rather than a compromise.'
 hero_title: 'GPU as a budget, not a checkbox'
-hero_lede: 'One consumer card, three workloads, 8 GB of VRAM. Almost every AI decision in this lab follows from that constraint rather than from preference.'
+hero_lede: 'One consumer card, 8 GB of VRAM, and a set of models larger than the card - so the lab swaps them on demand. Almost every AI decision here follows from that constraint rather than from preference.'
 ---
 
 ## The constraint
 
 | Workload | Character | VRAM behaviour |
 |---|---|---|
-| Local language model | **Resident** - loads once and stays | ~5 GB of the 8 GB card, permanently |
+| Local language models | **Swappable** - one resident at a time | one model's weights on the card; the rest of the set waits on disk |
 | Image generation | **Streaming** - modules loaded on demand | a few hundred megabytes at steady state |
 | Media transcoding | Bursty, latency tolerant | dedicated encoder, contended on demand |
 
@@ -17,7 +17,7 @@ A GPU is a **budget**, not a checkbox. Two workloads that each "fit" in isolatio
 
 ## Two rules fell out of it
 
-1. **The resident workload wins.** The language model loads once and stays. Anything else must fit around it, and may not evict it.
+1. **The card holds one model at a time.** 8 GB fits one set of weights, so the lab's language models are **swapped on demand** rather than kept side by side. Giving the lab four selectable models did not mean four resident ones - it meant a swapper that loads whichever was asked for and unloads the last.
 2. **Streaming beats resident for the second model.** A model that loads its modules on demand costs a little latency and almost no standing memory - which is the only way two models coexist on this card at all.
 
 ## The memory decision, step by step

@@ -124,3 +124,36 @@ still honest while it is unfinished.
 
 - Shodan lookup activation requires a locally provisioned provider credential; no key is stored in the handbook.
 - This site update is held by a pre-existing full-history publication-gate failure. No gate bypass or history rewrite is part of the OSINT deployment.
+
+## 2026-10-05 - models became a set, and two network faults surfaced
+
+### The GPU now serves a *set* of models, not one
+
+The lab's local models used to be a single resident model. As of 2026-10-05 there are **four selectable
+models** - the original `ops-llm` (the only one any agent uses, still the default) plus three optional
+ones chosen by hand: a 9B and two 27B variants. The card has 8 GB, so only one is resident at a time; a
+swapper loads the requested model and unloads the last. The three optional models are documented here
+because they are *available*, not because they are in use.
+
+Two of them **do not fit the card** and run partly on the CPU, which makes them slow rather than broken.
+
+- **Status:** working and verified by live inference. The 27B pair is slow (roughly a token a second)
+  because only part of each fits - that is the hardware, not a misconfiguration.
+
+### Network fault: one host cannot fetch from a model CDN
+
+A model download that failed from the agent host but worked from the lab guest traced to the *file*
+delivery host, not the model site itself: the front door answered, and the storage host behind it
+returned **403**. Anything fetched from that host fails the same way.
+
+- **Status:** known, worked around by fetching from a host that can reach it. Root cause (blocked route
+  versus rejected source) not yet determined.
+
+### Network fault: a configured proxy that answers nothing
+
+The agent host carries `HTTP_PROXY`/`HTTPS_PROXY` settings pointing at a proxy that does not respond,
+while direct requests succeed. Anything trusting those settings fails silently - the worst kind of
+failure, because it looks like the *destination* is down.
+
+- **Status:** known, not yet fixed. Recorded so the next person does not spend an afternoon blaming the
+  far end.
