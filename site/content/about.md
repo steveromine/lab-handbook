@@ -8,9 +8,15 @@ hero_lede: 'One person, one hypervisor, one shared GPU, and a small team of agen
 
 ## What this is
 
-The Lab Handbook documents one person's home lab: a hypervisor, a handful of guests, one GPU shared
-between a language model, an image model and whatever else asks nicely, a hardened edge, and a team of
-agents that build, verify and document their own work.
+The Lab Handbook documents one person's home lab: a hypervisor running **17 LXC containers and 3
+virtual machines**, which between them host **39 running workloads** once the containers nested inside
+them are counted; one GPU shared between a language model, an image model and whatever else asks
+nicely; a hardened edge; and a team of agents that build, verify and document their own work.
+
+As of **2026-10-05** the shape of it is: an agent team whose only paid model is the manager, with
+every other agent on the lab's own GPU or the operator's Codex subscription; an OSINT workbench of
+five isolated research tools behind a local analyst; and a small set of [side quests](/side-quests/)
+that are listed with an honest status rather than quietly dropped.
 
 It exists to demonstrate a technology and where it seems to be heading. It is **an experiment, not a
 product**. Nothing here is polished, supported, or certified.
