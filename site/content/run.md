@@ -3,7 +3,7 @@ title: 'One agent run, step by step'
 description: 'A real, sanitised agent run with its task, model route, tool calls, verification and resulting commit - replayed from the same trace data, not a second telling.'
 eyebrow: 'Evidence'
 hero_title: 'A run you can step through'
-hero_lede: 'This is one real run, sanitised. Its steps come from the run\'s own trace, so the timeline below and the replay are the same data seen twice - not two accounts of the same event.'
+hero_lede: 'One real run, sanitised and written out step by step from the run\'s own trace - including the step that failed and had to be redone.'
 ---
 
 ## The run
@@ -28,13 +28,6 @@ hero_lede: 'This is one real run, sanitised. Its steps come from the run\'s own 
 
 Step 5 is the one that matters. The first take **failed verification** and the run did not proceed
 until it was corrected - which is the whole reason verification sits inside the run rather than after it.
-
-## Replay
-
-{{FORM:run-replay}}
-
-The replay above uses the same step list as the timeline. It is a **replay**, not a live simulation:
-nothing is executed when you scrub, and the run is not re-invoked.
 
 ## What was left out
 

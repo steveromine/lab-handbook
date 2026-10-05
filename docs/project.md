@@ -61,9 +61,11 @@ and the documented rsync publish path.
 - [x] **6. GPU budget visualizer** - an inline-SVG 8 GB bar added to [`/gpu-budget/`](/gpu-budget/):
       resident model, streaming image model, transcode, headroom, all labelled **estimates** rather
       than telemetry.
-- [x] **7. Agent run replay UI** - a keyboard-operable stepper and scrubber on `/run/` that reuses
-      the **same** eight-step trace as the timeline above (one dataset, two views), with a text
-      equivalent for no-JS.
+- [x] **7. Agent run replay UI** - **BUILT, THEN REMOVED 2026-10-05.** The stepper/scrubber markup
+      shipped but its JavaScript was never wired into `app.js`, so the controls did nothing - reported
+      by the operator, and removed on their instruction rather than left as a second dead widget. The
+      eight-step timeline on `/run/` remains as the substantive evidence. Recorded here because a
+      control that looks interactive and is not is worse than no control.
 
 ## Additional requests (2026-10-03)
 
