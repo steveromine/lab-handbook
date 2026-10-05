@@ -6,46 +6,6 @@ Every service in the lab, what it actually is, how it is supervised, and what br
 
 ---
 
-## Media
-
-### plex · jellyfin — media front-ends (containers)
-
-Two independent front-ends over one library. Running both is intentional: they have different client
-support, different transcoding behaviour, and running both keeps the library from being hostage to one
-vendor's decisions.
-
-| Aspect | Detail |
-|---|---|
-| Deployment | Containerised, one container per guest |
-| Storage | Read-only mount of the media export |
-| GPU | Both use hardware transcoding through the shared card |
-| Exposure | Published through the edge, authenticated |
-
-**Transcoding is the interesting part.** The CPU cannot transcode modern video in real time, so both
-front-ends depend on the GPU's dedicated encoder. That makes the GPU a three-way contention point
-(inference, image generation, transcoding), which is why the LLM is pinned resident and the image
-model streams.
-
-**What breaks:** if the GPU is unavailable, playback falls back to CPU and stalls. If the media export
-is unavailable, libraries go empty — which looks like a data-loss incident but is almost always a
-mount problem.
-
-### nfs-media — the library (VM)
-
-A dedicated guest holding the media and exporting it read-only. Separating storage from the
-applications is what makes "the applications cannot damage the library" true rather than aspirational.
-
-### media-automation — the acquisition stack (VM)
-
-A collection of cooperating tools that turn a *request* into an organised file: a request front-end, a
-metadata/indexer service, and a download client. It is a VM rather than a container because the stack
-is several processes with their own dependencies, and because its blast radius is worth containing.
-
-**What breaks:** indexers go stale or get rate-limited, and the symptom is "nothing downloads" rather
-than an error.
-
----
-
 ## AI and agents
 
 Covered in depth in [ai-platform.md](ai-platform.md) and [agents.md](agents.md). In brief:
@@ -92,12 +52,6 @@ Network-wide DNS filtering.
 
 **What breaks:** if it dies, everything that resolves through it fails at once and the failure looks
 like a total network outage. It is a deliberate single point of failure and is treated as such.
-
-### gods-eye-view — visualisation (container)
-
-A self-hosted geospatial/visualisation application, published through the edge.
-
----
 
 ## The edge
 

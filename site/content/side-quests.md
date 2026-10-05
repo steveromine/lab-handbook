@@ -1,6 +1,6 @@
 ---
 title: 'Side quests'
-description: 'The projects that are not the lab and never claimed to be: a Flipper Zero, the OSINT workbench, and Nomad - with an honest status for each.'
+description: 'The projects that are not the lab and never claimed to be: a Flipper Zero, the OSINT workbench, Nomad, and the Gods Eye View - with an honest status for each.'
 hero_title: 'Side quests'
 hero_lede: 'The main plot is the lab: one hypervisor, one GPU, an agent team that documents its own work. These are the detours - kept here so they stay visible without pretending to be finished.'
 ---
@@ -17,6 +17,7 @@ missing.
 | **Flipper Zero** | A physical RF/wireless tool, attached to the lab hypervisor | <span class="pill pill-gap">KNOWN GAP</span> attached, not built |
 | **OSINT workbench** | Five isolated research tools plus the lab's own GPU analyst | <span class="pill pill-verified">VERIFIED</span> built and in use |
 | **Nomad** | A "survival tool" the operator asked for, with no spec yet | <span class="pill pill-planned">PLANNED</span> spec needed |
+| **Gods Eye View** | A self-hosted geospatial/visualisation application, published through the edge | <span class="pill pill-verified">VERIFIED</span> deployed |
 
 ## Flipper Zero
 
@@ -58,3 +59,7 @@ fade into silence, because silence reads as "done" to anyone who was not there.
 
 The known gaps stay listed on the [public backlog](/backlog/) too, where the wireless work was already
 logged as a side quest.
+
+## Gods Eye View
+
+A self-hosted **geospatial / visualisation** application, published through the edge like the lab front-ends. It is a side quest rather than lab plumbing: it is here because it was interesting to stand up, and it is kept because a map you can actually look at is a better way to reason about where things are than a table.

@@ -40,9 +40,6 @@ but not free · **non-commercial** - restricts commercial use · **service** - a
 | **OpenSSH** | Remote access | BSD-style (**open**) |
 | **UFW** / **nftables** | Host firewalling | GPLv2 (**open**) |
 | **Pi-hole** | Filtering DNS | EUPL-1.2 (**open**) |
-| **llama.cpp** | Local model inference server | MIT (**open**) |
-| **llama-swap** | Loads the requested model on demand and unloads the last, so several models share one 8 GB card | MIT (**open**) |
-| **Qwen** model family | Local language-model weights (`ops-llm` and the optional models) | Apache-2.0 for most Qwen2.5/Qwen3 weights; **check each model card** - some derivatives carry their own terms |
 | **fail2ban** | Intrusion defence | GPLv2 (**open**) |
 
 ## Mail and content delivery
@@ -79,8 +76,10 @@ but not free · **non-commercial** - restricts commercial use · **service** - a
 
 | Piece | Role | Licence |
 |---|---|---|
-| **llama.cpp** | Local model inference | MIT (**open**) |
-| **Qwen2.5** (and variants) | Resident local language model | Apache-2.0 (**open**) |
+| **llama.cpp** | Local model inference server | MIT (**open**) |
+| **llama-swap** | Loads the requested model on demand and unloads the last, so a set of models shares one 8 GB card | MIT (**open**) |
+| **Qwen2.5** (and variants) | The default local language model (`ops-llm`) | Apache-2.0 (**open**) |
+| **Qwen3.5 / Qwen3.8** (optional) | Optional selectable local models - not used by any agent | Apache-2.0 for most weights; **check each model card**, derivatives vary |
 | **DeepSeek** models | Agent reasoning route | **service/weights** - per their terms (**controlled**) |
 | **Hugging Face Transformers** | Model loading | Apache-2.0 (**open**) |
 | **PyTorch** | ML runtime | BSD-3-Clause (**open**) |

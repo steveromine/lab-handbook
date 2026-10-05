@@ -58,6 +58,7 @@ const STORY = [
   { slug: '/service-map/', file: 'service-map.md', nav: '/service-map/', section: 'Story' },
   { slug: '/osint/', file: 'osint.md', nav: '/osint/', section: 'Story' },
   { slug: '/side-quests/', file: 'side-quests.md', nav: '/side-quests/', section: 'Story' },
+  { slug: '/productionish/', file: 'productionish.md', nav: '/productionish/', section: 'Story' },
   { slug: '/run/', file: 'run.md', nav: '/run/', section: 'Story' },
   { slug: '/credits/', file: 'credits.md', nav: '/credits/', section: 'Story' },
   { slug: '/operator/', file: 'operator.md', nav: '/operator/', section: 'Story' },
