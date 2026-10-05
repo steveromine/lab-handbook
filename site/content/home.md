@@ -99,7 +99,7 @@ model that produced it - credit where it is due, blame nowhere it is not. Full t
 ## About this lab, as of 2026-10-05
 
 One person, one hypervisor, one shared GPU, and a small team of agents that now have to earn their
-keep. The estate is **39 running workloads** - thirty-six containers and three virtual machines,
+keep. The estate is **38 running workloads** - thirty-five containers and three virtual machines,
 counting the containers nested inside the guests the same way as the guests themselves.
 
 Everything here is made in the lab on its own hardware; agents are accountable and disposable;

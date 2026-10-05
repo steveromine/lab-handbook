@@ -17,8 +17,10 @@ the private register.
 | Item | Area | Note |
 | --- | --- | --- |
 | **Guest-inference revocation untested** | security | The design is written, but the feature is not built and **revocation has never been exercised**. Until it has, the isolation is a plan, not a proven control. |
-| **New public endpoints not independently tested** | security | `/api/request` and `/subscribe` are rate-limited, proof-of-work gated and reviewed - but no independent penetration test has been run against them. |
-| **Subscriber retention is manual** | privacy | The list stores the minimum and unsubscribe deletes the record, but there is **no automated retention limit** - deletion is on request. |
+| **OSINT container baselines not recorded** | security | Three new OSINT worker containers run outside the recorded image-digest and restart-policy baselines, so the hourly monitor flags them as drift; recording the baselines (or retiring the containers) is the fix. |
+| **Hypervisor root filesystem 80% full** | stability | The hypervisor's own root filesystem is at 80% used - the monitor's warn threshold - and trending up; reclaim space or grow it before it reaches the critical threshold. |
+| **Public request endpoint not independently tested** | security | The single request/answer endpoint (`/api/request`) is rate-limited, proof-of-work gated and reviewed - but no independent penetration test has been run against it. |
+| **Worker jobs failing on a local-model timeout** | stability | Two scheduled worker jobs have failed every attempt for the last four runs with a model idle timeout; the once-a-day worker tier is not reliably completing its daily deliverables. |
 | **Atlas's daily estate audit is still unproven** | stability | The Atlas agent now runs - its first real tool-using run completed on 2026-10-03 - but the **scheduled daily estate audit has not completed a successful pass** (the first run answered the wrong vantage point; two refined re-runs failed), so scheduled configuration-drift auditing is not yet being proven. |
 | **Weekly note has no scheduled sender** | stability | Store, confirmation and PGP signing are live; nothing sends the note on a schedule yet. |
 | **Mobile nav fix unconfirmed on iOS** | stability | The sticky-header overflow is fixed and deployed, but has not been confirmed on the reporter's device (DuckDuckGo on iOS). |
@@ -31,6 +33,9 @@ the private register.
 
 ## Recently fixed
 
+- **The subscription and comments pages were retired.** Comment and answer folded into the single
+  request page: one challenge, one queue, instead of two half-maintained ones. The proof-of-work gate
+  and moderation are unchanged.
 - **The lab's own scheduled self-maintenance loops resumed.** Two jobs that had auto-disabled after
   repeated failures were re-enabled and are running again on the once-a-day cadence. Alert email to
   the operator is also delivering again after a single mailbox had been bouncing.

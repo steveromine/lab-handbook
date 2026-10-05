@@ -24,10 +24,10 @@ The roster as configured today:
 |---|---|---|
 | `main` | **main-deepseek** | paid cloud - the manager, and the only paid agent |
 | `openai-api` | **openai-codex** | Codex subscription |
-| `forge` | **forge-moe** | the lab's own local GPU model |
-| `sentinel` | **sentinel-moe** | the lab's own local GPU model |
-| `atlas` | **atlas-moe** | the lab's own local GPU model |
-| `ledger` | **ledger-moe** | the lab's own local GPU model |
+| `forge` | **forge-ops-llm** | the lab's own local GPU model |
+| `sentinel` | **sentinel-ops-llm** | the lab's own local GPU model |
+| `atlas` | **atlas-ops-llm** | the lab's own local GPU model |
+| `ledger` | **ledger-ops-llm** | the lab's own local GPU model |
 
 A separate cost-tuned budget agent was **removed on 2026-10-05**: once the manager was the only paid
 identity and everyone else ran free, a second cost-tuned role had no distinct job left to do.
@@ -167,7 +167,7 @@ made and explained.
 *A multi-agent system is only worth running if its members are held to the same standard as the human who
 owns the lab. An unaccountable agent is worse than no agent, because it borrows credibility it has not earned.*
 
-## Where each role actually stands (2026-10-04)
+## Where each role actually stands (2026-10-05)
 
 A `LIVE` pill means the role exists, has a standing duty and has completed a run on the working model; a `CONFIGURED` pill means the role is scheduled and routable but has not yet run. Either way it does not mean every role has yet proved itself. The honest split, as of this date:
 

@@ -58,19 +58,19 @@ site-refresh job; the timestamp is the honest part.
 | | |
 |---|---|
 | **CPU** | Intel Core i9-10900K - 20 threads @ 3.70 GHz |
-| **Load average** | 3.24 / 2.26 / 3.53 (1 / 5 / 15 min, across 20 threads ~15% busy) |
-| **Memory** | 125 GiB total - 59 GiB used, 66 GiB available |
-| **Root storage** | 94 GB, 59 GB used (66%) |
-| **Guest storage (LVM thin)** | 815 GB pool, 190 GB used (23%) |
-| **GPU** | NVIDIA GeForce RTX 3070 - 5237 / 8192 MiB in use, 0% utilisation, 30°C |
-| **Guests** | 17 LXC containers, 3 virtual machines |
-| **Running workloads** | **39** - 17 LXC + 3 VMs, hosting 19 containers inside them (snapshot 2026-10-05) |
-| **Host uptime** | 3 days, 7 hours |
+| **Load average** | 3.84 / 3.60 / 3.14 (1 / 5 / 15 min, across 20 threads ~19% busy) |
+| **Memory** | 125 GiB total - 44 GiB used, 81 GiB available |
+| **Root storage** | 94 GB, 72 GB used (80%) |
+| **Guest storage (LVM thin)** | 815 GB pool, 264 GB used (32%) |
+| **GPU** | NVIDIA GeForce RTX 3070 - 5237 / 8192 MiB in use, 0% utilisation, 31°C |
+| **Guests** | 16 LXC containers, 3 virtual machines |
+| **Running workloads** | **38** - 16 LXC + 3 VMs, hosting 19 containers inside them (snapshot 2026-10-05) |
+| **Host uptime** | 5 days, 4 hours |
 
-*Measured 2026-10-03 08:03 UTC. Two things reading this are worth noting: the GPU shows over half its
+*Measured 2026-10-05 05:15 UTC. Two things reading this are worth noting: the GPU shows over half its
 memory in use at idle - that is the resident language model holding its weights, the price of having an
-assistant that is always on - and the storage pool sits at 23%, which is the number that actually decides
-how much offline knowledge this thing can carry.*
+assistant that is always on - and the host's own root filesystem now sits at 80%, the monitor's warning
+threshold and a live watch item.*
 ## What it costs to run
 
 **These are estimates, not measurements.** No metered plug has been fitted to this box, so the numbers

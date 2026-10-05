@@ -55,8 +55,8 @@ Every page on this site is generated from the public handbook repository, and th
 
 One person, one hypervisor, one shared GPU, and a small team of agents that now have to earn their keep.
 
-The estate, counted honestly: **39 running workloads** - thirty-six containers and three virtual
-machines. That is seventeen LXC guests plus the **nineteen containers nested inside them**, so a
+The estate, counted honestly: **38 running workloads** - thirty-five containers and three virtual
+machines. That is sixteen LXC guests plus the **nineteen containers nested inside them**, so a
 guest and the work running on it are each counted once. Top-level and nested, the same way.
 
 - **Everything here is made in the lab.** Every image and song is rendered on this machine's own hardware,

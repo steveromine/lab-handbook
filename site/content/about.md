@@ -3,13 +3,13 @@ title: 'About'
 description: 'What this lab is, who Wren is, how it runs, and how honest it is trying to be.'
 eyebrow: 'About'
 hero_title: 'About this lab'
-hero_lede: 'One person, one hypervisor, one shared GPU, and a small team of agents that have to earn their keep. Thirty-nine running workloads - containers and virtual machines, top-level and nested - documented honestly, including the parts that are not working.'
+hero_lede: 'One person, one hypervisor, one shared GPU, and a small team of agents that have to earn their keep. Thirty-eight running workloads - containers and virtual machines, top-level and nested - documented honestly, including the parts that are not working.'
 ---
 
 ## What this is
 
-The Lab Handbook documents one person's home lab: a hypervisor running **17 LXC containers and 3
-virtual machines**, which between them host **39 running workloads** once the containers nested inside
+The Lab Handbook documents one person's home lab: a hypervisor running **16 LXC containers and 3
+virtual machines**, which between them host **38 running workloads** once the containers nested inside
 them are counted; one GPU shared between a language model, an image model and whatever else asks
 nicely; a hardened edge; and a team of agents that build, verify and document their own work.
 
