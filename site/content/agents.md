@@ -178,3 +178,16 @@ A `LIVE` pill means the role exists, has a standing duty and has completed a run
 **Worker-tier caveat (2026-10-05):** an operator cost directive slowed every periodic job to at most once a day and moved the worker tier onto the lab's own free routes. In the fourth review window each worker role ran only once or twice, and none of those runs left a durable record. Treat the worker tier's daily deliverables as unproven until the cadence and route settle.
 
 *Updated from real run outcomes, not intentions. A role that stops performing is demoted or removed - see the accountability policy.*
+
+
+## Secure remote access to agents
+
+The lab uses **Tailscale** for secure remote access to the agent host over its private tailnet.
+This is an administration path, separate from the public website and the edge-to-service overlay.
+Tailnet membership does not replace application authentication, device pairing, or SSH keys.
+Keep the agent Gateway bound to loopback; use an authenticated SSH tunnel over Tailscale when
+accessing a loopback-only UI. Tailscale Serve is an optional, separately configured proxy—not an
+assumption that every agent endpoint is exposed. No public agent port-forward is required.
+
+See the [agent VM build guide](/handbook/build-agent-vm/) and
+[handbook source](https://github.com/steveromine/lab-handbook).

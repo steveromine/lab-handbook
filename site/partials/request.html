@@ -7,10 +7,10 @@
   </select>
 
   <label for="rq-title">Short title</label>
-  <input id="rq-title" name="title" type="text" required maxlength="140" placeholder="One line - what are you asking for?">
+  <input id="rq-title" name="title" type="text" required minlength="6" maxlength="140" placeholder="One line - what are you asking for?">
 
   <label for="rq-detail">Details</label>
-  <textarea id="rq-detail" name="detail" required rows="6" maxlength="1400" placeholder="What would help, and why? A few sentences is plenty."></textarea>
+  <textarea id="rq-detail" name="detail" required minlength="20" rows="6" maxlength="1400" placeholder="What would help, and why? A few sentences is plenty."></textarea>
 
   <label for="rq-who">Who you are <span class="fine">(optional)</span></label>
   <input id="rq-who" name="who" type="text" maxlength="80" placeholder="Name or handle - leave blank to stay anonymous">

@@ -152,3 +152,12 @@ The workflow is committed but idle until these exist on the repository:
 | `EDGE_DEPLOY_KEY` | secret | The private half of the deploy keypair |
 
 The private key is a secret to be added by the operator; it is never committed and never printed.
+
+
+### Default appearance and request form (2026-10-05)
+
+New visitors receive the existing warm **light** palette, rendered on the HTML element before
+JavaScript runs. The Theme button still switches palettes and honours an explicitly saved choice.
+The request form validates minimum lengths, prepares a fresh proof-of-work challenge on every
+submission, prevents duplicate in-flight submissions, and displays the API error without discarding
+entered text. Backend acceptance places requests in the private moderation queue, never the public backlog.

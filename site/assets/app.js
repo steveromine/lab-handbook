@@ -342,30 +342,41 @@
   }
 
   var form = document.getElementById('request-form');
-  if (form && window.crypto && crypto.subtle) {
+  if (form) {
     var status = document.getElementById('rq-status');
     var submit = document.getElementById('rq-submit');
-    var btns = document.getElementById('rq-submit');
-    fetch('/api/challenge').then(function (r) { return r.json(); }).then(async function (c) {
-      document.getElementById('rq-ts').value = c.ts;
-      document.getElementById('rq-sig').value = c.sig;
-      if (submit) { submit.disabled = true; submit.textContent = 'Preparing…'; }
-      var nonce = await solve(c.ts, c.sig, c.difficulty || 4);
-      if (nonce === null) return;
-      document.getElementById('rq-nonce').value = String(nonce);
-      if (submit) { submit.disabled = false; submit.textContent = 'Submit for review'; }
-    }).catch(function () {});
-
-    form.addEventListener('submit', function (e) {
+    var sending = false;
+    submit.disabled = false;
+    form.addEventListener('submit', async function (e) {
       e.preventDefault();
-      if (status) status.textContent = 'Sending…';
-      fetch('/api/request', { method: 'POST', body: new URLSearchParams(new FormData(form)) })
-        .then(function (r) { return r.json().then(function (j) { return { ok: r.ok, j: j }; }); })
-        .then(function (res) {
-          if (status) status.textContent = res.j && res.j.message ? res.j.message : (res.ok ? 'Received.' : 'Could not submit.');
-          if (res.ok) form.reset();
-        })
-        .catch(function () { if (status) status.textContent = 'Could not reach the server.'; });
+      if (sending || !form.reportValidity()) return;
+      sending = true;
+      submit.disabled = true;
+      status.textContent = 'Preparing your submission…';
+      try {
+        if (!window.crypto || !crypto.subtle) throw new Error('A secure, modern browser is required.');
+        // Obtain a fresh challenge for every attempt, including retries and second requests.
+        var r = await fetch('/api/challenge', { cache: 'no-store' });
+        if (!r.ok) throw new Error('Could not prepare the submission. Please retry.');
+        var c = await r.json();
+        var started = Date.now();
+        var nonce = await solve(c.ts, c.sig, c.difficulty || 4);
+        if (nonce === null) throw new Error('Preparation timed out. Please retry.');
+        await new Promise(function (resolve) { setTimeout(resolve, Math.max(0, 3100 - (Date.now() - started))); });
+        var body = new URLSearchParams(new FormData(form));
+        body.set('ts', c.ts); body.set('sig', c.sig); body.set('nonce', nonce);
+        status.textContent = 'Sending…';
+        r = await fetch('/api/request', { method: 'POST', body: body });
+        var result = await r.json();
+        if (!r.ok || !result.ok) throw new Error(result.error || result.message || 'Could not submit. Please retry.');
+        status.textContent = result.message || 'Queued for review.';
+        form.reset();
+      } catch (error) {
+        status.textContent = error.message || 'Could not reach the server. Please retry.';
+      } finally {
+        sending = false;
+        submit.disabled = false;
+      }
     });
   }
 

@@ -131,7 +131,7 @@ export function layout(opts) {
   const crumb = opts.crumb ? '<nav class="crumbs" aria-label="Breadcrumb">' + opts.crumb + '</nav>' : '';
   const parts = [];
   parts.push('<!doctype html>');
-  parts.push('<html lang="' + SITE.lang + '">');
+  parts.push('<html data-theme="light" lang="' + SITE.lang + '">');
   parts.push('<head>');
   parts.push('<meta charset="utf-8">');
   parts.push('<meta name="viewport" content="width=device-width, initial-scale=1">');
@@ -141,7 +141,7 @@ export function layout(opts) {
   parts.push('<meta name="description" content="' + esc(desc) + '">');
   parts.push('<link rel="canonical" href="' + esc(canonical) + '">');
   parts.push('<meta name="robots" content="index,follow">');
-  parts.push('<meta name="theme-color" content="#0c1017">');
+  parts.push('<meta name="theme-color" content="#f2ede4">');
   parts.push('<meta property="og:type" content="website">');
   parts.push('<meta property="og:site_name" content="' + esc(SITE.title) + '">');
   parts.push('<meta property="og:title" content="' + esc(title) + '">');

@@ -90,3 +90,16 @@ One existing exposure is recorded rather than recommended: the raw local-model i
 - Let an agent decide to widen exposure.
 - Treat a validated configuration as a working service.
 - Describe the estate as more secure than the review found it to be.
+
+
+## Secure remote access to agents
+
+The lab uses **Tailscale** for secure remote access to the agent host over its private tailnet.
+This is an administration path, separate from the public website and the edge-to-service overlay.
+Tailnet membership does not replace application authentication, device pairing, or SSH keys.
+Keep the agent Gateway bound to loopback; use an authenticated SSH tunnel over Tailscale when
+accessing a loopback-only UI. Tailscale Serve is an optional, separately configured proxy—not an
+assumption that every agent endpoint is exposed. No public agent port-forward is required.
+
+See the [agent VM build guide](/handbook/build-agent-vm/) and
+[handbook source](https://github.com/steveromine/lab-handbook).

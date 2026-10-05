@@ -157,3 +157,10 @@ failure, because it looks like the *destination* is down.
 
 - **Status:** known, not yet fixed. Recorded so the next person does not spend an afternoon blaming the
   far end.
+
+
+## Fixed: request submission feedback (2026-10-05)
+
+The request form hid rejection details, reused challenges, and the backend shared a rate limit
+across visitors behind its reverse proxy. Corrected with fresh challenges, visible actionable
+errors, matching input validation, and separate accepted-submission limits. Review remains mandatory.

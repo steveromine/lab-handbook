@@ -69,3 +69,12 @@ markup. Nothing you send can run anything here.
 - **No promises on timing.** This is a lab, not a product team with a roadmap commitment.
 - **Anti-abuse is layered** - a challenge your browser solves, rate limits, and human-designed
   review. The captcha keeps out lazy automation; the review is what actually guards the door.
+
+
+## Submission feedback
+
+Use at least six characters for the title and twenty for the details. The browser prepares a fresh
+anti-abuse challenge each time you submit; leave the page open while it shows preparation or sending.
+A successful submission explicitly says it is **queued for review**. If a request fails, the form
+keeps your text and shows the reason so you can correct it or retry. After an accepted request, wait
+one minute before sending another. Requests are never automatically published or executed.

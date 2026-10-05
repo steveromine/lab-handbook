@@ -166,3 +166,16 @@ Credentials are chosen with `--openai-oauth` or `--openai-api-key`; a local mode
 - **You can rebuild the whole thing from Git plus two secrets.**
 
 If any line above is false, the install is not done — regardless of what the script printed.
+
+
+## Secure remote access to agents
+
+The lab uses **Tailscale** for secure remote access to the agent host over its private tailnet.
+This is an administration path, separate from the public website and the edge-to-service overlay.
+Tailnet membership does not replace application authentication, device pairing, or SSH keys.
+Keep the agent Gateway bound to loopback; use an authenticated SSH tunnel over Tailscale when
+accessing a loopback-only UI. Tailscale Serve is an optional, separately configured proxy—not an
+assumption that every agent endpoint is exposed. No public agent port-forward is required.
+
+See the [agent VM build guide](/handbook/build-agent-vm/) and
+[handbook source](https://github.com/steveromine/lab-handbook).
