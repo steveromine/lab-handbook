@@ -515,4 +515,35 @@
       });
     }).catch(function () { f.submit(); });
   });
+
+  // GPU budget: the legend buttons focus one segment and explain it in the note.
+  // (The markup shipped these buttons and an aria-live note, but no behaviour.)
+  var gpuBox = document.querySelector('[data-gpu-budget]');
+  if (gpuBox) {
+    var gpuNote = gpuBox.querySelector('[data-gpu-note]');
+    var gpuBase = gpuNote ? gpuNote.textContent : '';
+    var gpuSegs = gpuBox.querySelectorAll('.gpu-seg');
+    var gpuText = {
+      resident: 'The resident language model holds roughly 5 GB of the 8 GB card and is not evicted while it is loaded.',
+      stream: 'The image model streams its modules on demand, so it costs well under 1 GB at steady state.',
+      transcode: 'Hardware transcoding is bursty and latency tolerant - it yields to the other workloads.',
+      free: 'The remaining headroom, estimated from documented configuration rather than live telemetry.'
+    };
+    var gpuBtns = gpuBox.querySelectorAll('[data-gpu-focus]');
+    Array.prototype.forEach.call(gpuBtns, function (btn) {
+      btn.setAttribute('aria-pressed', 'false');
+      btn.addEventListener('click', function () {
+        var key = btn.getAttribute('data-gpu-focus');
+        var wasOn = btn.getAttribute('aria-pressed') === 'true';
+        Array.prototype.forEach.call(gpuBtns, function (b) { b.setAttribute('aria-pressed', 'false'); });
+        Array.prototype.forEach.call(gpuSegs, function (s) { s.style.opacity = ''; });
+        if (wasOn) { if (gpuNote) { gpuNote.textContent = gpuBase; } return; }
+        btn.setAttribute('aria-pressed', 'true');
+        Array.prototype.forEach.call(gpuSegs, function (s) {
+          if (s.getAttribute('data-seg') !== key) { s.style.opacity = '0.3'; }
+        });
+        if (gpuNote && gpuText[key]) { gpuNote.textContent = gpuText[key]; }
+      });
+    });
+  }
 })();
