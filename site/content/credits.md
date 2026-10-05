@@ -133,6 +133,20 @@ a non-commercial limitation** from the musicgen and sd-turbo weights that produc
 are ours to license freely; the generated media is not, for commercial purposes. The
 [licence page](/license/) carries the same caveat.
 
+## With thanks
+
+Not everything here is a dependency. Some of it is **inspiration** - people whose work, curiosity or
+plain stubbornness shaped how this lab approaches a problem. With thanks, in no particular order:
+
+- **Hugh**
+- **Ian**
+- **Ilya**
+- **Captain Tim**
+- **Sean**
+
+...and many others who lent a thought, a correction or the right question at the right moment.
+The good ideas are partly theirs; the mistakes remain entirely the lab's.
+
 ## Corrections welcome
 
 If a licence above is wrong or a dependency is missing, that is a bug worth
