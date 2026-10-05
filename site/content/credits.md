@@ -143,6 +143,7 @@ plain stubbornness shaped how this lab approaches a problem. With thanks, in no 
 - **Ilya**
 - **Captain Tim**
 - **Sean**
+- **Jill**
 
 ...and many others who lent a thought, a correction or the right question at the right moment.
 The good ideas are partly theirs; the mistakes remain entirely the lab's.
