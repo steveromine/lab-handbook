@@ -73,7 +73,8 @@ const STORY = [
   { slug: '/test/', file: 'test.md', nav: '/test/', section: 'Story' },
   { slug: '/outage/', file: 'outage.md', nav: '', section: 'Story' },
   { slug: '/build/', file: 'build.md', nav: '/build/', section: 'Story' },
-  { slug: '/start/', file: 'start.md', nav: '/start/', section: 'Story' }
+  { slug: '/start/', file: 'start.md', nav: '/start/', section: 'Story' },
+  { slug: '/running-it-by-hand/', file: 'running-it-by-hand.md', nav: '/running-it-by-hand/', section: 'Story' }
 ];
 
 function ensureDir(p) { fs.mkdirSync(p, { recursive: true }); }

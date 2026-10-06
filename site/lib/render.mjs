@@ -60,6 +60,7 @@ export const NAV = [
     { href: '/then-and-now/', label: 'Then & Now' },
     { href: '/gpu-budget/', label: 'GPU budget' },
     { href: '/lessons/', label: 'Lessons' },
+    { href: '/running-it-by-hand/', label: 'Running it by hand' },
     { group: 'Handbook' },
     { href: '/handbook/', label: 'Handbook (index)' },
     { href: '/handbook/architecture/', label: 'Architecture' },
