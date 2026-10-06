@@ -11,52 +11,38 @@ hero_lede: 'What agents may do, what needs a human decision, and how we show our
 - [The human in the loop](/operator/) — who sets direction and makes the consequential decisions.
 - [Safety](/safety/) — testing, rollback, and limits on autonomous changes.
 - [Constraints](/constraints/) — the operating boundaries and deliberate trade-offs.
+- [Manual override](/manual-override/) — why the operator stays able to run the machine by hand.
 - [Security](/security/) — trust boundaries, authentication, and secure remote administration.
 
-## Manual override
+## Documentation is the deliverable
 
-The operator can always take the controls by hand. Every automated decision in this lab has a manual
-counterpart, and the manual path does not depend on the agents being healthy, cooperative, or online.
+**Status: a hard requirement, and a work in progress. The lab does not fully meet it yet, and says so.**
 
-This is a deliberate design constraint, not a fallback of last resort. An autonomous system invites a
-quiet failure mode: you stop being able to run it without it. The knowledge of *how* to act moves
-into the automation, the automation becomes load-bearing, and the operator becomes a passenger in
-their own machine. Capability looks like it went up, because the system got faster. What actually went
-up is dependency. So the rule here is structural - the agents may do the work, but they may never be
-the only way the work can be done.
+No feature, service, configuration, model or routine is considered finished until the documentation is
+current at the same standard as the rest of the lab: what it is, where it lives, how it is reached,
+what guards it, what was verified and when, and how to undo it. Documentation is not a follow-up task
+to be done later - it is part of the change, and a change without it is not done.
 
-What that looks like in practice:
+This is a **forward-looking standard**, not a claim about today. The lab has real documentation debt,
+and the honest position is to name it rather than wait until it is all cleared. Where something does
+not meet the bar, it is listed under [Known issues and backlog](/backlog/) rather than quietly omitted
+- an undocumented service is a defect, and a defect that is written down is at least honest.
 
-- **The map stays outside the machine.** Access paths, interfaces and recovery procedures live in
-  written runbooks, not in an agent's context window. If every agent went dark tonight, those
-  documents would still get you in.
-- **A human makes the irreversible calls.** Autonomy is granted for what is reversible and
-  test-verifiable. Anything hard to undo waits for a person - the point is discretion, not throughput.
-- **The work is inspectable, not just observable.** You can read the change, the evidence and the
-  rollback step, and reproduce them by hand. A result you cannot check is a result you have to trust,
-  and trust without verification is how agency gets given away.
-- **Manual override is exercised, not assumed.** A recovery path nobody has walked is a rumour. The
-  break-glass route is written down, dated, and used - including the parts that turned out to be wrong.
+What the standard requires of every change:
 
-That last point is the uncomfortable one. Dependence does not announce itself; it accumulates through
-a thousand small conveniences, each reasonable on its own. The corrective is to keep the manual path
-warm on purpose, and to accept the small friction of doing so as the price of still being the one who
-decides.
+- **Dated.** A reader can tell when a claim was last checked, and it is not implied to be current.
+- **Verifiable.** State the evidence for each claim - a command, a status code, a hash - not a promise.
+- **Reversible.** Name the rollback step. If it cannot be rolled back, say that instead of implying it.
+- **Reconciled in the same turn.** The change and its documentation land together, not in a later pass.
+- **Written for a human under pressure.** Address, port, credential location, recovery path. If the
+  agents are gone, the document is what remains.
 
-> "We created the Machine, to do our will, but we cannot make it do our will now."
->
-> — E. M. Forster, *The Machine Stops* (1909)
+### Why this is a governance rule and not a chore
 
-Forster wrote that about a society that had delegated so thoroughly that it could no longer operate
-its own infrastructure, and mistook that helplessness for progress. Written in 1909, before any of
-this existed. It is the clearest statement of the risk this section exists to guard against: the
-danger is not a machine that turns on us, but one we quietly stop being able to live without.
-
-### Related
-
-- [The human in the loop](/operator/) — the operator's role, and the calls reserved for a person.
-- [Safety](/safety/) — testing, rollback, and the limits on autonomous change.
-- [Running it by hand](/running-it-by-hand/) — the break-glass map, if the agents are gone.
+A system nobody can describe is a system nobody can operate - or take back. The point of documentation
+is not tidiness; it is the same point as [manual override](/manual-override/): the lab stays legible,
+therefore controllable, therefore still the operator's. Undocumented automation is a slow transfer of
+agency to the thing doing the work. Writing it down is how control is kept.
 
 ## Responsibilities to visitors
 

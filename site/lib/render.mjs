@@ -42,6 +42,7 @@ export const NAV = [
     { href: '/operator/', label: 'The human in the loop' },
     { href: '/safety/', label: 'Safety' },
     { href: '/constraints/', label: 'Constraints' },
+    { href: '/manual-override/', label: 'Manual override' },
     { href: '/security/', label: 'Security' },
     { href: '/privacy/', label: 'Privacy' },
     { href: '/accessibility/', label: 'Accessibility' },

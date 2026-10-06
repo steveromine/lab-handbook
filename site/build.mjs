@@ -34,6 +34,7 @@ const DOCS = path.join(ROOT, 'docs');
 
 const STORY = [
   { slug: '/governance/', file: 'governance.md', nav: '/governance/', section: 'Governance' },
+  { slug: '/manual-override/', file: 'manual-override.md', nav: '/manual-override/', section: 'Governance' },
   { slug: '/', file: 'home.md', nav: '/' },
   { slug: '/then-and-now/', file: 'then-and-now.md', nav: '/then-and-now/', section: 'Story' },
   { slug: '/architecture/', file: 'architecture.md', nav: '/architecture/', section: 'Story' },
@@ -511,7 +512,7 @@ function main() {
   for (const entry of STORY) {
     const { meta, rendered } = readStory(entry);
     const title = meta.title || 'The Lab Handbook';
-    const governancePages = new Set(['operator.md','safety.md','constraints.md','security.md','privacy.md','accessibility.md','reviews.md','requests.md','backlog.md']);
+    const governancePages = new Set(['manual-override.md','operator.md','safety.md','constraints.md','security.md','privacy.md','accessibility.md','reviews.md','requests.md','backlog.md']);
     const sectionLink = governancePages.has(entry.file) ? '<nav class="crumbs" aria-label="Breadcrumb"><a href="/governance/">Governance</a></nav>' : '';
     const content = sectionLink + heroHtml(meta) + (meta.facts === 'true' ? factsHtml() : '') + rendered.html;
     const html = layout({
