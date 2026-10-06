@@ -32,6 +32,20 @@ The roster as configured today:
 A separate cost-tuned budget agent was **removed on 2026-10-05**: once the manager was the only paid
 identity and everyone else ran free, a second cost-tuned role had no distinct job left to do.
 
+## Worker access verification — 2026-10-06
+
+The manager’s communication roster now includes every active worker and excludes the retired
+budget identity. Workers have role-appropriate recall, web retrieval and child-management tools;
+shell-enabled roles also have process follow-up. The records role still has no shell, and the audit
+and inventory roles retain explicit file-write denials. Their shell access means read-only is a
+policy boundary, not technical isolation. Parent-only tools remain unavailable to subagents.
+
+Live testing found that the previous local coder model returned text resembling tool calls without
+executing them. The local workers now use the already-installed **Qwen3.5 9B** model, which produced
+an actual file-read receipt. The local server gives each request its full context window and queues
+concurrent requests. No paid fallback, new credentials, or broader network exposure was added.
+Configured access and successful tool execution are checked separately; a launch alone is not proof.
+
 ## The chart
 
 ~~~text
@@ -54,7 +68,7 @@ The Manager reports to the operator and to no one else. **Sentinel's audit findi
 | **MANAGER** | <span class="pill pill-live">LIVE</span> | Decompose work, choose the model and tools, verify the result, report honestly | Approve its own exceptions; override an audit finding; change its own permissions |
 | **FORGE** | <span class="pill pill-live">LIVE</span> | Implement changes: deploy, configure, write the scripts | Deploy without a written rollback; repeat a failed method more than twice |
 | **SENTINEL** | <span class="pill pill-live">LIVE</span> | Adversarial review: attack the design, verify the verification, hunt for exposure | Be overruled by the Manager; ship a fix for a finding it also reported |
-| **ATLAS** | <span class="pill pill-live">LIVE</span> | Reconnaissance: what is here, what version, what depends on what | Change anything - read-only by construction |
+| **ATLAS** | <span class="pill pill-live">LIVE</span> | Reconnaissance: what is here, what version, what depends on what | Change anything - read-only by policy (shell access is not a sandbox) |
 | **LEDGER** | <span class="pill pill-live">LIVE</span> | Records: decision log, activity log, backlog, cost accounting | Rewrite history - corrections are **appended**, never edited in place |
 
 ### What that means in practice

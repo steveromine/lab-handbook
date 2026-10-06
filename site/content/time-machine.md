@@ -3,7 +3,7 @@ title: 'Time machine'
 description: 'Every change to this site, from the first commit to now - the lab's own history, as far back as it goes.'
 eyebrow: 'As far back as it goes'
 hero_title: 'The time machine'
-hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 170 recorded changes from 2026-10-01 to 2026-10-05 - so you can watch the thinking change, mistakes and all.'
+hero_lede: 'Nothing here is hidden behind a curtain. This is the full history of the handbook - 179 recorded changes from 2026-10-01 to 2026-10-05 - so you can watch the thinking change, mistakes and all.'
 ---
 
 Every commit to this site, newest first. The point is not that the lab got everything right; it is
@@ -11,6 +11,15 @@ that you can see **how it changed** - including the places it changed its mind.
 
 ## 2026-10-05
 
+- `203e369` — site: credit the DevSecOps group, ET and Jeremy
+- `7c19738` — site: refresh the operator page - current observations, new quirks, licence philosophy trimmed
+- `46f86c6` — site: credit humans first on the credits page (add Tina, Brad, Kayla, Violet, Emmie); state the humans-in-the-loop purpose on About
+- `e8df659` — site: wire the GPU budget legend buttons (markup shipped with no behaviour)
+- `f850774` — site: style the GPU budget bar (segments had no CSS, so every rect filled black)
+- `ed63db3` — site: add Jill to the credits thank-you
+- `f62d26e` — site: add a thank-you to the people whose inspiration shaped the lab
+- `d169cf6` — site: make the architecture figure visible on the dark canvas (fill was matching the panel)
+- `f3b7d83` — Restore dark default, render readable diagrams, and add Governance section
 - `bac9ccf` — Fix request form retries, document remote access, and default to light theme
 - `5b81f4b` — build docs: link the tracks to the repository and ship the agent-VM bootstrap script
 - `a1749f8` — site: Productionish page (media stack), Gods Eye View to side quests, credits deduped

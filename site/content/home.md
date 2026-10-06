@@ -26,6 +26,16 @@ Three agents have found and fixed real faults this way, including a publication 
 silently blocking deploys. See [The team at work](#the-team-at-work), or watch
 [see the agent at work](/demos/).
 
+## What this is for
+
+Before the machinery, the point. **This lab exists to learn how to structure an AI-based platform that
+integrates people into the process rather than replacing them.** The agent is a tool, and a tool that
+quietly takes your judgement away is a bad trade however impressive it looks. That is a deliberate,
+personal position, not a pitch: the calls that should never be automated stay with a person, the agents
+are accountable to one, and **nothing here is allowed to make the human smaller.** The lab does not
+exist to show that agents can run unsupervised. It exists to show the opposite done well. The fuller
+argument is on [About](/about/) and [the human in the loop](/operator/).
+
 ## The idea, stated plainly
 
 For twenty years the bottleneck in a home lab was **you**: the person who remembers the workaround,

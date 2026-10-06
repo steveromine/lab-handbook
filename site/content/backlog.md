@@ -6,6 +6,15 @@ hero_title: 'Known issues & backlog'
 hero_lede: 'Every lab has rough edges. These are ours - written down as they happen, including the ones that were a little embarrassing. When something breaks here it becomes a backlog item, not a quiet patch.'
 ---
 
+## Worker access defects — repaired 2026-10-06
+
+The coordinator’s communication roster omitted active workers; role tool lists lacked recall and
+process/session follow-up. Those grants are now aligned with each role without granting the records
+worker a shell or removing auditor write denials. Live probes also exposed a local model that printed
+tool-call examples instead of executing them and a context window split too small for the tools.
+The workers now use a tested local tool-capable model with full-context serialized requests.
+See [worker access verification](/agents/#worker-access-verification-2026-10-06).
+
 ## How this works
 
 When a problem turns up, it gets **written down** - with a status - instead of being fixed, forgotten,
